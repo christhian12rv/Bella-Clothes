@@ -1,0 +1,140 @@
+// ADMIN
+    // Usuários
+        - Editar Usuários (Se é Adm ou não)
+    
+    // Produtos
+        - Adicionar novo Produto
+        - Editar Produto
+        - Excluir Produto
+
+    // Models
+        // Produtos
+            - nome *
+            - descrição *
+            - preço original *
+            - % de Desconto
+            - preço com desconto
+            - Parcelas [] (Array) -> Perguntar se é sem juros: "Sem juros?" -> Exemplo: "12x" de "316,58 sem juros"
+            - quantidade (estoque) *
+            - tamanhos [] (Array) *
+            - cores [] (Array) *
+            - Gênero - Masculino, Feminino ou Infantil *
+            - Infantil - Menina, Menino, Bebê Menino ou Bebê Menina
+            - Id Categoria - Roupas, Acessórios, Esportes, Cosméticos, etc
+            - ID Subcategoria - Blusas, Camisas, Sapatos, Ternos, etc.   Maquiagem, brincos, Shampoo, etc
+            - Indicado para: (Esportes, Dia a dia, festas, etc)
+            - Marca *
+            - Materiais [] (Array) (sintético, borracha, têxtil etc) *
+            - Composição - Exemplo: (Cabedal: Têxtil e Mesh; Entressola: EVA; Solado: Borracha)
+            - Peso - Exemplo: "600g (par)" - Fazer por "par"
+            - Quantidade Vendida
+            - Habilitar e Desabilitar
+            - Created At * (data)
+
+        // Categoria
+            - id
+            - nome
+        // Subcategoria
+            - id
+            - nome
+            - id Categoria
+            - gênero (pode ter maquiagem por exemplo) - Homem, Mulher, Unissex, Infantil ou Todos
+
+        // Comentários Sobre o Produto
+            - idUsuario
+            - idProduto
+            - Comentário
+            - Avaliação (1 à 5 "estrelas")
+            - Recomenda esse produto? (Não e Sim)
+            - dataComentario 
+            VER NA NETSHOES E NO TEMPLATE FASHI
+            NOS FAVORITOS DO NAVEGADOR EDGE TEM COMO CALCULAR A MÉDIA DA AVALIAÇÃO DO PRODUTO
+            ESTRELAS DO BOOTSTRAP: STAR, STAR-FILL E STAR-HALF (meia estrela)
+
+        // Blog
+            - titulo
+            - conteudo
+            - imagem
+            - Created At
+        
+        // Categoria
+
+    // Categorias e subcategorias - Elas vão ser exibidas para o admin marcar qual é o tipo do produto
+        -> Categorias:
+            Homem
+            Mulher
+            Infantil
+            Unissex
+            Esporte
+            Cosméticos
+
+        - Adicionar Categorias
+        - Adicionar Subcategorias
+        - Adicionar Tipo
+        - Adicionar Marcas
+        - Adicionar Material
+
+// USUÁRIOS
+    // Models
+        // Usuários
+            - nome *
+            - sobrenome *
+            - email *
+            - senha (criptografar)  *
+            confirmar senha
+            - cpf *
+            - data nascimento *
+            - sexo *
+            - telefone
+            - deseja receber ofertas por email
+            - cep *
+            - rua *
+            - numero casa *
+            - bairro *
+            - complemento
+            - cidade *
+            - estado *
+            Li e aceito a política de privacidade da Bella Modas *
+            - admin (true or false)
+            - foto de perfil (apenas para admins)
+    
+    // Perfil
+        all *
+        - Meus pedidos
+
+// Loja
+    // Pesquisa
+        // Gênero
+            - Masculino
+            - Feminino
+            - Infantil - Tipo
+        // Tamanhos
+        // Subcategoria (Departamento)
+        // Cor
+        // Preço - Mínimo e Máximo
+        // Material
+        // Marca
+        // Desconto - Mínimo e Máximo
+
+    // Navbar && Footer (COLOCAR CATEGORIAS NO FOOTER NO FINAL - PESQUISAR COMO CARREGAR PESQUISA MONGO EM TODAS AS PÁGINAS (MIDDLEWARE)) <<COMPLETO>>
+        - Home
+        - Todas as Categorias (Zattini)
+        - Novidades (Produtos novos)
+        - Promoções (Descontos)
+        - Sobre Nós
+
+    // Blog (Nethoes)
+        Imagem com Título embaixo
+        Clica na imagem e abre para leitura o conteúdo
+
+    // Site de ajuda "/institucional" (Zattini)
+        // Minha Conta
+        // Meus Pedidos
+        // Entregas
+        // Como Comprar
+    
+    // Regulamentos
+    // Política de Privacidade
+
+    // Produtos - Verificar se a quantidade do produto é > que o estoque ao clicar em "Adicionar ao Carrinho"
+        e se existem caracteres indesejados (Aceitar só números)

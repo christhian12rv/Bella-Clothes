@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Fonte da Logo: Blenda Scripts -->
+    <link rel="icon" href="/img/bella-clothes-logo.ico">
+
+    <link rel="stylesheet" href="/css/paginas/main.css">
+    <link rel="stylesheet" href="/css/paginas/{{css}}">
+    <link rel="stylesheet" href="/css/raleway-font.css">
+
+    <link href='/css/font-awesome.min.css'>
+    <link href="/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap-icons.css">
+    
+    
+    <script src='/js/jquery.min.js'></script>
+    <script src="/js/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src='/js/bootstrap.bundle.min.js'></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.mlens-1.7.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Clothes</title>
+</head>
+<body class="body">
+    {{>_navbar}}
+    <div class="container container-box">       
+        {{{body}}}
+    </div>
+    {{>_footer}}
+
+</body>
+<script src="/js/sweetalert2.all.min.js"></script>
+<script>
+    var widthContainerInicial = $("body").width();
+    $(".container-box").css("max-width", $("body").width());
+
+    $(window).resize(() => {
+        if (widthContainerInicial == $(".container-box").width()) {
+            $(".container-box").css("max-width", $("body").width());
+        }
+    })
+    
+</script>
+<script src="/js/paginas/{{js}}"></script>
+</html>
