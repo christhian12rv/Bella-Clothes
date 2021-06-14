@@ -1,0 +1,134 @@
+.main-menu {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    position: relative !important;
+}
+
+.main-menu .form-inline, .main-menu .navbar-nav, div.flex-cart-login {
+    display: none !important;
+}
+
+@media screen and (max-width: 400px) {
+    .main-menu .navbar-brad {
+        margin-left: auto !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-menu .navbar-brand {
+        margin-left: auto !important;
+    }
+    .textoLogo {
+        display: contents !important;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .main-menu .navbar-brand {
+        margin-left: 0 !important;
+    }
+}
+
+.sub-menu {
+    display: none !important;
+}
+
+a, a:hover, a:visited, a:focus, a:link {
+    text-decoration: none !important;
+}
+
+a p {
+    color: #007bff;
+}
+
+a p:hover {
+    color: #0061c9;
+    font-weight: bold;
+}
+
+.card {
+    padding: 10px 10px 10px 10px;
+}
+
+.card-pagamento:hover {
+    background-color: rgb(243, 243, 243);
+}
+
+.card .d-flex {
+    margin-bottom: 0px !important;
+}
+
+.card .d-flex .bd-highlight {
+    word-break: break-all;
+}
+
+.card p {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.card .btn-continuar {
+    background-color: #19c880;
+    font-weight: bold;
+}
+
+.card .btn-continuar:hover {
+    background-color: #118454;
+}
+
+button {
+    box-shadow: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .col-resumo-compra {
+        margin-top: 70px;
+    }
+}
+
+input.pagamento {
+    position: absolute !important;
+    display: none;
+}
+
+.card-pagamento *:hover {
+    cursor: pointer;
+}
+
+.card-pagamento.active:not(.card-adicionar) {
+    border: 2px solid #19c880;
+}
+
+.card-pagamento .bi-check-lg {
+    display: none;
+    background-color: #19c880;
+    border-radius: 100%;
+    color: white;
+}
+
+.card-pagamento.active:not(.card-adicionar) .bi-check-lg {
+    animation: 1s checkAppear;
+    display: block !important;
+}
+
+@keyframes checkAppear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.bg-icone-pagamento {
+    background-color: rgb(244, 242, 242);
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    writing-mode: vertical-lr;
+}
+
+.icone-pagamento {
+    width: 100%;
+    font-size: 30px;
+}

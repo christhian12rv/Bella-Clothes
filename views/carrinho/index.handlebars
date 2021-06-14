@@ -1,0 +1,292 @@
+<div class="container mt-4" style="margin-bottom: 100px;">
+    <form action="#" method="POST">
+        <div class="row">
+            <div class="col-sm-8">
+                <h3 class="font-weight-bold">Meu Carrinho</h3>
+                <div class="card produto shadow mt-3">
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                        <div class="p-2 bd-highlight">
+                            <img src="/img/tenisTeste.jpg" alt="produto" style="height: 130px;">
+                        </div>
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <p class="font-weight-bold" style="color: black;">Tênis Nike</p>
+                            <p class="text-secondary" style="font-size: 0.8rem">Código: 00014</p>
+                            <p style="font-size: 0.8rem"><span class="text-secondary">Vendido e entregue por</span>
+                                <span style="text-decoration: underline;"> Bella Clothes</span>
+                            </p>
+                            <p style="font-size: 0.8rem"><span class="text-black">Tamanho:</span>
+                                <span class="text-secondary"> 39</span>
+                            </p>
+                            <p style="font-size: 0.8rem" class="mb-3"><span class="text-black">Cor:</span>
+                                <span class="text-secondary"> Preto</span>
+                            </p>
+                            <input type="checkbox" id="checkbox-embalar-presente-p1">
+                            <label for="checkbox-embalar-presente-p1" class="label-embalar-presente pl-2">
+                                <p class="text-black" style="font-size: 0.8rem">Embalar para presente</p>
+                            </label>
+                        </div>
+                        <div class="text-danger remover" style="position: absolute; right: 0; margin-right: 10px;">
+                            <div class="badge bg-danger p-2"><i class="bi bi-trash"></i></div></i>
+                        </div>
+                    </div>
+                    <hr style="width: 95%" class="mx-auto">
+                    <div class="d-flex flex-wrap align-content-center flex-row bd-highlight mb-3 ml-2">
+                        <div class="p-2 bd-highlight">
+                            <p>Quantidade:</p>
+                        </div>
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <div class="pro-qty rounded">
+                                <input type="text" value="1"
+                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                            </div>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <span class="text-secondary mr-1"><s>R$ 36,99</s></span>
+                            <span class="text-black font-weight-bold" style="font-size: 20px;">R$ 12,99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card produto shadow mt-3">
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                        <div class="p-2 bd-highlight">
+                            <img src="/img/tenisTeste.jpg" alt="produto" style="height: 130px;">
+                        </div>
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <p class="font-weight-bold" style="color: black;">Tênis Nike</p>
+                            <p class="text-secondary" style="font-size: 0.8rem">Código: 00014</p>
+                            <p style="font-size: 0.8rem"><span class="text-secondary">Vendido e entregue por</span>
+                                <span style="text-decoration: underline;"> Bella Clothes</span>
+                            </p>
+                            <p style="font-size: 0.8rem"><span class="text-black">Tamanho:</span>
+                                <span class="text-secondary"> 39</span>
+                            </p>
+                            <p style="font-size: 0.8rem" class="mb-3"><span class="text-black">Cor:</span>
+                                <span class="text-secondary"> Preto</span>
+                            </p>
+                            <input type="checkbox" id="checkbox-embalar-presente-p2">
+                            <label for="checkbox-embalar-presente-p2" class="label-embalar-presente pl-2">
+                                <p class="text-black" style="font-size: 0.8rem">Embalar para presente</p>
+                            </label>
+                        </div>
+                        <div class="text-danger remover" style="position: absolute; right: 0; margin-right: 10px;">
+                            <div class="badge bg-danger p-2"><i class="bi bi-trash"></i></div></i>
+                        </div>
+                    </div>
+                    <hr style="width: 95%" class="mx-auto">
+                    <div class="d-flex flex-wrap align-content-center flex-row bd-highlight mb-3 ml-2">
+                        <div class="p-2 bd-highlight">
+                            <p>Quantidade:</p>
+                        </div>
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <div class="pro-qty rounded">
+                                <input type="text" value="1"
+                                    onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                            </div>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <span class="text-secondary mr-1"><s>R$ 36,99</s></span>
+                            <span class="text-black font-weight-bold" style="font-size: 20px;">R$ 12,99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-resumo-compra">
+                <h3 class="font-weight-bold">Resumo da Compra</h3>
+                <div class="d-flex flex-row flex-wrap bd-highlight mb-3 desconto border mt-3 rounded">
+                    <div class="p-0 flex-grow-1 bd-highlight">
+                        <input type="text" id="input-cupom-desconto" placeholder="Cupom de Desconto">
+                    </div>
+                    <div class="p-0 flex-grow-1 bd-highlight">
+                        <button class="btn btn-aplicar-desconto mt-2">Aplicar</button>
+                    </div>
+                </div>
+                <div class="card shadow mt-3 bg-light font-weight-bold">
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <p class="text-secondary">Subtotal (10 itens):</p>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <p>R$ 24,90</p>
+                        </div>
+                    </div>
+
+                    <hr style="width: 95%;" class="mx-auto">
+
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <p class="text-secondary">Frete</p>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <p>Grátis</p>
+                        </div>
+                    </div>
+
+                    <hr style="width: 95%;" class="mx-auto">
+
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <p class="text-secondary">Desconto</p>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <p>R$ 0,00</p>
+                        </div>
+                    </div>
+
+                    <hr style="width: 95%;" class="mx-auto">
+
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-0 pb-0">
+                        <div class="pb-0 pt-2 pl-2 pr-2 flex-grow-1 bd-highlight">
+                            <p class="text-secondary">Valor Total</p>
+                        </div>
+                        <div class="pb-0 pt-2 pl-2 pr-2 bd-highlight">
+                            <p>R$ 881,90</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3 mt-0 pt-0" style="align-self: flex-end;">
+                        <p class="text-secondary mt-0 pt-0 pr-2" style="font-size: 12px;">Em até 10x de R$ 81,90 sem
+                            juros
+                        </p>
+                    </div>
+
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-0 pb-0 mt-3 pl-2 pr-2">
+                        <input type="submit" class="btn text-white btn-continuar rounded-0 w-100 p-2" value="CONTINUAR">
+                    </div>
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-0 pb-0 mt-3 pt-0 pl-2 pr-2 pb-2">
+                        <a href="loja" class="btn btn-comprar-mais rounded-0 w-100 p-2">COMPRAR
+                            MAIS
+                            PRODUTOS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="related-products spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2>Aproveite e leve também</h2>
+                </div>
+            </div>
+        </div>
+        <div class="owl-carousel mx-auto owl-theme owl-ProductsSectionEnd text-center">
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center">
+                        <span id="badge-desconto" class="badge badge-danger">90% OFF</span>
+                        <img src="/img/TenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center"> <img src="/img/menina.jpg"
+                            class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center"> <img src="/img/menina.jpg"
+                            class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3">
+                        <span class="text-danger mr-1">R$ 12,99</span>
+                        <span class="text-grey"><s>R$ 36,99</s></span>
+                    </h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center"> <img src="/img/menina.jpg"
+                            class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center">
+                        <span id="badge-desconto" class="badge badge-danger">90% OFF</span>
+                        <img src="/img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center">
+                        <span id="badge-desconto" class="badge badge-danger">90% OFF</span>
+                        <img src="/img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

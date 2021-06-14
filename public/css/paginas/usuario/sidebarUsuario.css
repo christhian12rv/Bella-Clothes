@@ -1,0 +1,392 @@
+.settings {
+    height: 73px;
+    float: left;
+    background: url(https://s3.postimg.org/bqfooag4z/startific.jpg);
+    background-repeat: no-repeat;
+    width: 250px;
+    margin: 0px;
+    text-align: left;
+    font-size: 20px;
+    font-family: 'Strait', sans-serif;
+}
+
+.usuario-sidebar .bi-list {
+    font-size: 2em;
+    padding-left: 10px;
+}
+
+/* ScrolBar  */
+
+.scrollbar {
+    height: 90%;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.scrollbar:hover {
+    height: 90%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* Scrollbar Style */
+
+#style-1::-webkit-scrollbar-track {
+    border-radius: 2px;
+}
+
+#style-1::-webkit-scrollbar {
+    width: 5px;
+    background-color: #F7F7F7;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #BFBFBF;
+}
+
+.usuario-sidebar.open, nav.usuario-sidebar.expanded {
+    width: 250px;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.usuario-sidebar {
+    background: #F7F7F7;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    left: 0;
+    width: 55px;
+    overflow: hidden;
+    -webkit-transition: width .2s linear;
+    transition: width .2s linear;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    opacity: 1;
+    padding-top: 25px;
+}
+
+.usuario-sidebar>ul {
+    margin: 7px 0;
+}
+
+.usuario-sidebar li {
+    position: relative;
+    display: block;
+    width: 250px;
+}
+
+.usuario-sidebar li a i {
+    font-size: 1.7em;
+    padding-left: 15px;
+}
+
+.usuario-sidebar li>a {
+    position: relative;
+    width: 255px;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #8a8a8a;
+    font-size: 15px;
+    text-decoration: none;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    -webkit-transition: all .14s linear;
+    transition: all .14s linear;
+    border-top: 1px solid #f2f2f2;
+    text-shadow: 1px 1px 1px #fff;
+    line-height: 40px;
+}
+
+.usuario-sidebar li:hover>a, .usuario-sidebar li>a.active {
+    color: #19c880 !important;
+}
+
+.usuario-sidebar .nav-icon {
+    position: relative;
+    display: table-cell;
+    width: 55px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+.usuario-sidebar .nav-text {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    width: 190px;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.usuario-sidebar .share {}
+
+.usuario-sidebar .fb-like {
+    left: 180px;
+    position: absolute;
+    top: 15px;
+}
+
+.usuario-sidebar>ul.logout {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.no-touch .scrollable.hover {
+    overflow-y: hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+    overflow-y: auto;
+    overflow: visible;
+}
+
+/* Logo Hover Property */
+
+.settings:hover, settings:focus {
+    background: url(https://s17.postimg.org/74cl7s05b/logo_hover.jpg);
+    -webkit-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
+    -moz-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
+    -o-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
+    transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
+}
+
+.settings:active, settings:focus {
+    background: url(https://s3.postimg.org/bqfooag4z/startific.jpg);
+    -webkit-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
+    -moz-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
+    -o-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
+    transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
+}
+
+.usuario-sidebar a:hover, .usuario-sidebar a:focus {
+    text-decoration: none;
+    border-left: 0px solid #F7F7F7;
+}
+
+nav.usuario-sidebar {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+nav.usuario-sidebar ul, nav.usuario-sidebar li {
+    outline: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Darker element side menu End*/
+
+.usuario-sidebar li:hover>a, nav.usuario-sidebar li.active>a, .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus, .no-touch .dashboard-page nav.dashboard-menu ul li:hover a, .dashboard-page nav.dashboard-menu ul li.active a {
+    color: #19c880;
+    background-color: rgb(237, 237, 237);
+    text-shadow: 0px 0px 0px;
+}
+
+.usuario-sidebar .area {
+    float: left;
+    background: #e2e2e2;
+    width: 100%;
+    height: 100%;
+}
+
+.usuario-sidebar-toggle {
+    position: relative;
+    width: 0px;
+    height: 0px;
+    top: -5px !important;
+    left: 0%;
+    margin-right: 5px;
+    background: transparent;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    padding-left: 50px;
+    padding-top: 60px;
+}
+
+.usuario-sidebar-toggle:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.usuario-sidebar-toggle span {
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    top: 50%;
+    left: 50%;
+    background: #262626;
+    border-radius: 2px;
+    overflow: hidden;
+    transition: all 0.3s linear;
+}
+
+.usuario-sidebar-toggle span::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: gray;
+    transition: all 0.3s linear;
+}
+
+.usuario-sidebar-toggle span:nth-child(1) {
+    animation: span-first-off 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.usuario-sidebar-toggle span:nth-child(2) {
+    animation: span-second-off 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.usuario-sidebar-toggle span:nth-child(3) {
+    animation: span-third-off 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.usuario-sidebar-toggle.on span:nth-child(1) {
+    animation: span-first-on 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.usuario-sidebar-toggle.on span:nth-child(2) {
+    animation: span-second-on 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.usuario-sidebar-toggle.on span:nth-child(3) {
+    animation: span-third-on 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes span-first-on {
+    0% {
+        transform: translate(-50%, -300%);
+    }
+    30% {
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
+
+@keyframes span-first-off {
+    0% {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    30% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -300%);
+    }
+}
+
+@keyframes span-second-on {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    25% {
+        background: gray;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-150%, -50%) scale(0);
+    }
+}
+
+@keyframes span-second-off {
+    0% {
+        transform: translate(-150%, -50%) scale(0);
+    }
+    25% {
+        background: gray;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes span-third-on {
+    0% {
+        transform: translate(-50%, 200%);
+    }
+    30% {
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+}
+
+@keyframes span-third-off {
+    0% {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    30% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, 200%);
+    }
+}
+
+.modal-background-usuario {
+    position: absolute !important;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 768px) {
+    .usuario-sidebar-flex {
+        display: block !important;
+    }
+    .usuario-sidebar-flex .usuario-sidebar {
+        height: 100px !important;
+        width: 100% !important;
+        transition: height 0.5s;
+    }
+    .usuario-sidebar-flex .usuario-sidebar .scrollbar {
+        display: none !important;
+    }
+    .usuario-sidebar-flex .usuario-sidebar.open {
+        width: 100% !important;
+        height: 400px !important;
+        transition: height 0.5s;
+    }
+    .usuario-sidebar-flex .usuario-sidebar.open .scrollbar {
+        display: block !important;
+    }
+    .usuario-sidebar li a i {
+        font-size: 2em;
+    }
+    .usuario-sidebar li, .usuario-sidebar li a {
+        width: 100% !important;
+    }
+    .usuario-sidebar .nav-text {
+        display: inline;
+        padding-left: 13px;
+        vertical-align: bottom;
+    }
+}

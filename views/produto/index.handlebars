@@ -1,28 +1,31 @@
-<p class="ml-4 mt-4 endereco-produto" style="font-size: 0.8em;">
-    <span class="font-weight-bold"><a href="/">Home </a></span>/
-    <span><a href="#"> Homem </a></span>/
-    <span><a href="#"> Tênis </a></span>/
-    <span><a href="#"> Nike </a></span>/
-    <span> Tênis Curto Nike Preto</span>
-</p>
-<div id="preloder">
-    <div class="loader"></div>
-</div>
-
 <!-- Product Shop Section Begin -->
 <section class="product-shop spad page-details">
     <div class="container">
+        <p class="mt-4 endereco" style="font-size: 0.8em;">
+            <span class="font-weight-bold"><a href="/" class="mr-1"><i class="bi bi-house-fill mr-1"></i>Home
+                </a></span> >
+            <span><a href="#" class="ml-1 mr-1"> Homem </a></span> >
+            <span><a href="#" class="ml-1 mr-1"> Tênis </a></span> >
+            <span><a href="#" class="ml-1 mr-1"> Nike </a></span> >
+            <span class="ml-1"> Tênis Curto Nike Preto</span>
+        </p>
+        <hr style="margin-bottom: 50px;">
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="product-pic-zoom">
+                            <div class="big-img-modal">
+                                <div class="big-img-modal-loader"></div>
+                            </div>
                             <img id="imagemProdutoPrincipal" class="product-big-img" src="/img/tenisTeste.jpg"
                                 alt="image alt" data-big="/img/tenisTeste-large.jpg">
+                            <i class="bi bi-zoom-in"
+                                style="position: absolute; font-size: 20px; top: 20px; left: 90%; cursor: pointer;"></i>
                         </div>
                         <div class="product-thumbs">
-                            <div class="product-thumbs-track ps-slider owl-carousel">
+                            <div class="product-thumbs-track ps-slider owl-carousel owl-ProductImages">
                                 <div class="pt active" data-imgbigurl="/img/TenisTeste.jpg"
                                     data-big="/img/TenisTeste-large.jpg"><img src="/img/TenisTeste.jpg" alt=""></div>
                                 <div class="pt" data-imgbigurl="/img/1_standard.jpg"
@@ -34,14 +37,25 @@
                                 <div class="pt" data-imgbigurl="/img/menina.jpg" data-big="/img/menina-large.jpg"><img
                                         src="/img/menina.jpg" alt="">
                                 </div>
+                                <div class="pt" data-imgbigurl="/img/tenisTeste.jpg"
+                                    data-big="/img/tenisTeste-large.jpg"><img src="/img/tenisTeste.jpg" alt="">
+                                </div>
                             </div>
+                        </div>
+                        <div id="myModal" class="modal">
+
+                            <!-- The Close Button -->
+                            <span class="close"><i class="bi bi-x-lg"></i></span>
+
+                            <!-- Modal Content (The Image) -->
+                            <img class="modal-content" id="img01">
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="product-details">
                             <div class="pd-title">
                                 <span>Tênis</span>
-                                <h3>Tênis Curto Nike Preto</h3>
+                                <h3>Tênis Curto Nike - Preto</h3>
                                 <span style="color: #19c880; font-weight: bold !important;">Marca: Nike</span>
                                 <p style="color: red; font-weight: bold !important;"><i
                                         class="bi bi-exclamation-lg"></i>Faltam 5 no estoque !</p>
@@ -53,25 +67,27 @@
                                 <h4>R$ 495,00<span>R$ 629,99</span></h4>
                             </div>
                             <div class="pd-color">
-                                <h6 style="margin-top: 4px;">Cor</h6>
+                                <h6 style="margin-top: 4px;">Cor: Preto</h6><br><br>
                                 <div class="pd-color-choose">
-                                    <div class="cc-item">
-                                        <input type="radio" id="cc-black">
-                                        <label for="cc-black"></label>
+                                    <input type="hidden" name="cor" value="Preto">
+                                    <div class="cc-item active">
+                                        <div class="pt"><img src="/img/tenisTeste.jpg" class="image-product-color"
+                                                alt=""></div>
                                     </div>
                                     <div class="cc-item">
-                                        <input type="radio" id="cc-yellow">
-                                        <label for="cc-yellow" style="background: #EEEE21;"></label>
+                                        <div class="pt"><img src="/img/tenisTeste.jpg" class="image-product-color"
+                                                alt=""></div>
                                     </div>
                                     <div class="cc-item">
-                                        <input type="radio" id="cc-violet">
-                                        <label for="cc-violet" style="background: #8230E3;"></label>
+                                        <div class="pt"><img src="/img/tenisTeste.jpg" class="image-product-color"
+                                                alt=""></div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="pd-size-choose">
                                 <h6 style="margin-top: 10px;">Tamanho</h6>
+                                <input type="hidden" name="tamanho" value="39">
                                 <div class="sc-item">
                                     <input type="radio" id="sm-size">
                                     <label for="sm-size">39</label>
@@ -91,13 +107,15 @@
                             </div>
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <input type="text" value="1"
+                                        onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                 </div>
                                 <a href="#" class="primary-btn pd-cart">Adicionar ao Carrinho</a>
                             </div>
                             <ul class="pd-tags">
                                 <li><span>Gênero</span>: Homem</li>
-                                <li><span>Categoria</span>: Tênis</li>
+                                <li><span>Categoria</span>: Calçados</li>
+                                <li><span>Subcategoria</span>: Tênis</li>
                             </ul>
                             <div class="pd-share">
                                 <div class="p-code">Código : 00012</div>
@@ -216,29 +234,136 @@
                             <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                 <div class="customer-review-option">
                                     <h4>Avaliações dos Clientes (3)</h4>
+                                    <div class="row" style="margin-bottom: 40px;">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12 mb-4">
+                                                    <div class="total-recommendations">
+                                                        <div class="value-total-recommendations">94%</div>
 
-                                    <div class="total-recommendations">
-                                        <span class="value-total-recommendations">94%</span>
-                                        <span class="at-rating">
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i>
-                                            <i class="bi bi-star"></i>
-                                        </span>
-                                        <p>Recomendaram esse produto</p>
-                                    </div>
+                                                        <div class="progress rounded-0 mb-2">
+                                                            <div class="progress-bar bg-success" role="progressbar"
+                                                                style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
 
-                                    <div class="total-rating">
-                                        <span class="value-total-rating">4.5</span>
-                                        <span class="at-rating">
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-fill"></i>
-                                            <i class="bi bi-star-half"></i>
-                                            <i class="bi bi-star"></i>
-                                        </span>
-                                        <p>Média entre 3 opiniões</p>
+                                                        <p>Recomendaram esse produto</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="total-rating">
+                                                        <div class="value-total-rating">4.5</div>
+                                                        <div class="at-rating">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-half"></i>
+                                                            <i class="bi bi-star"></i>
+                                                        </div>
+                                                        <p>Média entre 3 opiniões</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="col-md-8 d-flex justify-content-center align-items-center qtt-stars-rating">
+                                            <div class="p-2 w-100 after-qtt-stars-rating">
+                                                <div class="row-star-bar d-flex">
+                                                    <div class="side left">
+                                                        <div class="stars-bar">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="middle flex-grow-1" style="margin-left: 30px;">
+                                                        <div class="bar-container">
+                                                            <div class="bar-5"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="side right"
+                                                        style="width: 70px; float: right; text-align: right;">
+                                                        <div>150</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row-star-bar d-flex">
+                                                    <div class="side left">
+                                                        <div class="stars-bar" style="width: 96px; text-align: right;">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="middle flex-grow-1" style="margin-left: 30px;">
+                                                        <div class="bar-container">
+                                                            <div class="bar-4"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="side right ms-auto"
+                                                        style="width: 70px; float: right; text-align: right;">
+                                                        <div>61</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row-star-bar d-flex">
+                                                    <div class="side left">
+                                                        <div class="stars-bar" style="width: 96px; text-align: right;">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="middle flex-grow-1" style="margin-left: 30px;">
+                                                        <div class="bar-container">
+                                                            <div class="bar-3"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="side right"
+                                                        style="width: 70px; float: right; text-align: right;">
+                                                        <div>5</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row-star-bar d-flex">
+                                                    <div class="side left">
+                                                        <div class="stars-bar" style="width: 96px; text-align: right;">
+                                                            <i class="bi bi-star-fill"></i>
+                                                            <i class="bi bi-star-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="middle flex-grow-1" style="margin-left: 30px;">
+                                                        <div class="bar-container">
+                                                            <div class="bar-2"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="side right"
+                                                        style="width: 70px; float: right; text-align: right;">
+                                                        <div>2</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row-star-bar d-flex">
+                                                    <div class="side left">
+                                                        <div class="stars-bar" style="width: 96px; text-align: right;">
+                                                            <i class="bi bi-star-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="middle flex-grow-1" style="margin-left: 30px;">
+                                                        <div class="bar-container">
+                                                            <div class="bar-1"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="side right"
+                                                        style="width: 70px; float: right; text-align: right;">
+                                                        <div>55</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="comment-option">
                                         <div class="co-item">
@@ -315,7 +440,7 @@
                                                             <span class="checkmark"></span>
                                                         </label>
                                                     </div>
-                                                    <button type="submit" class="primary-btn pd-cart mt-2">Enviar
+                                                    <button type="submit" class="primary-btn pd-cart mt-3">Enviar
                                                         Comentário</button>
                                                 </div>
                                             </div>
@@ -330,149 +455,129 @@
         </div>
     </div>
 </section>
-<!-- Product Shop Section End -->
 
-<!-- Related Products Section End -->
+<!-- Product Shop Section End -->
 <div class="related-products spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>Related Products</h2>
+                    <h2>Produtos Relacionados</h2>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="product-item">
-                    <div class="pi-pic">
-                        <img src="/img/menina.jpg" alt="">
-                        <div class="sale">Sale</div>
-                        <div class="icon">
-                            <i class="icon_heart_alt"></i>
-                        </div>
-                        <ul>
-                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                        </ul>
+        <div class="owl-carousel mx-auto owl-theme owl-ProductsSectionEnd text-center">
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center">
+                        <span id="badge-desconto" class="badge badge-danger">90% OFF</span>
+                        <img src="/img/TenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
                     </div>
-                    <div class="pi-text">
-                        <div class="catagory-name">Coat</div>
-                        <a href="#">
-                            <h5>Pure Pineapple</h5>
-                        </a>
-                        <div class="product-price">
-                            $14.00
-                            <span>$35.00</span>
-                        </div>
-                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="product-item">
-                    <div class="pi-pic">
-                        <img src="/img/menina.jpg" alt="">
-                        <div class="icon">
-                            <i class="icon_heart_alt"></i>
-                        </div>
-                        <ul>
-                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="pi-text">
-                        <div class="catagory-name">Shoes</div>
-                        <a href="#">
-                            <h5>Guangzhou sweater</h5>
-                        </a>
-                        <div class="product-price">
-                            $13.00
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="product-item">
-                    <div class="pi-pic">
-                        <img src="/img/menina.jpg" alt="">
-                        <div class="icon">
-                            <i class="icon_heart_alt"></i>
-                        </div>
-                        <ul>
-                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="pi-text">
-                        <div class="catagory-name">Towel</div>
-                        <a href="#">
-                            <h5>Pure Pineapple</h5>
-                        </a>
-                        <div class="product-price">
-                            $34.00
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="product-item">
-                    <div class="pi-pic">
-                        <img src="/img/menina.jpg" alt="">
-                        <div class="icon">
-                            <i class="icon_heart_alt"></i>
-                        </div>
-                        <ul>
-                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="pi-text">
-                        <div class="catagory-name">Towel</div>
-                        <a href="#">
-                            <h5>Converse Shoes</h5>
-                        </a>
-                        <div class="product-price">
-                            $34.00
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Related Products Section End -->
 
-<!-- Partner Logo Section Begin -->
-<div class="partner-logo">
-    <div class="container">
-        <div class="logo-carousel owl-carousel">
-            <div class="logo-item">
-                <div class="tablecell-inner">
-                    <img src="/img/menina.jpg" alt="">
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center"> <img src="/img/menina.jpg"
+                            class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
                 </div>
             </div>
-            <div class="logo-item">
-                <div class="tablecell-inner">
-                    <img src="/img/menina.jpg" alt="">
+
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center"> <img src="/img/menina.jpg"
+                            class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3">
+                        <span class="text-danger mr-1">R$ 12,99</span>
+                        <span class="text-grey"><s>R$ 36,99</s></span>
+                    </h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
                 </div>
             </div>
-            <div class="logo-item">
-                <div class="tablecell-inner">
-                    <img src="/img/menina.jpg" alt="">
+
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center"> <img src="/img/menina.jpg"
+                            class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
                 </div>
             </div>
-            <div class="logo-item">
-                <div class="tablecell-inner">
-                    <img src="/img/menina.jpg" alt="">
+
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center">
+                        <span id="badge-desconto" class="badge badge-danger">90% OFF</span>
+                        <img src="/img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
                 </div>
             </div>
-            <div class="logo-item">
-                <div class="tablecell-inner">
-                    <img src="/img/menina.jpg" alt="">
+
+            <div class="item">
+                <div class="card border-0 px-4">
+                    <div class="row justify-content-center">
+                        <span id="badge-desconto" class="badge badge-danger">90% OFF</span>
+                        <img src="/img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+                    </div>
+                    <h5 class="font-weight-bold">Fantasy T-shirt</h5>
+                    <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+                    <hr style="background-color: #ddd;">
+                    <h5 class="mb-3"><span>R$ 12,99</span></h5>
+                    <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+                        <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+                        <i class="bi bi-info-circle pr-2"></i>Detalhes
+                    </button>
                 </div>
             </div>
         </div>

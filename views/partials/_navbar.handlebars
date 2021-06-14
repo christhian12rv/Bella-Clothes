@@ -14,38 +14,282 @@
     </div>
   </div>
 </div>
-
-
-
+<div class="modal-background"></div>
 <!-- Nav com a Search Box -->
-<nav class="navbar navbar-collapse navbar-expand-md navbar-light main-menu">
-  <div class="container">
-    <a class="navbar-brand text-left mx-auto" href="#">
-      <h4 class="font-weight-bold"><img src="/img/bella-clothes-logo.png" alt="logo" class="logo-icon mb-1"> Bella
-        Clothes</h4>
-    </a>
-    <form class="form-inline mt-3 mx-auto">
-      <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-        <div class="input-group search-box-input-g">
-          <input type="search" size="80" placeholder="Procure por produtos..." aria-describedby="button-addon1"
-            width="2" class="search-bar-input form-control border-0 bg-light">
-          <div class="input-group-append">
-            <button id="button-addon1" type="submit" class="btn btn-link icon-search"><i
-                class="bi bi-search"></i></button>
+<nav class="navbar navbar-collapse navbar-expand-md navbar-light main-menu" style="place-content: center;">
+
+
+  <a class="navbar-brand text-left" href="#" style="margin-left: 40px;">
+    <h4 class="font-weight-bold"><img src="/img/bella-clothes-logo.png" alt="logo" class="logo-icon mb-1"><span
+        class="textoLogo"> Bella
+        Clothes</span></h4>
+  </a>
+  <form class="form-inline mt-3 ml-0 mr-0" id="search-form" method="GET" action="/loja">
+    <div class="bg-light rounded shadow-sm mb-3">
+      <div class="input-group search-box-input-g">
+
+        <input type="search" size="80" placeholder="Procure por produtos..." aria-describedby="button-addon1" width="2"
+          id="search-bar-input" class="search-bar-input form-control border-0 bg-light" name="search"
+          autocomplete="off">
+
+        <div class="search-filters-box shadow pt-2 pr-0 pb-3 pl-0 rounded" id="search-filters-box">
+          <div class="filter-pesquisas-populares-box pb-0">
+
+            <div class="row pl-4 pt-2 pb-2 pr-2 filter-pesquisa-populares">
+              <i class="bi bi-search pr-3"></i>
+              <p class="p-0 m-0">Camisa Social Masculino</p>
+            </div>
+            <div class="row pl-4 pt-2 pb-2 pr-2 filter-pesquisa-populares">
+              <i class="bi bi-search pr-3"></i>
+              <p class="p-0 m-0">Camisa Feminina</p>
+            </div>
+            <div class="row pl-4 pt-2 pb-2 pr-2 filter-pesquisa-populares">
+              <i class="bi bi-search pr-3"></i>
+              <p class="p-0 m-0">Tênis</p>
+            </div>
+            <div class="row pl-4 pt-2 pb-2 pr-2 filter-pesquisa-populares">
+              <i class="bi bi-search pr-3"></i>
+              <p class="p-0 m-0">Tênis</p>
+            </div>
+            <div class="row pl-4 pt-2 pb-2 pr-2 filter-pesquisa-populares">
+              <i class="bi bi-search pr-3"></i>
+              <p class="p-0 m-0">Tênis</p>
+            </div>
+          </div>
+
+          <hr class="mt-1" style="background-color: rgb(189, 189, 189);">
+
+          <h5 class="text-center font-weight-bold">Produtos Sugeridos</h5>
+          <div class="produtos-sugeridos">
+            <div class="d-flex flex-row flex-wrap bd-highlight mb-3 produto-sugerido">
+              <div class="pl-3 pr-2 pt-2 pb-2 bd-highlight text-center" style="align-self: center;">
+                <img src="/img/menina.jpg" alt="">
+              </div>
+              <div class="p-2 mt-0 mb-0 flex-grow-1 bd-highlight">
+                <p>Camisa Social Feminina Nike Masculina</p>
+                <span style="display: inline-flex;">
+                  <p class="preco-search-filters-box pr-2">R$ 27,90</p>
+                  <p class="preco-desconto-search-filters-box">R$ 32,90</p>
+                </span>
+                <p class="parcela-search-filters-box">1x de R$ 27,90</p>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row flex-wrap bd-highlight mb-3 produto-sugerido">
+              <div class="pl-3 pr-2 pt-2 pb-2 bd-highlight text-center" style="align-self: center;">
+                <img src="/img/menina.jpg" alt="">
+              </div>
+              <div class="p-2 mt-0 mb-0 flex-grow-1 bd-highlight">
+                <p>Camisa Social Feminina Nike Masculina</p>
+                <span style="display: inline-flex;">
+                  <p class="preco-search-filters-box pr-2">R$ 27,90</p>
+                  <p class="preco-desconto-search-filters-box">R$ 32,90</p>
+                </span>
+                <p class="parcela-search-filters-box">1x de R$ 27,90</p>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row flex-wrap bd-highlight mb-3 produto-sugerido">
+              <div class="pl-3 pr-2 pt-2 pb-2 bd-highlight text-center" style="align-self: center;">
+                <img src="/img/menina.jpg" alt="">
+              </div>
+              <div class="p-2 mt-0 mb-0 flex-grow-1 bd-highlight">
+                <p>Camisa Social Feminina Nike Masculina</p>
+                <span style="display: inline-flex;">
+                  <p class="preco-search-filters-box pr-2">R$ 27,90</p>
+                  <p class="preco-desconto-search-filters-box">R$ 32,90</p>
+                </span>
+                <p class="parcela-search-filters-box">1x de R$ 27,90</p>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row flex-wrap bd-highlight mb-3 produto-sugerido">
+              <div class="pl-3 pr-2 pt-2 pb-2 bd-highlight text-center" style="align-self: center;">
+                <img src="/img/menina.jpg" alt="">
+              </div>
+              <div class="p-2 mt-0 mb-0 flex-grow-1 bd-highlight">
+                <p>Camisa Social Feminina Nike Masculina</p>
+                <span style="display: inline-flex;">
+                  <p class="preco-search-filters-box pr-2">R$ 27,90</p>
+                  <p class="preco-desconto-search-filters-box">R$ 32,90</p>
+                </span>
+                <p class="parcela-search-filters-box">1x de R$ 27,90</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group-append">
+          <button id="button-addon1" type="submit" class="btn btn-link icon-search"><i
+              class="bi bi-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <!-- <div class="d-flex align-items-center mx-auto flex-cart-login" style="height: 40px;">
+      <a href="/carrinho" class="nav-link cart-nav-link rounded">
+        <i class="bi bi-cart3 icon-cart rounded" style="color: white;"></i>
+        <div class="badge badge-success num-items-cart">3</div>
+      </a>
+      <a class="login-nav-link ml-2 nav-link" href="/login"><i class="bi bi-person-circle mr-1"></i>
+        <span style="vertical-align: text-bottom;"> Entrar</span>
+      </a>
+    </div>-->
+  <div class="d-flex align-items-center flex-cart-login ml-3" style="height: 40px;">
+    <div class="p-2 bd-highlight" style="padding-right: 0 !important;">
+      <div class="dropdown cart-dropdown pb-2 pl-0 pr-0" style="margin-top: 39px;">
+        <a href="/carrinho" class="nav-link cart-nav-link rounded mr-4" class="nav-link cart-nav-link rounded mr-4 ml-0"
+          href="#" role="button" id="dropdownCarrinho" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <i class="bi bi-cart3 icon-cart rounded" style="color: white;"></i>
+          <div class="badge badge-success num-items-cart">3</div>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right p-1 pb-3 mt-0 shadow" aria-labelledby="dropdownCarrinho">
+          <div class="d-flex flex-row flex-wrap bd-highlight mb-1">
+            <div class="pt-1 pl-2 pr-2 pb-0 flex-grow-1 bd-highlight" style="height: 40px;">
+              <a href="/carrinho" class="nav-link cart-dropdown-menu-icon rounded mr-4">
+                <i class="bi bi-cart3 icon-cart rounded" style="color: black;"></i>
+                <div class="badge badge-success num-items-cart">3</div>
+              </a>
+            </div>
+            <div class="pt-2 pl-2 pr-2 pb-0 bd-highlight" style="height: 40px;">
+              <p class="mb-0 pt-2"><span style="color: rgb(157, 157, 157);">Total:</span> <span style="color: #19c880">
+                  R$ 990,91</span></p>
+            </div>
+          </div>
+
+          <hr class="mx-auto mt-2 mb-3" style="width: 95%;">
+
+          <div style="overflow-y: auto; max-height: 325px;">
+            <div class="d-flex flex-row flex-wrap bd-highlight mb-3 flex-items-cart">
+              <div class="p-2 bd-highlight">
+                <img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;">
+              </div>
+              <div class="p-2 flex-grow-1 bd-highlight">
+                <p class="font-weight-bold" style="color: black; font-size: 0.8rem;">Tênis Nike (2)</p>
+                <p style="font-size: 0.7rem"><span class="text-black">Tamanho:</span>
+                  <span class="text-secondary"> 39</span>
+                </p>
+                <p style="font-size: 0.7rem">
+                  <span class="text-black">Cor:</span>
+                  <span class="text-secondary"> Preto</span>
+                </p>
+                <p style="font-size: 0.7rem">
+                  <span class="text-black">R$ 238,90
+                    <span class="text-secondary ml-1" style="text-decoration: line-through;">
+                      R$238,90</span>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row flex-wrap bd-highlight mb-3 flex-items-cart">
+              <div class="p-2 bd-highlight">
+                <img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;">
+              </div>
+              <div class="p-2 flex-grow-1 bd-highlight">
+                <p class="font-weight-bold" style="color: black; font-size: 0.8rem;">Tênis Nike (2)</p>
+                <p style="font-size: 0.7rem"><span class="text-black">Tamanho:</span>
+                  <span class="text-secondary"> 39</span>
+                </p>
+                <p style="font-size: 0.7rem">
+                  <span class="text-black">Cor:</span>
+                  <span class="text-secondary"> Preto</span>
+                </p>
+                <p style="font-size: 0.7rem">
+                  <span class="text-black">R$ 238,90
+                    <span class="text-secondary ml-1" style="text-decoration: line-through;">
+                      R$238,90</span>
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row flex-wrap bd-highlight mb-3 flex-items-cart">
+              <div class="p-2 bd-highlight">
+                <img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;">
+              </div>
+              <div class="p-2 flex-grow-1 bd-highlight">
+                <p class="font-weight-bold" style="color: black; font-size: 0.8rem;">Tênis Nike (2)</p>
+                <p style="font-size: 0.7rem"><span class="text-black">Tamanho:</span>
+                  <span class="text-secondary"> 39</span>
+                </p>
+                <p style="font-size: 0.7rem">
+                  <span class="text-black">Cor:</span>
+                  <span class="text-secondary"> Preto</span>
+                </p>
+                <p style="font-size: 0.7rem">
+                  <span class="text-black">R$ 238,90
+                    <span class="text-secondary ml-1" style="text-decoration: line-through;">
+                      R$238,90</span>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-row flex-wrap bd-highlight mb-0 pb-0 mt-3 pl-2 pr-2">
+            <button class="btn text-white btn-comprar rounded-0 w-100 p-1">COMPRAR</button>
           </div>
         </div>
       </div>
-    </form>
+    </div>
 
-    <ul class="navbar-nav mx-auto mb-1">
-      <li class="nav-item">
-        <a class="" href="#"><i class="bi bi-cart2 icon-single"></i> <span class="badge badge-danger">3</span></a>
-        <a class="login ml-4" href="#"><i class="bi bi-person-circle mr-1"></i> Entrar</a>
-      </li>
-    </ul>
+    <div class="p-2 bd-highlight">
+      <div class="dropdown login-dropdown pb-2 pl-0" style="margin-top: 12px;">
+        <button class="login-nav-link ml-0 login-link" href="#" role="button" id="dropdownUsuario"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="row">
+            <div class="col pr-0 pl-0 pr-0"><i class="bi bi-person mr-1 pr-0" style="font-size: 1.7em;"></i></div>
+            <div style="min-inline-size: max-content; align-self: center;" class="pl-0 pr-0 col col-usuario-nome">
+              Christhian </i>
+            </div>
+          </div>
+        </button>
+
+        <div class="dropdown-menu dropdown-menu-right pt-2 mt-0 shadow" aria-labelledby="dropdownUsuario">
+          <div class="dropdown-item">
+            <div class="row">
+              <div class="col-sm-3">
+                <i class="bi bi-person-circle" style="color: black; font-size: 2em;"></i>
+              </div>
+              <div class="col-sm-9">
+                <p class="mb-0 pb-0" style="color: rgb(157, 157, 157); font-weight: normal !important;">Olá Christhian
+                </p>
+                <a href="#" class="mt-0 pt-0 ola-usuario-ver-dados" style="color: black;">Ver meus dados</a>
+              </div>
+            </div>
+          </div>
+
+          <hr class="mx-auto" style="width: 95%;">
+          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-bag"
+              style="color: #19c880;"></i>
+            Compras</a>
+          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-heart"
+              style="color: #19c880;"></i>
+            Favoritos</a>
+          <hr class="mx-auto" style="width: 95%;">
+          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1" href="#"><i class="mr-1 bi bi-person-lines-fill"
+              style="color: #19c880;"></i>
+            Meus dados</a>
+          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-lock"
+              style="color: #19c880;"></i>
+            Segurança</a>
+          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-shield"
+              style="color: #19c880;"></i>
+            Privacidade</a>
+
+          <hr class="mx-auto" style="width: 95%;">
+
+          <a class="dropdown-item pt-1 pb-1" href="#"><i class="mr-1 bi bi-box-arrow-right text-danger font-weight-bold"
+              style="font-size: 1.1em"></i> Sair</a>
+        </div>
+      </div>
+    </div>
   </div>
 
-  </div>
 </nav>
 
 
@@ -64,209 +308,343 @@
 
 
         <li class="nav-item dropdown">
-          <form>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Dropdown link
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <div class="container">
-                <ul id="tabs" class="nav nav-tabs" role="tablist">
-                  <li class="nav-item">
-                    <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">Homem</a>
-                  </li>
-                  <li class="nav-item">
-                    <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">Mulher</a>
-                  </li>
-                  <li class="nav-item">
-                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">Unissex</a>
-                  </li>
-                  <li class="nav-item">
-                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">Infantil</a>
-                  </li>
-                </ul>
+
+          <a class="nav-link font-weight-bold td-categorias" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+
+            <button class="link-categorias-icon">
+              <span></span><span></span><span></span>
+            </button>
+            &nbsp;&nbsp;
+            Todas as
+            Categorias
+            <div class="after"></div>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div class="container">
+              <ul id="tabs" class="nav nav-tabs nav-tabs-categorias" role="tablist">
+                <li class="nav-item">
+                  <a id="tab-homem" href="#pane-homem" class="nav-link active" data-toggle="tab" role="tab">Homem <i
+                      class="bi bi-chevron-down"></i></a>
+                </li>
 
 
-                <div id="content" class="tab-content" role="tablist">
-                  <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
-
-                    <div id="collapse-A" class="collapse show" role="tabpanel" aria-labelledby="heading-A">
-                      <div class="card-body">
-                        <div class="d-md-flex align-items-start justify-content-start">
-                          <div class="">
-                            <div class="dropdown-header">
-                              <h5 class="text-success font-weight-bold">Roupas</h5>
-                            </div>
-                            <a class="dropdown-item" href="#">Camisas</a>
-                            <a class="dropdown-item" href="#">Blusas</a>
-                            <a class="dropdown-item" href="#">Bermudas</a>
-                            <a class="dropdown-item" href="#">Calças</a>
-                            <a class="dropdown-item" href="#">Camisas sem Manga</a>
-                            <a class="dropdown-item" href="#">Camisas de Mangas Compridas</a>
-                          </div>
-                          <div class="">
-                            <div class="dropdown-header">
-                              <h5 class="text-success font-weight-bold">Calçados</h5>
-                            </div>
-                            <a class="dropdown-item" href="#">Sapatos</a>
-                            <a class="dropdown-item" href="#">Tênis</a>
-                            <a class="dropdown-item" href="#">Sapatênis</a>
-                            <a class="dropdown-item" href="#">Botas</a>
-                            <a class="dropdown-item" href="#">Chinelos</a>
-                          </div>
-                          <div class="">
-                            <div class="dropdown-header">
-                              <h5 class="text-success font-weight-bold">Acessórios</h5>
-                            </div>
-                            <a class="dropdown-item" href="#">Brincos</a>
-                            <a class="dropdown-item" href="#">Anéis</a>
-                            <a class="dropdown-item" href="#">Relógios</a>
-                            <a class="dropdown-item" href="#">Bolsas</a>
-                            <a class="dropdown-item" href="#">Pulseiras</a>
-                          </div>
-                          <div class="">
-                            <div class="dropdown-header">
-                              <h5 class="text-success font-weight-bold">Esporte</h5>
-                            </div>
-                            <a class="dropdown-item" href="#">Camisas</a>
-                            <a class="dropdown-item" href="#">Blusas</a>
-                            <a class="dropdown-item" href="#">Tênis</a>
-                            <a class="dropdown-item" href="#">Bolas</a>
-                            <a class="dropdown-item" href="#">Chuteiras</a>
-                            <a class="dropdown-item" href="#">Luvas</a>
-                          </div>
-                          <div class="">
-                            <div class="dropdown-header">
-                              <h5 class="text-success font-weight-bold">Cosméticos</h5>
-                            </div>
-                            <a class="dropdown-item" href="#">Shampoos</a>
-                            <a class="dropdown-item" href="#">Condicionadores</a>
-                            <a class="dropdown-item" href="#">Perfumes</a>
-                            <a class="dropdown-item" href="#">Desodorantes</a>
-                            <a class="dropdown-item" href="#">Loções</a>
-                            <a class="dropdown-item" href="#">Hidratantes</a>
-                            <a class="dropdown-item" href="#">Protetores Solar</a>
-                          </div>
+                <li class="nav-item">
+                  <a id="tab-mulher" href="#pane-mulher" class="nav-link" data-toggle="tab" role="tab">Mulher <i
+                      class="bi bi-chevron-down"></i></a>
+                </li>
 
 
+                <li class="nav-item">
+                  <a id="tab-unissex" href="#pane-unissex" class="nav-link" data-toggle="tab" role="tab">Unissex <i
+                      class="bi bi-chevron-down"></i></a>
+                </li>
+
+
+                <li class="nav-item">
+                  <a id="tab-infantil" href="#pane-infantil" class="nav-link" data-toggle="tab" role="tab">Infantil <i
+                      class="bi bi-chevron-down"></i></a>
+                </li>
+
+              </ul>
+
+
+              <div id="content" class="tab-content" role="tablist">
+                <div id="pane-homem" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-homem">
+
+                  <div id="collapse-homem" class="collapse show" role="tabpanel" aria-labelledby="heading-homem">
+                    <div class="card-body">
+                      <div class="d-md-flex align-items-start justify-content-start dropdown-flex">
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Roupas</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Camisas</a>
+                          <a class="dropdown-item" href="#">Blusas</a>
+                          <a class="dropdown-item" href="#">Bermudas</a>
+                          <a class="dropdown-item" href="#">Calças</a>
+                          <a class="dropdown-item" href="#">Camisas sem Manga</a>
+                          <a class="dropdown-item" href="#">Camisas de Mangas Compridasasdfasdfdasfdasfasfasdfds</a>
+                        </div>
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Calçados</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Sapatos</a>
+                          <a class="dropdown-item" href="#">Tênis</a>
+                          <a class="dropdown-item" href="#">Sapatênis</a>
+                          <a class="dropdown-item" href="#">Botas</a>
+                          <a class="dropdown-item" href="#">Chinelos</a>
+                        </div>
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Acessórios</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Brincos</a>
+                          <a class="dropdown-item" href="#">Anéis</a>
+                          <a class="dropdown-item" href="#">Relógios</a>
+                          <a class="dropdown-item" href="#">Bolsas</a>
+                          <a class="dropdown-item" href="#">Pulseiras</a>
+                        </div>
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Esporte</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Camisas</a>
+                          <a class="dropdown-item" href="#">Blusas</a>
+                          <a class="dropdown-item" href="#">Tênis</a>
+                          <a class="dropdown-item" href="#">Bolas</a>
+                          <a class="dropdown-item" href="#">Chuteiras</a>
+                          <a class="dropdown-item" href="#">Luvas</a>
+                        </div>
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Cosméticos</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Shampoos</a>
+                          <a class="dropdown-item" href="#">Condicionadores</a>
+                          <a class="dropdown-item" href="#">Perfumes</a>
+                          <a class="dropdown-item" href="#">Desodorantes</a>
+                          <a class="dropdown-item" href="#">Loções</a>
+                          <a class="dropdown-item" href="#">Hidratantes</a>
+                          <a class="dropdown-item" href="#">Protetores Solar</a>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
-                    <div class="card-header" role="tab" id="heading-B">
-                      <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" href="#collapse-B" data-parent="#content"
-                          aria-expanded="false" aria-controls="collapse-B">
-                          Collapsible Group Item B
-                        </a>
-                      </h5>
-                    </div>
-                    <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
-                      <div class="card-body">
-                        [Tab content B]
+                <div id="pane-mulher" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-mulher">
+                  <div id="collapse-mulher" class="collapse show" role="tabpanel" aria-labelledby="heading-mulher">
+                    <div class="card-body">
+                      <div class="d-md-flex align-items-start justify-content-start dropdown-flex">
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Roupas</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Camisas</a>
+                          <a class="dropdown-item" href="#">Blusas</a>
+                          <a class="dropdown-item" href="#">Bermudas</a>
+                          <a class="dropdown-item" href="#">Saias</a>
+                          <a class="dropdown-item" href="#">Calças</a>
+                          <a class="dropdown-item" href="#">Camisas sem Manga</a>
+                          <a class="dropdown-item" href="#">Camisas de Mangas Compridas</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Calçados</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Sapatos</a>
+                          <a class="dropdown-item" href="#">Tênis</a>
+                          <a class="dropdown-item" href="#">Sapatênis</a>
+                          <a class="dropdown-item" href="#">Botas</a>
+                          <a class="dropdown-item" href="#">Chinelos</a>
+                          <a class="dropdown-item" href="#">Salto Alto</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Acessórios</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Brincos</a>
+                          <a class="dropdown-item" href="#">Anéis</a>
+                          <a class="dropdown-item" href="#">Relógios</a>
+                          <a class="dropdown-item" href="#">Bolsas</a>
+                          <a class="dropdown-item" href="#">Pulseiras</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Esporte</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Camisas</a>
+                          <a class="dropdown-item" href="#">Blusas</a>
+                          <a class="dropdown-item" href="#">Tênis</a>
+                          <a class="dropdown-item" href="#">Bolas</a>
+                          <a class="dropdown-item" href="#">Chuteiras</a>
+                          <a class="dropdown-item" href="#">Luvas</a>
+                        </div>
+
+
+                        <div class="dropdown-column testando">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Cosméticos</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Shampoos</a>
+                          <a class="dropdown-item" href="#">Condicionadores</a>
+                          <a class="dropdown-item" href="#">Maquiagem</a>
+                          <a class="dropdown-item" href="#">Perfumes</a>
+                          <a class="dropdown-item" href="#">Desodorantes</a>
+                          <a class="dropdown-item" href="#">Loções</a>
+                          <a class="dropdown-item" href="#">Hidratantes</a>
+                          <a class="dropdown-item" href="#">Protetores Solar</a>
+                        </div>
+
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
-                    <div class="card-header" role="tab" id="heading-C">
-                      <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" href="#collapse-C" data-parent="#content"
-                          aria-expanded="false" aria-controls="collapse-C">
-                          Collapsible Group Item C
-                        </a>
-                      </h5>
-                    </div>
-                    <div id="collapse-C" class="collapse" role="tabpanel" aria-labelledby="heading-C">
-                      <div class="card-body">
-                        [Tab content C]
+                <div id="pane-unissex" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-unissex">
+
+                  <div id="collapse-unissex" class="collapse show" role="tabpanel" aria-labelledby="heading-unissex">
+                    <div class="card-body">
+                      <div class="d-md-flex align-items-start justify-content-start dropdown-flex">
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Roupas</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Camisas</a>
+                          <a class="dropdown-item" href="#">Blusas</a>
+                          <a class="dropdown-item" href="#">Bermudas</a>
+                          <a class="dropdown-item" href="#">Calças</a>
+                          <a class="dropdown-item" href="#">Camisas sem Manga</a>
+                          <a class="dropdown-item" href="#">Camisas de Mangas Compridasasdfasdfdasfdasfasfasdfds</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Calçados</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Sapatos</a>
+                          <a class="dropdown-item" href="#">Tênis</a>
+                          <a class="dropdown-item" href="#">Sapatênis</a>
+                          <a class="dropdown-item" href="#">Botas</a>
+                          <a class="dropdown-item" href="#">Chinelos</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Acessórios</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Brincos</a>
+                          <a class="dropdown-item" href="#">Anéis</a>
+                          <a class="dropdown-item" href="#">Relógios</a>
+                          <a class="dropdown-item" href="#">Bolsas</a>
+                          <a class="dropdown-item" href="#">Pulseiras</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Esporte</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Camisas</a>
+                          <a class="dropdown-item" href="#">Blusas</a>
+                          <a class="dropdown-item" href="#">Tênis</a>
+                          <a class="dropdown-item" href="#">Bolas</a>
+                          <a class="dropdown-item" href="#">Chuteiras</a>
+                          <a class="dropdown-item" href="#">Luvas</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Cosméticos</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Shampoos</a>
+                          <a class="dropdown-item" href="#">Condicionadores</a>
+                          <a class="dropdown-item" href="#">Perfumes</a>
+                          <a class="dropdown-item" href="#">Desodorantes</a>
+                          <a class="dropdown-item" href="#">Loções</a>
+                          <a class="dropdown-item" href="#">Hidratantes</a>
+                          <a class="dropdown-item" href="#">Protetores Solar</a>
+                        </div>
+
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </form>
-        </li>
 
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link font-weight-bold td-categorias" role="button" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false" href="#"><i class="bi bi-list" size="10"></i> Todas as
-            Categorias</a>
-          <div class="dropdown-menu" aria-labelledby="servicesDropdown">
+                <div id="pane-infantil" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-infantil">
 
-            <div class="d-md-flex align-items-start justify-content-start">
-              <div class="mr-4">
-                <div class="dropdown-header">
-                  <h5 class="text-success font-weight-bold">Homem</h5>
+                  <div id="collapse-infantil" class="collapse show" role="tabpanel" aria-labelledby="heading-infantil">
+                    <div class="card-body">
+                      <div class="d-md-flex align-items-start justify-content-start dropdown-flex">
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Roupas</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Camisas</a>
+                          <a class="dropdown-item" href="#">Blusas</a>
+                          <a class="dropdown-item" href="#">Bermudas</a>
+                          <a class="dropdown-item" href="#">Calças</a>
+                          <a class="dropdown-item" href="#">Camisas sem Manga</a>
+                          <a class="dropdown-item" href="#">Camisas de Mangas Compridasasdfasdfdasfdasfasfasdfds</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Calçados</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Sapatos</a>
+                          <a class="dropdown-item" href="#">Tênis</a>
+                          <a class="dropdown-item" href="#">Sapatênis</a>
+                          <a class="dropdown-item" href="#">Botas</a>
+                          <a class="dropdown-item" href="#">Chinelos</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Acessórios</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Brincos</a>
+                          <a class="dropdown-item" href="#">Anéis</a>
+                          <a class="dropdown-item" href="#">Relógios</a>
+                          <a class="dropdown-item" href="#">Bolsas</a>
+                          <a class="dropdown-item" href="#">Pulseiras</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Esporte</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Camisas</a>
+                          <a class="dropdown-item" href="#">Blusas</a>
+                          <a class="dropdown-item" href="#">Tênis</a>
+                          <a class="dropdown-item" href="#">Bolas</a>
+                          <a class="dropdown-item" href="#">Chuteiras</a>
+                          <a class="dropdown-item" href="#">Luvas</a>
+                        </div>
+
+
+                        <div class="dropdown-column">
+                          <div class="dropdown-header">
+                            <h5 class="text-success font-weight-bold">Cosméticos</h5>
+                          </div>
+                          <a class="dropdown-item" href="#">Shampoos</a>
+                          <a class="dropdown-item" href="#">Condicionadores</a>
+                          <a class="dropdown-item" href="#">Perfumes</a>
+                          <a class="dropdown-item" href="#">Desodorantes</a>
+                          <a class="dropdown-item" href="#">Loções</a>
+                          <a class="dropdown-item" href="#">Hidratantes</a>
+                          <a class="dropdown-item" href="#">Protetores Solar</a>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <a class="dropdown-item" href="#">Camisas</a>
-                <a class="dropdown-item" href="#">Blusas</a>
-                <a class="dropdown-item" href="#">Tênis</a>
-                <a class="dropdown-item" href="#">Botas</a>
-                <a class="dropdown-item" href="#">Chinelos</a>
-                <a class="dropdown-item" href="#">Acessórios</a>
-              </div>
-              <div class="mr-4">
-                <div class="dropdown-header">
-                  <h5 class="text-success font-weight-bold">Mulher</h5>
-                </div>
-                <a class="dropdown-item" href="#">Camisas</a>
-                <a class="dropdown-item" href="#">Blusas</a>
-                <a class="dropdown-item" href="#">Tênis</a>
-                <a class="dropdown-item" href="#">Botas</a>
-                <a class="dropdown-item" href="#">Chinelos</a>
-                <a class="dropdown-item" href="#">Acessórios</a>
-              </div>
-              <div class="mr-4">
-                <div class="dropdown-header">
-                  <h5 class="text-success font-weight-bold">Infantil</h5>
-                </div>
-                <a class="dropdown-item" href="#">Camisas</a>
-                <a class="dropdown-item" href="#">Blusas</a>
-                <a class="dropdown-item" href="#">Bodies e Macacões</a>
-                <a class="dropdown-item" href="#">Conjuntos</a>
-                <a class="dropdown-item" href="#">Pijamas</a>
-                <a class="dropdown-item" href="#">Acessórios</a>
-              </div>
-              <div class="mr-4">
-                <div class="dropdown-header">
-                  <h5 class="text-success font-weight-bold">Unissex</h5>
-                </div>
-                <a class="dropdown-item" href="#">Camisas</a>
-                <a class="dropdown-item" href="#">Blusas</a>
-                <a class="dropdown-item" href="#">Tênis</a>
-                <a class="dropdown-item" href="#">Botas</a>
-                <a class="dropdown-item" href="#">Chinelos</a>
-                <a class="dropdown-item" href="#">Acessórios</a>
-              </div>
-              <div class="mr-4">
-                <div class="dropdown-header">
-                  <h5 class="text-success font-weight-bold">Esportes</h5>
-                </div>
-                <a class="dropdown-item" href="#">Camisas</a>
-                <a class="dropdown-item" href="#">Blusas</a>
-                <a class="dropdown-item" href="#">Tênis</a>
-                <a class="dropdown-item" href="#">Chuteiras</a>
-                <a class="dropdown-item" href="#">Luvas</a>
-                <a class="dropdown-item" href="#">Bolas</a>
-              </div>
-              <div class="mr-4">
-                <div class="dropdown-header">
-                  <h5 class="text-success font-weight-bold">Cosméticos</h5>
-                </div>
-                <a class="dropdown-item" href="#">Perfumes</a>
-                <a class="dropdown-item" href="#">Maquiagens</a>
-                <a class="dropdown-item" href="#">Desodorantes</a>
-                <a class="dropdown-item" href="#">Loções</a>
-                <a class="dropdown-item" href="#">Hidratantes</a>
-                <a class="dropdown-item" href="#">Protetores Solar</a>
+
               </div>
             </div>
           </div>
-        </li> -->
+          </form>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link" href="#">Novidades</a>
@@ -287,8 +665,3 @@
     </div>
   </div>
 </nav>
-
-<script>$('.dropdown-menu .nav-tabs .nav-link').on("click.bs.dropdown", function (e) {
-    $(this).tab('show');
-    e.stopPropagation();
-  });</script>

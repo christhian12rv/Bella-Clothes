@@ -1,0 +1,365 @@
+<form id="formRegistro" action="/ata">
+
+<div class="container" style="margin-top: 80px; margin-bottom: 80px;">
+    <h2 style="margin-bottom: 50px;">Cadastro</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <ul class="nav nav-tabs tabs-register" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="fisica-tab" data-toggle="tab"  role="tab"
+                            aria-controls="home" aria-selected="true">Pessoa Física</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/registrar/juridica">Pessoa Jurídica</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="fisica-tab">
+                        <div class="register-login-section spad">
+                            <div class="container">
+                                <div class="register-form">
+                                    <p>* Campos Obrigatórios</p>
+                                    
+                                        <input type="hidden" id="tipoPessoa" name="tipoPessoa" value="1">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="group-input">
+                                                    <label for="nome">* Nome</label>
+                                                    <input type="text" id="nome" placeholder="* Nome">
+                                                    <span class="theTooltip">Preencha o campo Nome</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="group-input">
+                                                    <label for="sobrenome">* Sobrenome</label>
+                                                    <input type="text" id="sobrenome" placeholder="* Sobrenome">
+                                                    <span class="theTooltip">Preencha o campo Sobrenome</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="group-input">
+                                                    <label for="sexo">* Sexo</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input checkbox-input" type="radio"
+                                                            name="sexo" id="sexo" value="masculino">
+                                                        <label class="form-check-label checkbox-label" for="masculino">
+                                                            Masculino
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input checkbox-input" type="radio"
+                                                            name="sexo" id="sexo" value="feminino">
+                                                        <label class="form-check-label checkbox-label" for="Feminino">
+                                                            Feminino
+                                                        </label>
+                                                    </div>
+                                                    <input type="hidden" id="hidden-sexo">
+                                                    <span class="theTooltip" id="tooltipSexo">Escolha uma das opções</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <label for="nome">* Data de Nascimento</label>
+
+                                        <div class="row dataNascimento-row" style="margin-top: -30px;">
+
+                                            <div class="col-sm-2 dia-d-n">
+
+                                                <div class="group-input">
+                                                    <label for="" class="hiddenName">&nbsp;</label>
+                                                    <select class="custom-select" name="dia" id="dia">
+                                                        <option selected
+                                                            style="background-color: #e6e6e6; font-weight: bold;">Dia
+                                                        </option>
+                                                        <option value="01">01</option>
+                                                        <option value="02">02</option>
+                                                        <option value="03">03</option>
+                                                        <option value="04">04</option>
+                                                        <option value="05">05</option>
+                                                        <option value="06">06</option>
+                                                        <option value="07">07</option>
+                                                        <option value="08">08</option>
+                                                        <option value="09">09</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                        <option value="21">21</option>
+                                                        <option value="22">22</option>
+                                                        <option value="23">23</option>
+                                                        <option value="24">24</option>
+                                                        <option value="25">25</option>
+                                                        <option value="26">26</option>
+                                                        <option value="27">27</option>
+                                                        <option value="28">28</option>
+                                                        <option value="29">29</option>
+                                                        <option value="30">30</option>
+                                                        <option value="31">31</option>
+                                                    </select>
+                                                    <input type="hidden" id="hidden-dia">
+                                                    <span class="theTooltip" id="tooltipDia">Escolha um Dia</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2 mes-d-n">
+                                                <div class="group-input">
+                                                    <label for="" class="hiddenName">&nbsp;</label>
+                                                    <select class="custom-select" name="mes" id="mes">
+                                                        <option selected
+                                                            style="background-color: #e6e6e6; font-weight: bold;">Mês
+                                                        </option>
+                                                        <option value="01">Janeiro</option>
+                                                        <option value="02">Fevereiro</option>
+                                                        <option value="03">Março</option>
+                                                        <option value="04">Abril</option>
+                                                        <option value="05">Maio</option>
+                                                        <option value="06">Junho</option>
+                                                        <option value="07">Julho</option>
+                                                        <option value="08">Agosto</option>
+                                                        <option value="09">Setembro</option>
+                                                        <option value="10">Outubro</option>
+                                                        <option value="11">Novembro</option>
+                                                        <option value="12">Dezembro</option>
+                                                    </select>
+                                                    <input type="hidden" id="hidden-mes">
+                                                    <span class="theTooltip" id="tooltipMes">Escolha um Mês</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2 ano-d-n">
+                                                <div class="group-input">
+                                                    <label for="" class="hiddenName">&nbsp;</label>
+                                                    <select class="custom-select select-ano" name="ano" id="ano">
+                                                        <option selected
+                                                            style="background-color: #e6e6e6; font-weight: bold;">Ano
+                                                        </option>
+                                                    </select>
+                                                    <input type="hidden" id="hidden-ano">
+                                                    <span class="theTooltip" id="tooltipAno">Escolha um Ano</span>
+                                                </div>
+                                                 <span class="theTooltip" id="tooltipDataTotal">Escolha uma Data válida</span>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="group-input">
+                                                    <label for="cpf">* CPF:</label>
+                                                    <input type="text"
+                                                        onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
+                                                        maxlength="11" id="cpf" placeholder="* CPF">
+                                                    <span class="theTooltip">Preencha o campo CPF</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="group-input">
+                                                    <label for="nome_do_endereco">* Endereço</label>
+                                                    <input type="text" id="nome_do_endereco" placeholder="* Nome do Endereço">
+                                                    <span class="theTooltip">Preencha o campo Nome do Endereço</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="group-input">
+                                                    <label for="" class="hiddenName">&nbsp;</label>
+                                                    <input type="text" id="numeroEndereco" placeholder="* Nº">
+                                                    <span class="theTooltip">Preencha o campo Nº</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="group-input">
+                                                    <label for="" class="hiddenName">&nbsp;</label>
+                                                    <input type="text" id="complemento" placeholder="Complemento">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="group-input">
+                                                    <label for="bairro">* Bairro</label>
+                                                    <input type="text" id="bairro" placeholder="* Bairro">
+                                                    <span class="theTooltip">Preencha o campo Bairro</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="group-input">
+                                                    <label for="ponto_referencia">Ponto de Referência</label>
+                                                    <input type="text" id="ponto_referencia"
+                                                        placeholder="Ponto de Referência">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="group-input">
+                                                    <label for="cep">* CEP</label>
+                                                    <input type="text" id="cep" onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
+                                                        maxlength="8" placeholder="* CEP">
+                                                    <span class="theTooltip">Preencha o campo CEP</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="group-input">
+                                                    <label for="">* Estado</label>
+                                                    <select class="custom-select" name="estado" id="estado">
+                                                        <option selected
+                                                            style="background-color: #e6e6e6; font-weight: bold;">Selecione
+                                                        </option>
+                                                        <option value="AC">Acre</option>
+                                                        <option value="AL">Alagoas</option>
+                                                        <option value="AP">Amapá</option>
+                                                        <option value="AM">Amazonas</option>
+                                                        <option value="BA">Bahia</option>
+                                                        <option value="CE">Ceará</option>
+                                                        <option value="DF">Distrito Federal</option>
+                                                        <option value="ES">Espírito Santo</option>
+                                                        <option value="GO">Goiás</option>
+                                                        <option value="MA">Maranhão</option>
+                                                        <option value="MT">Mato Grosso</option>
+                                                        <option value="MS">Mato Grosso do Sul</option>
+                                                        <option value="MG">Minas Gerais</option>
+                                                        <option value="PA">Pará</option>
+                                                        <option value="PB">Paraíba</option>
+                                                        <option value="PR">Paraná</option>
+                                                        <option value="PE">Pernambuco</option>
+                                                        <option value="PI">Piauí</option>
+                                                        <option value="RJ">Rio de Janeiro</option>
+                                                        <option value="RN">Rio Grande do Norte</option>
+                                                        <option value="RS">Rio Grande do Sul</option>
+                                                        <option value="RO">Rondônia</option>
+                                                        <option value="RR">Roraima</option>
+                                                        <option value="SC">Santa Catarina</option>
+                                                        <option value="SP">São Paulo</option>
+                                                        <option value="SE">Sergipe</option>
+                                                        <option value="TO">Tocantins</option>
+                                                    </select>
+                                                    <input type="hidden" id="hidden-estado">
+                                                    <span class="theTooltip" id="tooltipEstado">Escolha um Estado</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="group-input">
+                                                    <label for="cidade">* Cidade </label>
+                                                    <input type="text" id="cidade" placeholder="* Cidade">
+                                                    <span class="theTooltip">Preencha o campo Cidade</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container sua-conta" style="margin-top: 80px; margin-bottom: 80px; width: 70%;">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <ul class="nav nav-tabs tabs-register" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="fisica-tab" data-toggle="tab"  role="tab"
+                            aria-controls="home" aria-selected="true">Sua conta</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="fisica-tab">
+                        <div class="register-login-section spad">
+                            <div class="container">
+                                <div class="register-form">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="group-input">
+                                                    <label for="telefone">* Telefone</label>
+                                                    <input type="text" id="telefone" placeholder="* Telefone" onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57">
+                                                    <span class="theTooltip">Preencha o campo Telefone</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="group-input">
+                                                    <label for="outro_telefone">Outro Telefone</label>
+                                                    <input type="text" id="outro_telefone" placeholder="Outro Telefone" onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57">
+                                                    <span class="theTooltip">Digite um Telefone Válido</span>
+                                                </div>                          
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="group-input">
+                                                    <label for="email">* Email</label>
+                                                    <input type="text" id="email" placeholder="* Email">
+                                                    <span class="theTooltip">Preencha o campo Email</span>
+                                                    <span style="font-size: 12px;" class="ml-3">A confirmação de Cadastro será enviada ao seu email</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="group-input">
+                                                    <label for="senha">* Senha</label>
+                                                    <input type="password" id="senha" maxlength="18" placeholder="* Senha">
+                                                    <span class="theTooltip">Preencha o campo Senha</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="group-input">
+                                                    <label for="con-senha">* Confirmar Senha </label>
+                                                    <input type="password" id="con-senha" maxlength="18" placeholder="* Confirmar Senha">
+                                                    <span class="theTooltip">Preencha o campo Confirmar Senha</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="group-input">
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="checkbox" id="check-ofertas" class="form-check-input checkbox-input" style="height: unset; align-self: flex-start; margin-top: 6px;" checked>
+                                                        <label for="check-ofertas" class="form-check-label checkbox-label">Quero receber por e-mail ofertas e novidades. A frequência de envios pode variar de acordo com a interação do cliente.</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="group-input">
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="checkbox" id="check-politica" class="form-check-input checkbox-input" style="height: unset; align-self: flex-start; margin-top: 6px; margin-bottom: 100px;" checked>
+                                                        <label for="check-politica" id="label-politica" class="form-check-label checkbox-label" style="align-self: flex-start;">Estou de acordo com o uso de dados para compra e experiência conforme a <a href="/politica-de-privacidade" style="color: black;"> Política de Privacidade</a> da Bella Clothes.</label>
+                                                        <span class="theTooltip">É necessário marcar essa opção</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: -55px;">
+                                            <div class="col-sm-12">
+                                                <button type="button" class="site-btn btn btn-success register-btn"
+                                                    onclick="verificarFormulario();">Registrar</button>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+
+<script type="text/javascript" src="/js/jquery.phone.brazil.js"></script>

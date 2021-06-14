@@ -8,6 +8,10 @@ const sharp = require("sharp");
 var sizeOf = require('image-size');
 
 const produto = require("./routes/produto");
+const loja = require("./routes/loja");
+const carrinho = require("./routes/carrinho");
+const checkout = require("./routes/checkout");
+const usuario = require("./routes/usuario");
 
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
@@ -68,7 +72,19 @@ app.use(fileUpload());
 
 // Rotas
 app.get("/", (req, res) => {
-    res.render("./home/index", { css: "home.css" });
+    res.render("./home/index", { css: "home.css", js: "home.js" });
+})
+
+app.get("/login", (req, res) => {
+    res.render("./usuario/login", { css: "login.css" });
+})
+
+app.get("/registrar/fisica", (req, res) => {
+    res.render("./usuario/registrarFisica", { css: "registrar.css", js: "registrarFisica.js" })
+})
+
+app.get("/registrar/juridica", (req, res) => {
+    res.render("./usuario/registrarJuridica", { css: "registrar.css", js: "registrarJuridica.js" })
 })
 
 app.get("/teste", (req, res) => {
@@ -114,6 +130,10 @@ app.get("/500", (req, res) => {
 })
 
 app.use("/produto", produto);
+app.use("/loja", loja);
+app.use("/carrinho", carrinho);
+app.use("/checkout", checkout);
+app.use("/usuario", usuario);
 
 app.listen(PORT, () => {
     console.log("Servidor rodando na porta " + PORT);

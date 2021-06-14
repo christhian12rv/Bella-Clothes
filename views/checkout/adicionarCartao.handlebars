@@ -1,0 +1,240 @@
+<div class="container" style="margin-bottom: 100px; margin-top: 50px">
+    <form action="#" method="POST" id="formEndereco">
+        <div class="row">
+            <div class="col-sm-8 col-endereco">
+                <h3 class="font-weight-bold">Adicione um novo cartão</h3>
+                <p style="margin-top: 44.5px; font-weight: bold;">Cartão</p>
+
+                <div class="card card-endereco shadow mt-3 active p-4" id="card-endereco-principal">
+                    <div class="endereco-form">
+                        <p class="mb-2">* Campos Obrigatórios</p>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="group-input">
+                                    <label for="numero-cartao">* Número do Cartão</label>
+                                    <input type="text" id="numero-cartao" placeholder="* Número do Cartão">
+                                    <span class="theTooltip">Preencha o campo Número do Cartão</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="group-input">
+                                    <label for="codigo-seguranca">* Código de Segurança</label>
+                                    <input type="text" id="codigo-seguranca" maxlength="3"
+                                        placeholder="* Código de Segurança">
+                                    <span class="theTooltip">Preencha o campo Código de Segurança</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="group-input">
+                                    <label for="nome">* Nome Completo</label>
+                                    <input type="text" id="nome" placeholder="* Nome Completo">
+                                    <span class="theTooltip">Preencha o campo Nome Completo</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="group-input">
+                                    <label for="cpf">* CPF</label>
+                                    <input type="text"
+                                        onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
+                                        maxlength="11" id="cpf" placeholder="* CPF">
+                                    <span class="theTooltip">Preencha o campo CPF</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label for="nome">* Data de Vencimento</label>
+
+                        <div class="row dataVencimento-row" style="margin-top: -30px;">
+                            <div class="col-sm-3 mes-d-n">
+                                <div class="group-input">
+                                    <label for="" class="hiddenName">&nbsp;</label>
+                                    <select class="custom-select" name="mes" id="mes">
+                                        <option selected style="background-color: #e6e6e6; font-weight: bold;">Mês
+                                        </option>
+                                        <option value="01">Janeiro</option>
+                                        <option value="02">Fevereiro</option>
+                                        <option value="03">Março</option>
+                                        <option value="04">Abril</option>
+                                        <option value="05">Maio</option>
+                                        <option value="06">Junho</option>
+                                        <option value="07">Julho</option>
+                                        <option value="08">Agosto</option>
+                                        <option value="09">Setembro</option>
+                                        <option value="10">Outubro</option>
+                                        <option value="11">Novembro</option>
+                                        <option value="12">Dezembro</option>
+                                    </select>
+                                    <input type="hidden" id="hidden-mes">
+                                    <span class="theTooltip" id="tooltipMes">Escolha um Mês</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 ano-d-n">
+                                <div class="group-input">
+                                    <label for="" class="hiddenName">&nbsp;</label>
+                                    <select class="custom-select select-ano" name="ano" id="ano">
+                                        <option selected style="background-color: #e6e6e6; font-weight: bold;">Ano
+                                        </option>
+                                    </select>
+                                    <input type="hidden" id="hidden-ano">
+                                    <span class="theTooltip" id="tooltipAno">Escolha um Ano</span>
+                                </div>
+                                <span class="theTooltip" id="tooltipDataTotal">Escolha uma Data válida</span>
+                            </div>
+                            <div class="col-sm-6"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-top: 40px;">
+                    <div class="col-sm-5 mb-2">
+                        <input type="button" onclick="verificarFormulario()" id="continuar"
+                            class="btn text-white btn-continuar rounded-0 w-100 p-2" value="CONTINUAR">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-4 col-resumo-compra">
+                <h3 class="font-weight-bold" style="margin-top: 68px;">Resumo da Compra</h3>
+                <div class="card shadow mt-3 bg-light font-weight-bold">
+                    <div style="overflow-y: auto; max-height: 225px;">
+                        <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                            <div class="p-2 bd-highlight">
+                                <img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;">
+                            </div>
+                            <div class="p-2 flex-grow-1 bd-highlight">
+                                <p class="font-weight-bold" style="color: black; font-size: 0.8rem;">Tênis Nike (2)
+                                </p>
+                                <p style="font-size: 0.7rem"><span class="text-black">Tamanho:</span>
+                                    <span class="text-secondary"> 39</span>
+                                </p>
+                                <p style="font-size: 0.7rem">
+                                    <span class="text-black">Cor:</span>
+                                    <span class="text-secondary"> Preto</span>
+
+                                </p>
+
+                                <p style="font-size: 0.7rem">
+                                    <span class="text-black">R$ 238,90
+                                        <span class="text-secondary ml-1" style="text-decoration: line-through;">
+                                            R$238,90</span>
+                                    </span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                            <div class="p-2 bd-highlight">
+                                <img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;">
+                            </div>
+                            <div class="p-2 flex-grow-1 bd-highlight">
+                                <p class="font-weight-bold" style="color: black; font-size: 0.8rem;">Tênis Nike (2)
+                                </p>
+                                <p style="font-size: 0.7rem"><span class="text-black">Tamanho:</span>
+                                    <span class="text-secondary"> 39</span>
+                                </p>
+                                <p style="font-size: 0.7rem">
+                                    <span class="text-black">Cor:</span>
+                                    <span class="text-secondary"> Preto</span>
+
+                                </p>
+
+                                <p style="font-size: 0.7rem">
+                                    <span class="text-black">R$ 238,90
+                                        <span class="text-secondary ml-1" style="text-decoration: line-through;">
+                                            R$238,90</span>
+                                    </span>
+                                </p>
+                                <p style="font-size: 0.7rem">
+                                    Embalar para presente
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                            <div class="p-2 bd-highlight">
+                                <img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;">
+                            </div>
+                            <div class="p-2 flex-grow-1 bd-highlight">
+                                <p class="font-weight-bold" style="color: black; font-size: 0.8rem;">Tênis Nike (2)
+                                </p>
+                                <p style="font-size: 0.7rem"><span class="text-black">Tamanho:</span>
+                                    <span class="text-secondary"> 39</span>
+                                </p>
+                                <p style="font-size: 0.7rem">
+                                    <span class="text-black">Cor:</span>
+                                    <span class="text-secondary"> Preto</span>
+
+                                </p>
+
+                                <p style="font-size: 0.7rem">
+                                    <span class="text-black">R$ 238,90
+                                        <span class="text-secondary ml-1" style="text-decoration: line-through;">
+                                            R$238,90</span>
+                                    </span>
+                                </p>
+                                <p style="font-size: 0.7rem">
+                                    Embalar para presente
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <p class="text-secondary">Subtotal (10 itens):</p>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <p>R$ 24,90</p>
+                        </div>
+                    </div>
+
+                    <hr style="width: 95%;" class="mx-auto">
+
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <p class="text-secondary">Frete</p>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <p>Grátis</p>
+                        </div>
+                    </div>
+
+                    <hr style="width: 95%;" class="mx-auto">
+
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+                        <div class="p-2 flex-grow-1 bd-highlight">
+                            <p class="text-secondary">Desconto</p>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <p>R$ 0,00</p>
+                        </div>
+                    </div>
+
+                    <hr style="width: 95%;" class="mx-auto">
+
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-0 pb-0">
+                        <div class="pb-0 pt-2 pl-2 pr-2 flex-grow-1 bd-highlight">
+                            <p class="text-secondary">Valor Total</p>
+                        </div>
+                        <div class="pb-0 pt-2 pl-2 pr-2 bd-highlight">
+                            <p>R$ 881,90</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap bd-highlight mb-3 mt-0 pt-0" style="align-self: flex-end;">
+                        <p class="text-secondary mt-0 pt-0 pr-2" style="font-size: 12px;">Em até 10x de R$ 81,90 sem
+                            juros
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

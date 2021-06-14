@@ -1,0 +1,233 @@
+.card {
+    padding: 10px 10px 10px 10px;
+}
+
+.card.produto {
+    animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.card .d-flex {
+    margin-bottom: 0px !important;
+}
+
+.card .d-flex .bd-highlight {
+    word-break: break-all;
+}
+
+.card p {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.card input[type=checkbox] {
+    transform: scale(1.5);
+}
+
+.card input[type=checkbox], .label-embalar-presente {
+    cursor: pointer;
+}
+
+.card hr {
+    margin-top: 5px;
+}
+
+.card .remover .badge {
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+    .card .remover .badge {
+        font-size: 15px;
+    }
+}
+
+.card .remover .badge:hover {
+    color: #dc3545;
+    background-color: #e6e6e6 !important;
+}
+
+.card .pro-qty {
+    width: 123px;
+    height: 36px;
+    border: 2px solid #bcbcbc;
+    padding: 0 15px;
+    float: left;
+    margin-right: 14px;
+}
+
+.card .pro-qty .qtybtn {
+    font-size: 24px;
+    color: #b2b2b2;
+    float: left;
+    line-height: 28px;
+    cursor: pointer;
+    width: 18px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.card .pro-qty .qtybtn.dec {
+    font-size: 25px;
+}
+
+.card .pro-qty .qtybtn.inc {
+    font-size: 25px;
+}
+
+.card .pro-qty input {
+    text-align: center;
+    width: 52px;
+    font-size: 16px;
+    border: none;
+    color: black;
+    line-height: 30px;
+    float: left;
+    outline: none;
+}
+
+.desconto .btn-aplicar-desconto {
+    font-weight: bold;
+    display: inline-block;
+    padding: 0 20px 0 20px;
+    height: 50px;
+    background-color: white;
+    color: black;
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border: none;
+    box-shadow: none !important;
+    margin-top: 0 !important;
+    width: 100%;
+}
+
+.desconto .btn-aplicar-desconto:hover {
+    background-color: #19c880;
+    color: white;
+}
+
+#input-cupom-desconto {
+    border: none;
+    height: 50px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+#input-cupom-desconto:focus {
+    border-radius: 0px;
+    outline: none;
+}
+
+.card .btn-continuar {
+    background-color: #19c880;
+    font-weight: bold;
+}
+
+.card .btn-continuar:hover {
+    background-color: #118454;
+}
+
+.card .btn-comprar-mais {
+    background-color: none;
+    color: #19c880;
+    border: 1px solid #19c880;
+    font-weight: bold;
+}
+
+button {
+    box-shadow: none !important;
+}
+
+.related-products {
+    padding-top: 0;
+    padding-bottom: 50px;
+}
+
+.related-products .section-title {
+    margin-bottom: 50px;
+}
+
+.related-products .section-title h2:before {
+    display: none;
+}
+
+.owl-ProductsSectionEnd .owl-prev, .owl-ProductsSectionEnd .owl-next {
+    width: 15px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block !important;
+    border: 0px solid black;
+}
+
+.owl-ProductsSectionEnd .owl-prev {
+    left: -40px;
+}
+
+.owl-ProductsSectionEnd .owl-next {
+    right: -40px;
+}
+
+button.owl-next:focus, button.owl-next:active, button.owl-next:visited, button.owl-next:hover, button.owl-next:link, button.owl-next, button.owl-prev:focus, button.owl-prev:active, button.owl-prev:visited, button.owl-prev:hover, button.owl-prev:link, button.owl-prev {
+    outline: thin dotted !important;
+    outline: 0px auto -webkit-focus-ring-color !important;
+    outline-offset: 0px !important;
+}
+
+.owl-ProductsSectionEnd .owl-nav button.owl-next, .owl-ProductsSectionEnd .owl-nav button.owl-prev {
+    background: 0 0;
+    color: #1E88E5 !important;
+    border: none;
+    padding: 5px 20px !important;
+    font: inherit;
+    font-size: 50px !important
+}
+
+.owl-ProductsSectionEnd .owl-nav button.owl-next:hover, .owl-ProductsSectionEnd .owl-nav button.owl-prev:hover {
+    color: #0D47A1 !important;
+    background-color: transparent !important;
+}
+
+#badge-desconto {
+    position: absolute;
+    left: 3px;
+    top: 10px;
+    background: #f15a69;
+    text-align: center;
+    border-radius: 0px !important;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+    #badge-desconto {
+        font-size: 10px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .col-resumo-compra {
+        margin-top: 70px;
+    }
+}

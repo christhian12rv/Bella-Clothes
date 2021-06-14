@@ -1,0 +1,66 @@
+.card-compras p {
+    margin: 0 0 0 0 !important;
+}
+
+.card-compras p.texto-data-compra {
+    color: #b2b2b2;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-left: 22px;
+    position: relative;
+}
+
+.card-compras p.data-compra {
+    color: #b2b2b2;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-left: 22px;
+    position: relative;
+}
+
+.card-compras p.nome-produtos {
+    color: #b2b2b2;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-left: 22px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 73ch;
+}
+
+.card-compras p.qtd-produtos {
+    color: #b2b2b2;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-left: 22px;
+    position: relative;
+}
+
+.card-compras .btn-ver-compra {
+    color: white;
+    background-color: #19c880;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 0px;
+}
+
+.card-compras .btn-ver-compra:hover {
+    color: white;
+    background-color: #118454;
+}
+
+@media screen and (max-width: 768px) {
+    .card-compras p.nome-produtos {
+        white-space: normal !important;
+    }
+    .card-compras .btn-ver-compra {
+        margin-top: 10px;
+    }
+}

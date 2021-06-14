@@ -1,0 +1,121 @@
+.main-menu {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    position: relative !important;
+}
+
+.main-menu .form-inline, .main-menu .navbar-nav, div.flex-cart-login {
+    display: none !important;
+}
+
+@media screen and (max-width: 400px) {
+    .main-menu .navbar-brad {
+        margin-left: auto !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-menu .navbar-brand {
+        margin-left: auto !important;
+    }
+    .textoLogo {
+        display: contents !important;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .main-menu .navbar-brand {
+        margin-left: 0 !important;
+    }
+}
+
+.sub-menu {
+    display: none !important;
+}
+
+a, a:hover, a:visited, a:focus, a:link {
+    text-decoration: none !important;
+}
+
+a p {
+    color: #007bff;
+}
+
+a p:hover {
+    color: #0061c9;
+    font-weight: bold;
+}
+
+.card {
+    padding: 10px 10px 10px 10px;
+}
+
+.card-transporte:hover {
+    background-color: rgb(243, 243, 243);
+}
+
+.card .d-flex {
+    margin-bottom: 0px !important;
+}
+
+.card .d-flex .bd-highlight {
+    word-break: break-all;
+}
+
+.card p {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.card .btn-continuar {
+    background-color: #19c880;
+    font-weight: bold;
+}
+
+.card .btn-continuar:hover {
+    background-color: #118454;
+}
+
+button {
+    box-shadow: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .col-resumo-compra {
+        margin-top: 70px;
+    }
+}
+
+input.transporte {
+    position: absolute !important;
+    display: none;
+}
+
+.card-transporte *:hover {
+    cursor: pointer;
+}
+
+.card-transporte.active {
+    border: 2px solid #19c880;
+}
+
+.card-transporte .bi-check-lg {
+    display: none;
+    background-color: #19c880;
+    border-radius: 100%;
+    color: white;
+}
+
+.card-transporte.active .bi-check-lg {
+    animation: 1s checkAppear;
+    display: block !important;
+}
+
+@keyframes checkAppear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

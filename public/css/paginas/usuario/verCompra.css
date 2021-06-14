@@ -1,0 +1,45 @@
+p {
+    margin: 0 0 0 0 !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: initial !important;
+}
+
+a {
+    color: initial !important;
+}
+
+a#page-compras:hover {
+    color: #19c880 !important;
+}
+
+.bg-icone-pagamento {
+    background-color: rgb(240, 240, 240);
+    border-radius: 100%;
+}
+
+.icone-pagamento {
+    height: 35px;
+}
+
+#link-detalhes-pagamento:hover {
+    cursor: pointer;
+}
+
+#link-detalhes-pagamento i {
+    -webkit-text-stroke: 1.5px #007bff;
+}
+
+.box-detalhes-pagamento {
+    height: 0%;
+    overflow: hidden;
+    position: absolute;
+}
+
+.box-detalhes-pagamento.open {
+    height: 100%;
+    position: relative;
+    transition: height 0.5s;
+}

@@ -1,0 +1,78 @@
+a:hover {
+    text-decoration: none !important;
+}
+
+a {
+    color: initial !important;
+}
+
+.card-favoritos #check-all {
+    margin-top: -5px !important;
+}
+
+.card-favoritos .btn-remover-todos {
+    background-color: #19c880;
+    font-weight: normal;
+    color: white;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.card-favoritos .btn-remover-todos:disabled, .card-favoritos .btn-remover-todos:disabled:hover {
+    background-color: grey;
+    cursor: inherit;
+}
+
+.card-favoritos .btn-remover-todos:hover {
+    background-color: #118454;
+    color: white;
+}
+
+.card-favoritos .btn-remover-todos a {
+    color: white;
+    text-decoration: none;
+}
+
+.card-favoritos p {
+    margin: 0 0 0 0 !important;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    display: none;
+}
+
+input:checked~span {
+    color: #19c880;
+    background-color: #19c880;
+    border-color: transparent !important;
+}
+
+.card-favoritos .checkmark {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    border: 1px solid #B2B2B2;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.card-favoritos .checkmark:after {
+    width: 12px;
+    margin-left: 1px;
+    height: 9px;
+    border: solid #ffffff;
+    border-width: 2px 2px 0px 0px;
+    -webkit-transform: rotate(127deg);
+    -ms-transform: rotate(127deg);
+    transform: rotate(127deg);
+}
+
+.checkmark:after {
+    position: absolute;
+    content: "";
+}
+
+.card-favoritos p.nome-produto a:hover {
+    font-weight: bold;
+}

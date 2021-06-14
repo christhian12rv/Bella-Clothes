@@ -1,0 +1,38 @@
+{
+  "name": "ecommerce-nodejs-mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "@types/jquery": "^3.5.5",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "bootstrap-icons": "^1.5.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-handlebars": "^5.3.2",
+    "express-session": "^1.17.1",
+    "i": "^0.3.6",
+    "image-size": "^1.0.0",
+    "mongoose": "^5.12.9",
+    "npm": "^7.13.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "sharp": "^0.28.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christhian12rv/E-commerce-NodeJs-and-MongoDB.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christhian12rv/E-commerce-NodeJs-and-MongoDB/issues"
+  },
+  "homepage": "https://github.com/christhian12rv/E-commerce-NodeJs-and-MongoDB#readme"
+}

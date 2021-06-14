@@ -1,23 +1,96 @@
-// ADMIN
-    // Usuários
-        - Editar Usuários (Se é Adm ou não)
-    
-    // Produtos
-        - Adicionar novo Produto
-        - Editar Produto
-        - Excluir Produto
+﻿// DESIGN
 
-    // Models
+    // ADMIN
+        // Usuários
+            - Editar Usuários (Se é Adm ou não)
+        
+        // Produtos
+            - Adicionar novo Produto
+            - Editar Produto
+            - Excluir Produto
+
+        // Categorias e subcategorias - Elas vão ser exibidas para o admin marcar qual é o tipo do produto
+            -> Categorias:
+                Homem
+                Mulher
+                Infantil
+                Unissex
+                Esporte
+                Cosméticos
+
+            - Adicionar Categorias
+            - Adicionar Subcategorias
+            - Adicionar Tipo
+            - Adicionar Marcas
+            - Adicionar Material
+
+    ------------------------------------------------------------        
+
+    // USUÁRIOS
+        // Perfil
+            all *
+            - Meus pedidos
+
+    ------------------------------------------------------------
+
+    // LOJA
+        // Dropdown
+            // Gênero
+                - Masculino
+                - Feminino
+                - Infantil - Tipo
+            // Tamanhos
+            // Subcategoria (Departamento)
+            // Cor
+            // Preço - Mínimo e Máximo
+            // Material
+            // Marca
+            // Desconto - Mínimo e Máximo
+        
+        // Carrinho
+            carrinho > opcoesEndereco > 
+
+        // Navbar && Footer (COLOCAR CATEGORIAS NO FOOTER NO FINAL - PESQUISAR COMO CARREGAR PESQUISA MONGO EM TODAS AS PÁGINAS (MIDDLEWARE)) <<COMPLETO>>
+            - Home
+            - Todas as Categorias (Zattini)
+            - Novidades (Produtos novos)
+            - Promoções (Descontos)
+            - Sobre Nós
+
+        // Blog (Nethoes)
+            Imagem com Título embaixo
+            Clica na imagem e abre para leitura o conteúdo
+
+        // Site de ajuda "/institucional" (Zattini)
+            // Minha Conta
+            // Meus Pedidos
+            // Entregas
+            // Como Comprar
+        
+        // Regulamentos
+        // Política de Privacidade
+
+        // Produtos - Verificar se a quantidade do produto é > que o estoque ao clicar em "Adicionar ao Carrinho"
+            e se existem caracteres indesejados (Aceitar só números)
+
+        // Coração no Produto - Olhar como é no carrinho do mercado livre
+
+---------------------------------------------------------------------------------------------------------------------------
+
+// MODELS
+
+    // PRODUTOS
         // Produtos
             - nome *
             - descrição *
             - preço original *
             - % de Desconto
             - preço com desconto
-            - Parcelas [] (Array) -> Perguntar se é sem juros: "Sem juros?" -> Exemplo: "12x" de "316,58 sem juros"
-            - quantidade (estoque) *
+            - Parcelas [] (Array) - Exemplo: "1x de R$ 29,99 sem juros". Perguntar se é sem juros
+                Quando for fazer o carrinho e a compra. Juntar todos os produtos com as mesmas parcelas
+            - estoque [] (Array) Estoque por tamanhos *
             - tamanhos [] (Array) *
-            - cores [] (Array) *
+            - cores [{ nome: "preto" , cor_id: "1" }] (Array) *
             - Gênero - Masculino, Feminino ou Infantil *
             - Infantil - Menina, Menino, Bebê Menino ou Bebê Menina
             - Id Categoria - Roupas, Acessórios, Esportes, Cosméticos, etc
@@ -28,12 +101,20 @@
             - Composição - Exemplo: (Cabedal: Têxtil e Mesh; Entressola: EVA; Solado: Borracha)
             - Peso - Exemplo: "600g (par)" - Fazer por "par"
             - Quantidade Vendida
+            - Média de Avaliação
             - Habilitar e Desabilitar
             - Created At * (data)
+
+        // Imagens das Cores do Produto
+            - id
+            - id Produto
+            - nome
+            - imagens ["abc.jpg", "acb.png"] (Array)
 
         // Categoria
             - id
             - nome
+
         // Subcategoria
             - id
             - nome
@@ -51,90 +132,135 @@
             NOS FAVORITOS DO NAVEGADOR EDGE TEM COMO CALCULAR A MÉDIA DA AVALIAÇÃO DO PRODUTO
             ESTRELAS DO BOOTSTRAP: STAR, STAR-FILL E STAR-HALF (meia estrela)
 
+    ------------------------------------------------------------
+
+    // BLOG        
+
         // Blog
             - titulo
             - conteudo
             - imagem
             - Created At
+
+    ------------------------------------------------------------
+
+    // USUÁRIOS
+
+        // TipoUsuario
+            - id
+            - id_usuario
+            - tipo pessoa bit (1 para fisica e 2 para juridica)
         
-        // Categoria
+        // Enderecos
+            - id
+            - idUsuario
+            - nome_completo *
+            - rua *
+            - numero endereco *
+            - complemento
+            - bairro *         
+            - cep *
+            - estado * 
+            - cidade *
+            - ponto referencia
+            - informacoes_adicionais
+            - telefone
+            - principal Boolean
 
-    // Categorias e subcategorias - Elas vão ser exibidas para o admin marcar qual é o tipo do produto
-        -> Categorias:
-            Homem
-            Mulher
-            Infantil
-            Unissex
-            Esporte
-            Cosméticos
-
-        - Adicionar Categorias
-        - Adicionar Subcategorias
-        - Adicionar Tipo
-        - Adicionar Marcas
-        - Adicionar Material
-
-// USUÁRIOS
-    // Models
-        // Usuários
-            - nome *
-            - sobrenome *
+        // Usuários Físicos
             - email *
             - senha (criptografar)  *
             confirmar senha
-            - cpf *
-            - data nascimento *
+            - nome *
+            - sobrenome *         
             - sexo *
-            - telefone
-            - deseja receber ofertas por email
-            - cep *
-            - rua *
-            - numero casa *
-            - bairro *
-            - complemento
-            - cidade *
-            - estado *
+            - data nascimento *
+            - cpf *          
+            - idsEnderecos [] (Array)        
+            - telefone *
+            - outro telefone
+            - idCartao []
+            - idPix []
+            - deseja receber ofertas por email *
             Li e aceito a política de privacidade da Bella Modas *
-            - admin (true or false)
+            - admin (true or false) *
             - foto de perfil (apenas para admins)
-    
-    // Perfil
-        all *
-        - Meus pedidos
+        
+        // Usuários Jurídicos
+            - email
+            - senha (criptografar) *
+            confirmar senha
+            - razao social *
+            - nome fantasia *
+            - cnpj *
+            - inscricao municial
+            - inscricao estadual
+            - isento (Se é isento da inscrição estudal ou não) (checkbox) (bool) *
+            - endereco [] (Array)
+            - telefone *
+            - outro telefone
+            - idCartao []
+            - idPix []
+            - deseja receber ofertas por email *
+            Li e aceito a política de privacidade da Bella Modas *
+            - admin (true or false) *
+            - foto de perfil (apenas para admins)
 
-// Loja
-    // Pesquisa
-        // Gênero
-            - Masculino
-            - Feminino
-            - Infantil - Tipo
-        // Tamanhos
-        // Subcategoria (Departamento)
-        // Cor
-        // Preço - Mínimo e Máximo
-        // Material
-        // Marca
-        // Desconto - Mínimo e Máximo
+    ------------------------------------------------------------
 
-    // Navbar && Footer (COLOCAR CATEGORIAS NO FOOTER NO FINAL - PESQUISAR COMO CARREGAR PESQUISA MONGO EM TODAS AS PÁGINAS (MIDDLEWARE)) <<COMPLETO>>
-        - Home
-        - Todas as Categorias (Zattini)
-        - Novidades (Produtos novos)
-        - Promoções (Descontos)
-        - Sobre Nós
+    // LOJA
 
-    // Blog (Nethoes)
-        Imagem com Título embaixo
-        Clica na imagem e abre para leitura o conteúdo
+        // Cupom-desconto
+            - id
+            - nome
+            - tipo (Porcentagem ou Valor Fixo)
+            - desconto - 10% ou 23,00
 
-    // Site de ajuda "/institucional" (Zattini)
-        // Minha Conta
-        // Meus Pedidos
-        // Entregas
-        // Como Comprar
-    
-    // Regulamentos
-    // Política de Privacidade
+        // Cartão
+            - id
+            - tipo (crédito ou débito)
+            - numero
+            - nome
+            - vencimento
+            - codigo_seguranca
+            - cpf 
+            
+        // Pix
+            - id
+            - emails
 
-    // Produtos - Verificar se a quantidade do produto é > que o estoque ao clicar em "Adicionar ao Carrinho"
-        e se existem caracteres indesejados (Aceitar só números)
+        // Carrinho
+            - id
+            - produtos (Array) [
+                {
+                    - idProduto
+                    - tamanho
+                    - cor
+                    - presente Boolean
+                    - quantidade
+                    - precoTotal
+                }
+            ]
+            - idCupomDesconto DEFAULT = ""
+            - subtotal
+            - total
+
+        // Pedido
+            - id
+            - idCarrinho
+            - idEndereco
+            - tipoCompra (Normal frete grátis ou Expressa 23,90 - Chega mais rápido)
+            - tipoPagamento (Cartão, Boleto, PayPal ou Pix) {
+                - tipo 
+                - idPagamento (Cartão, etc)
+            }
+            - total      
+            - parcelamento
+            - status (Pendente, Sucesso ou Cancelado)
+            - data
+            - dataCancelamento (Cancelado)
+
+        // Pesquisa (Search Box)
+            - id
+            - nome
+            - quantidade - DEFAULT = 0
