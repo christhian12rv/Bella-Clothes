@@ -391,6 +391,45 @@ body {
   font-size: 1.5rem;
 }
 
+.col-foto-dropdown-usuario {
+  padding-left: 7.5px !important;
+  max-width: 50px !important;
+  max-height: 48px;
+  border-radius: 100%;
+  border: 2px solid rgb(187, 187, 187);
+}
+
+.col-foto-dropdown-usuario p {
+  position: absolute;
+  display: none;
+  color: white;
+  font-size: 0.5rem;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.col-foto-dropdown-usuario i.bi-plus {
+  position: absolute;
+  color: black;
+  top: 5px;
+  right: 1px;
+  -webkit-text-stroke: 1px black;
+}
+
+.col-foto-dropdown-usuario:hover {
+  background-color: #16b371;
+  padding-left: 0px !important;
+}
+
+.col-foto-dropdown-usuario:hover p {
+  display: block;
+}
+
+.col-foto-dropdown-usuario:hover i {
+  display: none;
+}
+
 .cart-dropdown {
   width: 40px;
   margin-right: 20px;
@@ -652,7 +691,7 @@ footer a:hover i {
 }
 
 .page-footer {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgb(255, 255, 255);
 }
 
 .dropdown-item {

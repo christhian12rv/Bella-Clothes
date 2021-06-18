@@ -1,16 +1,19 @@
 <form action="#" method="POST">
     <div class="row">
         <div class="col-sm-8">
-            <h3 class="mb-4"><a href="/usuario/id/compras" class="text-secondary" id="page-compras">Compras
+            <h3 class="mb-4"><a href="/usuario/id/compras" id="page-compras" style="color: #6c757d">Compras
                 </a> > Status da
                 Compra</h3>
             <a href="#">
-                <div class="card card-compra shadow-sm p-0 pl-4 mb-1 mt-0" style="margin-top: 30px;">
+                <div class="card card-compra shadow-sm py-2 pl-4 mb-1 mt-0" style="margin-top: 30px;">
                     <div class="d-flex flex-row flex-wrap bd-highlight">
 
                         <div class="flex-grow-1 bd-highlight align-self-center">
-                            <p>Tênis Nike Pretoasdfdasfdsfsdfsd</p>
+                            <p>Tênis Nike Pretoasdfdasfdsfsdfsd - Tamanho 39</p>
                             <p class="qtd-produtos text-secondary" style="font-size: 0.9rem;">2 unidades</p>
+                            <p class="text-secondary"><span style="font-size: 0.95rem;">R$
+                                    39,90 </span> <span style="text-decoration: line-through; font-size: 0.9rem;">R$
+                                    39,90 </span></p>
                         </div>
                         <div class="p-2 bd-highlight ml-3 mr-3">
                             <img src="/img/tenisTeste.jpg" alt="produto" style="height: 60px;">
@@ -19,12 +22,14 @@
                 </div>
             </a>
             <a href="#">
-                <div class="card card-compra shadow-sm p-0 pl-4 mb-1 mt-0" style="margin-top: 30px;">
+                <div class="card card-compra shadow-sm py-2 pl-4 mb-1 mt-0" style="margin-top: 30px;">
                     <div class="d-flex flex-row flex-wrap bd-highlight">
 
                         <div class="flex-grow-1 bd-highlight align-self-center">
                             <p>Tênis Nike Pretoasdfdasfdsfsdfsd</p>
                             <p class="qtd-produtos text-secondary" style="font-size: 0.9rem;">2 unidades</p>
+                            <p class="text-secondary"><span style="font-size: 0.95rem;">R$
+                                    39,90 </span></p>
                         </div>
                         <div class="p-2 bd-highlight ml-3 mr-3">
                             <img src="/img/tenisTeste.jpg" alt="produto" style="height: 60px;">
@@ -33,7 +38,7 @@
                 </div>
             </a>
 
-            <div class="card card-compra shadow pb-3 pt-3 pl-4 mb-1 mt-4" style="margin-top: 30px;">
+            <div class="card card-compra shadow pb-3 pt-3 pl-4 pr-4 mb-1 mt-4" style="margin-top: 30px;">
                 <div class="d-flex flex-row flex-wrap bd-highlight">
                     <div class="flex-grow-1 bd-highlight align-self-center">
                         <p style="color: #19c880; font-size: 0.9rem;">Entregue</p>
@@ -42,6 +47,8 @@
                         <p style="font-size: 1rem;">Seu pedido foi entregue em <span class="font-weight-bold"> Sebastião
                                 Leandro de Castro, 57, Centro,
                                 Medeiros, Minas Gerais</span></p>
+                        <p class="text-secondary"><span style="font-size: 0.95rem;">Você pode pedir reembolso em até 7
+                                dias após o recebimento da compra. </span></p>
                     </div>
 
                 </div>
@@ -49,34 +56,41 @@
 
         </div>
         <div class="col-sm-4">
-            <h5 class="mb-0 mt-2">Detalhes da Compra</h5>
-            <div class="card card-detalhes-compra shadow pb-4 pt-3 px-4 mt-4" style="margin-top: 30px;">
+            <h5 class="mb-0 titulo-detalhes-compra">Detalhes da Compra</h5>
+            <div class="card card-detalhes-compra shadow pt-3 px-4 mt-4" style="margin-top: 30px;">
                 <div class="d-flex flex-row flex-wrap bd-highlight">
+
                     <div class="flex-grow-1 bd-highlight">
-                        <p class="text-secondary" style=" font-size: 0.9rem;">8 de Junho de 2018 | #32fa23fdsa@asf</p>
-                        <hr>
-                        <p class="text-secondary" style=" font-size: 0.9rem;">Produto <span style="float: right;">R$
-                                39,90</span></p>
-                        <p class="text-secondary" style=" font-size: 0.9rem;">Envio <span
-                                style="float: right;">Grátis</span></p>
-                        <hr>
-                        <p class="text-secondary pb-0 mb-0" style=" font-size: 0.9rem;">Total <span
-                                style="float: right; font-weight: bold;">1x R$ 99,90</span></p>
-                        <p class="text-secondary pt-0 mt-0" style=" font-size: 0.7rem; float: right;">
-                            MASTERCARD
-                            ****
-                            8392</p>
-                        <hr class="mt-4">
-                        <p class="text-primary mb-3" id="link-detalhes-pagamento"
-                            style=" font-size: 0.9rem; font-weight: bold;">Detalhes do
-                            pagamento e
-                            frete <i class="bi bi-chevron-right"></i></p>
-                        <div class="box-detalhes-pagamento">
+                        <div class="first-content">
+                            <p class="text-secondary" style=" font-size: 0.9rem;">8 de Junho de 2018 | #32fa23fdsa@asf
+                            </p>
+                            <hr>
+                            <p class="text-secondary" style=" font-size: 0.9rem;">Produto <span style="float: right;">R$
+                                    39,90</span></p>
+                            <p class="text-secondary" style=" font-size: 0.9rem;">Envio <span
+                                    style="float: right;">Grátis</span></p>
+                            <hr>
+                            <p class="text-secondary" style=" font-size: 0.9rem;">Cupom <span
+                                    style="float: right;">BLACKFRIDAY2020 (R$ 20,90)</span></p>
+                            <hr>
+                            <p class="text-secondary pb-0 mb-0" style=" font-size: 0.9rem;">Total <span
+                                    style="float: right; font-weight: bold;">1x R$ 99,90</span></p>
+                            <p class="text-secondary pt-0 mt-0" style=" font-size: 0.7rem; float: right;">
+                                MASTERCARD
+                                ****
+                                8392</p>
+                            <hr class="mt-4">
+                            <p class="text-primary mb-3" id="link-detalhes-pagamento"
+                                style=" font-size: 0.9rem; font-weight: bold;">Detalhes do
+                                pagamento e
+                                frete <i class="bi bi-chevron-right"></i></p>
+                        </div>
+                        <div class="box-detalhes-pagamento mt-2">
                             <p style=" font-size: 0.9rem;">Pagamento</p>
-                            <div class="border rounded mt-2">
+                            <div class="border rounded mt-2 mb-4">
                                 <div class="d-flex flex-row flex-wrap bd-highlight p-3">
                                     <div class="bd-highlight mr-3">
-                                        <div class="p-2 bg-icone-pagamento">
+                                        <div class="p-2 bg-icone-detalhes-pagamento">
                                             <img src="/img/icone-pagamento/mastercard.png" alt=""
                                                 class="icone-pagamento">
                                         </div>
@@ -91,6 +105,24 @@
                                         <p class="text-secondary" style=" font-size: 0.8rem;">8 de Junho de 2018</p>
                                         <p style=" font-size: 0.9rem; color: #19c880;">Pagamento Aprovado
                                         </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p style=" font-size: 0.9rem;" class="mt-4">Envio</p>
+                            <div class="border rounded mt-2">
+                                <div class="d-flex flex-row flex-wrap bd-highlight pl-3 pt-3 pb-3 pr-1">
+                                    <div class="bd-highlight mr-3">
+                                        <div class="p-2 bg-icone-detalhes-pagamento">
+                                            <i class="bi bi-truck" style="font-size: 30px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="bd-highlight">
+                                        <p class="text-secondary font-weight-bold" style="font-size: 0.8rem;">Sebastião
+                                            Leandro de Castro, 57</p>
+                                        <p class="text-secondary" style="font-size: 0.7rem;">Centro,
+                                            Medeiros, Minas Gerais</p>
+                                        <p class="text-secondary" style="font-size: 0.7rem;">Grátis</p>
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,82 @@
+@media screen and (min-width: 768px) {
+    .usuario-content {
+        padding-left: 20% !important;
+        padding-right: 0% !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .button-editar-endereco {
+        margin-top: 10px;
+    }
+    .input-file-trigger {
+        width: 60% !important;
+    }
+}
+
+.usuario-content p {
+    margin: 0 0 0 0 !important;
+}
+
+.usuario-content a {
+    text-decoration: none !important;
+}
+
+.input-file-trigger {
+    padding: 8px;
+    width: 30%;
+    background: #19c880;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.input-file-trigger:hover {
+    background: #118454;
+}
+
+.input-file {
+    position: absolute;
+    display: none;
+}
+
+.button-editar-endereco {
+    background-color: #19c880 !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    color: white !important;
+}
+
+.button-editar-endereco:hover {
+    background-color: #118454 !important;
+    color: white !important;
+}
+
+.button-excluir-endereco {
+    background-color: #dc3545 !important;
+    padding-left: 37px !important;
+    padding-right: 37px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    color: white !important;
+}
+
+.button-excluir-endereco:hover {
+    background-color: #9b2733 !important;
+    color: white !important;
+}
+
+.bg-icone-cartao {
+    background-color: rgb(244, 242, 242);
+    width: 67px;
+    height: 67px;
+    border-radius: 100%;
+    writing-mode: vertical-lr;
+}
+
+.icone-cartao {
+    width: 100%;
+    font-size: 30px;
+}

@@ -18,6 +18,15 @@ $(window).on('load', function () {
     $("#preloder").delay(100).fadeOut("slow");
 });
 
+// Tamanho da Tela
+if (window.matchMedia('screen and (max-width: 768px)').matches) {
+    // Nav-Link do Carrinho
+    $(".cart-nav-link").attr("href", "#");
+} else {
+    // Nav-Link do Carrinho
+    $(".cart-nav-link").attr("href", "/carrinho");
+}
+
 // Ao clicar em alguma coisa na página
 $("body").on("click", function (event) {
     target = $(event.target);
@@ -166,15 +175,20 @@ $('.sub-menu  .dropdown-menu .nav-tabs-categorias .nav-link').on("click.bs.dropd
 
 // Ao redimensionar o tamanho da tela
 $(window).on("resize", function () {
-    // Dropdown Menu Responsivo (Para funcionar em mobiles devices)
     if (window.matchMedia('screen and (max-width: 768px)').matches) {
+        // Dropdown Menu Responsivo (Para funcionar em mobiles devices)
         content.hide();
         $(".sub-menu  .dropdown-menu .nav-tabs-categorias .nav-link").children().addClass("bi-chevron-right").removeClass("bi-chevron-down");
+        // Nav-Link do Carrinho
+        $(".cart-nav-link").attr("href", "#");
     } else {
+        // Dropdown Menu Responsivo (Para funcionar em mobiles devices)
         content.show();
         content.insertAfter($(".nav-tabs-categorias"));
         $(".sub-menu .dropdown-menu .nav-tabs-categorias .nav-link").children().addClass("bi-chevron-down").removeClass("bi-chevron-right");
         content.css("width", $(".sub-menu  .dropdown-menu").width());
+        // Nav-Link do Carrinho
+        $(".cart-nav-link").attr("href", "/carrinho");
     }
 })
 

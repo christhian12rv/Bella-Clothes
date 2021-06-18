@@ -1,0 +1,43 @@
+.usuario-content p {
+    margin: 0 0 0 0 !important;
+}
+
+.usuario-content a {
+    text-decoration: none !important;
+}
+
+.button-editar {
+    background-color: #19c880 !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    color: white !important;
+}
+
+.button-editar:hover {
+    background-color: #118454 !important;
+    color: white !important;
+}
+
+.button-excluir {
+    background-color: #dc3545 !important;
+    padding-left: 37px !important;
+    padding-right: 37px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    color: white !important;
+}
+
+.bg-icone-seguranca {
+    background-color: rgb(244, 242, 242);
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    writing-mode: vertical-lr;
+}
+
+.icone-seguranca {
+    width: 100%;
+    font-size: 30px;
+}

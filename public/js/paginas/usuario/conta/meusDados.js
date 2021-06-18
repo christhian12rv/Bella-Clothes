@@ -1,0 +1,1 @@
+$(".sidebar-meus-dados").addClass("active");

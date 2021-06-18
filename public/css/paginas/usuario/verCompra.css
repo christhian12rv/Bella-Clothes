@@ -1,27 +1,48 @@
-p {
+@media screen and (max-width: 768px) {
+    .titulo-detalhes-compra {
+        margin-top: 50px !important;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .titulo-detalhes-compra {
+        margin-top: .5rem !important;
+    }
+}
+
+.usuario-content p {
     margin: 0 0 0 0 !important;
 }
 
-a:hover {
+.usuario-content a:hover {
     text-decoration: none !important;
     color: initial !important;
 }
 
-a {
+.usuario-content a .card {
     color: initial !important;
 }
 
-a#page-compras:hover {
+.usuario-content a#page-compras:hover {
     color: #19c880 !important;
 }
 
-.bg-icone-pagamento {
-    background-color: rgb(240, 240, 240);
+.usuario-content .card-detalhes-compra {
+    border-top: 4px solid #19c880;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.bg-icone-detalhes-pagamento {
+    background-color: rgb(244, 242, 242);
+    width: 50px;
+    height: 50px;
     border-radius: 100%;
+    writing-mode: vertical-lr;
 }
 
 .icone-pagamento {
-    height: 35px;
+    width: 100%;
 }
 
 #link-detalhes-pagamento:hover {
@@ -32,14 +53,19 @@ a#page-compras:hover {
     -webkit-text-stroke: 1.5px #007bff;
 }
 
-.box-detalhes-pagamento {
-    height: 0%;
+.card-detalhes-compra {
     overflow: hidden;
-    position: absolute;
+    transition: height 0.5s;
 }
 
-.box-detalhes-pagamento.open {
-    height: 100%;
-    position: relative;
+.card-detalhes-compra .box-detalhes-pagamento {
+    opacity: 0;
+}
+
+.card-detalhes-compra.open .box-detalhes-pagamento {
+    opacity: 1;
+}
+
+.card-detalhes-compra.open {
     transition: height 0.5s;
 }

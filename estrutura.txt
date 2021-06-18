@@ -184,7 +184,7 @@
             - deseja receber ofertas por email *
             Li e aceito a política de privacidade da Bella Modas *
             - admin (true or false) *
-            - foto de perfil (apenas para admins)
+            - foto de perfil
         
         // Usuários Jurídicos
             - email

@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 router.get("/parametro", (req, res) => {
-    res.render("produto/index", { css: "produto.css", js: "produto.js" });
+    res.render("produto/index", { css: "produto.css", js: "produto.js", title: "Produto" });
 })
 
 module.exports = router;

@@ -4,73 +4,96 @@
 <head>
     <!-- Fonte da Logo: Blenda Scripts -->
     <link rel="icon" href="/img/bella-clothes-logo.ico">
-
     <link rel="stylesheet" href="/css/paginas/main.css">
     {{#if paginaUsuario}}
-    <link rel="stylesheet" href="/css/paginas/usuario/sidebarUsuario.css">
+        <link rel="stylesheet" href="/css/paginas/usuario/sidebarUsuario.css">
     {{/if}}
+    {{#if paginaAdmin}}
+        <link rel="stylesheet" href="/css/paginas/admin/sidebarAdmin.css">
+        <link rel="stylesheet" href="/css/paginas/admin/navbarAdmin.css">
+    {{/if}}
+    
     <link rel="stylesheet" href="/css/paginas/{{css}}">
     <link rel="stylesheet" href="/css/noto_sans-font.css">
-
     <link href='/css/font-awesome.min.css'>
-    <link href="/css/owl.carousel.min.css" rel="stylesheet" />
-    <link href="/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="/css/owl.theme.default.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/bootstrap-icons.css">
 
-
     <script src='/js/jquery.min.js'></script>
-
     <script src='/js/bootstrap.bundle.min.js'></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="/js/jquery.mlens-1.7.min.js"></script>
-    <script src="/js/jquery.mask.js"></SCript>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="/js/jquery.mask.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bella Clothes</title>
+    <title>{{title}}</title>
 </head>
 
 <body class="body">
-
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    {{>_navbar}}
 
+    {{#if paginaAdmin}}
+    {{else}}
+        {{>_navbar}}
+    {{/if}}
+    
     <div class="container container-box">
-
         {{#if paginaUsuario}}
-        <div style="display: flex; height: 100%;" class="usuario-sidebar-flex">
-            <div>
-                {{>_sidebarUsuario}}
+            <div style="display: flex; height: 100%; background-color: rgb(241, 241, 241);" class="usuario-sidebar-flex">
+                <div>
+                    {{>_sidebarUsuario}}
+                </div>
+                <div style="width: 100%; padding-top: 100px; padding-bottom: 100px; padding-left: 5%; padding-right: 5%;"
+                    class="usuario-content">
+                    {{{body}}}
+                </div>
             </div>
-            <div style="width: 100%; padding-top: 100px; padding-bottom: 100px; padding-left: 5%; padding-right: 5%;">
-                {{{body}}}
-            </div>
-        </div>
         {{else}}
-        {{{body}}}
+            {{#if paginaAdmin}}
+                <div style="display: flex; height: 100%; width: 100%;">
+                   
+                        {{>_sidebarAdmin}}
+                    
+                    <div style="width: 100%;">
+                        {{>_navbarAdmin}}
+                        <div style="width: 100%; padding-top: 20px; padding-bottom: 20px; padding-left: 1%; padding-right: 1%; height: 1000px; background-color: #f4f6f9;" class="usuario-content">
+                            {{{body}}}
+                        </div>
+                    </div>
+                </div>
+            {{else}}
+                {{{body}}}
+            {{/if}}
         {{/if}}
-
         <div class="modal-background">
         </div>
     </div>
 
-    {{>_footer}}
-
+    {{#if paginaAdmin}}
+    {{else}}
+        {{>_footer}}
+    {{/if}}
 </body>
+
 <script src="/js/paginas/main.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
 {{#if paginaUsuario}}
-<script src="/js/paginas/usuario/sidebarUsuario.js"></script>
+    <script src="/js/paginas/usuario/sidebarUsuario.js"></script>
+{{/if}}
+{{#if paginaAdmin}}
+    <script src="/js/paginas/admin/sidebarAdmin.js"></script>
+    <script src="/js/paginas/admin/navbarAdmin.js"></script>
 {{/if}}
 {{#if js}}
-<script src="/js/paginas/{{js}}"></script>
+    <script src="/js/paginas/{{js}}"></script>
 {{/if}}
 
 </html>

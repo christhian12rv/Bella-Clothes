@@ -56,6 +56,20 @@
     background-color: #118454;
 }
 
+.card-compras .btn-reembolso {
+    color: white;
+    background-color: #dc3545;
+    margin-top: 10px;
+    padding-left: 42.7px;
+    padding-right: 42.7px;
+    border-radius: 0px;
+}
+
+.card-compras .btn-reembolso:hover {
+    color: white;
+    background-color: #9b2733;
+}
+
 @media screen and (max-width: 768px) {
     .card-compras p.nome-produtos {
         white-space: normal !important;

@@ -1,0 +1,57 @@
+.main-navbar {
+    width: 100%;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 52px;
+    background-color: white;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    z-index: 1;
+}
+
+.main-navbar.dark {
+    background-color: #343a40;
+    border-bottom: 1px solid grey;
+}
+
+.main-navbar.no-border {
+    border-bottom: transparent !important;
+}
+
+.main-navbar.fixed {
+    position: fixed;
+}
+
+.main-navbar.fixed~.usuario-content {
+    padding-top: 72px !important;
+}
+
+.main-navbar p {
+    margin: 0;
+}
+
+.main-navbar * {
+    color: rgba(0, 0, 0, .6);
+}
+
+.main-navbar.dark * {
+    color: rgba(255, 255, 255, .8);
+}
+
+.main-navbar i.bi-list {
+    font-size: 1.5em;
+}
+
+.main-navbar i.bi-grid-fill {
+    font-size: 1.1em;
+}
+
+.main-navbar i:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.main-navbar.dark i:hover {
+    color: white;
+    cursor: pointer;
+}

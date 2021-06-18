@@ -1,0 +1,290 @@
+body {
+    overflow-x: hidden;
+}
+
+.main-sidebar {
+    height: auto;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    width: 80px;
+    max-width: 233px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22)!important;
+    transition: width 300ms;
+    z-index: 2;
+}
+
+.main-sidebar.dark {
+    background-color: #343a40;
+}
+
+.main-sidebar.fixed {
+    height: 100vh;
+    max-width: 233px !important;
+    position: fixed;
+}
+
+.main-sidebar.fixed~div>.main-navbar {
+    margin-left: 77.922px !important;
+    transition: margin-left 300ms ease-in-out;
+}
+
+.main-sidebar.fixed~div>.usuario-content {
+    margin-left: 77.922px !important;
+    transition: margin-left 300ms ease-in-out;
+}
+
+.main-sidebar.fixed.open~div>.main-navbar {
+    margin-left: 232.922px !important;
+    transition: margin-left 300ms ease-in-out;
+}
+
+.main-sidebar.fixed.open~div>.usuario-content {
+    margin-left: 231px !important;
+    transition: margin-left 300ms ease-in-out;
+}
+
+.main-sidebar .title-text {
+    display: none;
+}
+
+.main-sidebar.open .title-text {
+    display: block;
+}
+
+.main-sidebar.open {
+    width: 310px;
+    transition: width 300ms;
+}
+
+.main-sidebar.open .sidebar {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.main-sidebar.fixed .sidebar {
+    max-height: 89vh;
+}
+
+.main-sidebar .sidebar {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.main-sidebar .sidebar .flex-list .sub-list .d-flex {
+    padding-left: 25px !important;
+}
+
+.main-sidebar .sidebar p {
+    display: none;
+}
+
+.main-sidebar.open .sidebar p {
+    display: block;
+}
+
+.main-sidebar i.bi-chevron-right {
+    padding-left: 5px;
+}
+
+.main-sidebar h5, .main-sidebar h4, .main-sidebar h3, .main-sidebar h2, .main-sidebar h1, .main-sidebar p {
+    margin: 0;
+}
+
+.main-sidebar a {
+    text-decoration: none !important;
+}
+
+.main-sidebar hr {
+    background-color: #e8e8e8;
+}
+
+.main-sidebar.dark hr {
+    background-color: #4f5962;
+}
+
+.main-sidebar .d-flex {
+    align-items: center;
+}
+
+.main-sidebar .title-image {
+    height: 27px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23)!important;
+}
+
+.main-sidebar .title-text {
+    color: grey;
+}
+
+.main-sidebar.dark .title-text {
+    color: rgba(255, 255, 255, .8);
+}
+
+.main-sidebar .title:hover .title-text {
+    color: black;
+}
+
+.main-sidebar.dark .title:hover .title-text {
+    color: white;
+}
+
+.main-sidebar .sidebar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.main-sidebar.dark .sidebar::-webkit-scrollbar-track {
+    background: #343a40;
+}
+
+.main-sidebar .sidebar::-webkit-scrollbar-thumb {
+    background: #a9a9a9;
+}
+
+.main-sidebar .sidebar::-webkit-scrollbar-track {
+    background: white;
+}
+
+.sidebar .user-image {
+    margin-left: 5px;
+    height: 35px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23)!important;
+    border-radius: 100%;
+}
+
+.main-sidebar .sidebar i {
+    font-size: 25px;
+    color: grey;
+}
+
+.main-sidebar.small-text .sidebar i {
+    font-size: 18px !important;
+    color: grey;
+}
+
+.main-sidebar.dark .sidebar i {
+    font-size: 25px;
+    color: rgba(255, 255, 255, .8);
+}
+
+.main-sidebar .sidebar i.bi-chevron-right {
+    font-size: 11px;
+    -webkit-text-stroke: 1.5px grey;
+}
+
+.main-sidebar.small-text .sidebar i.bi-chevron-right {
+    font-size: 9px !important;
+    -webkit-text-stroke: 1.5px grey;
+}
+
+.main-sidebar.dark .sidebar i.bi-chevron-right {
+    font-size: 11px;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, .8);
+}
+
+.main-sidebar .sidebar p, .main-sidebar .sidebar h1, .main-sidebar .sidebar h2, .main-sidebar .sidebar h3, .main-sidebar .sidebar h4, .main-sidebar .sidebar h5 {
+    color: grey;
+    padding-left: 9px;
+}
+
+.main-sidebar.small-text .sidebar p, .main-sidebar.small-text .sidebar h1, .main-sidebar.small-text .sidebar h2, .main-sidebar.small-text .sidebar h3, .main-sidebar.small-text .sidebar h4, .main-sidebar.small-text .sidebar h5 {
+    color: grey;
+    padding-left: 9px;
+    font-size: 0.8em !important;
+}
+
+.main-sidebar.dark .sidebar p, .main-sidebar.dark .sidebar h1, .main-sidebar.dark .sidebar h2, .main-sidebar.dark .sidebar h3, .main-sidebar.dark .sidebar h4, .main-sidebar.dark .sidebar h5 {
+    color: rgba(255, 255, 255, .8);
+    padding-left: 9px;
+}
+
+.main-sidebar .sidebar .d-flex {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+}
+
+.main-sidebar.compact .sidebar .d-flex {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-radius: 3px;
+}
+
+.main-sidebar .sidebar .d-flex:hover {
+    cursor: pointer;
+    background-color: rgba(140, 140, 140, 0.15);
+}
+
+.main-sidebar.dark .sidebar .d-flex:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.main-sidebar .sidebar .d-flex:hover p, .main-sidebar .sidebar .d-flex:hover h1, .main-sidebar .sidebar .d-flex:hover h2, .main-sidebar .sidebar .d-flex:hover h3, .main-sidebar .sidebar .d-flex:hover h4, .main-sidebar .sidebar .d-flex:hover h5, .main-sidebar .sidebar .d-flex:hover i {
+    color: black;
+}
+
+.main-sidebar.dark .sidebar .d-flex:hover p, .main-sidebar.dark .sidebar .d-flex:hover h1, .main-sidebar.dark .sidebar .d-flex:hover h2, .main-sidebar.dark .sidebar .d-flex:hover h3, .main-sidebar.dark .sidebar .d-flex:hover h4, .main-sidebar.dark .sidebar .d-flex:hover h5, .main-sidebar.dark .sidebar .d-flex:hover i {
+    color: white;
+}
+
+.sidebar .user-name {
+    font-size: 0.95em;
+}
+
+.main-sidebar.open .sidebar .flex-list .sub-list .d-flex {
+    padding-left: 40px !important;
+}
+
+.flex-list .sub-list {
+    height: 0px;
+    transition: height 300ms ease;
+    overflow: hidden;
+    transition-delay: 0s;
+}
+
+.flex-list .sub-list hr {
+    margin: 2px auto 2px auto;
+    width: 75%;
+}
+
+.flex-list .bi-chevron-right {
+    transition: transform 300ms;
+}
+
+.flex-list.open .bi-chevron-right {
+    transform: rotateZ(90deg);
+    transition: transform 300ms;
+}
+
+.customize-page {
+    height: 300px;
+    background-color: #343a40;
+    width: 200px;
+    position: absolute;
+    right: 0;
+    top: 52px;
+    word-break: break-all;
+}
+
+.customize-page h5 {
+    font-size: 1.1em;
+}
+
+.customize-page input {
+    padding-top: 100px;
+}
+
+.customize-page p {
+    color: white;
+    margin: 0;
+}
+
+.customize-page label {
+    font-size: 0.9em;
+    margin: 0;
+    color: #c2c7d0;
+}
+
+.customize-page hr {
+    background-color: #4f5962;
+}

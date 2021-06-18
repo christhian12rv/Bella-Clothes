@@ -12,6 +12,7 @@ const loja = require("./routes/loja");
 const carrinho = require("./routes/carrinho");
 const checkout = require("./routes/checkout");
 const usuario = require("./routes/usuario");
+const admin = require("./routes/admin");
 
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
@@ -72,19 +73,34 @@ app.use(fileUpload());
 
 // Rotas
 app.get("/", (req, res) => {
-    res.render("./home/index", { css: "home.css", js: "home.js" });
+    res.render("./home/index", {
+        css: "home.css",
+        js: "home.js",
+        title: "Bella Clothes"
+    });
 })
 
 app.get("/login", (req, res) => {
-    res.render("./usuario/login", { css: "login.css" });
+    res.render("./usuario/login", {
+        css: "login.css",
+        title: "Login"
+    });
 })
 
 app.get("/registrar/fisica", (req, res) => {
-    res.render("./usuario/registrarFisica", { css: "registrar.css", js: "registrarFisica.js" })
+    res.render("./usuario/registrarFisica", {
+        css: "registrar.css",
+        js: "registrarFisica.js",
+        title: "Registrar"
+    })
 })
 
 app.get("/registrar/juridica", (req, res) => {
-    res.render("./usuario/registrarJuridica", { css: "registrar.css", js: "registrarJuridica.js" })
+    res.render("./usuario/registrarJuridica", {
+        css: "registrar.css",
+        js: "registrarJuridica.js",
+        title: "Registrar"
+    })
 })
 
 app.get("/teste", (req, res) => {
@@ -122,11 +138,11 @@ app.post("/testeEnviar", (req, res) => {
 })
 
 app.get("/404", (req, res) => {
-    res.render("erros/erro404");
+    res.render("erros/erro404", { title: "Erro 404" });
 })
 
 app.get("/500", (req, res) => {
-    res.render("erros/erro500");
+    res.render("erros/erro500", { title: "Erro 500" });
 })
 
 app.use("/produto", produto);
@@ -134,6 +150,7 @@ app.use("/loja", loja);
 app.use("/carrinho", carrinho);
 app.use("/checkout", checkout);
 app.use("/usuario", usuario);
+app.use("/admin", admin);
 
 app.listen(PORT, () => {
     console.log("Servidor rodando na porta " + PORT);
