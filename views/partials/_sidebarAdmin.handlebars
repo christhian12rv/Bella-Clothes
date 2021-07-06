@@ -1,6 +1,6 @@
-<nav class="main-sidebar pb-3 pt-2 open">
-
-    <a href="#" class="d-flex flex-row title px-4 py-0">
+<nav class="main-sidebar">
+    <div id="sidebar-background-image"></div>
+    <a href="/" class="d-flex flex-row title px-4 py-0">
         <img src="/img/bella-clothes-logo.png" alt="Bella Clothes logo" class="title-image rounded">
         <p class="title-text pl-2">Bella Clothes</p>
     </a>
@@ -14,16 +14,46 @@
         </a>
         <hr>
 
-        
-        <div class="d-flex flex-row px-4">
-            <i class="bi bi-house"></i>
-            <p class="flex-grow-1">Página Inicial</p>
+        <div class="flex-list">
+            <a class="d-flex flex-row px-4 main-title sidebar-link painel-controle">
+                <i class="bi bi-house"></i>
+                <p class="flex-grow-1">Painel de Controle</p>
+                <i class='bi bi-chevron-right'></i>
+            </a>
+            <div class="sub-list">
+                <a href="/admin/painel-de-controle"
+                    class="d-flex flex-row px-4 sub-title sidebar-link painel-controle-home">
+                    <i class="bi bi-speedometer2"></i>
+                    <p>Home</p>
+                </a>
+                <a href="/admin/painel-de-controle/pedidos"
+                    class="d-flex flex-row px-4 sub-title sidebar-link painel-controle-pedidos">
+                    <i class="bi bi-receipt-cutoff"></i>
+                    <p>Pedidos</p>
+                </a>
+                <a href="/admin/painel-de-controle/receita-de-vendas"
+                    class="d-flex flex-row px-4 sub-title sidebar-link painel-controle-receita-vendas">
+                    <i class="bi bi-cash-coin"></i>
+                    <p>Receita de Vendas</p>
+                </a>
+                <a href="/admin/painel-de-controle/quantidade-de-vendas"
+                    class="d-flex flex-row px-4 sub-title sidebar-link painel-controle-quantidade-vendas">
+                    <i class="bi bi-cart3"></i>
+                    <p>Quantidade de Vendas</p>
+                </a>
+                <a href="/admin/painel-de-controle/usuarios"
+                    class="d-flex flex-row px-4 sub-title sidebar-link painel-controle-usuarios">
+                    <i class="bi bi-people"></i>
+                    <p>Usuários</p>
+                </a>
+                <hr>
+            </div>
         </div>
-            
+
 
         <div class="flex-list">
             <div class="d-flex flex-row px-4 main-title">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-people"></i>
                 <p class="flex-grow-1">Clientes</p>
                 <i class='bi bi-chevron-right'></i>
             </div>
@@ -31,13 +61,13 @@
                 <a class="d-flex flex-row px-4 sub-title">
                     <i class="bi bi-person-lines-fill"></i>
                     <p>Ver clientes</p>
-                </a>    
-                <a class="d-flex flex-row px-4 sub-title">              
+                </a>
+                <a class="d-flex flex-row px-4 sub-title">
                     <i class="bi bi-receipt-cutoff"></i>
-                    <p>Pedidos</p>              
+                    <p>Pedidos</p>
                 </a>
                 <hr>
-            </div>      
+            </div>
         </div>
 
         <div class="flex-list">
@@ -103,37 +133,8 @@
         </div>
 
         <div class="d-flex flex-row px-4">
-            <i class="bi bi-person"></i>
-            <p class="flex-grow-1">Meu Perfil</p>
+            <i class="bi bi-box-arrow-right"></i>
+            <p class="flex-grow-1">Sair</p>
         </div>
     </div>
-
-</nav>
-
-<nav class="customize-page py-3 pl-3 pr-2">
-    <h5 class="text-white">Customizar Página</h5>
-    <hr>
-    <p>Sidebar</p>
-    <input type="checkbox" id="cp-fixed-sidebar">
-    <label for="cp-fixed-sidebar">Sidebar Fixa</label>
-    <br>
-    <input type="checkbox" id="cp-dark-sidebar">
-    <label for="cp-dark-sidebar">Modo Escuro</label>
-    <br>
-    <input type="checkbox" id="cp-compact-sidebar">
-    <label for="cp-compact-sidebar">Compacta</label>
-    <br>
-    <input type="checkbox" id="cp-small-text-sidebar">
-    <label for="cp-small-text-sidebar">Texto pequeno</label>
-    <br>
-
-    <p class="mt-3">Navbar</p>
-    <input type="checkbox" id="cp-fixed-navbar">
-    <label for="cp-fixed-navbar">Navbar Fixa</label>
-    <br>
-    <input type="checkbox" id="cp-dark-navbar">
-    <label for="cp-dark-navbar">Modo Escuro</label>
-    <br>
-    <input type="checkbox" id="cp-border-bottom-navbar">
-    <label for="cp-border-bottom-navbar">Sem borda</label>
 </nav>

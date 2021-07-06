@@ -1,0 +1,92 @@
+.card-graphic {
+    width: 100%;
+}
+
+.card-graphic button {
+    width: 30px;
+    height: 30px;
+    padding: .375rem 0px !important;
+    margin-left: 3px;
+    margin-right: 3px;
+    background-color: rgb(201, 201, 201);
+    border: none;
+}
+
+.card-graphic button.active {
+    background-color: #607d8b !important;
+}
+
+.card-graphic button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.card-graphic button:hover {
+    background-color: rgb(130, 130, 130);
+}
+
+.card-graphic button i {
+    background: linear-gradient(45deg, rgb(255, 0, 68), orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+canvas, #chart-usuarios-map {
+    max-width: 100% !important;
+}
+
+#chart-usuarios-map {
+    display: none;
+    height: 100% !important;
+}
+
+.admin-content input, select, option {
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    background-color: transparent;
+}
+
+.admin-content.dark input, .admin-content.dark select {
+    border: 1px solid #3c3c3c;
+}
+
+.admin-content.dark select>option {
+    background-color: #1a1a1a;
+}
+
+input:hover, input:focus, input:link, input:visited {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input#datepicker-chart {
+    width: 280px;
+}
+
+input[type="submit"] {
+    padding-top: .10rem !important;
+    padding-bottom: .10rem !important;
+}
+
+input[type="submit"]:hover {
+    background: #19c880;
+    color: white;
+}
+
+.percentage {
+    font-size: 1.1rem;
+}
+
+.percentage * {
+    color: #19c880 !important;
+}
+
+.percentage i {
+    -webkit-text-stroke: 1px #19c880;
+    font-size: 1.8rem;
+    line-height: 0px;
+}
+
+.percentage span {
+    vertical-align: text-bottom;
+}

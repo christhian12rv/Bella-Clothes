@@ -1,0 +1,65 @@
+#form-content {
+    margin-left: 5%;
+    margin-right: 5% !important;
+    width: auto !important;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    border-color: #19c880 !important;
+    background-color: #19c880 !important;
+}
+
+input, input:focus, input:visited, input:hover, label::before, label::after {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#label-escolher-imagem * {
+    transition: color 300ms;
+}
+
+#label-escolher-imagem:hover {
+    cursor: pointer;
+}
+
+#label-escolher-imagem:hover * {
+    color: #19c880 !important;
+    transition: color 300ms;
+}
+
+#label-escolher-imagem i.bi-file-image-fill {
+    font-size: 6rem;
+    opacity: 0.7;
+}
+
+#visualizar-imagem img {
+    height: 20rem;
+}
+
+input#escolher-imagem {
+    display: none;
+}
+
+input#alterar {
+    background-color: #19c880;
+    color: white;
+}
+
+input#alterar:hover {
+    background-color: #118454;
+    color: white;
+}
+
+.transparencia-texto {
+    padding-top: 53px;
+}
+
+#slider-transparencia {
+    width: 100%;
+    background-color: transparent !important;
+}
+
+.slider__bar-empty {
+    background-color: rgb(202, 202, 202);
+    width: 118% !important;
+}

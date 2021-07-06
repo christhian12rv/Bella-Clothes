@@ -1,0 +1,85 @@
+#login-content {
+    background-color: #1a1a1a;
+    height: 100%;
+    min-height: 100vh;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23)!important;
+    padding-bottom: 50spx;
+}
+
+#login-content #image-link {
+    height: 100%;
+    margin-right: 2rem;
+    width: 63.7188px;
+}
+
+#login-content img {
+    height: 50px;
+}
+
+#login-content * {
+    color: rgba(196, 196, 196, 0.9);
+}
+
+.login-box-form {
+    margin: 8% auto 0 auto;
+}
+
+form {
+    margin-top: 4.5rem;
+}
+
+input:not([type="submit"]) {
+    background-color: #111111;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #111111;
+    padding: 5px 10px 5px 10px;
+}
+
+input:not([type="submit"]) {
+    width: 330px;
+}
+
+@media only screen and (max-width: 468px) {
+    input:not([type="submit"]) {
+        width: 80%;
+    }
+}
+
+input[type="submit"] {
+    width: 165px;
+}
+
+input#logar {
+    background-color: #19c880;
+    color: white !important;
+}
+
+input#logar:hover {
+    background-color: #118454;
+}
+
+a#forgot-password:hover {
+    color: white !important;
+}
+
+p#not-account {
+    margin-top: 5rem;
+}
+
+a#signup {
+    color: #19c880 !important;
+}
+
+a#signup:hover {
+    color: #118454 !important;
+}
+
+::-ms-reveal {
+    filter: invert(100%);
+}
+
+#copyright {
+    text-align: left;
+    font-size: 0.8rem;
+}

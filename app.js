@@ -10,7 +10,7 @@ var sizeOf = require('image-size');
 const produto = require("./routes/produto");
 const loja = require("./routes/loja");
 const carrinho = require("./routes/carrinho");
-const checkout = require("./routes/checkout");
+const compra = require("./routes/compra");
 const usuario = require("./routes/usuario");
 const admin = require("./routes/admin");
 
@@ -90,7 +90,7 @@ app.get("/login", (req, res) => {
 app.get("/registrar/fisica", (req, res) => {
     res.render("./usuario/registrarFisica", {
         css: "registrar.css",
-        js: "registrarFisica.js",
+        js: "/usuario/registrarFisica.js",
         title: "Registrar"
     })
 })
@@ -98,7 +98,7 @@ app.get("/registrar/fisica", (req, res) => {
 app.get("/registrar/juridica", (req, res) => {
     res.render("./usuario/registrarJuridica", {
         css: "registrar.css",
-        js: "registrarJuridica.js",
+        js: "/usuario/registrarJuridica.js",
         title: "Registrar"
     })
 })
@@ -148,7 +148,7 @@ app.get("/500", (req, res) => {
 app.use("/produto", produto);
 app.use("/loja", loja);
 app.use("/carrinho", carrinho);
-app.use("/checkout", checkout);
+app.use("/compra", compra);
 app.use("/usuario", usuario);
 app.use("/admin", admin);
 

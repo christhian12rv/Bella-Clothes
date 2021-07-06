@@ -1,0 +1,481 @@
+<h3 class="title">
+    Painel de Controle
+</h3>
+<div class="d-flex flex-row flex-wrap four-cards">
+    <div class="p-0 card card-dashboard blue-card">
+        <div class="d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+            <div class="pr-3">
+                <h1>
+                    55
+                </h1>
+                <h5>
+                    Pedidos (Hoje)
+                </h5>
+            </div>
+            <div class="icon flex-grow-1">
+                <i class="bi bi-receipt"></i>
+            </div>
+        </div>
+        <a href="/admin/painel-de-controle/pedidos" class="more-info p-1 m-0">
+            <p class="p-0 m-0">
+                Mais Informações
+                <i class="bi bi-arrow-right-circle-fill"></i>
+            </p>
+        </a>
+    </div>
+    <div class="p-0 card card-dashboard pink-card">
+        <div class="d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+            <div class="pr-3">
+                <h1>
+                    55
+                </h1>
+                <h5>
+                    Pedidos (Total)
+                </h5>
+            </div>
+            <div class="icon flex-grow-1">
+                <i class="bi bi-bar-chart-line-fill"></i>
+            </div>
+        </div>
+        <a href="/admin/painel-de-controle/pedidos" class="more-info p-1 m-0">
+            <p class="p-0 m-0">
+                Mais Informações
+                <i class="bi bi-arrow-right-circle-fill"></i>
+            </p>
+        </a>
+    </div>
+    <div class="p-0 card card-dashboard orange-card">
+        <div class="d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+            <div class="pr-3">
+                <h1>
+                    55
+                </h1>
+                <h5>
+                    Pedidos Cancelados
+                </h5>
+            </div>
+            <div class="icon flex-grow-1">
+                <i class="bi bi-x-circle"></i>
+            </div>
+        </div>
+        <a href="/admin/painel-de-controle/pedidos" class="more-info p-1 m-0">
+            <p class="p-0 m-0">
+                Mais Informações
+                <i class="bi bi-arrow-right-circle-fill"></i>
+            </p>
+        </a>
+    </div>
+    <div class="p-0 card card-dashboard purple-card">
+        <div class="d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+            <div class="pr-3">
+                <h1>
+                    55
+                </h1>
+                <h5>
+                    Cupons de Desconto
+                </h5>
+            </div>
+            <div class="icon flex-grow-1">
+                <i class="bi bi-percent"></i>
+            </div>
+        </div>
+        <a href="#" class="more-info p-1 m-0">
+            <p class="p-0 m-0">
+                Mais Informações
+                <i class="bi bi-arrow-right-circle-fill"></i>
+            </p>
+        </a>
+    </div>
+</div>
+
+<div class="d-flex flex-row flex-wrap space-between">
+    <div class="p-0 card card-dashboard out-background-card flex-basis-49 mb-1" style="width: 100%;">
+        <div class=" d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+            <div class="pr-3">
+                <h1>
+                    R$ 55.000,00
+                </h1>
+                <h5>
+                    Receita de Vendas
+                </h5>
+            </div>
+            <div class="icon flex-grow-1">
+                <i class="bi bi-cash-coin"></i>
+            </div>
+        </div>
+        <a href="/admin/painel-de-controle/receita-de-vendas" class="more-info p-1 m-0">
+            <p class="p-0 m-0">
+                Mais Informações
+                <i class="bi bi-arrow-right-circle-fill"></i>
+            </p>
+        </a>
+    </div>
+    <div class="p-0 card card-dashboard out-background-card flex-basis-49 mb-1" style="width: 100%;">
+        <div class=" d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+            <div class="pr-3">
+                <h1>
+                    55
+                </h1>
+                <h5>
+                    Quantidade de Vendas
+                </h5>
+            </div>
+            <div class="icon flex-grow-1">
+                <i class="bi bi-cart3"></i>
+            </div>
+        </div>
+        <a href="/admin/painel-de-controle/quantidade-de-vendas" class="more-info p-1 m-0">
+            <p class="p-0 m-0">
+                Mais Informações
+                <i class="bi bi-arrow-right-circle-fill"></i>
+            </p>
+        </a>
+    </div>
+</div>
+
+<div class="d-flex flex-row flex-wrap space-between" style="margin-bottom: 15px;">
+    <div class="d-flex collumn-flex flex-basis-49">
+        <div class="card card-graphic color-mode pt-3 pb-0 px-0" id="card-receita-vendas">
+            <div class="card-title px-3 d-flex mb-0">
+                <p class="flex-grow-1"><i class="bi bi-clipboard-data mr-2"></i>Receita de Vendas</p>
+                <button class="btn btn-vertical-bar active" id="btn-vertical-bar-receita-vendas"><i
+                        class="bi bi-bar-chart-fill"></i></button>
+                <button class="btn btn-horizontal-bar" style="transform: rotateZ(90deg);"
+                    id="btn-horizontal-bar-receita-vendas"><i class="bi bi-bar-chart-fill"></i></button>
+                <button class="btn btn-pie" id="btn-pie-receita-vendas"><i class="bi bi-pie-chart-fill"></i></button>
+            </div>
+            <canvas id="receita-vendas" class="px-3 pb-3 pt-3 canvas-graphic"></canvas>
+        </div>
+    </div>
+    <div class="d-flex collumn-flex flex-basis-49">
+        <div class="card card-graphic color-mode pt-3 pb-0 px-0" id="card-quantidade-vendas">
+            <div class="card-title px-3 d-flex mb-0">
+                <p class="flex-grow-1"><i class="bi bi-clipboard-data mr-2"></i>Quantidade de Vendas</p>
+                <button class="btn btn-vertical-bar active" id="btn-vertical-bar-quantidade-vendas"><i
+                        class="bi bi-bar-chart-fill"></i></button>
+                <button class="btn btn-horizontal-bar" style="transform: rotateZ(90deg);"
+                    id="btn-horizontal-bar-quantidade-vendas"><i class="bi bi-bar-chart-fill"></i></button>
+                <button class="btn btn-pie" id="btn-pie-quantidade-vendas"><i class="bi bi-pie-chart-fill"></i></button>
+            </div>
+            <canvas id="quantidade-vendas" class="px-3 pb-3 pt-3 canvas-graphic"></canvas>
+        </div>
+    </div>
+</div>
+<div class="d-flex flex-row flex-wrap space-between" style="margin-bottom: 15px;">
+    <div class="d-flex collumn-flex flex-basis-65">
+        <div class="card card-graphic color-mode pt-3 pb-0 px-0" id="card-users-location">
+            <div class="card-title px-3 d-flex mb-0">
+                <p class="flex-grow-1"><i class="bi bi-clipboard-data mr-2"></i>Usuários por estado</p>
+                <button class="btn btn-map active" id="btn-map-users-location"><i class="bi bi-map-fill"></i></button>
+                <button class="btn btn-pie" id="btn-pie-users-location"><i class="bi bi-pie-chart-fill"></i></button>
+            </div>
+
+            <div id="users-location-map"></div>
+            <canvas id="users-location-canvas" class="px-3 pb-3 pt-3 canvas-graphic" style="display: none;"></canvas>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap collumn-flex flex-basis-33">
+        <div class="p-0 card card-dashboard blue-card mb-2">
+            <div class="d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+                <div class="pr-3">
+                    <h1>
+                        55
+                    </h1>
+                    <h5>
+                        Usuários
+                    </h5>
+                </div>
+                <div class="icon flex-grow-1">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+            </div>
+            <a href="/admin/painel-de-controle/usuarios" class="more-info p-1 m-0">
+                <p class="p-0 m-0">
+                    Mais Informações
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                </p>
+            </a>
+        </div>
+        <div class="p-0 card card-dashboard orange-card mb-2 not-info">
+            <div class="d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+                <div class="pr-3">
+                    <h1>
+                        55
+                    </h1>
+                    <h5>
+                        Visitantes
+                    </h5>
+                </div>
+                <div class="icon flex-grow-1">
+                    <i class="bi bi-globe2"></i>
+                </div>
+            </div>
+        </div>
+        <div class="p-0 card card-dashboard pink-card" style="width: 100%;">
+            <div class=" d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+                <div class="pr-3">
+                    <h1>
+                        55
+                    </h1>
+                    <h5>
+                        Administradores
+                    </h5>
+                </div>
+                <div class="icon flex-grow-1">
+                    <i class="bi bi-wrench"></i>
+                </div>
+            </div>
+            <a href="#" class="more-info p-1 m-0">
+                <p class="p-0 m-0">
+                    Mais Informações
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                </p>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="d-flex flex-row flex-wrap space-between" style="margin-bottom: 15px;">
+    <div class="d-flex flex-wrap collumn-flex flex-basis-33">
+        <div class="p-0 card card-dashboard purple-card mb-2" style="width: 100%;">
+            <div class=" d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+                <div class="pr-3">
+                    <h1>
+                        55
+                    </h1>
+                    <h5>
+                        Produtos
+                    </h5>
+                </div>
+                <div class="icon flex-grow-1">
+                    <i class="bi bi-box"></i>
+                </div>
+            </div>
+            <a href="#" class="more-info p-1 m-0">
+                <p class="p-0 m-0">
+                    Mais Informações
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                </p>
+            </a>
+        </div>
+        <div class="p-0 card card-dashboard blue-card mb-2">
+            <div class="d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+                <div class="pr-3">
+                    <h1>
+                        55
+                    </h1>
+                    <h5>
+                        Categorias
+                    </h5>
+                </div>
+                <div class="icon flex-grow-1">
+                    <i class="bi bi-tag-fill"></i>
+                </div>
+            </div>
+            <a href="#" class="more-info p-1 m-0">
+                <p class="p-0 m-0">
+                    Mais Informações
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                </p>
+            </a>
+        </div>
+        <div class="p-0 card card-dashboard orange-card mb-2">
+            <div class="d-flex flex-row flex-wrap pt-2 pb-0 px-3 content">
+                <div class="pr-3">
+                    <h1>
+                        55
+                    </h1>
+                    <h5>
+                        Subcategorias
+                    </h5>
+                </div>
+                <div class="icon flex-grow-1">
+                    <i class="bi bi-tags-fill"></i>
+                </div>
+            </div>
+            <a href="#" class="more-info p-1 m-0">
+                <p class="p-0 m-0">
+                    Mais Informações
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                </p>
+            </a>
+        </div>
+    </div>
+    <div class="d-flex collumn-flex flex-basis-65">
+        <div class="card color-mode pt-3 pb-0 px-0 mt-0">
+            <div class="card-title px-3 d-flex mb-0">
+                <p class="flex-grow-1"><i class="bi bi-box-seam mr-2"></i>Produtos mais vendidos</p>
+                <a href="#" class="ver-todos badge py-2 px-4">Ver Todos</a>
+            </div>
+            <div class="px-3 pb-3 pt-3 items-card">
+                <div class="d-flex flex-row flex-wrap">
+                    <img src="/img/menina.jpg" alt="">
+                    <div class="flex-grow-1">
+                        <a href="#" class="item-card-link">
+                            <p>
+                                Tênis Nike - Azul &nbsp;
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </p>
+                        </a>
+                        <p class="pb-0 mb-0 category-product">Tênis - Homem</p>
+                    </div>
+                    <div>
+                        <a href="#" class="badge badge-product-price">R$ 39,90</a>
+                        <p class="qty-sales">20 vendas</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex flex-row flex-wrap">
+                    <img src="/img/menina.jpg" alt="">
+                    <div class="flex-grow-1">
+                        <a href="#" class="item-card-link">
+                            <p>
+                                Tênis Nike - Azul &nbsp;
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </p>
+                        </a>
+                        <p class="pb-0 mb-0 category-product">Tênis - Homem</p>
+                    </div>
+                    <div>
+                        <a href="#" class="badge badge-product-price">R$ 39,90</a>
+                        <p class="qty-sales">20 vendas</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex flex-row flex-wrap">
+                    <img src="/img/menina.jpg" alt="">
+                    <div class="flex-grow-1">
+                        <a href="#" class="item-card-link">
+                            <p>
+                                Tênis Nike - Azul &nbsp;
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </p>
+                        </a>
+                        <p class="pb-0 mb-0 category-product">Tênis - Homem</p>
+                    </div>
+                    <div>
+                        <a href="#" class="badge badge-product-price">R$ 39,90</a>
+                        <p class="qty-sales">20 vendas</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex flex-row flex-wrap">
+                    <img src="/img/menina.jpg" alt="">
+                    <div class="flex-grow-1">
+                        <a href="#" class="item-card-link">
+                            <p>
+                                Tênis Nike - Azul &nbsp;
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </p>
+                        </a>
+                        <p class="pb-0 mb-0 category-product">Tênis - Homem</p>
+                    </div>
+                    <div>
+                        <a href="#" class="badge badge-product-price">R$ 39,90</a>
+                        <p class="qty-sales">20 vendas</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex flex-row flex-wrap">
+                    <img src="/img/menina.jpg" alt="">
+                    <div class="flex-grow-1">
+                        <a href="#" class="item-card-link">
+                            <p>
+                                Tênis Nike - Azul &nbsp;
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </p>
+                        </a>
+                        <p class="pb-0 mb-0 category-product">Tênis - Homem</p>
+                    </div>
+                    <div>
+                        <a href="#" class="badge badge-product-price">R$ 39,90</a>
+                        <p class="qty-sales">20 vendas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex flex-row flex-wrap">
+    <div class="card color-mode pt-3 pb-0 px-0 mt-0">
+        <div class="card-title px-3 d-flex mb-0">
+            <p class="flex-grow-1"><i class="bi bi-cart3 mr-2"></i>Compras recentes</p>
+            <a href="#" class="ver-todos badge py-2 px-4">Ver Todos</a>
+        </div>
+        <table class="table table-hover table-responsive px-3 mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Usuário</th>
+                    <th scope="col">Produtos</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>07 Maio 2019</td>
+                    <td>Christhian Rezende Vieira</td>
+                    <td class="item-card-link">Tê
+                        AllStar</td>
+                    <td><span class="badge badge-success p-2">Entregue</span></td>
+                    <td><a href="#" class="table-detalhes-link">Detalhes</a></td>
+                </tr>
+                <tr>
+                    <td>07 Maio 2019</td>
+                    <td>Christhian Rezende Vieira</td>
+                    <td class="item-card-link">Tê
+                        AllStar</td>
+                    <td><span class="badge badge-success p-2">Entregue</span></td>
+                    <td><a href="#" class="table-detalhes-link">Detalhes</a></td>
+                </tr>
+                <tr>
+                    <td>07 Maio 2019</td>
+                    <td>Christhian Rezende Vieira</td>
+                    <td class="item-card-link">Tê
+                        AllStar</td>
+                    <td><span class="badge badge-success p-2">Entregue</span></td>
+                    <td><a href="#" class="table-detalhes-link">Detalhes</a></td>
+                </tr>
+                <tr>
+                    <td>07 Maio 2019</td>
+                    <td>Christhian Rezende Vieira</td>
+                    <td class="item-card-link">Tê
+                        AllStar</td>
+                    <td><span class="badge badge-success p-2">Entregue</span></td>
+                    <td><a href="#" class="table-detalhes-link">Detalhes</a></td>
+                </tr>
+                <tr>
+                    <td>07 Maio 2019</td>
+                    <td>Christhian Rezende Vieira</td>
+                    <td class="item-card-link">Tê
+                        AllStar</td>
+                    <td><span class="badge badge-success p-2">Entregue</span></td>
+                    <td align="right"><a href="#" class="table-detalhes-link">Detalhes</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

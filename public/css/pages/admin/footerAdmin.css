@@ -1,0 +1,36 @@
+.admin-footer {
+    border-top: 1px solid rgb(221, 221, 221);
+    background-color: #ebebeb;
+    z-index: 100;
+}
+
+.admin-footer.dark {
+    background-color: #111111;
+    border-top: 1px solid grey;
+}
+
+.admin-footer.dark *:not(#bellaClothesUrl):not(#privacy-policy) {
+    color: rgba(255, 255, 255, .8);
+}
+
+.admin-footer a:hover {
+    color: black !important;
+}
+
+.admin-footer.dark a:hover {
+    color: white !important;
+}
+
+.admin-footer.fixed {
+    position: fixed;
+    bottom: 0;
+}
+
+.admin-footer.no-border {
+    border-top: transparent !important;
+}
+
+img {
+    height: 27px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23)!important;
+}

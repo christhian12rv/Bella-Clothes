@@ -1,5 +1,110 @@
 <nav class="main-navbar d-flex px-4 align-items-center">
     <i class="bi bi-list sidebar-toggle"></i>
-    <i class="bi bi-arrows-fullscreen ml-auto full-screen-toggle"></i>
+    <div class="flex-grow-1 d-flex flex-search ml-3 pl-0 pr-0 py-0 rounded">
+        <form action="/asdf" method="GET" id="search-form">
+            <div class="search-box flex-grow-1">
+                <input type="search" class="search flex-grow-1" placeholder="Pesquisar...">
+            </div>
+            <i class="bi bi-search mt-0 py-1 search-icon"></i>
+        </form>
+    </div>
+    <i class="bi bi-arrows-fullscreen ml-3 full-screen-toggle"></i>
     <i class="bi bi-grid-fill ml-3 customize-toggle"></i>
+</nav>
+
+<nav class="customize-page shadow">
+    <h5 class="title-customize">Customizar Página</h5>
+    <hr>
+    <p>Barra Lateral</p>
+    <div id="fixed-sidebar">
+        <label class="switch">
+            <input type="checkbox" id="cp-fixed-sidebar">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-fixed-sidebar">Fixa</label>
+        <br>
+    </div>
+    <div id="dark-sidebar">
+        <label class="switch">
+            <input type="checkbox" id="cp-dark-sidebar">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-dark-sidebar">Modo Escuro</label>
+        <br>
+    </div>
+    <div id="compact-sidebar">
+        <label class="switch">
+            <input type="checkbox" id="cp-compact-sidebar">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-compact-sidebar">Compacta</label>
+        <br>
+    </div>
+    <div id="small-text-sidebar">
+        <label class="switch">
+            <input type="checkbox" id="cp-small-text-sidebar">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-small-text-sidebar">Texto pequeno</label>
+        <br>
+    </div>
+    <div id="image-sidebar">
+        <a href="/admin/configurar-imagem-sidebar">Configurar imagem</a>
+        <br>
+    </div>
+
+    <p class="mt-3">Barra Superior</p>
+    <div id="fixed-navbar">
+        <label class="switch">
+            <input type="checkbox" id="cp-fixed-navbar">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-fixed-navbar">Fixa</label>
+        <br>
+    </div>
+    <div id="dark-navbar">
+        <label class="switch">
+            <input type="checkbox" id="cp-dark-navbar">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-dark-navbar">Modo Escuro</label>
+        <br>
+    </div>
+    <div id="border-bottom-navbar">
+        <label class="switch">
+            <input type="checkbox" id="cp-border-bottom-navbar">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-border-bottom-navbar">Sem borda</label>
+    </div>
+    <p class="mt-3">Conteúdo</p>
+    <div id="dark-content">
+        <label class="switch">
+            <input type="checkbox" id="cp-dark-content">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-dark-content">Modo Escuro</label>
+    </div>
+    <p class="mt-3">Rodapé</p>
+    <div id="fixed-footer">
+        <label class="switch">
+            <input type="checkbox" id="cp-fixed-footer">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-fixed-footer">Fixo</label>
+    </div>
+    <div id="dark-footer">
+        <label class="switch">
+            <input type="checkbox" id="cp-dark-footer">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-dark-footer">Modo Escuro</label>
+    </div>
+    <div id="border-top-footer">
+        <label class="switch">
+            <input type="checkbox" id="cp-border-top-footer">
+            <span class="slider round"></span>
+        </label>
+        <label for="cp-border-top-footer">Sem borda</label>
+    </div>
 </nav>

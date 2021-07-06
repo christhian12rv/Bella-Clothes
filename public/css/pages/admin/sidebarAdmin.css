@@ -1,60 +1,103 @@
+:root {
+    --sidebar-image: transparent;
+    --sidebar-background-opacity: 0;
+    --sidebar-color-mode-rgb: 0, 0, 0;
+}
+
 body {
     overflow-x: hidden;
 }
 
-.main-sidebar {
-    height: auto;
-    background-color: white;
-    position: relative;
-    overflow: hidden;
-    width: 80px;
-    max-width: 233px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22)!important;
-    transition: width 300ms;
-    z-index: 2;
+.modal-background {
+    z-index: 998;
 }
 
-.main-sidebar.dark {
-    background-color: #343a40;
+.sidebar-link.active * {
+    color: #19c880 !important;
+}
+
+.sidebar-link.active:hover * {
+    color: #19c862 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .main-sidebar {
+        position: fixed !important;
+        min-width: 0px !important;
+        width: 0px;
+        height: 100vh;
+        overflow: auto;
+        overflow-x: hidden;
+        padding-bottom: 50px;
+        transition: width 400ms, min-width 400ms;
+    }
+    .main-sidebar.open {
+        height: 100vh;
+        position: fixed !important;
+        min-width: 303px !important;
+        width: 303px;
+        overflow: auto;
+        overflow-x: hidden;
+        transition: width 400ms, min-width 400ms;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .main-sidebar {
+        position: relative;
+        min-width: 80px !important;
+        width: 80px;
+        height: auto;
+        transition: width 300ms, min-width 300ms;
+    }
+    .main-sidebar.open {
+        position: relative;
+        height: auto;
+        min-width: 253px !important;
+        width: 253px !important;
+        transition: width 300ms, min-width 300ms;
+    }
+    .main-sidebar .title-text {
+        display: none;
+    }
+}
+
+.main-sidebar {
+    background: linear-gradient(rgba(var(--sidebar-color-mode-rgb), var(--sidebar-background-opacity)), rgba(var(--sidebar-color-mode-rgb), var(--sidebar-background-opacity))), var(--sidebar-image) no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100vh;
+    overflow: hidden;
+    z-index: 999;
+    position: relative;
 }
 
 .main-sidebar.fixed {
     height: 100vh;
-    max-width: 233px !important;
     position: fixed;
 }
 
 .main-sidebar.fixed~div>.main-navbar {
-    margin-left: 77.922px !important;
-    transition: margin-left 300ms ease-in-out;
+    transition: margin-left 300ms;
 }
 
-.main-sidebar.fixed~div>.usuario-content {
-    margin-left: 77.922px !important;
-    transition: margin-left 300ms ease-in-out;
+.main-sidebar.fixed~div>.admin-content {
+    transition: margin-left 300ms;
 }
 
 .main-sidebar.fixed.open~div>.main-navbar {
-    margin-left: 232.922px !important;
-    transition: margin-left 300ms ease-in-out;
+    transition: margin-left 300ms;
 }
 
-.main-sidebar.fixed.open~div>.usuario-content {
-    margin-left: 231px !important;
-    transition: margin-left 300ms ease-in-out;
+.main-sidebar.fixed.open~div>.admin-content {
+    transition: margin-left 300ms;
 }
 
-.main-sidebar .title-text {
-    display: none;
+.main-sidebar .title {
+    padding-top: .5rem !important;
 }
 
 .main-sidebar.open .title-text {
     display: block;
-}
-
-.main-sidebar.open {
-    width: 310px;
-    transition: width 300ms;
 }
 
 .main-sidebar.open .sidebar {
@@ -69,6 +112,7 @@ body {
 .main-sidebar .sidebar {
     overflow-y: auto;
     overflow-x: hidden;
+    padding-bottom: 1rem !important;
 }
 
 .main-sidebar .sidebar .flex-list .sub-list .d-flex {
@@ -113,6 +157,7 @@ body {
 }
 
 .main-sidebar .title-text {
+    display: none;
     color: grey;
 }
 
@@ -132,16 +177,12 @@ body {
     width: 10px;
 }
 
-.main-sidebar.dark .sidebar::-webkit-scrollbar-track {
-    background: #343a40;
+.main-sidebar .sidebar::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .main-sidebar .sidebar::-webkit-scrollbar-thumb {
     background: #a9a9a9;
-}
-
-.main-sidebar .sidebar::-webkit-scrollbar-track {
-    background: white;
 }
 
 .sidebar .user-image {
@@ -154,11 +195,13 @@ body {
 .main-sidebar .sidebar i {
     font-size: 25px;
     color: grey;
+    transition: font-size 300ms;
 }
 
 .main-sidebar.small-text .sidebar i {
     font-size: 18px !important;
     color: grey;
+    transition: font-size 300ms;
 }
 
 .main-sidebar.dark .sidebar i {
@@ -169,11 +212,13 @@ body {
 .main-sidebar .sidebar i.bi-chevron-right {
     font-size: 11px;
     -webkit-text-stroke: 1.5px grey;
+    transition: font-size, transform 300ms;
 }
 
 .main-sidebar.small-text .sidebar i.bi-chevron-right {
-    font-size: 9px !important;
+    font-size: 10px !important;
     -webkit-text-stroke: 1.5px grey;
+    transition: font-size, transform 300ms;
 }
 
 .main-sidebar.dark .sidebar i.bi-chevron-right {
@@ -184,12 +229,14 @@ body {
 .main-sidebar .sidebar p, .main-sidebar .sidebar h1, .main-sidebar .sidebar h2, .main-sidebar .sidebar h3, .main-sidebar .sidebar h4, .main-sidebar .sidebar h5 {
     color: grey;
     padding-left: 9px;
+    transition: font-size 300ms;
 }
 
 .main-sidebar.small-text .sidebar p, .main-sidebar.small-text .sidebar h1, .main-sidebar.small-text .sidebar h2, .main-sidebar.small-text .sidebar h3, .main-sidebar.small-text .sidebar h4, .main-sidebar.small-text .sidebar h5 {
     color: grey;
     padding-left: 9px;
     font-size: 0.8em !important;
+    transition: font-size 300ms;
 }
 
 .main-sidebar.dark .sidebar p, .main-sidebar.dark .sidebar h1, .main-sidebar.dark .sidebar h2, .main-sidebar.dark .sidebar h3, .main-sidebar.dark .sidebar h4, .main-sidebar.dark .sidebar h5 {
@@ -201,12 +248,14 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 3px;
+    transition: padding 300ms;
 }
 
 .main-sidebar.compact .sidebar .d-flex {
     padding-top: 0px;
     padding-bottom: 0px;
     border-radius: 3px;
+    transition: padding 300ms;
 }
 
 .main-sidebar .sidebar .d-flex:hover {
@@ -247,44 +296,6 @@ body {
     width: 75%;
 }
 
-.flex-list .bi-chevron-right {
-    transition: transform 300ms;
-}
-
 .flex-list.open .bi-chevron-right {
     transform: rotateZ(90deg);
-    transition: transform 300ms;
-}
-
-.customize-page {
-    height: 300px;
-    background-color: #343a40;
-    width: 200px;
-    position: absolute;
-    right: 0;
-    top: 52px;
-    word-break: break-all;
-}
-
-.customize-page h5 {
-    font-size: 1.1em;
-}
-
-.customize-page input {
-    padding-top: 100px;
-}
-
-.customize-page p {
-    color: white;
-    margin: 0;
-}
-
-.customize-page label {
-    font-size: 0.9em;
-    margin: 0;
-    color: #c2c7d0;
-}
-
-.customize-page hr {
-    background-color: #4f5962;
 }

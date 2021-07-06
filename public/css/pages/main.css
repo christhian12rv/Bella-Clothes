@@ -1,4 +1,4 @@
-body {
+body:not(.admin-flex) {
   font-family: 'Noto Sans', sans-serif !important;
   -webkit-font-smoothing: antialiased !important;
   margin: 0 0 0 0 !important;
@@ -1330,4 +1330,14 @@ footer a:hover i {
 
 #search-bar-input::-webkit-search-cancel-button {
   -webkit-appearance: none;
+}
+
+@font-face {
+  font-family: "Poppins-Regular";
+  src: url("/fonts/Poppins-Regular.ttf");
+}
+
+.admin-flex {
+  font-family: "Poppins-Regular";
+  -webkit-font-smoothing: antialiased;
 }

@@ -4,29 +4,34 @@
 <head>
     <!-- Fonte da Logo: Blenda Scripts -->
     <link rel="icon" href="/img/bella-clothes-logo.ico">
-    <link rel="stylesheet" href="/css/paginas/main.css">
+    <link rel="stylesheet" href="/css/pages/main.css">
     {{#if paginaUsuario}}
-        <link rel="stylesheet" href="/css/paginas/usuario/sidebarUsuario.css">
+        <link rel="stylesheet" href="/css/pages/usuario/sidebarUsuario.css">
     {{/if}}
     {{#if paginaAdmin}}
-        <link rel="stylesheet" href="/css/paginas/admin/sidebarAdmin.css">
-        <link rel="stylesheet" href="/css/paginas/admin/navbarAdmin.css">
+        <link rel="stylesheet" href="/css/pages/admin/sidebarAdmin.css">
+        <link rel="stylesheet" href="/css/pages/admin/navbarAdmin.css">
+        <link rel="stylesheet" href="/css/pages/admin/contentAdmin.css">
+        <link rel="stylesheet" href="/css/pages/admin/footerAdmin.css">
+        <link rel="stylesheet" href="/css/datepicker.min.css">
     {{/if}}
-    
-    <link rel="stylesheet" href="/css/paginas/{{css}}">
-    <link rel="stylesheet" href="/css/noto_sans-font.css">
+
+    <link rel="stylesheet" href="/css/pages/{{css}}">
+    <link rel="stylesheet" href="/fonts/noto_sans-font.css">
+    <link rel="stylesheet" href="/fonts/roboto-font.css" type="text/css">
     <link href='/css/font-awesome.min.css'>
     <link href="/css/owl.carousel.min.css" rel="stylesheet">
     <link href="/css/owl.theme.default.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/bootstrap.min.css"
+    <link rel="stylesheet" href="/css/rangeSlider.css">
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap-icons.css">
 
-    <script src='/js/jquery.min.js'></script>
-    <script src='/js/bootstrap.bundle.min.js'></script>
+    <script src='/js/jquery/jquery.min.js'></script>
+    <script src='/js/bootstrap/bootstrap.bundle.min.js'></script>
     <script src="/js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.mlens-1.7.min.js"></script>
-    <script src="/js/jquery.mask.js"></script>
+    <script type="text/javascript" src="/js/jquery/plugins/jquery.mlens-1.7.min.js"></script>
+    <script src="/js/plugins/jquery.mask.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <meta charset="UTF-8">
@@ -44,10 +49,11 @@
     {{else}}
         {{>_navbar}}
     {{/if}}
-    
+
     <div class="container container-box">
         {{#if paginaUsuario}}
-            <div style="display: flex; height: 100%; background-color: rgb(241, 241, 241);" class="usuario-sidebar-flex">
+            <div style="display: flex; height: 100%; background-color: rgb(241, 241, 241);"
+                class="usuario-sidebar-flex">
                 <div>
                     {{>_sidebarUsuario}}
                 </div>
@@ -58,17 +64,20 @@
             </div>
         {{else}}
             {{#if paginaAdmin}}
-                <div style="display: flex; height: 100%; width: 100%;">
-                   
+                {{#if loginAdmin}}
+                    {{{body}}}
+                {{else}}
+                    <div style="display: flex; height: 100%; width: 100%;" class="admin-flex">
                         {{>_sidebarAdmin}}
-                    
-                    <div style="width: 100%;">
-                        {{>_navbarAdmin}}
-                        <div style="width: 100%; padding-top: 20px; padding-bottom: 20px; padding-left: 1%; padding-right: 1%; height: 1000px; background-color: #f4f6f9;" class="usuario-content">
-                            {{{body}}}
+                        <div style="width: 100%;" class=" nav-body-flex-content">
+                            {{>_navbarAdmin}}
+                            <div class="admin-content">
+                                {{{body}}}
+                            </div>
+                            {{>_footerAdmin}}
                         </div>
                     </div>
-                </div>
+                {{/if}}
             {{else}}
                 {{{body}}}
             {{/if}}
@@ -83,17 +92,24 @@
     {{/if}}
 </body>
 
-<script src="/js/paginas/main.js"></script>
+<script src="/js/pages/layouts/main.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
+<script src="/js/rangeSlider.js"></script>
 {{#if paginaUsuario}}
-    <script src="/js/paginas/usuario/sidebarUsuario.js"></script>
+    <script src="/js/pages/usuario/sidebarUsuario.js"></script>
 {{/if}}
 {{#if paginaAdmin}}
-    <script src="/js/paginas/admin/sidebarAdmin.js"></script>
-    <script src="/js/paginas/admin/navbarAdmin.js"></script>
+    <script src="/js/pages/admin/layout/sidebarAdmin.js"></script>
+    <script src="/js/pages/admin/layout/navbarAdmin.js"></script>
+    <script src="/js/pages/admin/layout/footerAdmin.js"></script>
+    <script src="/js/chart.min.js"></script>
+    <script src="/js/highmaps.js"></script>
+    <script src="/js/exporting.js"></script>
+    <script src="/js/br-all.js"></script>
+    <script src="/js/jquery/plugins/datepicker.min.js"></script>
 {{/if}}
 {{#if js}}
-    <script src="/js/paginas/{{js}}"></script>
+    <script src="/js/pages/{{js}}"></script>
 {{/if}}
 
 </html>
