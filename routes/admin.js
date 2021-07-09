@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const fs = require('fs')
 
 router.get("/login", (req, res) => {
     res.render("admin/login", {
@@ -64,10 +65,10 @@ router.get("/painel-de-controle/usuarios", (req, res) => {
     })
 })
 
-router.get("/ver-clientes", (req, res) => {
-    res.render("admin/verClientes", {
-        css: "admin/verClientes.css",
-        js: "admin/verClientes.js",
+router.get("/ver-usuarios", (req, res) => {
+    res.render("admin/usuarios/verUsuarios", {
+        css: "admin/usuarios/verUsuarios.css",
+        js: "admin/usuarios/verUsuarios.js",
         title: "Bella Clothes Admin",
         paginaAdmin: true
     })

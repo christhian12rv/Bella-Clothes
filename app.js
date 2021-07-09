@@ -13,6 +13,7 @@ const carrinho = require("./routes/carrinho");
 const compra = require("./routes/compra");
 const usuario = require("./routes/usuario");
 const admin = require("./routes/admin");
+const dbReads = require("./routes/dbReads")
 
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
@@ -151,6 +152,7 @@ app.use("/carrinho", carrinho);
 app.use("/compra", compra);
 app.use("/usuario", usuario);
 app.use("/admin", admin);
+app.use("/get", dbReads);
 
 app.listen(PORT, () => {
     console.log("Servidor rodando na porta " + PORT);
