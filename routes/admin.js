@@ -74,4 +74,13 @@ router.get("/ver-usuarios", (req, res) => {
     })
 })
 
+router.get("/usuario/:id", (req, res) => {
+    res.render("admin/usuarios/usuario", {
+        css: "admin/usuarios/usuario.css",
+        js: "admin/usuarios/usuario.js",
+        title: "Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
 module.exports = router;

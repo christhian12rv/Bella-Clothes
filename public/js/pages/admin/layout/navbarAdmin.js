@@ -9,6 +9,8 @@ setTimeout(() => {
     sheet.insertRule('.main-sidebar.fixed.open~div>.main-navbar { margin-left: ' + sidebarOpenWidth + 'px !important;}', sheet.cssRules.length);
     sheet.insertRule('.main-sidebar.fixed~div>.admin-content { margin-left: ' + sidebarCloseWidth + 'px !important;}', sheet.cssRules.length);
     sheet.insertRule('.main-sidebar.fixed.open~div>.admin-content { margin-left: ' + sidebarOpenWidth + 'px !important;}', sheet.cssRules.length);
+    sheet.insertRule('.main-sidebar.fixed~div>.admin-footer { margin-left: ' + sidebarCloseWidth + 'px !important;}', sheet.cssRules.length);
+    sheet.insertRule('.main-sidebar.fixed.open~div>.admin-footer { margin-left: ' + sidebarOpenWidth + 'px !important;}', sheet.cssRules.length);
     var sidebarOpenOnLargeWindowResize = true;
     if (window.matchMedia('screen and (max-width: 768px)').matches) {
         $(".main-sidebar").removeClass("open");
@@ -80,13 +82,21 @@ $(".sidebar-toggle").on("click", () => {
             if ($(".main-navbar").hasClass("fixed") || $(".main-sidebar").hasClass("fixed")) {
                 $(".main-navbar").animate({ width: ($(window).width() - sidebarCloseWidth) + "px" }, 300)
             }
+            if ($(".admin-footer").hasClass("fixed") || $(".main-sidebar").hasClass("fixed")) {
+                sheet.insertRule('.admin-footer { width: ' + ($(window).width() - sidebarCloseWidth) + 'px !important;}', sheet.cssRules.length);
+            }
         } else {
             sidebar.addClass("open");
             if ($(".main-navbar").hasClass("fixed") || $(".main-sidebar").hasClass("fixed")) {
                 $(".main-navbar").animate({ width: ($(window).width() - sidebarOpenWidth) + "px" }, 300)
             }
+            if ($(".admin-footer").hasClass("fixed") || $(".main-sidebar").hasClass("fixed")) {
+                sheet.insertRule('.admin-footer { width: ' + ($(window).width() - sidebarOpenWidth) + 'px !important;}', sheet.cssRules.length);
+            }
         }
     }
+
+    subListResize();
 })
 
 $(".modal-background").on("click", function () {
@@ -160,9 +170,13 @@ $("#cp-fixed-sidebar").on("click", function () {
     if ($(".main-sidebar").hasClass("open")) {
         var widthNavbar = $(window).width() - sidebarOpenWidth;
         $(".main-navbar").css("width", widthNavbar + "px");
+        var widthFooter = $(window).width() - sidebarOpenWidth;
+        sheet.insertRule('.admin-footer { width: ' + widthFooter + 'px !important;}', sheet.cssRules.length);
     } else {
         var widthNavbar = $(window).width() - sidebarCloseWidth;
         $(".main-navbar").css("width", widthNavbar + "px");
+        var widthFooter = $(window).width() - sidebarCloseWidth;
+        sheet.insertRule('.admin-footer { width: ' + widthFooter + 'px !important;}', sheet.cssRules.length);
     }
 })
 
@@ -173,7 +187,7 @@ $("#cp-dark-sidebar").on("click", function () {
         document.documentElement.style.setProperty('--sidebar-color-mode-rgb', '0,0,0');
     } else {
         $(".main-sidebar").removeClass("dark");
-        document.documentElement.style.setProperty('--sidebar-color-mode-rgb', '255,255,255');
+        document.documentElement.style.setProperty('--sidebar-color-mode-rgb', '248,249,250');
     }
 })
 

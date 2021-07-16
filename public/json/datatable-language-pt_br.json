@@ -1,16 +1,16 @@
 {
     "emptyTable": "Nenhum registro encontrado",
-    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+    "info": "Mostrando _START_ até _END_ de _TOTAL_ registros",
     "infoEmpty": "Mostrando 0 até 0 de 0 registros",
     "infoFiltered": "(Filtrados de _MAX_ registros)",
     "infoThousands": ".",
     "loadingRecords": "Carregando...",
-    "processing": "Processando...",
+    "processing": "",
     "zeroRecords": "Nenhum registro encontrado",
-    "search": "Pesquisar",
+    "search": "",
     "paginate": {
-        "next": ">",
-        "previous": "<",
+        "next": "Próximo",
+        "previous": "Anterior",
         "first": ">>",
         "last": "<<"
     },
@@ -63,7 +63,7 @@
         "fillHorizontal": "Preencher células horizontalmente",
         "fillVertical": "Preencher células verticalmente"
     },
-    "lengthMenu": "Exibir _MENU_ resultados por página",
+    "lengthMenu": "_MENU_",
     "searchBuilder": {
         "add": "Adicionar Condição",
         "button": {

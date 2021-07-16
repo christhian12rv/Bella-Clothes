@@ -1,0 +1,74 @@
+p {
+    margin: 0 !important;
+}
+
+.card-header {
+    background-color: #19c880 !important;
+    height: 150px;
+}
+
+.admin-content .card.card-header {
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.card-body .user-profile-image {
+    height: 190px;
+    margin-top: -120px;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+}
+
+.card-body .desativar-usuario {
+    border: 1px solid #dc3545;
+}
+
+.card-body .desativar-usuario:hover {
+    border-color: black;
+}
+
+.card-body .excluir-usuario {
+    background-color: #dc3545;
+    color: white !important;
+}
+
+.card-body .excluir-usuario:hover {
+    background-color: #9b2530;
+}
+
+.card-body .mini-cards .card {
+    text-align: center;
+    padding: .5rem;
+    width: 200px;
+    height: 70px;
+}
+
+.card-body .mini-cards .card p {
+    color: white !important;
+}
+
+.card-body .mini-cards .card.compras {
+    background-image: linear-gradient(90deg, #ffba00, #fc9244, #252d47);
+    box-shadow: none !important;
+}
+
+.card-body .mini-cards .card.comentarios {
+    background-image: linear-gradient(90deg, #2dc1c9, #2194c1, #252d47);
+    box-shadow: none !important;
+}
+
+.card-body .mini-cards .card.favoritos {
+    background-image: linear-gradient(90deg, #e47c64, #e36481, #252d47);
+    box-shadow: none !important;
+}
+
+.card-body .mini-cards .card.compras i {
+    color: #FFC107;
+}
+
+.card-body .mini-cards .card.comentarios i {
+    color: #60bafd;
+}
+
+.card-body .mini-cards .card.favoritos i {
+    color: #ec3b57;
+}

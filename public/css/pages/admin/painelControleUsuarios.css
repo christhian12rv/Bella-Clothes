@@ -90,3 +90,19 @@ input[type="submit"]:hover {
 .percentage span {
     vertical-align: text-bottom;
 }
+
+.highcharts-button-box {
+    fill: white !important;
+}
+
+.admin-content.dark .highcharts-button-box {
+    fill: #1a1a1a !important;
+}
+
+.highcharts-button:hover .highcharts-button-box {
+    fill: rgb(220, 220, 220) !important;
+}
+
+.admin-content.dark .highcharts-button:hover .highcharts-button-box {
+    fill: #0c0c0c !important;
+}

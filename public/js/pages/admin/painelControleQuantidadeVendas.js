@@ -1,4 +1,4 @@
-$(".sidebar-link.painel-controle").addClass("active");
+$(".sidebar-link.painel-controle").addClass("active").addClass("only");
 $(".sidebar-link.painel-controle-quantidade-vendas").addClass("active");
 
 var GraphTicksColor = 'black';

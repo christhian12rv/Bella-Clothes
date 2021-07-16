@@ -1,9 +1,13 @@
+body {
+    background-color: #fff;
+}
+
 #login-content {
-    background-color: #1a1a1a;
+    background-color: transparent;
     height: 100%;
     min-height: 100vh;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23)!important;
     padding-bottom: 50spx;
+    z-index: 2 !important;
 }
 
 #login-content #image-link {
@@ -12,12 +16,30 @@
     width: 63.7188px;
 }
 
-#login-content img {
+#login-content #image-link img {
     height: 50px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, .19), 3px 3px 6px rgba(0, 0, 0, .23);
 }
 
 #login-content * {
-    color: rgba(196, 196, 196, 0.9);
+    color: black;
+}
+
+img#admin-background {
+    position: absolute;
+    top: 15%;
+    left: 33%;
+    width: 35vw;
+    opacity: 0.2;
+    z-index: -1 !important;
+    filter: saturate(0);
+}
+
+@media only screen and (max-width: 768px) {
+    img#admin-background {
+        left: 10%;
+        width: 90vw !important;
+    }
 }
 
 .login-box-form {
@@ -29,10 +51,11 @@ form {
 }
 
 input:not([type="submit"]) {
-    background-color: #111111;
+    background-color: transparent;
+    backdrop-filter: blur(4px);
     outline: none;
     box-shadow: none;
-    border: 1px solid #111111;
+    border: 1px solid grey;
     padding: 5px 10px 5px 10px;
 }
 
@@ -60,7 +83,7 @@ input#logar:hover {
 }
 
 a#forgot-password:hover {
-    color: white !important;
+    font-weight: bold;
 }
 
 p#not-account {
@@ -73,10 +96,6 @@ a#signup {
 
 a#signup:hover {
     color: #118454 !important;
-}
-
-::-ms-reveal {
-    filter: invert(100%);
 }
 
 #copyright {

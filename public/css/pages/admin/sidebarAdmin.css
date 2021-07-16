@@ -12,12 +12,14 @@ body {
     z-index: 998;
 }
 
-.sidebar-link.active * {
-    color: #19c880 !important;
+.sidebar-link.active.only {
+    border-left: 2px solid #19c880 !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
 }
 
-.sidebar-link.active:hover * {
-    color: #19c862 !important;
+.sidebar-link.active * {
+    color: #19c880 !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -48,14 +50,14 @@ body {
         min-width: 80px !important;
         width: 80px;
         height: auto;
-        transition: width 300ms, min-width 300ms;
+        transition: width 300ms ease, min-width 300ms ease;
     }
     .main-sidebar.open {
         position: relative;
         height: auto;
         min-width: 253px !important;
         width: 253px !important;
-        transition: width 300ms, min-width 300ms;
+        transition: width 300ms ease, min-width 300ms ease;
     }
     .main-sidebar .title-text {
         display: none;

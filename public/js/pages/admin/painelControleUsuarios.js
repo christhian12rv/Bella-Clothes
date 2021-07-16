@@ -1,4 +1,4 @@
-$(".sidebar-link.painel-controle").addClass("active");
+$(".sidebar-link.painel-controle").addClass("active").addClass("only");
 $(".sidebar-link.painel-controle-usuarios").addClass("active");
 
 var GraphTicksColor = 'black';
@@ -500,10 +500,7 @@ function usuariosMap() {
             enabled: true,
             buttonOptions: {
                 style: {
-                    fill: "blue",
-                    color: "blue",
-                    backgroundColor: "blue",
-                    stroke: "blue"
+                    color: GraphTicksColor
                 }
             },
             buttons: {
