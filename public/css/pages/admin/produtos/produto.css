@@ -1,0 +1,264 @@
+.card .ativar-produto {
+    background-color: #dc3545;
+    color: white !important;
+}
+
+.card .ativar-produto:hover {
+    background-color: #9b2530;
+}
+
+.data-criacao {
+    color: #bbbbbb !important;
+    font-size: 0.9rem;
+}
+
+.first-box-details div {
+    display: flex;
+    flex-direction: row;
+}
+
+.first-box-details input, .first-box-details select, .first-box-details option, .first-box-details textarea {
+    width: 100%;
+}
+
+.first-box-details div label {
+    width: 30%;
+    font-size: 0.95rem;
+    margin: 0 !important;
+    height: 100%;
+}
+
+.admin-content input:not([type='file']), select, option, textarea {
+    border: 1px solid #d1d1d1;
+    border-radius: .25rem;
+    background-color: transparent;
+    color: #515257 !important;
+}
+
+.admin-content input:not([type='file']):disabled, select:disabled, textarea:disabled {
+    background-color: #cfd1dd;
+}
+
+input:not([type='file']), select, option {
+    height: calc(1.3125rem + 1.2rem + 2px);
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem !important;
+}
+
+.admin-content.dark input:not([type='file']), .admin-content.dark select {
+    border: 1px solid #3c3c3c;
+}
+
+input:hover, input:focus, input:link, input:visited, select:hover, select:focus, select:link, select:visited, textarea:hover, textarea:focus, textarea:link, textarea:visited a:hover, a:focus, a:link, a:visited {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:hover, select:hover, textarea:hover {
+    border-color: rgb(23, 175, 130) !important;
+}
+
+.btn-open-details-variacao-produto {
+    font-size: 1.3rem;
+    color: #19c880 !important;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    vertical-align: top;
+    border-radius: .25rem;
+    -webkit-text-stroke: 0.8px #19c880;
+    background-color: #ededed;
+}
+
+.btn-close-details-variacao-produto {
+    font-size: 1.3rem;
+    color: #ededed !important;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    vertical-align: top;
+    border-radius: .25rem;
+    -webkit-text-stroke: 0.8px #ededed;
+    background-color: #19c880;
+    display: none;
+}
+
+.btn-open-details-variacao-produto::before, .btn-close-details-variacao-produto::before {
+    vertical-align: 0px !important;
+}
+
+.details-variacao-produto * {
+    background-color: #f7f8fa;
+}
+
+.imagens-box .dica-imagens {
+    color: grey;
+}
+
+.imagem-produto {
+    width: 80px;
+    height: 80px;
+    border-radius: .25rem;
+    cursor: grab;
+    margin: .25rem;
+    border: 1px solid #d1d1d1;
+}
+
+.box-image-product:active {
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
+    cursor: -o-grabbing;
+    cursor: -ms-grabbing;
+    cursor: grabbing;
+}
+
+.box-image-product.over .imagem-produto, .imagem-produto.over {
+    border: 3px dotted #d1d1d1 !important;
+}
+
+.image-upload {
+    display: block;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    border-radius: .25rem;
+}
+
+.image-upload .image-select {
+    display: block;
+    border: 2px solid #dce4ec;
+    color: #34495e;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    background: #FFFFFF;
+    overflow: hidden;
+    position: relative;
+    border-radius: .25rem;
+}
+
+.image-upload .image-select .image-select-button {
+    background: #dce4ec;
+    padding: 0 10px;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    color: #515257 !important;
+    cursor: pointer;
+}
+
+.image-upload .image-select .image-select-button:hover {
+    cursor: pointer;
+}
+
+.image-upload .image-select .image-select-name {
+    line-height: 40px;
+    display: inline-block;
+    padding: 0 10px;
+    color: #515257 !important;
+}
+
+.image-upload .image-select:hover {
+    border-color: #19c880;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.image-upload .image-select:hover .image-select-button {
+    background: #19c880;
+    color: #FFFFFF !important;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.image-upload.active .image-select {
+    border-color: #3fa46a;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.image-upload.active .image-select .image-select-button {
+    background: #3fa46a;
+    color: #FFFFFF;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.image-upload .image-select input[type=file] {
+    z-index: 100;
+    cursor: pointer;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.image-upload .image-select.image-select-disabled {
+    opacity: 0.65;
+}
+
+.image-upload .image-select.image-select-disabled:hover {
+    cursor: default;
+    display: block;
+    border: 2px solid #dce4ec;
+    color: #34495e;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 5px;
+    text-align: left;
+    background: #FFFFFF;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-upload .image-select.image-select-disabled:hover .image-select-button {
+    background: #dce4ec;
+    color: #666666;
+    padding: 0 10px;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+}
+
+.image-upload .image-select.image-select-disabled:hover .image-select-name {
+    line-height: 40px;
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.images-choose {
+    column-gap: .5rem;
+}
+
+.images-choose .remover-imagem {
+    position: relative;
+    display: table;
+    top: -90px;
+    left: 68px;
+    background-color: rgb(216, 216, 216) !important;
+    border-radius: 100% !important;
+}
+
+.images-choose .remover-imagem a i {
+    font-size: 0.6rem;
+    background-color: rgb(216, 216, 216) !important;
+}
+
+.images-choose .remover-imagem a {
+    padding: .10rem .45rem .10rem .45rem;
+    border-radius: 100% !important;
+    background-color: rgb(216, 216, 216) !important;
+}

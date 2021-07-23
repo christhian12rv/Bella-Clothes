@@ -1,0 +1,134 @@
+<h3 class="title mb-4">
+    Detalhes do Pedido
+</h3>
+
+<div class="d-flex flex-row flex-wrap card color-mode px-3 py-4">
+    <div class="d-flex flex-row flex-wrap w-100 border-bottom pb-3">
+        <div class="flex-grow-1">
+            <h6 class="data-pedido">
+                <i class="bi bi-calendar-event"></i>
+                Terça, 13 Agosto 2021, 14:21
+            </h6>
+            <p class="id-pedido">ID do pedido: 38219#@!$213_92</p>
+        </div>
+        <div>
+            <form action="/pedido/id/mudar-status" method="POST">
+                <select name="status" id="status">
+                    <option selected>Mudar Status</option>
+                    <option value="pendente">Pendente</option>
+                    <option value="esperando-pagamento">Esperando Pagamento</option>
+                    <option value="entregue">Entregue</option>
+                    <option value="cancelado">Cancelado</option>
+                </select>
+                <input type="submit" class="btn" value="Salvar">
+                <i class="btn bi bi-printer-fill" id="imprimir" onclick="print();"></i>
+            </form>
+        </div>
+    </div>
+    <div id="print" class="w-100">
+        <div class="d-flex flex-row flex-wrap w-100 mt-3 mb-3 second-line-group"
+            style="justify-content: space-around; row-gap: 1.5rem;">
+            <div class="d-flex flex-row flex-wrap">
+                <img src="/img/menina.jpg" alt="" id="foto-perfil-usuario">
+                <div class="ml-2">
+                    <h6 class="font-weight-bold">Usuário</h6>
+                    <p>Christhian Rezende Vieira</p>
+                    <p>christhian11rv@hotmail.com</p>
+                    <p>(11) 98810-3291</p>
+                    <a href="#" class="ver-perfil">Ver Perfil</a>
+                </div>
+            </div>
+            <div class="d-flex flex-row flex-wrap">
+                <i class="bi bi-wallet-fill order-info-icon"></i>
+                <div class="ml-2">
+                    <h6 class="font-weight-bold">Informações</h6>
+                    <p>Envio: Grátis</p>
+                    <p>Método de pagamento: Cartão</p>
+                </div>
+            </div>
+            <div class="d-flex flex-row flex-wrap">
+                <i class="bi bi-geo-alt-fill order-info-icon"></i>
+                <div class="ml-2">
+                    <h6 class="font-weight-bold">Endereço</h6>
+                    <p>Centro, Medeiros MG, 38930-000</p>
+                    <p>Sebastião Leandro de Castro, 57</p>
+                    <p>CHRISTHIAN REZENDE VIEIRA - (11) 90123-3219</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-100 d-flex flex-row flex-wrap mt-3" style="column-gap: 1.5rem;">
+            <div class="table-responsive-md">
+                <table class="table table-sm table-produtos border-0">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th></th>
+                            <th>Preço por Unidade</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="/img/tenisTeste.jpg" alt="" class="imagem-produto"></td>
+                            <td>Tênis Nike Preto</td>
+                            <td>R$ 39,90</td>
+                            <td>2</td>
+                            <td>R$ 79,80</td>
+                        </tr>
+                        <tr>
+                            <td><img src="/img/tenisTeste.jpg" alt="" class="imagem-produto"></td>
+                            <td>Tênis Nike Preto</td>
+                            <td>R$ 39,90</td>
+                            <td>2</td>
+                            <td>R$ 79,80</td>
+                        </tr>
+                        <tr>
+                            <td><img src="/img/tenisTeste.jpg" alt="" class="imagem-produto"></td>
+                            <td>Tênis Nike Preto</td>
+                            <td>R$ 39,90</td>
+                            <td>2</td>
+                            <td>R$ 79,80</td>
+                        </tr>
+                        <tr>
+                            <td><img src="/img/tenisTeste.jpg" alt="" class="imagem-produto"></td>
+                            <td>Tênis Nike Preto</td>
+                            <td>R$ 39,90</td>
+                            <td>2</td>
+                            <td>R$ 79,80</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex-grow-1 shadow-sm p-3">
+                <h6 class="font-weight-bold">Detalhes</h6>
+                <div class="w-100 d-flex flex-column flex-wrap detalhes-group">
+                    <div class="d-flex flex-row flex-wrap">
+                        <p class="flex-grow-1">Produtos</p>
+                        <p>R$ 79,80</p>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap border-bottom pb-2">
+                        <p class="flex-grow-1">Envio</p>
+                        <p>Grátis</p>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap border-bottom pt-2 pb-2">
+                        <p class="flex-grow-1">Cupom</p>
+                        <p>BLACKFRIDAY2021 (R$ 21,90)</p>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap border-bottom pt-2 pb-2">
+                        <p class="flex-grow-1">Total</p>
+                        <div>
+                            <p class="text-right font-weight-bold">1x R$ 99,90</p>
+                            <p style="font-size: 0.7rem;">MASTERCARD **** 8392</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap pt-2">
+                        <p class="flex-grow-1">Status</p>
+                        <span class="badge badge-success px-4 py-1">Entregue</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

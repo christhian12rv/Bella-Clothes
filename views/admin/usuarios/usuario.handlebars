@@ -1,27 +1,27 @@
-<h3 class="title">
-    Usuário
+<h3 class="title mb-4">
+    Detalhes do Usuário
 </h3>
 
-<div class="card color-mode">
+<div class="card color-mode mb-4" style="box-shadow: none !important;">
     <div class="card card-header"></div>
-    <div class="card card-body">
-        <div class="d-flex flex-row mb-3">
+    <div class="card color-mode card-body">
+        <div class="d-flex flex-row flex-wrap mb-3" style="row-gap: .5rem;">
             <div>
                 <img src="/img/menina.jpg" alt="" class="user-profile-image">
             </div>
-            <div class="ml-2 flex-grow-1">
+            <div class="ml-2 flex-grow-1" style="justify-content: space-around;">
                 <h4>Christhian Rezende Vieira</h4>
                 <p>christhian11rv@hotmail.com</p>
             </div>
-            <div>
+            <div class="text-center">
                 <a href="#" class="btn desativar-usuario">Desativar Usuário</a>
                 <a href="#" class="btn excluir-usuario"><i class="bi bi-exclamation-circle text-light"></i> Excluir
                     Usuário</a>
             </div>
         </div>
         <hr>
-        <div class="d-flex flex-row mt-1 pb-3">
-            <div class="flex-grow-1">
+        <div class="d-flex flex-row flex-wrap mt-1 pb-3">
+            <div class="flex-grow-1 mb-2 pl-2">
                 <h5>Informações do Perfil</h5>
                 <div>
                     <p>Data de nascimento: 13/12/2002</p>
@@ -30,19 +30,405 @@
                     <p>Telefones: (37) 99912-3249 / (11) 83217-3218</p>
                 </div>
             </div>
-            <div class="mini-cards d-flex flex-row flex-wrap mr-4">
-                <div class="card compras mr-2">
+            <div class="mini-cards d-flex flex-row flex-wrap">
+                <div class="card color-mode compras">
                     <i class="bi bi-cart"></i>
                     <p>31 Compras</p>
                 </div>
-                <div class="card comentarios mr-2">
+                <div class="card color-mode comentarios">
                     <i class="bi bi-chat-left-text-fill"></i>
                     <p>31 Comentários</p>
                 </div>
-                <div class="card favoritos">
+                <div class="card color-mode favoritos">
                     <i class="bi bi-heart-fill"></i>
                     <p>31 Favoritos</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tabs">
+
+    <input type="radio" name="tabs" id="tab-enderecos" checked="checked">
+    <label for="tab-enderecos"><span><i class="bi bi-house mr-2"></i>Endereços</span></label>
+    <div class="tab card color-mode tab-enderecos">
+        <div>
+            <h5>Rua Sebastião Leandro de Castro, 57</h5>
+            <p>Centro, Medeiros MG - 38930-000</p>
+            <p>Complemento: Casa</p>
+            <p>Ponto de Referência: Supermercado do Paulinho</p>
+            <p>Informações Adicionais: Entregar na casa ao lado</p>
+            <p>CHRISTHIAN REZENDE VIEIRA - (11) 93389-3298</p>
+        </div>
+        <hr>
+        <div>
+            <h5>Rua Sebastião Leandro de Castro, 57</h5>
+            <p>Centro, Medeiros MG - 38930-000</p>
+            <p>Complemento: Casa</p>
+            <p>Ponto de Referência: Supermercado do Paulinho</p>
+            <p>Informações Adicionais: Entregar na casa ao lado</p>
+            <p>CHRISTHIAN REZENDE VIEIRA - (11) 93389-3298</p>
+        </div>
+        <hr>
+        <div>
+            <h5>Rua Sebastião Leandro de Castro, 57</h5>
+            <p>Centro, Medeiros MG - 38930-000</p>
+            <p>Complemento: Casa</p>
+            <p>Ponto de Referência: Supermercado do Paulinho</p>
+            <p>Informações Adicionais: Entregar na casa ao lado</p>
+            <p>CHRISTHIAN REZENDE VIEIRA - (11) 93389-3298</p>
+        </div>
+    </div>
+
+    <input type="radio" name="tabs" id="tab-cartoes">
+    <label for="tab-cartoes"><span><i class="bi bi-credit-card-2-front mr-2"></i>Cartões</span></label>
+    <div class="tab card color-mode tab-cartoes">
+        <h5><img src="/img/icone-pagamento/mastercard.png" alt="" class="mr-2"> Mastercard</h5>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="flex-grow-1">
+                <p>Tipo: Crédito</p>
+                <p>Número: 32131231231312124312342</p>
+                <p>Nome: Christhian Rezende Vieira</p>
+            </div>
+            <div class="flex-grow-1">
+                <p>Vencimento: 12/2026</p>
+                <p>Código de Segurança: 3219</p>
+                <p>CPF: 382.812.389-13</p>
+            </div>
+        </div>
+        <hr>
+        <h5><img src="/img/icone-pagamento/elo.png" alt="" class="mr-2"> Elo</h5>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="flex-grow-1">
+                <p>Tipo: Crédito</p>
+                <p>Número: 32131231231312124312342</p>
+                <p>Nome: Christhian Rezende Vieira</p>
+            </div>
+            <div class="flex-grow-1">
+                <p>Vencimento: 12/2026</p>
+                <p>Código de Segurança: 3219</p>
+                <p>CPF: 382.812.389-13</p>
+            </div>
+        </div>
+        <hr>
+        <h5><img src="/img/icone-pagamento/banco-brasil.png" alt="" class="mr-2"> Banco do Brasil</h5>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="flex-grow-1">
+                <p>Tipo: Crédito</p>
+                <p>Número: 32131231231312124312342</p>
+                <p>Nome: Christhian Rezende Vieira</p>
+            </div>
+            <div class="flex-grow-1">
+                <p>Vencimento: 12/2026</p>
+                <p>Código de Segurança: 3219</p>
+                <p>CPF: 382.812.389-13</p>
+            </div>
+        </div>
+    </div>
+
+
+    <input type="radio" name="tabs" id="tab-carrinho">
+    <label for="tab-carrinho"><span><i class="bi bi-cart3 mr-2"></i>Carrinho</span></label>
+    <div class="tab card color-mode tab-carrinho">
+        <div class="mb-4 px-3">
+            <div class="d-flex flex-row flex-wrap">
+                <h6 class="flex-grow-1">Subtotal (10 itens): <span class="subtotal">R$ 90,39</span></h6>
+                <h6>Total: <span class="total">R$ 90,39</span></h6>
+            </div>
+            <div class="d-flex flex-row flex-wrap">
+                <h6 class="flex-grow-1">Cupom de Desconto: BLACKFRIDAY</h6>
+                <h6>Desconto: <span class="desconto">R$ 12,10</span></h6>
+            </div>
+        </div>
+
+        <div>
+            <div class="d-flex flex-row flex-wrap bd-highlight">
+                <div class="p-2 bd-highlight">
+                    <img src="/img/tenisTeste.jpg" alt="produto" style="height: 130px;">
+                </div>
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <p style="filter: invert(0%);">Tênis Nike</p>
+                    <p class="text-secondary" style="font-size: 0.8rem">Código: 00014</p>
+                    <p style="font-size: 0.8rem"><span class="text-secondary">Vendido e entregue por</span>
+                        <span style="text-decoration: underline;"> Bella Clothes</span>
+                    </p>
+                    <p style="font-size: 0.8rem"><span class="text-black">Tamanho:</span>
+                        <span class="text-secondary"> 39</span>
+                    </p>
+                    <p style="font-size: 0.8rem"><span class="text-black">Cor:</span>
+                        <span class="text-secondary"> Preto</span>
+                    </p>
+                    <p style="font-size: 0.8rem">Embalar para presente</p>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap align-content-center flex-row bd-highlight mb-3 ml-2">
+                <div class="p-2 bd-highlight flex-grow-1">
+                    <p>Quantidade: 1</p>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <span class="text-secondary mr-1"><s>R$ 36,99</s></span>
+                    <span class="text-black font-weight-bold" style="font-size: 20px;">R$ 12,99</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div>
+            <div class="d-flex flex-row flex-wrap bd-highlight">
+                <div class="p-2 bd-highlight">
+                    <img src="/img/tenisTeste.jpg" alt="produto" style="height: 130px;">
+                </div>
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <p style="filter: invert(0%);">Tênis Nike</p>
+                    <p class="text-secondary" style="font-size: 0.8rem">Código: 00014</p>
+                    <p style="font-size: 0.8rem"><span class="text-secondary">Vendido e entregue por</span>
+                        <span style="text-decoration: underline;"> Bella Clothes</span>
+                    </p>
+                    <p style="font-size: 0.8rem"><span class="text-black">Tamanho:</span>
+                        <span class="text-secondary"> 39</span>
+                    </p>
+                    <p style="font-size: 0.8rem"><span class="text-black">Cor:</span>
+                        <span class="text-secondary"> Preto</span>
+                    </p>
+                    <p style="font-size: 0.8rem">Embalar para presente</p>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap align-content-center flex-row bd-highlight mb-3 ml-2">
+                <div class="p-2 bd-highlight flex-grow-1">
+                    <p>Quantidade: 1</p>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <span class="text-secondary mr-1"><s>R$ 36,99</s></span>
+                    <span class="text-black font-weight-bold" style="font-size: 20px;">R$ 12,99</span>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div>
+            <div class="d-flex flex-row flex-wrap bd-highlight">
+                <div class="p-2 bd-highlight">
+                    <img src="/img/tenisTeste.jpg" alt="produto" style="height: 130px;">
+                </div>
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <p style="filter: invert(0%);">Tênis Nike</p>
+                    <p class="text-secondary" style="font-size: 0.8rem">Código: 00014</p>
+                    <p style="font-size: 0.8rem"><span class="text-secondary">Vendido e entregue por</span>
+                        <span style="text-decoration: underline;"> Bella Clothes</span>
+                    </p>
+                    <p style="font-size: 0.8rem"><span class="text-black">Tamanho:</span>
+                        <span class="text-secondary"> 39</span>
+                    </p>
+                    <p style="font-size: 0.8rem"><span class="text-black">Cor:</span>
+                        <span class="text-secondary"> Preto</span>
+                    </p>
+                    <p style="font-size: 0.8rem">Embalar para presente</p>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap align-content-center flex-row bd-highlight mb-3 ml-2">
+                <div class="p-2 bd-highlight flex-grow-1">
+                    <p>Quantidade: 1</p>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <span class="text-secondary mr-1"><s>R$ 36,99</s></span>
+                    <span class="text-black font-weight-bold" style="font-size: 20px;">R$ 12,99</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <input type="radio" name="tabs" id="tab-compras">
+    <label for="tab-compras"><span><i class="bi bi-bag mr-2"></i>Compras</span></label>
+    <div class="tab card color-mode tab-compras">
+        <div class="compra">
+            <div class="d-flex flex-row flex-wrap bd-highlight">
+                <div class="p-2 bd-highlight ml-3 mr-3">
+                    <img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;">
+                </div>
+                <div class="flex-grow-1 bd-highlight">
+                    <p>Status: <span class="text-warning">Pendente</span></p>
+                    <span class="d-flex" style="padding-bottom: 0 !important;">
+                        <p class="texto-data-compra text-secondary">Data:</p>&nbsp;
+                        <p class="data-compra text-secondary">10 maio 2019</p>
+                    </span>
+                    <p class="nome-produtos text-secondary">Tênis Nike Preto, Camisa de Frio Vermelha,
+                        Tênis AllStar Skate Preto e Vermelho</p>
+                    <p class="qtd-produtos text-secondary">10 unidades</p>
+                </div>
+                <div class="bd-highlight">
+                    <a href="compras/idCompra" class="btn btn-ver-compra">Ver Compra</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="compra">
+            <div class="d-flex flex-row flex-wrap bd-highlight">
+                <div class="p-2 bd-highlight ml-3 mr-3">
+                    <img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;">
+                </div>
+                <div class="flex-grow-1 bd-highlight">
+                    <p>Status: <span class="text-warning">Pendente</span></p>
+                    <span class="d-flex" style="padding-bottom: 0 !important;">
+                        <p class="texto-data-compra text-secondary">Data:</p>&nbsp;
+                        <p class="data-compra text-secondary">10 maio 2019</p>
+                    </span>
+                    <p class="nome-produtos text-secondary">Tênis Nike Preto, Camisa de Frio Vermelha,
+                        Tênis AllStar Skate Preto e Vermelho</p>
+                    <p class="qtd-produtos text-secondary">10 unidades</p>
+                </div>
+                <div class="bd-highlight">
+                    <a href="compras/idCompra" class="btn btn-ver-compra">Ver Compra</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="compra">
+            <div class="d-flex flex-row flex-wrap bd-highlight">
+                <div class="p-2 bd-highlight ml-3 mr-3">
+                    <img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;">
+                </div>
+                <div class="flex-grow-1 bd-highlight">
+                    <p>Status: <span class="text-warning">Pendente</span></p>
+                    <span class="d-flex" style="padding-bottom: 0 !important;">
+                        <p class="texto-data-compra text-secondary">Data:</p>&nbsp;
+                        <p class="data-compra text-secondary">10 maio 2019</p>
+                    </span>
+                    <p class="nome-produtos text-secondary">Tênis Nike Preto, Camisa de Frio Vermelha,
+                        Tênis AllStar Skate Preto e Vermelho</p>
+                    <p class="qtd-produtos text-secondary">10 unidades</p>
+                </div>
+                <div class="bd-highlight">
+                    <a href="compras/idCompra" class="btn btn-ver-compra">Ver Compra</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="radio" name="tabs" id="tab-comentarios">
+    <label for="tab-comentarios"><span><i class="bi bi-chat-left-text mr-2"></i>Comentários</span></label>
+    <div class="tab card color-mode tab-comentarios">
+        <div>
+            <span>Produto: <a href="#" class="text-primary"> Tênis Nike</a></span>
+            <div class="d-flex flex-row flex-wrap">
+                <span class="stars-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
+                </span>
+                <span class="ml-2">
+                    <h6 class="text-secondary" style="padding-top: .1rem;"> - 27 Agosto 2019</h6>
+                </span>
+            </div>
+
+            <div>Produto lindo, confortável, de uma leveza sem
+                igual!!! Recomendo mtoooo!!! Acertaram nos detalhes ñ é exagerado
+                nas cores simplesmente toop!!!!</div>
+            <h6 class="text-success font-weight-bold">Recomendo esse produto!</h6>
+        </div>
+        <hr>
+
+        <div>
+            <span>Produto: <a href="#" class="text-primary"> Tênis Nike</a></span>
+            <div class="d-flex flex-row flex-wrap">
+                <span class="stars-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
+                </span>
+                <span class="ml-2">
+                    <h6 class="text-secondary" style="padding-top: .1rem;"> - 27 Agosto 2019</h6>
+                </span>
+            </div>
+
+            <div>Produto lindo, confortável, de uma leveza sem
+                igual!!! Recomendo mtoooo!!! Acertaram nos detalhes ñ é exagerado
+                nas cores simplesmente toop!!!!</div>
+            <h6 class="text-success font-weight-bold">Recomendo esse produto!</h6>
+        </div>
+        <hr>
+
+        <div>
+            <span>Produto: <a href="#" class="text-primary"> Tênis Nike</a></span>
+            <div class="d-flex flex-row flex-wrap">
+                <span class="stars-rating">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
+                </span>
+                <span class="ml-2">
+                    <h6 class="text-secondary" style="padding-top: .1rem;"> - 27 Agosto 2019</h6>
+                </span>
+            </div>
+
+            <div>Produto lindo, confortável, de uma leveza sem
+                igual!!! Recomendo mtoooo!!! Acertaram nos detalhes ñ é exagerado
+                nas cores simplesmente toop!!!!</div>
+            <h6 class="text-success font-weight-bold">Recomendo esse produto!</h6>
+        </div>
+    </div>
+
+    <input type="radio" name="tabs" id="tab-favoritos">
+    <label for="tab-favoritos"><span><i class="bi bi-heart mr-2"></i>Favoritos</span></label>
+    <div class="tab card color-mode tab-favoritos">
+        <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+            <div class="p-2 bd-highlight ml-3">
+                <a href="#"><img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;"></a>
+            </div>
+            <div class="bd-highlight">
+                <p class="nome-produto" style="color: black;"><a href="#">Tênis Nike</a></p>
+                <p style="font-size: 0.8rem" class="mb-3"><span class="text-black">Cor:</span>
+                    <span class="text-secondary"> Preto</span>
+                </p>
+                <p style="font-size: 0.9rem">
+                    <span class="text-black">R$ 238,90
+                        <span class="text-secondary ml-1" style="text-decoration: line-through;">
+                            R$238,90</span>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+            <div class="p-2 bd-highlight ml-3">
+                <a href="#"><img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;"></a>
+            </div>
+            <div class="bd-highlight">
+                <p class="nome-produto" style="color: black;"><a href="#">Tênis Nike</a></p>
+                <p style="font-size: 0.8rem" class="mb-3"><span class="text-black">Cor:</span>
+                    <span class="text-secondary"> Preto</span>
+                </p>
+                <p style="font-size: 0.9rem">
+                    <span class="text-black">R$ 238,90
+                        <span class="text-secondary ml-1" style="text-decoration: line-through;">
+                            R$238,90</span>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-wrap bd-highlight mb-3">
+            <div class="p-2 bd-highlight ml-3">
+                <a href="#"><img src="/img/tenisTeste.jpg" alt="produto" style="height: 90px;"></a>
+            </div>
+            <div class="bd-highlight">
+                <p class="nome-produto" style="color: black;"><a href="#">Tênis Nike</a></p>
+                <p style="font-size: 0.8rem" class="mb-3"><span class="text-black">Cor:</span>
+                    <span class="text-secondary"> Preto</span>
+                </p>
+                <p style="font-size: 0.9rem">
+                    <span class="text-black">R$ 238,90
+                        <span class="text-secondary ml-1" style="text-decoration: line-through;">
+                            R$238,90</span>
+                    </span>
+                </p>
             </div>
         </div>
     </div>

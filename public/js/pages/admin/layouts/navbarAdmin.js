@@ -21,7 +21,7 @@ setTimeout(() => {
 
 
 document.documentElement.style.setProperty('--sidebar-image', 'url(/img/admin-sidebar/wood.jpg) no-repeat');
-document.documentElement.style.setProperty('--sidebar-background-opacity', '0.8');
+document.documentElement.style.setProperty('--sidebar-background-opacity', '0.9');
 
 
 // Rediomensionamento da Tela

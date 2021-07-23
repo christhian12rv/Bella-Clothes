@@ -1,0 +1,151 @@
+.admin-content input, select, option {
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    background-color: transparent;
+    height: 40px;
+}
+
+.admin-content select {
+    padding-left: .5rem;
+}
+
+.admin-content input:hover, .admin-content select:hover {
+    border-color: #19c880;
+    border-radius: 3px;
+    background-color: transparent;
+    height: 40px;
+}
+
+input:hover, input:focus, input:link, input:visited, select:hover, select:focus, select:link, select:visited, a:hover, a:focus, a:link, a:visited {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#imprimir {
+    background-color: #6c757d;
+    color: white;
+    font-size: 1.2rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+}
+
+#imprimir:hover {
+    background-color: #4d5358;
+}
+
+#foto-perfil-usuario {
+    height: 60px;
+    border-radius: 100%;
+}
+
+p {
+    margin: 0 !important;
+}
+
+a.ver-perfil {
+    color: #3167eb;
+}
+
+.data-pedido {
+    font-weight: 600;
+    margin-bottom: .1rem !important;
+}
+
+.data-pedido i {
+    font-size: 1.3rem;
+    vertical-align: middle;
+}
+
+.id-pedido {
+    font-size: 0.875rem;
+    color: #adb5bd !important;
+}
+
+.second-line-group h6 {
+    font-size: 1rem;
+}
+
+.second-line-group p {
+    font-size: 0.95rem;
+}
+
+.order-info-icon {
+    color: #19c880 !important;
+    background-color: #d0e4d3;
+    font-size: 1.4rem;
+    border-radius: 100%;
+    height: 48px;
+    width: 48px;
+    line-height: 48px;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .5rem;
+}
+
+.admin-content.dark .order-info-icon {
+    background-color: #2d312e;
+}
+
+.table-produtos {
+    border: 1px solid #dee2e6;
+}
+
+.table-produtos * {
+    vertical-align: middle !important;
+}
+
+.table-produtos thead {
+    background-color: #d0e4d3;
+}
+
+.admin-content.dark .table-produtos thead {
+    background-color: #2d312e;
+}
+
+.table-produtos thead tr th:first-child {
+    padding-left: 1rem;
+}
+
+.table-produtos thead tr th {
+    border: none !important;
+    color: rgb(23, 175, 130) !important;
+    padding-top: .5rem !important;
+    padding-bottom: .5rem !important;
+    padding-right: 1rem;
+}
+
+.table-produtos tbody tr td:first-child {
+    padding-left: 1rem;
+}
+
+.table-produtos tbody tr td {
+    padding-right: 1rem;
+}
+
+.table-produtos tbody tr:first-child td {
+    border-top: none !important;
+}
+
+.table-produtos .imagem-produto {
+    height: 50px;
+}
+
+.detalhes-group * {
+    color: #6c757d !important;
+    font-size: 0.95rem;
+}
+
+.badge-success {
+    color: #006d0e !important;
+    background-color: #ccf0d1 !important;
+    border-color: #ccf0d1 !important;
+    border-radius: 50rem !important;
+    font-size: 0.75rem !important;
+}
+
+.admin-content.dark .badge-success {
+    color: #4ac55b !important;
+    background-color: #262c27 !important;
+}

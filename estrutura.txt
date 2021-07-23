@@ -83,14 +83,7 @@
         // Produtos
             - nome *
             - descrição *
-            - preço original *
-            - % de Desconto
-            - preço com desconto
-            - Parcelas [] (Array) - Exemplo: "1x de R$ 29,99 sem juros". Perguntar se é sem juros
-                Quando for fazer o carrinho e a compra. Juntar todos os produtos com as mesmas parcelas
-            - estoque [] (Array) Estoque por tamanhos *
-            - tamanhos [] (Array) *
-            - cores [{ nome: "preto" , cor_id: "1" }] (Array) *
+            - variacoes das cores [{ nome: "preto" , cor_id: "1" }] (Array) *
             - Gênero - Masculino, Feminino ou Infantil *
             - Infantil - Menina, Menino, Bebê Menino ou Bebê Menina
             - Id Categoria - Roupas, Acessórios, Esportes, Cosméticos, etc
@@ -105,10 +98,17 @@
             - Habilitar e Desabilitar
             - Created At * (data)
 
-        // Imagens das Cores do Produto
+        // Variações das Cores do Produto
             - id
             - id Produto
-            - nome
+            - nome (azul, preto, etc)
+            - preço original *
+            - % de Desconto
+            - preço com desconto
+            - Parcelas [] (Array) - Exemplo: "1x de R$ 29,99 sem juros". Perguntar se é sem juros
+                Quando for fazer o carrinho e a compra. Juntar todos os produtos com as mesmas parcelas
+            - tamanhos [] (Array) *
+            - estoque [] (Array) Estoque por tamanhos *
             - imagens ["abc.jpg", "acb.png"] (Array)
 
         // Categoria

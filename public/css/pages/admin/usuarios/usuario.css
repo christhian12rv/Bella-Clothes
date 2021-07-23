@@ -12,6 +12,10 @@ p {
     border-bottom-right-radius: 0px !important;
 }
 
+.card-body .d-flex {
+    justify-content: space-around;
+}
+
 .card-body .user-profile-image {
     height: 190px;
     margin-top: -120px;
@@ -20,44 +24,40 @@ p {
 
 .card-body .desativar-usuario {
     border: 1px solid #dc3545;
+    margin-bottom: .5rem;
 }
 
 .card-body .desativar-usuario:hover {
     border-color: black;
 }
 
+.admin-content.dark .card-body .desativar-usuario:hover {
+    border-color: white;
+    color: white !important;
+}
+
 .card-body .excluir-usuario {
     background-color: #dc3545;
     color: white !important;
+    vertical-align: top;
 }
 
 .card-body .excluir-usuario:hover {
     background-color: #9b2530;
 }
 
+.card-body .mini-cards {
+    gap: .5rem;
+}
+
 .card-body .mini-cards .card {
     text-align: center;
-    padding: .5rem;
-    width: 200px;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: .1rem !important;
+    padding-right: .1rem !important;
+    width: 150px;
     height: 70px;
-}
-
-.card-body .mini-cards .card p {
-    color: white !important;
-}
-
-.card-body .mini-cards .card.compras {
-    background-image: linear-gradient(90deg, #ffba00, #fc9244, #252d47);
-    box-shadow: none !important;
-}
-
-.card-body .mini-cards .card.comentarios {
-    background-image: linear-gradient(90deg, #2dc1c9, #2194c1, #252d47);
-    box-shadow: none !important;
-}
-
-.card-body .mini-cards .card.favoritos {
-    background-image: linear-gradient(90deg, #e47c64, #e36481, #252d47);
     box-shadow: none !important;
 }
 
@@ -71,4 +71,181 @@ p {
 
 .card-body .mini-cards .card.favoritos i {
     color: #ec3b57;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row !important;
+    column-gap: .5rem;
+    margin-top: 3rem;
+}
+
+.tabs label {
+    order: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.tabs label:hover {
+    border-color: black;
+}
+
+.tabs .tab {
+    order: 9;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    background: white;
+    padding: 20px;
+    margin-bottom: 1rem;
+}
+
+.tabs .tab:not(:first-of-type) {
+    display: none;
+}
+
+.tabs input[type=radio] {
+    display: none;
+}
+
+.tabs input[type=radio]:checked+label {
+    color: white;
+}
+
+.tabs input[type=radio]+label span {
+    transition: transform 500ms ease;
+}
+
+.tabs input[type=radio]:checked+label span {
+    transform: translateY(8px);
+    transition: transform 500ms ease;
+}
+
+.tabs input[type=radio]:checked+label span, .tabs input[type=radio]:checked+label span i, .tabs input[type=radio]+label:hover span, .tabs input[type=radio]+label:hover span i {
+    color: #19c880;
+}
+
+.tabs input[type=radio]:checked+label span::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: calc(100% + 64px);
+    bottom: -11px;
+    left: -32px;
+    background-color: #19c880;
+    animation: tabsBorderAnim 500ms ease;
+}
+
+@keyframes tabsBorderAnim {
+    from {
+        transform: scale3d(0, 0, 0);
+    }
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@media (max-width: 768px) {
+    .tabs .tab, .tabs label {
+        order: initial;
+    }
+    .tabs label {
+        width: 100%;
+    }
+}
+
+.tabs .tab.tab-enderecos p, .tabs .tab.tab-cartoes p {
+    margin: 0;
+    font-size: .9rem;
+    color: #6c757d!important;
+}
+
+.tabs .tab.tab-cartoes img {
+    width: 40px;
+}
+
+.tabs .tab.tab-cartoes .d-flex {
+    max-width: 650px;
+}
+
+.tab-carrinho .subtotal, .tab-carrinho .total, .tab-carrinho .desconto {
+    color: #19c880;
+}
+
+.tab-compras .compra p {
+    margin: 0 0 0 0 !important;
+}
+
+.tab-compras .compra p.texto-data-compra {
+    color: #b2b2b2;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-left: 22px;
+    position: relative;
+}
+
+.tab-compras .compra p.data-compra {
+    color: #b2b2b2;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-left: 22px;
+    position: relative;
+}
+
+.tab-compras .compra p.nome-produtos {
+    color: #b2b2b2;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-left: 22px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 73ch;
+}
+
+.tab-compras .compra p.qtd-produtos {
+    color: #b2b2b2;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-left: 22px;
+    position: relative;
+}
+
+.tab-compras .compra .btn-ver-compra {
+    color: white;
+    background-color: #19c880;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 0px;
+}
+
+.tab-compras .compra .btn-ver-compra:hover {
+    color: white;
+    background-color: #118454;
+}
+
+@media screen and (max-width: 768px) {
+    .tab-compras .compra p.nome-produtos {
+        white-space: normal !important;
+    }
+    .tab-compras .compra .btn-ver-compra {
+        margin-top: 10px;
+    }
+}
+
+.tab-comentarios .stars-rating i {
+    color: #FAC451 !important;
 }

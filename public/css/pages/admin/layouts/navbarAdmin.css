@@ -223,14 +223,12 @@
 }
 
 .main-navbar .flex-search.open {
-    box-shadow: 3px 4px 6px 1px rgb(0 0 0 / 20%);
-    background-color: white;
-    transition: background-color 700ms, box-shadow 0.5s;
+    background-color: #eaebec;
     transition-delay: 0.5s;
 }
 
 .main-navbar.dark .flex-search.open {
-    background-color: #1a1a1a;
+    background-color: #1c1c1c;
 }
 
 .flex-search.open .search-box .search {

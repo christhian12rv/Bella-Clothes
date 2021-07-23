@@ -1,0 +1,90 @@
+<h3 class="title">
+    Detalhes do Produto
+</h3>
+
+<form action="#" method="POST">
+    <div class="card color-mode d-flex flex-row flex-wrap p-3">
+        <div class="d-flex flex-row flex-wrap w-100">
+            <p class="flex-grow-1 data-criacao">Data de criação: 23 Maio 2021</p>
+            <a href="#" class="btn ativar-produto">Desativar Produto</a>
+        </div>
+        <div class="d-flex flex-column flex-wrap first-box-details w-100 px-2" style="gap: .5rem;">
+            <div>
+                <p>* Campos obrigatórios</p>
+            </div>
+            <div>
+                <label for="nome">* Nome do produto</label>
+                <input type="text" id="nome" name="nome" placeholder="* Nome do Produto" required>
+            </div>
+            <div>
+                <label for="genero">* Gênero</label>
+                <select name="genero" id="genero" required>
+                    <option value="">* Escolha um gênero</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="infantil">Infantil</option>
+                </select>
+            </div>
+            <div>
+                <label for="categoria">* Categoria</label>
+                <select name="genero" id="genero" required>
+                    <option value="">* Escolha uma categoria</option>
+                    <option value="masculino">Roupas</option>
+                    <option value="acessorios">Acessórios</option>
+                    <option value="esportes">Esportes</option>
+                </select>
+            </div>
+            <div>
+                <label for="subcategoria">* Sub categoria</label>
+                <select name="genero" id="genero" required>
+                    <option value="">* Escolha uma subcategoria</option>
+                    <option value="blusas">Blusas</option>
+                    <option value="camisas">Camisas</option>
+                    <option value="sapatos">Sapatos</option>
+                </select>
+            </div>
+            <div>
+                <label for="indicado-para">* Indicado para</label>
+                <input type="text" id="indicado-para" name="indicado-para" placeholder="* Indicado para" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="card color-mode p-0 mt-4">
+        <div class="w-100 px-3 pt-3">
+            Variações do Produto
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-wrap mx-3 mb-3 px-4 box-variacoes-produto" style="gap: 1rem;">
+            <div class="w-100">
+                <label for="quantidade-cores" class="mr-4">* Quantidade de cores</label>
+                <input type="number" id="quantidade-cores" name="quantidade-cores" placeholder="* Quantidade de cores"
+                    value="1" onkeydown="return event.keyCode == 69 ? false : true" min="1" required>
+            </div>
+        </div>
+    </div>
+    <input type="submit">
+</form>
+
+{{!-- <div class="d-flex flex-row second-flex w-100" style="gap: 3rem;">
+        
+        <div class="flex-grow-1">
+            <br><br>
+            <p>Imagens</p>
+            <div class=".d-flex flex-row flex-wrap border rounded p-4 imagens-box">
+                <p class="dica-imagens">Dica: Arraste e troque as imagens de lugar para alterar sua ordem de exibição no
+                    site</p>
+                <input type="hidden" value="/img/tenisTeste.jpg">
+                <img draggable="true" src="/img/tenisTeste.jpg" alt="" class="imagem-produto" id="tenisTeste.jpg">
+                <input type="hidden" value="/img/tenisTeste.jpg">
+                <img draggable="true" src="/img/menina.jpg" alt="" class="imagem-produto" id="menina.jpg">
+                <input type="hidden" value="/img/tenisTeste.jpg">
+                <img draggable="true" src="/img/close-icon.png" alt="" class="imagem-produto" id="close-icon.jpg">
+                <input type="hidden" value="/img/tenisTeste.jpg">
+                <img draggable="true" src="/img/1_standard.jpg" alt="" class="imagem-produto" id="1_standard.jpg">
+                <input type="hidden" value="/img/tenisTeste.jpg">
+                <img draggable="true" src="/img/bella-clothes-logo.png" alt="" class="imagem-produto"
+                    id="bella-clothes-logo.jpg">
+            </div>
+        </div>
+    </div> --}}
