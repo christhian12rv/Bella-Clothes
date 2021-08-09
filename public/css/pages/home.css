@@ -1,13 +1,21 @@
-@media screen and (min-width: 601px) {
-  .owl-headBanner h3 {
-    font-size: 30px;
+@media screen and (min-width: 601px) and (max-width: 768px) {
+  .owl-headBanner .banner-content-box h3 {
+    font-size: 1.5rem;
   }
   .owl-headBanner p {
-    font-size: 20px;
+    font-size: .7rem;
+    margin-bottom: 0px;
   }
-  .owl-headBanner button {
-    font-size: 17px;
+  .owl-headBanner a.banner-button {
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+    font-size: .6rem !important;
   }
+}
+
+@media screen and (min-width: 601px) {
   .owl-theme .owl-dots .owl-dot span {
     height: 10px !important;
     width: 10px !important;
@@ -15,16 +23,19 @@
 }
 
 @media screen and (max-width: 600px) {
-  .owl-headBanner h3 {
-    font-size: 13px;
+  .owl-headBanner .banner-content-box h3 {
+    font-size: 1rem;
   }
   .owl-headBanner p {
     font-size: 8px;
     margin-bottom: 0px;
   }
-  .owl-headBanner button {
-    font-size: 6px;
-    padding: 2px 8px;
+  .owl-headBanner a.banner-button {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+    font-size: .5rem !important;
   }
   .owl-theme .owl-dots .owl-dot span {
     margin-top: 20px !important;
@@ -40,9 +51,71 @@
   .main-menu {
     position: sticky !important;
   }
+  .owl-headBanner h3 {
+    font-size: 30px;
+  }
 }
 
-.head-banner {
+@media screen and (max-width: 950px) {
+  .owl-headBanner .banner-content-box {
+    padding-right: 6% !important;
+  }
+}
+
+.owl-headBanner .item {
+  height: 30vw;
+  position: relative;
+}
+
+.owl-headBanner .item .banner-img-box {
+  position: absolute;
+  top: -10%;
+  width: 100% !important;
+  height: 130% !important;
+  filter: brightness(40%);
+}
+
+.owl-headBanner .item .banner-img-box img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.owl-headBanner .banner-content-box h3 {
+  color: #19c880;
+  font-weight: bold;
+  text-shadow: red;
+}
+
+.owl-headBanner .banner-content-box p {
+  color: white;
+  text-align: justify;
+  font-weight: normal;
+}
+
+.owl-headBanner a.banner-button {
+  border: 2px solid #19c880;
+  color: white;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.owl-headBanner a.banner-button:hover {
+  background-color: #19c880;
+}
+
+.owl-headBanner .banner-content-box {
+  position: relative;
+  padding-left: 6%;
+  padding-top: 4%;
+  padding-right: 40%;
+}
+
+.owl-headBanner .head-banner {
   color: white;
   margin-left: 17%;
   margin-top: 10%;
@@ -94,20 +167,19 @@ body {
 
 #badge-desconto {
   position: absolute;
-  left: 3px;
-  top: 10px;
-  background: #f15a69;
+  left: 8px;
+  top: 16px;
+  background: rgb(242, 242, 242);
   text-align: center;
   border-radius: 0px !important;
-  color: white;
+  color: #f15a69;
   padding: 10px 15px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .profile-pic {
   width: 100% !important;
   height: 100px;
-  box-shadow: 0px 4px 8px 0px #BDBDBD
 }
 
 .owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev {
@@ -142,13 +214,19 @@ button:focus {
   outline-width: 0;
 }
 
-.item {
-  display: none;
-  display: block;
+.owl-hover .item {
   transition-duration: 0.4s;
   width: 100%;
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.owl-carousel, .owl-carousel .owl-stage-outer, .owl-carousel .owl-stage-outer .owl-stage, .owl-carousel .owl-stage-outer .owl-stage .owl-item {
+  padding-bottom: .5rem;
+}
+
+.owl-hover .item:hover {
+  transform: scale(1.05);
 }
 
 .item .add-cart {
@@ -185,7 +263,7 @@ button.owl-next:focus, button.owl-next:active, button.owl-next:visited, button.o
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 45px;
+  margin-bottom: 25px;
 }
 
 .product_heading h2 {
@@ -319,4 +397,73 @@ a, a:visited, a:hover {
 .service_section .box:hover .img-box img {
   -webkit-filter: brightness(1);
   filter: brightness(1);
+}
+
+.image-product .product-info {
+  background: #19c880;
+  width: 50px;
+  height: 50px;
+  position: absolute !important;
+  top: 16px;
+  right: 9px;
+  border-radius: 0px 0px 0px 200px;
+  transition: all 0.5s, border-radius 2s, top 1s;
+  overflow: hidden;
+}
+
+.image-product .product-info .icon {
+  position: absolute;
+  right: 12px;
+  top: 7px;
+  color: white;
+  -webkit-text-stroke: 0.5px white;
+  opacity: 1;
+}
+
+.image-product .product-info:hover {
+  width: calc(100% - 15px);
+  border-radius: .5rem 0 .5rem .5rem;
+  box-shadow: rgb(33 35 38 / 10%) 0px 10px 10px 0px;
+}
+
+.image-product .product-info:hover .icon {
+  opacity: 0;
+  right: 15px;
+  top: 15px;
+}
+
+.image-product .product-info:hover .contents {
+  opacity: 1;
+  transform: scale(1);
+  transform: translateY(0);
+}
+
+.image-product .product-info .contents {
+  padding: 5%;
+  opacity: 0;
+  transform: scale(0.5);
+  transform: translateY(-200%);
+  transition: opacity 0.2s, transform 0.8s;
+}
+
+.image-product .product-info .contents .row .col-sm-6 div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: left;
+  margin-bottom: .5rem;
+}
+
+.image-product .product-info .contents h1, .image-product .product-info .contents p, .image-product .product-info .contents table {
+  color: white;
+}
+
+.image-product .product-info .contents p {
+  font-size: 13px;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.image-product .product-info .contents p:first-child {
+  font-weight: bold;
 }

@@ -1,4 +1,4 @@
-<nav class="main-sidebar">
+<nav class="main-sidebar open">
     <div id="sidebar-background-image"></div>
     <a href="/" class="d-flex flex-row title px-4 py-0">
         <img src="/img/bella-clothes-logo.png" alt="Bella Clothes logo" class="title-image rounded">
@@ -81,11 +81,12 @@
                     <i class="bi bi-box-seam"></i>
                     <p>Ver Produtos</p>
                 </a>
-                <a class="d-flex flex-row px-4 sub-title">
+                <a href="/admin/ver-categorias" class="d-flex flex-row px-4 sub-title sidebar-link ver-categorias">
                     <i class="bi bi-tag-fill"></i>
                     <p>Categorias</p>
                 </a>
-                <a class="d-flex flex-row px-4 sub-title">
+                <a href="/admin/ver-subcategorias"
+                    class="d-flex flex-row px-4 sub-title sidebar-link ver-subcategorias">
                     <i class="bi bi-tags-fill"></i>
                     <p>Subcategorias</p>
                 </a>
@@ -93,23 +94,24 @@
             </div>
         </div>
 
-        <div class="d-flex flex-row px-4">
+        <a href="/admin/blog" class="d-flex flex-row px-4 sidebar-link blog">
             <i class="bi bi-chat-left-text"></i>
             <p class="flex-grow-1">Blog</p>
-        </div>
+        </a>
 
         <div class="flex-list">
-            <div class="d-flex flex-row px-4 main-title">
+            <div class="d-flex flex-row px-4 main-title sidebar-link outros">
                 <i class="bi bi-three-dots"></i>
                 <p class="flex-grow-1">Outros</p>
                 <i class='bi bi-chevron-right'></i>
             </div>
             <div class="sub-list">
-                <a href="#" class="d-flex flex-row px-4 sub-title">
+                <a href="/admin/pagina-inicial-loja"
+                    class="d-flex flex-row px-4 sub-title sidebar-link pagina-inicial-loja">
                     <i class="bi bi-house-door"></i>
                     <p class="flex-grow-1">Página Inicial da Loja</p>
                 </a>
-                <a href="#" class="d-flex flex-row px-4 sub-title">
+                <a href="/admin/cupons-desconto" class="d-flex flex-row px-4 sub-title sidebar-link cupons-desconto">
                     <i class="bi bi-percent"></i>
                     <p>Cupons de Desconto</p>
                 </a>
@@ -118,13 +120,13 @@
         </div>
 
         <div class="flex-list">
-            <div class="d-flex flex-row px-4 main-title">
+            <div class="d-flex flex-row px-4 main-title sidebar-link configuracoes">
                 <i class="bi bi-gear"></i>
                 <p class="flex-grow-1">Configurações</p>
                 <i class='bi bi-chevron-right'></i>
             </div>
             <div class="sub-list">
-                <a href="#" class="d-flex flex-row px-4 sub-title">
+                <a href="/admin/empresa" class="d-flex flex-row px-4 sub-title sidebar-link empresa">
                     <i class="bi bi-building"></i>
                     <p>Empresa</p>
                 </a>
@@ -132,7 +134,7 @@
             </div>
         </div>
 
-        <a href="#" class="d-flex flex-row px-4 logout">
+        <a href="/admin/logout" class="d-flex flex-row px-4 logout">
             <i class="bi bi-box-arrow-right"></i>
             <p class="flex-grow-1">Sair</p>
         </a>

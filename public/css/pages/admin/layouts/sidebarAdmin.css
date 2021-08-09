@@ -1,7 +1,7 @@
 :root {
     --sidebar-image: transparent;
     --sidebar-background-opacity: 0;
-    --sidebar-color-mode-rgb: 0, 0, 0;
+    --sidebar-color-mode-rgb: 248, 249, 250;
 }
 
 body {
@@ -23,17 +23,24 @@ body {
     background-image: linear-gradient(90deg, #0c643f, #19c880);
 }
 
-.sidebar-link.active.only * {
-    /* color: #19c880 !important; */
+.main-sidebar.dark .sidebar-link.active.only * {
     color: white !important;
+}
+
+.main-sidebar:not(.dark) .sidebar-link.active.only * {
+    color: black !important;
 }
 
 .sidebar-link.active:not(.only) * {
     color: #19c880 !important;
 }
 
-.sidebar-link.active i.bi-chevron-right {
+.main-sidebar.dark .sidebar-link.active i.bi-chevron-right {
     -webkit-text-stroke: 1.5px white !important;
+}
+
+.main-sidebar:not(.dark) .sidebar-link.active i.bi-chevron-right {
+    -webkit-text-stroke: 1.5px black !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -92,20 +99,12 @@ body {
     position: fixed;
 }
 
-.main-sidebar.fixed~div>.main-navbar {
-    transition: margin-left 300ms;
-}
-
 .main-sidebar.fixed~div>.admin-content {
-    transition: margin-left 300ms;
-}
-
-.main-sidebar.fixed.open~div>.main-navbar {
-    transition: margin-left 300ms;
+    transition: margin-left 300ms, width 300ms;
 }
 
 .main-sidebar.fixed.open~div>.admin-content {
-    transition: margin-left 300ms;
+    transition: margin-left 300ms, width 300ms;
 }
 
 .main-sidebar .title {
@@ -199,6 +198,7 @@ body {
 
 .main-sidebar .sidebar::-webkit-scrollbar-thumb {
     background: #a9a9a9;
+    border-radius: .1rem;
 }
 
 .sidebar .user-image {
@@ -209,7 +209,7 @@ body {
 }
 
 .main-sidebar .sidebar i {
-    font-size: 25px;
+    font-size: 24px;
     color: grey;
     transition: font-size 300ms;
 }
@@ -221,7 +221,6 @@ body {
 }
 
 .main-sidebar.dark .sidebar i {
-    font-size: 25px;
     color: rgba(255, 255, 255, .8);
 }
 
@@ -264,7 +263,7 @@ body {
     padding-top: .25rem;
     padding-bottom: .25rem;
     border-radius: 0.5rem;
-    transition: padding 300ms;
+    transition: padding 300ms, background-color 200ms;
 }
 
 .main-sidebar:not(.open) .sidebar .d-flex, .main-sidebar.compact:not(.open) .sidebar .d-flex {
@@ -281,11 +280,13 @@ body {
 .main-sidebar .sidebar .d-flex:hover {
     cursor: pointer;
     background-color: rgba(140, 140, 140, 0.15);
+    transition: background-color 200ms;
 }
 
 .main-sidebar.dark .sidebar .d-flex:hover {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.15);
+    transition: background-color 200ms;
 }
 
 .main-sidebar .sidebar .d-flex:hover p, .main-sidebar .sidebar .d-flex:hover h1, .main-sidebar .sidebar .d-flex:hover h2, .main-sidebar .sidebar .d-flex:hover h3, .main-sidebar .sidebar .d-flex:hover h4, .main-sidebar .sidebar .d-flex:hover h5, .main-sidebar .sidebar .d-flex:hover i {

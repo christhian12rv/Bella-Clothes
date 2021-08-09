@@ -725,11 +725,43 @@ footer a:hover i {
 }
 
 .nav-tabs-categorias .nav-item {
+  position: relative;
   padding-left: 0 !important;
   padding-right: 0 !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
   text-align: -webkit-left;
+}
+
+@media screen and (min-width: 769px) {
+  .nav-tabs-categorias .nav-item:not(:first-child) .nav-link::before {
+    content: "";
+    position: absolute;
+    background-color: white;
+    z-index: 3;
+    width: 15px;
+    height: 15px;
+    bottom: -12px;
+    left: -8px;
+    transform: rotateZ(45deg);
+    opacity: 0;
+  }
+  .nav-tabs-categorias .nav-item .nav-link::after {
+    content: "";
+    position: absolute;
+    background-color: white;
+    z-index: 3;
+    width: 15px;
+    height: 15px;
+    bottom: -12px;
+    right: -8px;
+    transform: rotateZ(45deg);
+    opacity: 0;
+  }
+  .nav-tabs-categorias .nav-item .nav-link.active::before, .nav-tabs-categorias .nav-item .nav-link.active::after, .nav-tabs-categorias .nav-item:hover .nav-link::before, .nav-tabs-categorias .nav-item:hover .nav-link::after {
+    opacity: 1;
+    transition: opacity 300ms !important;
+  }
 }
 
 .sub-menu .dropdown-menu {

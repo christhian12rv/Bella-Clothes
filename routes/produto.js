@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-router.get("/parametro", (req, res) => {
+router.get("/:id", (req, res) => {
     res.render("produto/index", { css: "produto.css", js: "produto.js", title: "Produto" });
 })
 

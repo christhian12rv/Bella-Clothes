@@ -51,8 +51,9 @@ $(document).ready(function () {
                 "searchable": false,
                 "orderable": false,
                 render: function (data, type, row, meta) {
-                    return '<a href="/admin/produto/' + data + '" class="ver-produto mr-2"><i class="bi bi-pencil-square"></i></a>' +
-                        '<label class="switch switch-ativar-produto"><input type="checkbox"><span class="slider slider-ativar-produto round"></span></label>';;
+                    return '<a href="/produto/' + data + '" class="ver-produto-loja mr-2"><i class="bi bi-globe2"></i></a>' +
+                        '<a href="/admin/produto/' + data + '" class="ver-produto mr-2"><i class="bi bi-pencil-square"></i></a>' +
+                        '<label class="switch switch-ativar-produto"><input type="checkbox"><span class="slider slider-ativar-produto round"></span></label>';
                 }
             }, {
                 targets: [5],

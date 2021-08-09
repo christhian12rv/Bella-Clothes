@@ -1,0 +1,151 @@
+.box-banners .box-banner {
+    width: 100%;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.box-banners .box-banner:not(:first-child) {}
+
+.box-banners .box-banner input:not([type="radio"]), .box-banners .box-banner select, .box-banners .box-banner option, .box-banners .box-banner textarea {
+    width: 100%;
+}
+
+.box-banners .box-banner label:not(:first-child) {
+    margin-top: .5rem;
+}
+
+.admin-content input:not([type='file']):not([type='submit']), select, option, textarea {
+    border: 1px solid #d1d1d1;
+    border-radius: .25rem;
+    background-color: transparent;
+    color: #515257 !important;
+}
+
+.admin-content input:not([type='file']):disabled, select:disabled, textarea:disabled {
+    background-color: #cfd1dd;
+}
+
+input:not([type='file']), select, option {
+    height: calc(1.3125rem + 1.2rem + 2px);
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem !important;
+}
+
+.admin-content.dark input:not([type='file']), .admin-content.dark select {
+    border: 1px solid #3c3c3c;
+}
+
+input:hover, input:focus, input:link, input:visited, select:hover, select:focus, select:link, select:visited, textarea:hover, textarea:focus, textarea:link, textarea:visited a:hover, a:focus, a:link, a:visited {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:hover, select:hover, textarea:hover {
+    border-color: rgb(23, 175, 130) !important;
+}
+
+.image-upload {
+    display: block;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    border-radius: .25rem;
+}
+
+.image-upload *:hover {
+    cursor: pointer !important;
+}
+
+.image-upload .image-select {
+    display: block;
+    border: 2px solid #dce4ec;
+    color: #34495e;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    overflow: hidden;
+    position: relative;
+    border-radius: .25rem;
+}
+
+.admin-content.dark .image-upload .image-select {
+    border-color: #3c3c3c;
+    color: rgb(228, 228, 228) !important;
+}
+
+.image-upload .image-select .image-select-button {
+    background: #dce4ec;
+    padding: 0 10px;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    color: #515257 !important;
+    cursor: pointer;
+}
+
+.admin-content.dark .image-upload .image-select .image-select-button {
+    background: #3c3c3c;
+    color: rgb(228, 228, 228) !important;
+}
+
+.image-upload .image-select .image-select-button:hover {
+    cursor: pointer;
+}
+
+.image-upload .image-select .image-select-name {
+    line-height: 40px;
+    display: inline-block;
+    padding: 0 10px;
+    color: #515257 !important;
+}
+
+.admin-content.dark .image-upload .image-select .image-select-name {
+    color: rgb(228, 228, 228) !important;
+}
+
+.image-upload .image-select:hover {
+    border-color: #19c880 !important;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.image-upload .image-select:hover .image-select-button {
+    background: #19c880 !important;
+    color: #FFFFFF !important;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.image-upload.active .image-select {
+    border-color: #3fa46a !important;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.image-upload.active .image-select .image-select-button {
+    background: #3fa46a !important;
+    color: #FFFFFF;
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.image-upload .image-select input[type=file] {
+    z-index: 100;
+    cursor: pointer;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}

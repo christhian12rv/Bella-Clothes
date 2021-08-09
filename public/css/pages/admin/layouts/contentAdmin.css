@@ -1,3 +1,21 @@
+@media screen and (min-width: 769px) {
+    .main-sidebar.fixed.open~div>.admin-content {
+        margin-left: 253px;
+        width: calc(100% - 253px);
+        transition: margin-left 300ms, width 300ms;
+    }
+    .main-sidebar.fixed:not(.open)~div>.admin-content {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+        transition: margin-left 300ms, width 300ms;
+    }
+}
+
+.main-navbar.fixed~.admin-content {
+    padding-top: 72px !important;
+    height: calc(100% - var(--footer-height)) !important;
+}
+
 a, a:hover, a:link, a:focus, a:visited {
     text-decoration: none !important;
 }
@@ -7,8 +25,9 @@ a, a:hover, a:link, a:focus, a:visited {
     padding-bottom: 100px;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: #f8f9fa;
+    background-color: var(--light);
     min-height: 100vh;
+    height: calc(100% - (52px + var(--footer-height))) !important;
 }
 
 .admin-content.dark {
@@ -32,10 +51,14 @@ a, a:hover, a:link, a:focus, a:visited {
 }
 
 .admin-content .card {
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15)!important;
+    box-shadow: 0 0 13px 0 rgb(82 63 105 / 5%) !important;
     width: 100%;
-    border-radius: .25rem !important;
-    border: none !important;
+    border-radius: .30rem !important;
+    border: 1px solid #ebedf2 !important;
+}
+
+.admin-content.dark .card {
+    border-color: #121212 !important;
 }
 
 .admin-content .card.color-mode {

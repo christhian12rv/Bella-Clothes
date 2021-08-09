@@ -110,7 +110,8 @@ app.get("/teste", (req, res) => {
 
 app.post("/testeEnviar", (req, res) => {
     // Verifica se a imagem existe
-    const caminhoArquivo = path.join(__dirname) + "/public/img/" + req.files.imagemUpload.name;
+    res.send(req.files);
+    /* const caminhoArquivo = path.join(__dirname) + "/public/img/" + req.files.imagemUpload.name;
 
     fs.access(caminhoArquivo, fs.constants.F_OK, (err) => {
         if (err) {
@@ -135,15 +136,76 @@ app.post("/testeEnviar", (req, res) => {
         } else {
             res.send("Arquivo já existe!");
         }
+    }); */
+})
+
+app.post("/afeas", (req, res) => {
+    /*  for (let i = 0; i < req.query.variacao.length; i++) {
+         console.log(req.query.variacao[i].cor);
+     } */
+    var variacao = [];
+    var { quantidade_cores } = req.body;
+    for (let i = 1; i <= parseInt(quantidade_cores); i++) {
+        variacao.push(
+            {
+                cor: req.body['variacao[' + i + '][cor]'],
+                preco_original: req.body['variacao[' + i + '][preco_original]'],
+                tipo_desconto: req.body['variacao[' + i + '][tipo_desconto]'],
+            }
+        );
+        for (let j = 1; j <= parseInt(req.body['variacao[' + i + '][qtd_parcelas]']); j++) {
+            variacao.push(
+                {
+                    parcela: [
+                        {
+                            vezes: req.body['variacao[' + i + '][parcela_box_' + j + '][vezes_parcela]']
+                        }
+                    ]
+                }
+            )
+        }
+    }
+
+    res.send(req.body);
+})
+
+app.get("/erro-404", (req, res) => {
+    res.render("erros/erro_404", {
+        css: "erros/erro_404.css",
+        title: "Erro 404 | Bella Clothes"
+    })
+})
+
+app.get("/erro-500", (req, res) => {
+    res.render("erros/erro_500", {
+        css: "erros/erro_500.css",
+        title: "Erro 500 | Bella Clothes"
+    })
+})
+
+app.get("/ver-rotas", (req, res) => {
+    var rte, rts = [];
+    var prevParam, breakLine = "";
+    app._router.stack.forEach(function (middleware, middlewareIndex, routerArr) {
+        if (middleware.route && middleware.route.path != "") { // rts registered directly on the app
+            rts.push('<a href="' + (middleware.route.path) + '" style="margin-bottom: 1rem !important;">' + (middleware.route.path) + '</a><br>' + breakLine);
+        } else if (middleware.name === 'router') { // router middleware 
+
+            middleware.handle.stack.forEach(function (handler, index, midArr) {
+                var regexp = middleware.regexp.toString();
+                var routeParam = regexp.substr(3, (regexp.substr(3).indexOf("?") - 2));
+
+                rte = handler.route;
+                if (midArr.length != prevParam)
+                    breakLine = "<br>";
+                rts.push(breakLine + '<a href="' + (routeParam + rte.path) + '" style="margin-bottom: 1rem !important;">' + (routeParam + rte.path) + '</a><br>');
+                breakLine = "";
+                prevParam = midArr.length;
+            });
+        }
     });
-})
-
-app.get("/404", (req, res) => {
-    res.render("erros/erro404", { title: "Erro 404" });
-})
-
-app.get("/500", (req, res) => {
-    res.render("erros/erro500", { title: "Erro 500" });
+    var links = rts.join("");
+    res.send(links);
 })
 
 app.use("/produto", produto);

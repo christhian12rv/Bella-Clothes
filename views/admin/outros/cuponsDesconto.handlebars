@@ -1,0 +1,71 @@
+<div class="d-flex flex-row flex-wrap mb-3" style="row-gap: .5rem;">
+    <h3 class="title flex-grow-1">
+        Cupons de Desconto
+    </h3>
+    <input type="text" id="search-cupoms" placeholder="Pesquise por cupons..." class="mr-3">
+    <button class="btn adicionar-cupom" id="adicionar-cupom"><i class="bi bi-plus-lg mr-2"></i>Adicionar
+        Novo Cupom</button>
+</div>
+
+<div class="d-flex flex-row flex-wrap cupom-flex" id="cupom-flex">
+
+    <div class="cupom-card">
+        <form action="#" method="POST">
+            <header class="cupom-card__header">
+                <label class="switch">
+                    <input type="checkbox" id="cp-dark-sidebar">
+                    <span class="slider round"></span>
+                </label>
+                <p class="cupom-id mt-3">1</p>
+                <div>
+                    <input type="text" placeholder="Cupom" name="cupom" id="cupom" required>
+                </div>
+                <div>
+                    <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade"
+                        onkeydown="return event.keyCode == 69 ? false : true" min="1" required>
+                </div>
+                <div class="mt-1">
+                    <select name="validade" id="validade" class="validade-cupom" required>
+                        <option value="">Escolha uma Validade</option>
+                        <option value="uso-unico">Uso Único</option>
+                        <option value="varios-usos">Vários Usos</option>
+                        <option value="ilimitada">Ilimitada</option>
+                    </select>
+                </div>
+                <div class="mt-1">
+                    <select name="tipo" id="tipo" class="tipo-cupom" required>
+                        <option value="">Escolha um Tipo</option>
+                        <option value="porcentagem">Porcentagem (%)</option>
+                        <option value="bruto">Bruto (R$)</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="text" id="valor" name="valor" placeholder="Valor" disabled required>
+                </div>
+                <div>
+                    <input type="text" id="minimo" name="minimo" placeholder="Valor de compra Mínimo"
+                        class="valor-minimo-compra" required>
+                </div>
+                <p class="data-criacao mt-3">Data de criação:<span class="ml-2">28 MAIO 2021</span></p>
+            </header>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="wave" preserveAspectRatio="none">
+                <path class="path-wave" fill-opacity="1"
+                    d="M0,192L80,181.3C160,171,320,149,480,165.3C640,181,800,235,960,250.7C1120,267,1280,245,1360,234.7L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+                </path>
+            </svg>
+            <section class="cupom-card__body">
+
+                <div class="cupom-card__title">
+                    <div class="mb-3">
+                        <span class="badge-title px-2 py-1 mr-2">31</span>
+                        usos
+                    </div>
+                </div>
+            </section>
+            <div class="submit-div">
+                <input type="submit" value="Alterar" class="btn">
+                <a href="/excluir-cupom" class="btn excluir-cupom">Excluir</a>
+            </div>
+        </form>
+    </div>
+</div>

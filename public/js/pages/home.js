@@ -3,7 +3,7 @@ $(document).ready(function () {
     // Carrossel primeiro banner da página
     $('.owl-headBanner').owlCarousel({
         mouseDrag: true,
-        autoplay: true,
+        autoplay: false,
         smartSpeed: 500,
         margin: 0,
         loop: true,
@@ -113,4 +113,16 @@ $(document).ready(function () {
             }
         }
     });
+
+    $(".product-info").on("mouseenter", function () {
+        var carousel = $(this).parent().parent().parent().parent();
+        carousel.trigger('stop.owl.autoplay');
+        var contentsHeight = parseInt($(this).children('.contents').outerHeight());
+        $(this).css("height", contentsHeight + "px");
+    })
+    $(".product-info").on("mouseleave", function () {
+        var carousel = $(this).parent().parent().parent().parent();
+        carousel.trigger('play.owl.autoplay');
+        $(this).css("height", "50px");
+    })
 });

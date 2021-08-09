@@ -27,23 +27,18 @@ body {
 
 img#admin-background {
     position: absolute;
-    top: 15%;
-    left: 33%;
-    width: 35vw;
+    top: 0%;
+    left: calc(50% - 169px);
+    width: 369px;
     opacity: 0.2;
     z-index: -1 !important;
     filter: saturate(0);
 }
 
-@media only screen and (max-width: 768px) {
-    img#admin-background {
-        left: 10%;
-        width: 90vw !important;
-    }
-}
-
 .login-box-form {
-    margin: 8% auto 0 auto;
+    position: relative;
+    margin: 6% auto 0 auto;
+    padding-top: 2%;
 }
 
 form {

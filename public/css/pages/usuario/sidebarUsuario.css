@@ -1,4 +1,4 @@
-.settings {
+.usuario-settings {
     height: 73px;
     float: left;
     background: url(https://s3.postimg.org/bqfooag4z/startific.jpg);
@@ -149,7 +149,7 @@
 
 /* Logo Hover Property */
 
-.settings:hover, settings:focus {
+.usuario-settings:hover, .usuario-settings:focus {
     background: url(https://s17.postimg.org/74cl7s05b/logo_hover.jpg);
     -webkit-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
     -moz-transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
@@ -157,7 +157,7 @@
     transition: all 0.2s ease-in-out, width 0, height 0, top 0, left 0;
 }
 
-.settings:active, settings:focus {
+.usuario-settings:active, .usuario-settings:focus {
     background: url(https://s3.postimg.org/bqfooag4z/startific.jpg);
     -webkit-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;
     -moz-transition: all 0.1s ease-in-out, width 0, height 0, top 0, left 0;

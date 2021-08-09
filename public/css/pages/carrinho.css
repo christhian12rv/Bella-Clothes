@@ -58,6 +58,18 @@
     background-color: #e6e6e6 !important;
 }
 
+.card #tamanho, .card #cor {
+    border: 1px solid #d1d1d1;
+    border-radius: .25rem;
+    background-color: transparent;
+    color: #515257 !important;
+}
+
+.card #tamanho:hover, .card #tamanho:focus, .card #cor:hover, .card #cor:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .card .pro-qty {
     width: 123px;
     height: 36px;

@@ -211,13 +211,13 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
     height: 33px;
 }
 
-.ver-produto i {
+.ver-produto i, .ver-produto-loja i {
     font-size: 1.1rem;
     color: #a3a3a3;
     vertical-align: middle;
 }
 
-.ver-produto:hover i {
+.ver-produto:hover i, .ver-produto-loja:hover i {
     color: #19c880 !important;
 }
 

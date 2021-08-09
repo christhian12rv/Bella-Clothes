@@ -1,27 +1,65 @@
-var sheet = window.document.styleSheets[0];
-var sidebarCloseWidth = $(".main-sidebar").width();
-$(".main-sidebar").addClass("open");
-var sidebarOpenWidth;
-setTimeout(() => {
-    sidebarOpenWidth = $(".main-sidebar").width();
-    sheet.insertRule('.main-sidebar.fixed { max-width: ' + sidebarOpenWidth + 'px !important;}', sheet.cssRules.length);
-    sheet.insertRule('.main-sidebar.fixed~div>.main-navbar { margin-left: ' + sidebarCloseWidth + 'px !important;}', sheet.cssRules.length);
-    sheet.insertRule('.main-sidebar.fixed.open~div>.main-navbar { margin-left: ' + sidebarOpenWidth + 'px !important;}', sheet.cssRules.length);
-    sheet.insertRule('.main-sidebar.fixed~div>.admin-content { margin-left: ' + sidebarCloseWidth + 'px !important;}', sheet.cssRules.length);
-    sheet.insertRule('.main-sidebar.fixed.open~div>.admin-content { margin-left: ' + sidebarOpenWidth + 'px !important;}', sheet.cssRules.length);
-    sheet.insertRule('.main-sidebar.fixed~div>.admin-footer { margin-left: ' + sidebarCloseWidth + 'px !important;}', sheet.cssRules.length);
-    sheet.insertRule('.main-sidebar.fixed.open~div>.admin-footer { margin-left: ' + sidebarOpenWidth + 'px !important;}', sheet.cssRules.length);
-    var sidebarOpenOnLargeWindowResize = true;
-    if (window.matchMedia('screen and (max-width: 768px)').matches) {
-        $(".main-sidebar").removeClass("open");
-        sidebarOpenOnLargeWindowResize = false;
-    } else {
+/* get localStorages */
+var localStorageCustomizePage = {
+    'sidebar': {
+        'fixed': localStorage.getItem('fixedSidebar') ? JSON.parse(localStorage.getItem('fixedSidebar')) : false,
+        'dark': localStorage.getItem('darkSidebar') ? JSON.parse(localStorage.getItem('darkSidebar')) : true,
+        'compact': localStorage.getItem('compactSidebar') ? JSON.parse(localStorage.getItem('compactSidebar')) : false,
+        'small-text': localStorage.getItem('smallTextSidebar') ? JSON.parse(localStorage.getItem('smallTextSidebar')) : false
+    },
+    'navbar': {
+        'fixed': localStorage.getItem('fixedNavbar') ? JSON.parse(localStorage.getItem('fixedNavbar')) : false,
+        'dark': localStorage.getItem('darkNavbar') ? JSON.parse(localStorage.getItem('darkNavbar')) : false,
+        'border-bottom': localStorage.getItem('noBorderBottomNavbar') ? JSON.parse(localStorage.getItem('noBorderBottomNavbar')) : false
+    },
+    'content': {
+        'dark': localStorage.getItem('darkContent') ? JSON.parse(localStorage.getItem('darkContent')) : false,
+    },
+    'footer': {
+        'fixed': localStorage.getItem('fixedFooter') ? JSON.parse(localStorage.getItem('fixedFooter')) : false,
+        'dark': localStorage.getItem('darkFooter') ? JSON.parse(localStorage.getItem('darkFooter')) : false,
+        'border-top': localStorage.getItem('noBorderBottomFooter') ? JSON.parse(localStorage.getItem('noBorderBottomFooter')) : false
     }
-}, 1001);
+};
 
 
-document.documentElement.style.setProperty('--sidebar-image', 'url(/img/admin-sidebar/wood.jpg) no-repeat');
-document.documentElement.style.setProperty('--sidebar-background-opacity', '0.9');
+$(window).on("load", function () {
+    // Verificar se a sidebar está aberta ou fechada no local storage
+    var sidebarOpen = localStorage.getItem('sidebarOpen') ? JSON.parse(localStorage.getItem('sidebarOpen')) : true;
+    if (!sidebarOpen)
+        $(".main-sidebar").removeClass("open");
+
+    // sidebar
+
+    Object.entries(localStorageCustomizePage).forEach(([mainKey, mainValue]) => {
+        var obj = localStorageCustomizePage[mainKey];
+        Object.entries(obj).forEach(([key, value]) => {
+            if (value) {
+                $("#cp-" + key + "-" + mainKey).trigger("click");
+                $("#cp-" + key + "-" + mainKey).prop("checked", "true");
+            }
+        })
+    })
+
+    document.documentElement.style.setProperty('--sidebar-image', 'url(/img/admin-sidebar/wood.jpg) no-repeat');
+    document.documentElement.style.setProperty('--sidebar-background-opacity', '0.9');
+    document.documentElement.style.setProperty('--footer-height', $(".admin-footer").outerHeight() + "px");
+})
+/* var lsFixedSidebar = localStorage.getItem('fixedSidebar');
+var lsDarkSidebar = localStorage.getItem('darkSidebar');
+var lsCompactSidebar = localStorage.getItem('compactSidebar');
+var lsSmallTextSidebar = localStorage.getItem('smallTextSidebar');
+
+var lsFixedNavbar = localStorage.getItem('fixedNavbar');
+var lsDarkNavbar = localStorage.getItem('darkNavbar');
+var lsBorderBottomNavbar = localStorage.getItem('borderBottomNavbar');
+
+var lsDarkContent = localStorage.getItem('darkContent');
+
+var lsFixedFooter = localStorage.getItem('fixedFooter');
+var lsDarkFooter = localStorage.getItem('darkFooter');
+var lsBorderBottomFooter = localStorage.getItem('borderBottomFooter'); */
+
+/*-------------------*/
 
 
 // Rediomensionamento da Tela
@@ -29,27 +67,16 @@ $(window).on("resize", function () {
     const customizePage = $(".customize-page");
     if (window.matchMedia('screen and (max-width: 768px)').matches) {
         if ($(".main-sidebar").hasClass("open")) {
-            $(".main-navbar").css("width", "100%");
             $(".modal-background").css("display", "block");
-        }
-        if (sidebarOpenOnLargeWindowResize) {
-            $(".main-sidebar").removeClass("open");
-            sidebarOpenOnLargeWindowResize = false;
         }
         if (customizePage.children("#fixed-sidebar").children(".switch").children("#cp-fixed-sidebar").prop("checked")) {
             customizePage.children("#fixed-sidebar").children(".switch").children("#cp-fixed-sidebar").trigger("click");
         }
     } else {
-        if ($(".main-navbar").hasClass("fixed")) {
-            var widthNavbar = $(window).width() - sidebarOpenWidth;
-            $(".main-navbar").css("width", widthNavbar + "px");
-        }
-        if (!sidebarOpenOnLargeWindowResize) {
-            $(".main-sidebar").addClass("open");
-            sidebarOpenOnLargeWindowResize = true;
-        }
         $(".modal-background").css("display", "none");
     }
+
+    document.documentElement.style.setProperty('--footer-height', $(".admin-footer").outerHeight() + "px");
 })
 
 $("body").on("click", function (event) {
@@ -66,37 +93,20 @@ $("body").on("click", function (event) {
 })
 
 // Abrir e Fechar Sidebar
-var sidebarFullHeight = $(".main-sidebar").outerHeight();
 $(".sidebar-toggle").on("click", () => {
     const sidebar = $(".main-sidebar");
-    if (window.matchMedia('screen and (max-width: 768px)').matches) {
-        if (sidebar.hasClass("open")) {
-            sidebar.removeClass("open");
-        } else {
-            sidebar.addClass("open");
-            $(".modal-background").css("display", "block");
-        }
+    var isOpenSidebar = sidebar.hasClass("open");
+    if (isOpenSidebar) {
+        sidebar.removeClass("open");
     } else {
-        if (sidebar.hasClass("open")) {
-            sidebar.removeClass("open");
-            if ($(".main-navbar").hasClass("fixed") || $(".main-sidebar").hasClass("fixed")) {
-                $(".main-navbar").animate({ width: ($(window).width() - sidebarCloseWidth) + "px" }, 300)
-            }
-            if ($(".admin-footer").hasClass("fixed") || $(".main-sidebar").hasClass("fixed")) {
-                sheet.insertRule('.admin-footer { width: ' + ($(window).width() - sidebarCloseWidth) + 'px !important;}', sheet.cssRules.length);
-            }
-        } else {
-            sidebar.addClass("open");
-            if ($(".main-navbar").hasClass("fixed") || $(".main-sidebar").hasClass("fixed")) {
-                $(".main-navbar").animate({ width: ($(window).width() - sidebarOpenWidth) + "px" }, 300)
-            }
-            if ($(".admin-footer").hasClass("fixed") || $(".main-sidebar").hasClass("fixed")) {
-                sheet.insertRule('.admin-footer { width: ' + ($(window).width() - sidebarOpenWidth) + 'px !important;}', sheet.cssRules.length);
-            }
-        }
+        sidebar.addClass("open");
+        if (window.matchMedia('screen and (max-width: 768px)').matches)
+            $(".modal-background").css("display", "block");
     }
 
     subListResize();
+
+    localStorage.setItem('sidebarOpen', !isOpenSidebar);
 })
 
 $(".modal-background").on("click", function () {
@@ -155,67 +165,65 @@ $(".customize-toggle").on("click", () => {
 /******************************** CUSTOMIZAR PÁGINA *************************************************** */
 
 // Customizar Sidebar
-// Sidebar Escura checada
-$("#cp-dark-sidebar").prop("checked", true);
-$(".main-sidebar").addClass("dark");
 
 // Sidebar Fixa
 $("#cp-fixed-sidebar").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isFixedSidebar = $(this).prop("checked");
+    if (isFixedSidebar) {
         $(".main-sidebar").addClass("fixed");
     } else {
         $(".main-sidebar").removeClass("fixed");
     }
 
-    if ($(".main-sidebar").hasClass("open")) {
-        var widthNavbar = $(window).width() - sidebarOpenWidth;
-        $(".main-navbar").css("width", widthNavbar + "px");
-        var widthFooter = $(window).width() - sidebarOpenWidth;
-        sheet.insertRule('.admin-footer { width: ' + widthFooter + 'px !important;}', sheet.cssRules.length);
-    } else {
-        var widthNavbar = $(window).width() - sidebarCloseWidth;
-        $(".main-navbar").css("width", widthNavbar + "px");
-        var widthFooter = $(window).width() - sidebarCloseWidth;
-        sheet.insertRule('.admin-footer { width: ' + widthFooter + 'px !important;}', sheet.cssRules.length);
-    }
+    localStorage.setItem('fixedSidebar', isFixedSidebar);
 })
 
 // Sidebar Escura
 $("#cp-dark-sidebar").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isDarkSidebar = $(this).prop("checked");
+    if (isDarkSidebar) {
         $(".main-sidebar").addClass("dark");
         document.documentElement.style.setProperty('--sidebar-color-mode-rgb', '0,0,0');
     } else {
         $(".main-sidebar").removeClass("dark");
         document.documentElement.style.setProperty('--sidebar-color-mode-rgb', '248,249,250');
     }
+
+    localStorage.setItem('darkSidebar', isDarkSidebar);
 })
 
 // Sidebar Compacta
 $("#cp-compact-sidebar").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isCompactSidebar = $(this).prop("checked");
+    if (isCompactSidebar) {
         $(".main-sidebar").addClass("compact");
     } else {
         $(".main-sidebar").removeClass("compact");
     }
     subListResize();
+
+    localStorage.setItem('compactSidebar', isCompactSidebar);
 })
 
 // Sidebar com Texto Pequeno
 $("#cp-small-text-sidebar").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isSmallTextSidebar = $(this).prop("checked");
+    if (isSmallTextSidebar) {
         $(".main-sidebar").addClass("small-text");
     } else {
         $(".main-sidebar").removeClass("small-text");
     }
     subListResize();
+
+    localStorage.setItem('smallTextSidebar', isSmallTextSidebar);
 })
 
 
 //Customizar Navbar
 //Navbar Fixa
 $("#cp-fixed-navbar").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isFixedNavbar = $(this).prop("checked");
+    if (isFixedNavbar) {
         $(".main-navbar").addClass("fixed");
         $(".customize-page").addClass("fixed");
     }
@@ -224,41 +232,43 @@ $("#cp-fixed-navbar").on("click", function () {
         $(".customize-page").removeClass("fixed");
     }
 
-    if (window.matchMedia('screen and (min-width: 769px)').matches) {
-        if ($(".main-sidebar").hasClass("open")) {
-            var widthNavbar = $(window).width() - sidebarOpenWidth;
-            $(".main-navbar").css("width", widthNavbar + "px");
-        } else {
-            var widthNavbar = $(window).width() - sidebarCloseWidth;
-            $(".main-navbar").css("width", widthNavbar + "px");
-        }
-    }
+    localStorage.setItem('fixedNavbar', isFixedNavbar);
 })
 
 //Navbar Escura
 $("#cp-dark-navbar").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isDarkNavbar = $(this).prop("checked");
+
+    if (isDarkNavbar) {
         $(".main-navbar").addClass("dark");
         $(".customize-page").addClass("dark");
     } else {
         $(".main-navbar").removeClass("dark");
         $(".customize-page").removeClass("dark");
     }
+
+    localStorage.setItem('darkNavbar', isDarkNavbar);
 })
 
 //Navbar Sem Borda
 $("#cp-border-bottom-navbar").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isNoBorderBottomNavbar = $(this).prop("checked");
+
+    if (isNoBorderBottomNavbar) {
         $(".main-navbar").addClass("no-border");
     } else {
         $(".main-navbar").removeClass("no-border");
     }
+
+    localStorage.setItem('noBorderBottomNavbar', isNoBorderBottomNavbar);
 })
 
 //Customizar Content
 //Content Escuro
 $("#cp-dark-content").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isDarkContent = $(this).prop("checked");
+
+    if (isDarkContent) {
         $(".admin-content").addClass("dark");
         $(".card.color-mode").each(function () {
             $(this).addClass("dark");
@@ -269,12 +279,16 @@ $("#cp-dark-content").on("click", function () {
             $(this).removeClass("dark");
         })
     }
+
+    localStorage.setItem('darkContent', isDarkContent);
 })
 
 //Customizar Footer
 //Footer Fixo
 $("#cp-fixed-footer").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isFixedFooter = $(this).prop("checked");
+
+    if (isFixedFooter) {
         $(".admin-footer").addClass("fixed");
     }
     else {
@@ -283,31 +297,37 @@ $("#cp-fixed-footer").on("click", function () {
 
     if (window.matchMedia('screen and (min-width: 769px)').matches) {
         if ($(".main-sidebar").hasClass("open")) {
-            var widthNavbar = $(window).width() - sidebarOpenWidth;
-            $(".admin-footer").css("width", widthNavbar + "px");
         } else {
-            var widthNavbar = $(window).width() - sidebarCloseWidth;
-            $(".admin-footer").css("width", widthNavbar + "px");
         }
     }
+
+    localStorage.setItem('fixedFooter', isFixedFooter);
 })
 
 //Footer Escuro
 $("#cp-dark-footer").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isDarkFooter = $(this).prop("checked");
+
+    if (isDarkFooter) {
         $(".admin-footer").addClass("dark");
     } else {
         $(".admin-footer").removeClass("dark");
     }
+
+    localStorage.setItem('darkFooter', isDarkFooter);
 })
 
 //Footer Sem Borda
 $("#cp-border-top-footer").on("click", function () {
-    if ($(this).prop("checked")) {
+    var isNoBorderBottomFooter = $(this).prop("checked");
+
+    if (isNoBorderBottomFooter) {
         $(".admin-footer").addClass("no-border");
     } else {
         $(".admin-footer").removeClass("no-border");
     }
+
+    localStorage.setItem('noBorderBottomFooter', isNoBorderBottomFooter);
 })
 
 

@@ -119,4 +119,65 @@ router.get("/produto/:id", (req, res) => {
     })
 })
 
+router.get("/adicionar-produto", (req, res) => {
+    res.render("admin/produtos/adicionarProduto", {
+        css: "admin/produtos/adicionarProduto.css",
+        js: "admin/produtos/adicionarProduto.js",
+        title: "AdicionarProduto | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/ver-categorias", (req, res) => {
+    res.render("admin/produtos/verCategorias", {
+        css: "admin/produtos/verCategorias.css",
+        js: "admin/produtos/verCategorias.js",
+        title: "Categorias | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/ver-subcategorias", (req, res) => {
+    res.render("admin/produtos/verSubcategorias", {
+        css: "admin/produtos/verSubcategorias.css",
+        js: "admin/produtos/verSubcategorias.js",
+        title: "Subcategorias | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/pagina-inicial-loja", (req, res) => {
+    res.render("admin/outros/paginaInicialLoja", {
+        css: "admin/outros/paginaInicialLoja.css",
+        js: "admin/outros/paginaInicialLoja.js",
+        title: "Loja - Página Inicial | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/cupons-desconto", (req, res) => {
+    res.render("admin/outros/cuponsDesconto", {
+        css: "admin/outros/cuponsDesconto.css",
+        js: "admin/outros/cuponsDesconto.js",
+        title: "Cupons de Desconto | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/erro-404", (req, res) => {
+    res.render("admin/erro_404", {
+        css: "admin/erro_404.css",
+        title: "Erro 404 | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/erro-500", (req, res) => {
+    res.render("admin/erro_500", {
+        css: "admin/erro_500.css",
+        title: "Erro 500 | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
 module.exports = router;

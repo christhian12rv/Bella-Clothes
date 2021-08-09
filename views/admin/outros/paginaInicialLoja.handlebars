@@ -1,0 +1,185 @@
+<div class="d-flex flex-row flex-wrap mb-3" style="row-gap: .5rem;">
+    <h3 class="title flex-grow-1">
+        Página Inicial da Loja
+    </h3>
+</div>
+
+<form action="/afeas" method="POST" enctype='multipart/form-data'>
+    <div class="card color-mode p-0" style="margin-top: 3rem;">
+        <div class="w-100 px-3 pt-3">
+            Banners Iniciais
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-wrap mx-3 mb-3 px-2 box-banners box-banners-iniciais" style="gap: 1rem;">
+            <div class="w-100">
+                <label for="quantidade_banners_iniciais" class="mr-4">* Quantidade de Banners</label>
+                <input type="number" id="quantidade_banners_iniciais" name="quantidade_banners_iniciais"
+                    placeholder="* Quantidade de Banners" value="1"
+                    onkeydown="return event.keyCode == 69 ? false : true" min="1" required>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div class="card color-mode p-0" style="margin-top: 3rem;">
+        <div class="w-100 px-3 pt-3">
+            Segundo Banner
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-wrap mx-3 mb-3 px-2 box-banners box-banners-segundos" style="gap: 1rem;">
+            <div class="banner-segundo box-banner d-flex flex-column flex-wrap">
+                <label for="tipo_banner_segundo">Tipo</label>
+                <div class="d-flex flex-row flex-wrap">
+                    <input type="radio" name="tipo_banner_segundo" id="tipo_banner_segundo_texto"
+                        class="tipo_banner_segundo_texto" checked required>
+                    <label for="tipo_banner_segundo_texto" class="mr-3 ml-1">Texto</label>
+                    <input type="radio" name="tipo_banner_segundo" id="tipo_banner_segundo_imagem"
+                        class="tipo_banner_segundo_imagem" required>
+                    <label for="tipo_banner_segundo_imagem" class="ml-1">Imagem</label>
+                </div>
+                <div class="tipo-banner-texto">
+                    <label for="titulo_banner_segundo">Título</label>
+                    <input type="text" name="titulo_banner_segundo" id="titulo_banner_segundo" placeholder="Título"
+                        required>
+                    <label for="descricao_banner_segundo">Descrição</label>
+                    <textarea name="descricao_banner_segundo" id="descricao_banner_segundo" cols="30" rows="10"
+                        required></textarea>
+                    <label for="texto_botao_banner_segundo">Botão</label>
+                    <input type="text" name="texto_botao_banner_segundo" name="texto_botao_banner_segundo"
+                        placeholder="Texto do botão" class="mb-2">
+                    <input type="url" name="link_botao_banner_segundo" id="link_botao_banner_segundo"
+                        placeholder="Link do botão" class="mb-2">
+                    <label for="imagem_banner_segundo">Imagem</label>
+                    <div class="image-upload">
+                        <div class="image-select">
+                            <div class="image-select-button" id="imageName">Escolher
+                                imagem</div>
+                            <div class="image-select-name">Escolha uma imagem</div>
+                            <input type="file" class="escolher-imagem" id="imagem_banner_segundo"
+                                name="imagem_banner_segundo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card color-mode p-0" style="margin-top: 3rem;">
+        <div class="w-100 px-3 pt-3">
+            Terceiro Banner (3)
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-wrap mx-3 mb-3 px-2 box-banners box-banners-terceiros" style="gap: 1rem;">
+            <h5>Banner 1</h5>
+            <div class="banner-terceiro_1 box-banner d-flex flex-column flex-wrap">
+                <label for="descricao_banner_terceiro_1">Descrição</label>
+                <textarea name="descricao_banner_terceiro_1" id="descricao_banner_terceiro_1" cols="30" rows="10"
+                    required></textarea>
+                <label for="texto_botao_banner_terceiro_1">Botão</label>
+                <input type="text" name="texto_botao_banner_terceiro_1" name="texto_botao_banner_terceiro_1"
+                    placeholder="Texto do botão" class="mb-2">
+                <input type="url" name="link_botao_banner_terceiro_1" id="link_botao_banner_terceiro_1"
+                    placeholder="Link do botão" class="mb-2">
+                <label for="imagem_banner_terceiro_1">Imagem</label>
+                <div class="image-upload">
+                    <div class="image-select">
+                        <div class="image-select-button" id="imageName">Escolher
+                            imagem</div>
+                        <div class="image-select-name">Escolha uma imagem</div>
+                        <input type="file" class="escolher-imagem" id="imagem_banner_terceiro_1"
+                            name="imagem_banner_terceiro_1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap mx-3 mb-3 px-2 box-banners box-banners-terceiros" style="gap: 1rem;">
+            <h5>Banner 2</h5>
+            <div class="banner-terceiro_2 box-banner d-flex flex-column flex-wrap">
+                <label for="descricao_banner_terceiro_2">Descrição</label>
+                <textarea name="descricao_banner_terceiro_2" id="descricao_banner_terceiro_2" cols="30" rows="10"
+                    required></textarea>
+                <label for="texto_botao_banner_terceiro_2">Botão</label>
+                <input type="text" name="texto_botao_banner_terceiro_2" name="texto_botao_banner_terceiro_2"
+                    placeholder="Texto do botão" class="mb-2">
+                <input type="url" name="link_botao_banner_terceiro_2" id="link_botao_banner_terceiro_2"
+                    placeholder="Link do botão" class="mb-2">
+                <label for="imagem_banner_terceiro_2">Imagem</label>
+                <div class="image-upload">
+                    <div class="image-select">
+                        <div class="image-select-button" id="imageName">Escolher
+                            imagem</div>
+                        <div class="image-select-name">Escolha uma imagem</div>
+                        <input type="file" class="escolher-imagem" id="imagem_banner_terceiro_2"
+                            name="imagem_banner_terceiro_2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row flex-wrap mx-3 mb-3 px-2 box-banners box-banners-terceiros" style="gap: 1rem;">
+            <h5>Banner 3</h5>
+            <div class="banner-terceiro_3 box-banner d-flex flex-column flex-wrap">
+                <label for="descricao_banner_terceiro_3">Descrição</label>
+                <textarea name="descricao_banner_terceiro_3" id="descricao_banner_terceiro_3" cols="30" rows="10"
+                    required></textarea>
+                <label for="texto_botao_banner_terceiro_3">Botão</label>
+                <input type="text" name="texto_botao_banner_terceiro_3" name="texto_botao_banner_terceiro_3"
+                    placeholder="Texto do botão" class="mb-2">
+                <input type="url" name="link_botao_banner_terceiro_3" id="link_botao_banner_terceiro_3"
+                    placeholder="Link do botão" class="mb-2">
+                <label for="imagem_banner_terceiro_3">Imagem</label>
+                <div class="image-upload">
+                    <div class="image-select">
+                        <div class="image-select-button" id="imageName">Escolher
+                            imagem</div>
+                        <div class="image-select-name">Escolha uma imagem</div>
+                        <input type="file" class="escolher-imagem" id="imagem_banner_terceiro_3"
+                            name="imagem_banner_terceiro_3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card color-mode p-0" style="margin-top: 3rem;">
+        <div class="w-100 px-3 pt-3">
+            Quarto Banner
+        </div>
+        <hr>
+        <div class="d-flex flex-row flex-wrap mx-3 mb-3 px-2 box-banners box-banners-quarto" style="gap: 1rem;">
+            <div class="banner-quarto box-banner d-flex flex-column flex-wrap">
+                <label for="tipo_banner_quarto">Tipo</label>
+                <div class="d-flex flex-row flex-wrap">
+                    <input type="radio" name="tipo_banner_quarto" id="tipo_banner_quarto_texto"
+                        class="tipo_banner_quarto_texto" checked required>
+                    <label for="tipo_banner_quarto_texto" class="mr-3 ml-1">Texto</label>
+                    <input type="radio" name="tipo_banner_quarto" id="tipo_banner_quarto_imagem"
+                        class="tipo_banner_quarto_imagem" required>
+                    <label for="tipo_banner_quarto_imagem" class="ml-1">Imagem</label>
+                </div>
+                <div class="tipo-banner-texto">
+                    <label for="titulo_banner_quarto">Título</label>
+                    <input type="text" name="titulo_banner_quarto" id="titulo_banner_quarto" placeholder="Título"
+                        required>
+                    <label for="descricao_banner_quarto">Descrição</label>
+                    <textarea name="descricao_banner_quarto" id="descricao_banner_quarto" cols="30" rows="10"
+                        required></textarea>
+                    <label for="texto_botao_banner_quarto">Botão</label>
+                    <input type="text" name="texto_botao_banner_quarto" name="texto_botao_banner_quarto"
+                        placeholder="Texto do botão" class="mb-2">
+                    <input type="url" name="link_botao_banner_quarto" id="link_botao_banner_quarto"
+                        placeholder="Link do botão" class="mb-2">
+                    <label for="imagem_banner_quarto">Imagem</label>
+                    <div class="image-upload">
+                        <div class="image-select">
+                            <div class="image-select-button" id="imageName">Escolher
+                                imagem</div>
+                            <div class="image-select-name">Escolha uma imagem</div>
+                            <input type="file" class="escolher-imagem" id="imagem_banner_quarto"
+                                name="imagem_banner_quarto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
