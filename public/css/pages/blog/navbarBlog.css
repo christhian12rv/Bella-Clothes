@@ -1,0 +1,26 @@
+.navbar-blog {
+    background-color: black;
+    padding-top: 1.3rem !important;
+    padding-bottom: 1.3rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    row-gap: 1rem;
+}
+
+.navbar-blog * {
+    color: white !important;
+}
+
+.navbar-blog a.ir-loja {
+    border: 1px solid white;
+    font-size: 0.8rem;
+}
+
+.navbar-blog a.ir-loja:hover {
+    background-color: #19c880;
+    border-color: #19c880;
+    color: white !important;
+}

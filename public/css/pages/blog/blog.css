@@ -1,0 +1,87 @@
+.owl-carousel {
+    margin-top: 3rem;
+}
+
+.custom_overlay_wrapper {
+    position: relative;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 1rem !important;
+    overflow: hidden;
+}
+
+.custom_overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .4);
+    -webkit-transition: all 400ms ease-in-out;
+    -moz-transition: all 400ms ease-in-out;
+    -o-transition: all 400ms ease-in-out;
+    transition: all 400ms ease-in-out;
+}
+
+.custom_overlay_inner {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    right: 50px;
+    transform: translateY(-50%);
+}
+
+.custom_overlay h2 {
+    color: white;
+    position: relative;
+    margin-bottom: 4px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.custom_overlay button {
+    color: white;
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: .35rem;
+    font-size: 1.3rem;
+}
+
+.owl-dots {
+    position: relative;
+    top: -40px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.owl-dots *:focus {
+    outline: unset !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.owl-dots .owl-dot.active span {
+    background-color: #19c880 !important;
+}
+
+/*------------------- TABLET ------------------*/
+
+@media only screen and ( min-width: 600px) and ( max-width: 999px) {
+    .custom_overlay h2 {
+        font-size: 1rem;
+    }
+    .custom_overlay button {
+        font-size: 1rem;
+    }
+}
+
+/*------------------- MOBILE ------------------*/
+
+@media only screen and ( max-width: 599px) {
+    .custom_overlay h2 {
+        font-size: 0.8rem;
+    }
+    .custom_overlay button {
+        font-size: 0.8rem;
+    }
+}

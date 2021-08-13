@@ -1,0 +1,82 @@
+.configurations-box, .box-especificacoes {
+    display: flex;
+}
+
+.configurations-box div, .box-especificacoes div {
+    display: flex;
+    flex-direction: row;
+}
+
+.configurations-box input, .configurations-box select, .configurations-box option, .configurations-box textarea, .box-especificacoes input, .box-especificacoes select, .box-especificacoes option, .box-especificacoes textarea {
+    width: 100%;
+}
+
+.configurations-box div label, .box-especificacoes div label {
+    width: 30%;
+    font-size: 0.95rem;
+    margin: 0 !important;
+    height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .configurations-box, .box-especificacoes {
+        display: block;
+    }
+    .configurations-box div label, .box-especificacoes div label {
+        width: 100%;
+    }
+    .configurations-box div, .box-especificacoes div {
+        display: block;
+        margin-top: .75rem;
+    }
+}
+
+.admin-content label {
+    font-size: 0.9rem !important;
+}
+
+.admin-content input:not([type='file']):not([type='submit']), select, option, textarea {
+    border: 1px solid #d1d1d1;
+    border-radius: .25rem;
+    background-color: transparent;
+    color: #515257 !important;
+}
+
+.admin-content input:not([type='file']):disabled, select:disabled, textarea:disabled {
+    background-color: #cfd1dd;
+}
+
+input:not([type='file']), select, option {
+    height: calc(1.3125rem + 1.2rem + 2px);
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem !important;
+}
+
+.admin-content.dark input:not([type='file']), .admin-content.dark select {
+    border: 1px solid #3c3c3c;
+}
+
+input:hover, input:focus, input:link, input:visited, select:hover, select:focus, select:link, select:visited, textarea:hover, textarea:focus, textarea:link, textarea:visited a:hover, a:focus, a:link, a:visited {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:hover, select:hover, textarea:hover {
+    border-color: rgb(23, 175, 130) !important;
+}
+
+.btn-salvar {
+    font-weight: bold !important;
+    display: inline-block !important;
+    padding: 10px 25px !important;
+    background-color: #19c880 !important;
+    color: #ffffff !important;
+    border-radius: 0 !important;
+    -webkit-transition: all 0.3s !important;
+    transition: all 0.3s !important;
+    border: none !important;
+}
+
+.btn-salvar:hover {
+    background-color: #118454 !important;
+}

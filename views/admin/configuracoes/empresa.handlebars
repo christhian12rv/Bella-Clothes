@@ -1,0 +1,57 @@
+<div class="d-flex flex-row flex-wrap mb-3">
+    <h3 class="title flex-grow-1">
+        Configurações da Empresa
+    </h3>
+</div>
+<form action="a" method="POST">
+    <div class="card color-mode flex-column flex-wrap w-100 p-3 configurations-box" style="gap: .5rem;">
+        <div>
+            <label for="nome">Nome</label>
+            <input type="text" placeholder="Nome" id="nome" value="Bella Clothes" readonly disabled required>
+        </div>
+        <div>
+            <label for="cnpj">CNPJ</label>
+            <input type="text" id="cnpj" placeholder="CNPJ" value="XX. XXX. XXX/0001-XX" readonly disabled required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" value="bella.clothes@gmail.com" required>
+        </div>
+        <br>
+        <div>
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereco" name="endereco" placeholder="Endereço" value="Rua tal" style="width: 69%"
+                class="mr-2" required>
+            <input type="text" id="numero" name="numero" placeholder="Nº" value="123" style="width: 29%" required>
+        </div>
+        <div>
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" name="complemento" placeholder="Complemento" value="Casa" required>
+        </div>
+        <div>
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" name="bairro" placeholder="bairro" value="Centro" required>
+        </div>
+        <div>
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" name="cidade" placeholder="cidade" value="Belo Horizonte" required>
+        </div>
+        <div>
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" name="estado" placeholder="estado" value="MG" required>
+        </div>
+        <div>
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" placeholder="cep" value="12345-012" required>
+        </div>
+        <div>
+            <label for="telefone1">Telefones</label>
+            <input type="text" id="telefone1" name="telefone1" placeholder="Telefone" value="00" style="width: 49%"
+                class="mr-2" required>
+            <input type="text" id="telefone2" name="telefone2" placeholder="Telefone 2" value="123" style="width: 49%">
+        </div>
+    </div>
+    <div class="text-center mt-3">
+        <input type="submit" value="Salvar" class="btn-salvar w-50">
+    </div>
+</form>

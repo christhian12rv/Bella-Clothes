@@ -1,2 +1,2 @@
-const currentYear = new Date().getFullYear();
-$("#year-copyright").html(currentYear);
+const year = new Date().getFullYear();
+$("#year-copyright").html(year);

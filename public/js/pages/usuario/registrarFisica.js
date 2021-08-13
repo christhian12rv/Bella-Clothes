@@ -2,8 +2,8 @@
 $("#content").remove();
 
 // Inserir opções no select "ano"
-currentYear = new Date().getFullYear();
-for (let i = currentYear - 18; i >= currentYear - 118; i--) {
+const year = new Date().getFullYear();
+for (let i = (year - 18); i >= (year - 118); i--) {
     $(".select-ano").append('<option value="' + i + '">' + i + '</option>');
 }
 

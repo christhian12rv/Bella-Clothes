@@ -164,6 +164,15 @@ router.get("/cupons-desconto", (req, res) => {
     })
 })
 
+router.get("/empresa", (req, res) => {
+    res.render("admin/configuracoes/empresa", {
+        css: "admin/configuracoes/empresa.css",
+        js: "admin/configuracoes/empresa.js",
+        title: "Empresa | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
 router.get("/erro-404", (req, res) => {
     res.render("admin/erro_404", {
         css: "admin/erro_404.css",

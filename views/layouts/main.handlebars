@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="/css/pages/main.css">
     {{#if paginaUsuario}}
         <link rel="stylesheet" href="/css/pages/usuario/sidebarUsuario.css">
-    {{/if}}
-    {{#if paginaAdmin}}
+    {{else if paginaBlog}}
+        <link rel="stylesheet" href="/css/pages/blog/navbarBlog.css">
+    {{else if paginaAdmin}}
         <link rel="stylesheet" href="/css/pages/admin/layouts/sidebarAdmin.css">
         <link rel="stylesheet" href="/css/pages/admin/layouts/navbarAdmin.css">
         <link rel="stylesheet" href="/css/pages/admin/layouts/contentAdmin.css">
@@ -52,6 +53,8 @@
     </div>
 
     {{#if paginaAdmin}}
+    {{else if paginaBlog}}
+        {{>_navbarBlog}}
     {{else}}
         {{>_navbar}}
     {{/if}}
@@ -68,25 +71,23 @@
                     {{{body}}}
                 </div>
             </div>
-        {{else}}
-            {{#if paginaAdmin}}
-                {{#if loginAdmin}}
-                    {{{body}}}
-                {{else}}
-                    <div style="display: flex; height: 100%; width: 100%;" class="admin-flex">
-                        {{>_sidebarAdmin}}
-                        <div style="width: 100%;" class=" nav-body-flex-content">
-                            {{>_navbarAdmin}}
-                            <div class="admin-content">
-                                {{{body}}}
-                            </div>
-                            {{>_footerAdmin}}
-                        </div>
-                    </div>
-                {{/if}}
-            {{else}}
+        {{else if paginaAdmin}}
+            {{#if loginAdmin}}
                 {{{body}}}
+            {{else}}
+                <div style="display: flex; height: 100%; width: 100%;" class="admin-flex">
+                    {{>_sidebarAdmin}}
+                    <div style="width: 100%;" class=" nav-body-flex-content">
+                        {{>_navbarAdmin}}
+                        <div class="admin-content">
+                            {{{body}}}
+                        </div>
+                        {{>_footerAdmin}}
+                    </div>
+                </div>
             {{/if}}
+        {{else}}
+            {{{body}}}
         {{/if}}
         <div class="modal-background">
         </div>
@@ -101,6 +102,7 @@
 <script src="/js/pages/layouts/main.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
 <script src="/js/rangeSlider.js"></script>
+<script type="text/javascript" src="/js/jquery/plugins/jquery.phone.brazil.js"></script>
 {{#if paginaUsuario}}
     <script src="/js/pages/usuario/sidebarUsuario.js"></script>
 {{/if}}

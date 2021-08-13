@@ -3,7 +3,7 @@ $(document).ready(function () {
     // Carrossel primeiro banner da página
     $('.owl-headBanner').owlCarousel({
         mouseDrag: true,
-        autoplay: false,
+        autoplay: true,
         smartSpeed: 500,
         margin: 0,
         loop: true,

@@ -12,8 +12,9 @@ const loja = require("./routes/loja");
 const carrinho = require("./routes/carrinho");
 const compra = require("./routes/compra");
 const usuario = require("./routes/usuario");
+const blog = require("./routes/blog");
 const admin = require("./routes/admin");
-const dbReads = require("./routes/dbReads")
+const dbReads = require("./routes/dbReads");
 
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
@@ -91,7 +92,7 @@ app.get("/login", (req, res) => {
 app.get("/registrar/fisica", (req, res) => {
     res.render("./usuario/registrarFisica", {
         css: "registrar.css",
-        js: "/usuario/registrarFisica.js",
+        js: "usuario/registrarFisica.js",
         title: "Registrar"
     })
 })
@@ -99,7 +100,7 @@ app.get("/registrar/fisica", (req, res) => {
 app.get("/registrar/juridica", (req, res) => {
     res.render("./usuario/registrarJuridica", {
         css: "registrar.css",
-        js: "/usuario/registrarJuridica.js",
+        js: "usuario/registrarJuridica.js",
         title: "Registrar"
     })
 })
@@ -213,6 +214,7 @@ app.use("/loja", loja);
 app.use("/carrinho", carrinho);
 app.use("/compra", compra);
 app.use("/usuario", usuario);
+app.use("/blog", blog);
 app.use("/admin", admin);
 app.use("/get", dbReads);
 
