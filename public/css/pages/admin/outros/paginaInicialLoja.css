@@ -149,3 +149,19 @@ input:hover, select:hover, textarea:hover {
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
+.btn-salvar {
+    font-weight: bold !important;
+    display: inline-block !important;
+    padding: 5px 55px !important;
+    background-color: #19c880 !important;
+    color: #ffffff !important;
+    border-radius: 0 !important;
+    -webkit-transition: all 0.3s !important;
+    transition: all 0.3s !important;
+    border: none !important;
+}
+
+.btn-salvar:hover {
+    background-color: #118454 !important;
+}

@@ -81,16 +81,17 @@
                     <i class="bi bi-box-seam"></i>
                     <p>Ver Produtos</p>
                 </a>
-                <a href="/admin/ver-categorias" class="d-flex flex-row px-4 sub-title sidebar-link ver-categorias">
+                <a href="/admin/produtos/ver-categorias"
+                    class="d-flex flex-row px-4 sub-title sidebar-link ver-categorias">
                     <i class="bi bi-tag-fill"></i>
                     <p>Categorias</p>
                 </a>
-                <a href="/admin/ver-subcategorias"
+                <a href="/admin/produtos/ver-subcategorias"
                     class="d-flex flex-row px-4 sub-title sidebar-link ver-subcategorias">
                     <i class="bi bi-tags-fill"></i>
                     <p>Subcategorias</p>
                 </a>
-                <a href="/admin/avaliacoes" class="d-flex flex-row px-4 sub-title sidebar-link avaliacoes">
+                <a href="/admin/produtos/avaliacoes" class="d-flex flex-row px-4 sub-title sidebar-link avaliacoes">
                     <i class="bi bi-list-stars"></i>
                     <p>Avaliações</p>
                 </a>
@@ -98,10 +99,24 @@
             </div>
         </div>
 
-        <a href="/admin/blog" class="d-flex flex-row px-4 sidebar-link blog">
-            <i class="bi bi-chat-left-text"></i>
-            <p class="flex-grow-1">Blog</p>
-        </a>
+        <div class="flex-list">
+            <div class="d-flex flex-row px-4 main-title sidebar-link blog">
+                <i class="bi bi-card-text"></i>
+                <p class="flex-grow-1">Blog</p>
+                <i class='bi bi-chevron-right'></i>
+            </div>
+            <div class="sub-list">
+                <a href="/admin/blog/posts" class="d-flex flex-row px-4 sub-title sidebar-link posts">
+                    <i class="bi bi-pencil-square"></i>
+                    <p class="flex-grow-1">Posts</p>
+                </a>
+                <a href="/admin/blog/categorias" class="d-flex flex-row px-4 sub-title sidebar-link categorias">
+                    <i class="bi bi-bookmark-fill"></i>
+                    <p>Categorias</p>
+                </a>
+                <hr>
+            </div>
+        </div>
 
         <div class="flex-list">
             <div class="d-flex flex-row px-4 main-title sidebar-link outros">

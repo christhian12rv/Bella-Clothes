@@ -1,9 +1,9 @@
-.card .ativar-produto {
+.card .ativar-post {
     background-color: #dc3545;
     color: white !important;
 }
 
-.card .ativar-produto:hover {
+.card .ativar-post:hover {
     background-color: #9b2530;
 }
 
@@ -12,20 +12,20 @@
     font-size: 0.9rem;
 }
 
-.first-box-details, .box-especificacoes {
+.post-box, .box-especificacoes {
     display: flex;
 }
 
-.first-box-details div, .box-especificacoes div {
+.post-box div, .box-especificacoes div {
     display: flex;
     flex-direction: row;
 }
 
-.first-box-details input, .first-box-details select, .first-box-details option, .first-box-details textarea, .box-especificacoes input, .box-especificacoes select, .box-especificacoes option, .box-especificacoes textarea {
+.post-box input, .post-box select, .post-box option, .post-box textarea, .box-especificacoes input, .box-especificacoes select, .box-especificacoes option, .box-especificacoes textarea {
     width: 100%;
 }
 
-.first-box-details div label, .box-especificacoes div label {
+.post-box div label, .box-especificacoes div label {
     width: 30%;
     font-size: 0.95rem;
     margin: 0 !important;
@@ -33,13 +33,13 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .first-box-details, .box-especificacoes {
+    .post-box, .box-especificacoes {
         display: block;
     }
-    .first-box-details div label, .box-especificacoes div label {
+    .post-box div label, .box-especificacoes div label {
         width: 100%;
     }
-    .first-box-details div, .box-especificacoes div {
+    .post-box div, .box-especificacoes div {
         display: block;
         margin-top: .75rem;
     }
@@ -83,72 +83,6 @@ input:hover, input:focus, input:link, input:visited, select:hover, select:focus,
 
 input:hover, select:hover, textarea:hover {
     border-color: rgb(23, 175, 130) !important;
-}
-
-.btn-open-details-variacao-produto {
-    font-size: 1.3rem;
-    color: #19c880 !important;
-    height: 25px;
-    width: 25px;
-    text-align: center;
-    vertical-align: top;
-    border-radius: .25rem;
-    -webkit-text-stroke: 0.8px #19c880;
-    background-color: #ededed;
-}
-
-.admin-content.dark .btn-open-details-variacao-produto {
-    background-color: #0e0e0e;
-}
-
-.btn-close-details-variacao-produto {
-    font-size: 1.3rem;
-    color: #ededed !important;
-    height: 25px;
-    width: 25px;
-    text-align: center;
-    vertical-align: top;
-    border-radius: .25rem;
-    -webkit-text-stroke: 0.8px #ededed;
-    background-color: #19c880;
-    display: none;
-}
-
-.btn-open-details-variacao-produto::before, .btn-close-details-variacao-produto::before {
-    vertical-align: 0px !important;
-}
-
-.details-variacao-produto * {
-    background-color: #f7f8fa;
-}
-
-.admin-content.dark .details-variacao-produto * {
-    background-color: #0e0e0e;
-}
-
-.imagens-box .dica-imagens {
-    color: grey;
-}
-
-.imagem-produto {
-    width: 80px;
-    height: 80px;
-    border-radius: .25rem;
-    cursor: grab;
-    margin: .25rem;
-    border: 1px solid #d1d1d1;
-}
-
-.box-image-product:active {
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-    cursor: -o-grabbing;
-    cursor: -ms-grabbing;
-    cursor: grabbing;
-}
-
-.box-image-product.over .imagem-produto, .imagem-produto.over {
-    border: 3px dotted #d1d1d1 !important;
 }
 
 .image-upload {
@@ -329,28 +263,4 @@ input:hover, select:hover, textarea:hover {
 
 .btn-salvar:hover {
     background-color: #118454 !important;
-}
-
-.table-variacao-produto th, .table-variacao-produto tr, .table-variacao-produto td {
-    border: 1px solid #d1d1d1 !important;
-}
-
-.admin-content.dark .table-variacao-produto th, .admin-content.dark .table-variacao-produto tr, .admin-content.dark .table-variacao-produto td {
-    border-color: #3c3c3c !important;
-}
-
-.table-variacao-produto tbody tr:first-child td:first-child {
-    border: none !important;
-}
-
-.table-variacao-produto tbody tr:nth-child(2) td table tbody tr td:nth-child(2) {
-    border: none !important;
-}
-
-.table-variacao-produto tbody tr:nth-child(2) td table tbody tr:first-child td:nth-child(2) {
-    border-left: 1px solid #d1d1d1 !important;
-}
-
-.admin-content.dark .table-variacao-produto tbody tr:nth-child(2) td table tbody tr:first-child td:nth-child(2) {
-    border-left-color: #3c3c3c !important;
 }

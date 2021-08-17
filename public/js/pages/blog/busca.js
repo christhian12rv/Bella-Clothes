@@ -1,17 +1,5 @@
 $(window).on("load", function () {
 
-    // Carrossel primeiro banner da página
-    $('.owl-headBanner').owlCarousel({
-        mouseDrag: false,
-        autoplay: true,
-        smartSpeed: 500,
-        margin: 0,
-        loop: true,
-        items: 1,
-        dots: true,
-        animateOut: 'fadeOut'
-    })
-
     $(".search-posts-icon").on("click", function () {
         $("#search-blog-form").submit();
     })
@@ -31,4 +19,5 @@ $(window).on("load", function () {
             tab.css("display", "flex");
         }
     })
+
 })

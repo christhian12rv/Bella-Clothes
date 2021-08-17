@@ -1,0 +1,406 @@
+.card {
+    width: 100%;
+}
+
+.card .top .row div div label {
+    white-space: pre-line;
+}
+
+@media screen and (max-width: 767px) {
+    li.paginate_button.previous {
+        display: inline;
+        background-color: rgba(0, 0, 0, 0.1) !important;
+        margin-right: .5rem !important;
+    }
+    li.paginate_button.next {
+        display: inline;
+        background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+    .admin-content.dark li.paginate_button.previous, .admin-content.dark li.paginate_button.next {
+        background-color: rgba(0, 0, 0, 0.8) !important;
+    }
+    li.paginate_button {
+        display: none;
+    }
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+    margin-right: .5rem !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0 !important;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control:before {
+    background-color: rgb(23, 175, 130) !important;
+    left: 0px !important;
+}
+
+.card .top {
+    padding-top: 1rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+.card .bottom {
+    padding-bottom: 1rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+.admin-content input, select, option {
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    background-color: transparent;
+    height: 40px;
+}
+
+.admin-content.dark input, .admin-content.dark select {
+    border: 1px solid #3c3c3c;
+}
+
+.admin-content.dark select>option, .pagination li:not(.paginate_button) {
+    background-color: #1a1a1a !important;
+}
+
+input:hover, input:focus, input:link, input:visited, select:hover, select:focus, select:link, select:visited, a:hover, a:focus, a:link, a:visited {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:hover, select:hover {
+    border-color: rgb(23, 175, 130);
+}
+
+.dt-buttons button {
+    margin-right: 10px;
+    border-radius: 0.25rem !important;
+    background-color: transparent !important;
+}
+
+.dt-buttons button:hover {
+    background-color: rgb(23, 175, 130)!important;
+    border: 1px solid rgb(23, 175, 130) !important;
+}
+
+.dt-buttons button:hover span {
+    color: white !important;
+}
+
+table {
+    width: 100% !important;
+    background-color: white;
+    box-shadow: 0 0 0px 0 rgb(0 0 0 / 15%);
+}
+
+.admin-content.dark table {
+    background-color: #1a1a1a;
+}
+
+table thead tr th:first-child, table tbody tr td:first-child {
+    padding-left: 1.5rem !important;
+}
+
+table thead {
+    background-color: #d0e4d3;
+}
+
+.admin-content.dark table thead {
+    background-color: #2d312e;
+}
+
+table thead tr th {
+    border-top: none !important;
+    color: rgb(23, 175, 130) !important;
+    padding-top: .4rem !important;
+    padding-bottom: .4rem !important;
+}
+
+table tbody tr td:first-child:not(.child) {
+    font-weight: bold !important;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.admin-content.dark table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+table tbody tr td {
+    color: grey !important;
+    font-size: 0.9rem;
+    vertical-align: middle !important;
+    border-width: 100px;
+}
+
+table tbody tr:first-child td {
+    border-top: none !important;
+}
+
+table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.admin-content.dark table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+table tbody tr:hover td {
+    color: black !important;
+}
+
+.admin-content.dark table tbody tr:hover td {
+    color: white !important;
+}
+
+table thead tr th {
+    border-bottom: none !important;
+}
+
+table thead th {
+    color: white !important;
+    font-weight: normal !important;
+}
+
+table thead th::before, table thead th::after {
+    font-family: bootstrap-icons !important;
+    color: rgb(23, 175, 130) !important;
+    font-weight: bold !important;
+    font-size: 0.8rem;
+    top: 35% !important;
+}
+
+table thead th::before {
+    top: 15% !important;
+}
+
+table thead th::before:hover {
+    color: black !important;
+}
+
+table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
+    content: "\f235" !important;
+    right: 0em !important;
+}
+
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+    content: "\f229" !important;
+    right: 0em !important;
+}
+
+.foto-produto, .foto-usuario {
+    height: 33px;
+}
+
+.foto-usuario {
+    border-radius: 100%;
+}
+
+.estrelas-avaliacao {
+    color: #FAC451;
+}
+
+.ver-avaliacao i {
+    font-size: 1.1rem;
+    color: #a3a3a3;
+    vertical-align: middle;
+}
+
+.ver-avaliacao:hover i {
+    color: #19c880 !important;
+}
+
+input[type='search']:focus {
+    border-color: unset !important;
+    background-color: transparent !important;
+}
+
+.admin-content.dark input[type='search']:focus {
+    color: rgba(255, 255, 255, .9) !important;
+}
+
+::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+.paginate_button a.page-link {
+    border: none !important;
+    color: black !important;
+    background-color: transparent !important;
+}
+
+.admin-content.dark .paginate_button a.page-link {
+    color: white !important;
+}
+
+.page-item.active {
+    z-index: 0;
+}
+
+.page-item.active .page-link {
+    background-color: #19c880 !important;
+    color: white !important;
+    border-radius: 0.25rem !important;
+}
+
+.page-item:not(.active) .page-link:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    border-radius: 0.25rem !important;
+}
+
+.admin-content.dark .page-item:not(.active) .page-link:hover {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.paginate_button.previous.disabled a, .paginate_button.next.disabled a {
+    color: grey !important;
+}
+
+.admin-content.dark .paginate_button.previous.disabled a, .admin-content.dark .paginate_button.next.disabled a {
+    color: grey !important;
+}
+
+.badge-success {
+    color: #006d0e !important;
+    background-color: #ccf0d1 !important;
+    border-color: #ccf0d1 !important;
+    border-radius: 50rem !important;
+}
+
+.admin-content.dark .badge-success {
+    color: #4ac55b !important;
+    background-color: #262c27 !important;
+}
+
+.badge-danger {
+    color: #920000 !important;
+    background-color: #fdcccc !important;
+    border-color: #fdcccc !important;
+    border-radius: 50rem !important;
+}
+
+.admin-content.dark .badge-danger {
+    color: #eb5050 !important;
+    background-color: #3a2e2e !important;
+}
+
+.admin-content .switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 16px;
+    vertical-align: middle;
+    top: 3.5px;
+}
+
+/* Hide default HTML checkbox */
+
+.admin-content .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+
+.admin-content .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fdb3b3;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.admin-content .slider:before {
+    position: absolute;
+    content: "";
+    top: 2px;
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.admin-content input:checked+.slider {
+    background-color: #99f0a4;
+}
+
+.admin-content input:focus+.slider {
+    box-shadow: 0 0 1px #99f0a4;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.admin-content input:checked+.slider:before {
+    -webkit-transform: translateX(11px);
+    -ms-transform: translateX(11px);
+    transform: translateX(11px);
+}
+
+/* Rounded sliders */
+
+.admin-content .slider.round {
+    border-radius: 34px;
+}
+
+.admin-content .slider.round:before {
+    border-radius: 50%;
+}
+
+div.dataTables_wrapper div.dataTables_processing {
+    margin-left: -50% !important;
+    top: 26px !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    z-index: 1 !important;
+}
+
+.admin-content.dark div.dataTables_wrapper div.dataTables_processing {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+#table-avaliacoes_processing::after {
+    content: "";
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -13px;
+    border-radius: 60px;
+    animation: loader 0.8s linear infinite;
+    -webkit-animation: loader 0.8s linear infinite;
+}
+
+@keyframes loader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        border: 4px solid #19c880;
+        border-left-color: transparent;
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        border: 4px solid white;
+        border-left-color: transparent;
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+        border: 4px solid #118454;
+        border-left-color: transparent;
+    }
+}

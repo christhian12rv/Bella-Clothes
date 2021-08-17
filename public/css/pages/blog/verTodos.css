@@ -1,0 +1,148 @@
+.container-box {
+    background-color: #fafafa !important;
+}
+
+.search-posts-box {
+    background-color: transparent;
+    padding-right: 5%;
+}
+
+.search-posts-input {
+    border: none;
+    height: 35px;
+    background-color: transparent;
+}
+
+.search-posts-input:focus, .search-posts-input:hover {
+    border-bottom: 2px solid #ccc;
+}
+
+.search-posts-input::placeholder {
+    color: #ccc;
+}
+
+.search-posts-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.search-posts-icon {
+    cursor: pointer;
+    -webkit-text-stroke: .6px black;
+}
+
+.search-posts-icon:hover {
+    -webkit-text-stroke: .6px #19c880;
+}
+
+.resultados {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.resultados .address-navigation a {
+    color: #000 !important;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+.resultados .address-navigation a:hover {
+    text-decoration: none;
+}
+
+.resultados .address-navigation span span {
+    font-size: 0.9rem;
+}
+
+.resultados .resultados-title {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.resultados .nenhum-resultado {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.resultados .nenhum-resultado h6 {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.resultados .nenhum-resultado h6:first-child {
+    font-weight: bold;
+}
+
+.resultados .nenhum-resultado h6:last-child {
+    font-weight: bold;
+    color: #999;
+}
+
+.busca-texto {
+    text-transform: capitalize !important;
+}
+
+.resultados .resultados-posts {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: transparent;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    column-gap: 2%;
+}
+
+.resultados-posts .post {
+    border-radius: .75rem;
+    overflow: hidden;
+    flex-basis: 49%;
+    background-color: #fff;
+}
+
+@media only screen and (max-width: 487px) {
+    .resultados .resultados-posts .post {
+        flex-basis: 100%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .resultados .resultados-posts .post {
+        flex-basis: 23.5%;
+    }
+}
+
+.resultados .resultados-posts .post:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    cursor: pointer;
+}
+
+.resultados .resultados-posts .post, .resultados .resultados-posts .post:hover, .resultados .resultados-posts .post:focus, .resultados .resultados-posts .post:link, .resultados .resultados-posts .post:visited {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+.resultados .resultados-posts .post .post-img {
+    position: relative;
+    height: 100px;
+    overflow: hidden;
+}
+
+.resultados .resultados-posts .post .post-img img {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.resultados .resultados-posts .post .post-title {
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    background-color: #fff;
+}
+
+.resultados .resultados-posts .post .post-title h5 {
+    overflow-wrap: break-word;
+}

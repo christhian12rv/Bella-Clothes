@@ -35,100 +35,116 @@
     -webkit-text-stroke: .6px #19c880;
 }
 
-.owl-carousel {
-    margin-top: 1rem;
-}
-
-.custom_overlay_wrapper {
-    position: relative;
+.resultados {
     margin-left: 5%;
     margin-right: 5%;
-    border-radius: 1rem !important;
-    overflow: hidden;
-    height: 35vw;
 }
 
-.custom_overlay_wrapper a img {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+.resultados .address-navigation a {
+    color: #000 !important;
+    text-decoration: underline;
+    font-size: 0.9rem;
 }
 
-.custom_overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, .4);
-    -webkit-transition: all 400ms ease-in-out;
-    -moz-transition: all 400ms ease-in-out;
-    -o-transition: all 400ms ease-in-out;
-    transition: all 400ms ease-in-out;
+.resultados .address-navigation a:hover {
+    text-decoration: none;
 }
 
-.custom_overlay_inner {
-    position: absolute;
-    top: 50%;
-    left: 50px;
-    right: 50px;
-    transform: translateY(-50%);
+.resultados .address-navigation span span {
+    font-size: 0.9rem;
 }
 
-.custom_overlay h2 {
-    color: white;
-    position: relative;
-    margin-bottom: 4px;
+.resultados .resultados-title {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
-    overflow-wrap: break-word;
 }
 
-.custom_overlay button {
-    color: white;
-    border: 2px solid white;
-    background-color: transparent;
-    border-radius: .35rem;
-    font-size: 1.3rem;
+.resultados .nenhum-resultado {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
-.owl-dots {
+.resultados .nenhum-resultado h6 {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.resultados .nenhum-resultado h6:first-child {
+    font-weight: bold;
+}
+
+.resultados .nenhum-resultado h6:last-child {
+    font-weight: bold;
+    color: #999;
+}
+
+.busca-texto {
+    text-transform: capitalize !important;
+}
+
+.resultados .resultados-posts {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: transparent;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    column-gap: 2%;
+}
+
+.resultados-posts .post {
+    border-radius: .75rem;
+    overflow: hidden;
+    flex-basis: 49%;
+    background-color: #fff;
+}
+
+@media only screen and (max-width: 487px) {
+    .resultados .resultados-posts .post {
+        flex-basis: 100%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .resultados .resultados-posts .post {
+        flex-basis: 23.5%;
+    }
+}
+
+.resultados .resultados-posts .post:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    cursor: pointer;
+}
+
+.resultados .resultados-posts .post, .resultados .resultados-posts .post:hover, .resultados .resultados-posts .post:focus, .resultados .resultados-posts .post:link, .resultados .resultados-posts .post:visited {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+.resultados .resultados-posts .post .post-img {
     position: relative;
-    top: -40px;
-    outline: none !important;
-    box-shadow: none !important;
+    height: 100px;
+    overflow: hidden;
 }
 
-.owl-dots *:focus {
-    outline: unset !important;
-    box-shadow: none !important;
-    border: none !important;
+.resultados .resultados-posts .post .post-img img {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.owl-dots .owl-dot.active span {
-    background-color: #19c880 !important;
+.resultados .resultados-posts .post .post-title {
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    background-color: #fff;
 }
 
-/*------------------- TABLET ------------------*/
-
-@media only screen and ( min-width: 600px) and ( max-width: 999px) {
-    .custom_overlay h2 {
-        font-size: 1rem;
-    }
-    .custom_overlay button {
-        font-size: 1rem;
-    }
-}
-
-/*------------------- MOBILE ------------------*/
-
-@media only screen and ( max-width: 599px) {
-    .custom_overlay h2 {
-        font-size: 0.8rem;
-    }
-    .custom_overlay button {
-        font-size: 0.8rem;
-    }
+.resultados .resultados-posts .post .post-title h5 {
+    overflow-wrap: break-word;
 }
 
 .tabs {
@@ -144,7 +160,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
 }
 
 .tabs label {
@@ -156,6 +171,7 @@
     cursor: pointer;
     background-color: transparent;
     font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .tabs label:hover {

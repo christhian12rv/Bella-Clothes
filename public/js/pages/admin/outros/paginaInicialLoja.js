@@ -74,6 +74,11 @@ $(document).on("click", ".tipo_banner_quarto_imagem", function () {
     }
 })
 
+$("input[type=file]").on("change", function () {
+    if ($(this)[0].files.length >= 1)
+        $(this).prev(".image-select-name").html($(this)[0].files[0].name);
+})
+
 /**************************************************** FUNÇÕES ****************************************************************** */
 
 function bannerInicial(id) {

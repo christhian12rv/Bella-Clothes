@@ -1,0 +1,120 @@
+.container-box {
+    background-color: #fafafa !important;
+    padding-bottom: 3rem !important;
+}
+
+.search-posts-box {
+    background-color: transparent;
+    padding-right: 5%;
+}
+
+.search-posts-input {
+    border: none;
+    height: 35px;
+    background-color: transparent;
+}
+
+.search-posts-input:focus, .search-posts-input:hover {
+    border-bottom: 2px solid #ccc;
+}
+
+.search-posts-input::placeholder {
+    color: #ccc;
+}
+
+.search-posts-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.search-posts-icon {
+    cursor: pointer;
+    -webkit-text-stroke: .6px black;
+}
+
+.search-posts-icon:hover {
+    -webkit-text-stroke: .6px #19c880;
+}
+
+.post-conteudo {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.post-conteudo .address-navigation a {
+    color: #000 !important;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+.post-conteudo .address-navigation a:hover {
+    text-decoration: none;
+}
+
+.post-conteudo .address-navigation span span {
+    font-size: 0.9rem;
+}
+
+.post-conteudo .custom_overlay_wrapper {
+    position: relative;
+    border-radius: 1rem !important;
+    overflow: hidden;
+    height: 35vw;
+}
+
+.post-conteudo .custom_overlay_wrapper img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+.post-conteudo .custom_overlay_wrapper .custom_overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .4);
+    -webkit-transition: all 400ms ease-in-out;
+    -moz-transition: all 400ms ease-in-out;
+    -o-transition: all 400ms ease-in-out;
+    transition: all 400ms ease-in-out;
+}
+
+.post-conteudo .post-texto {
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .post-conteudo .post-texto {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.post-conteudo .post-texto .post-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.post-conteudo .post-texto .texto {
+    text-align: justify;
+    font-size: 1.2rem;
+}
+
+.post-conteudo .post-texto a {
+    color: #000 !important;
+    text-decoration: underline;
+}
+
+.post-conteudo .post-texto a:hover {
+    text-decoration: none;
+}
+
+.post-conteudo .post-texto a.social-network:hover {
+    color: #19c880 !important;
+}

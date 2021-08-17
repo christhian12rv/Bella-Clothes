@@ -5,41 +5,83 @@
     </form>
 </div>
 
-<div class="owl-carousel owl-theme w-100 p-0 owl-headBanner">
-    <div class="custom_overlay_wrapper">
-        <a href="http://google.com">
-            <img src="/img/home/camisas-banner.jpg">
-            <div class="custom_overlay">
-                <span class="custom_overlay_inner">
-                    <h2>Conheça os diferentes tipos de skate</h2>
-                    <button>Ler mais</button>
-                </span>
+<div class="resultados">
+    <p class="mt-4 address-navigation">
+        <span>
+            <a href="/blog" class="mr-1">Home</a> >
+        </span>
+        <span class="ml-1 mr-1">
+            <span>
+                Resultados para "<span class="busca-texto">{{buscar}}</span>"
+            </span>
+        </span>
+    </p>
+
+    <h3 class="resultados-title">Resultados para "<span class="busca-texto">{{buscar}}</span>"</h3>
+
+    <div class="resultados-posts">
+        <a href="/blog/lifestyle/dicas-para-deixar-seu-tenis-limpinho" class="post">
+            <div class="post-img">
+                <img src="/img/1_standard-large.jpg" alt="">
+            </div>
+            <div class="post-title">
+                <h5>Dicas para deixar seu tênis limpinho</h5>
+            </div>
+        </a>
+
+        <a href="/blog/lifestyle/dicas-para-deixar-seu-tenis-limpinho" class="post">
+            <div class="post-img">
+                <img src="/img/tenisTeste.jpg" alt="">
+            </div>
+            <div class="post-title">
+                <h5>Dicas para deixar seu tênis limpinho</h5>
+            </div>
+        </a>
+
+        <a href="/blog/lifestyle/dicas-para-deixar-seu-tenis-limpinho" class="post">
+            <div class="post-img">
+                <img src="/img/menina.jpg" alt="">
+            </div>
+            <div class="post-title">
+                <h5>Dicas para deixar seu tênis limpinho</h5>
+            </div>
+        </a>
+
+        <a href="/blog/lifestyle/dicas-para-deixar-seu-tenis-limpinho" class="post">
+            <div class="post-img">
+                <img src="/img/1_standard-large.jpg" alt="">
+            </div>
+            <div class="post-title">
+                <h5>Dicas para deixar seu tênis limpinho</h5>
+            </div>
+        </a>
+
+        <a href="/blog/lifestyle/dicas-para-deixar-seu-tenis-limpinho" class="post">
+            <div class="post-img">
+                <img src="/img/1_standard-large.jpg" alt="">
+            </div>
+            <div class="post-title">
+                <h5>Dicas para deixar seu tênis limpinho</h5>
+            </div>
+        </a>
+        <a href="/blog/lifestyle/dicas-para-deixar-seu-tenis-limpinho" class="post">
+            <div class="post-img">
+                <img src="/img/1_standard-large.jpg" alt="">
+            </div>
+            <div class="post-title">
+                <h5>Dicas para deixar seu tênis limpinho</h5>
             </div>
         </a>
     </div>
-    <div class="custom_overlay_wrapper">
-        <a href="http://google.com">
-            <img src="/img/home/camisas-banner2.jpg">
-            <div class="custom_overlay">
-                <span class="custom_overlay_inner">
-                    <h2>Como retomar a rotina de exercícios?</h2>
-                    <button>Ler mais</button>
-                </span>
-            </div>
-        </a>
-    </div>
-    <div class="custom_overlay_wrapper">
-        <a href="http://google.com">
-            <img src="/img/home/bolsa.jpg">
-            <div class="custom_overlay">
-                <span class="custom_overlay_inner">
-                    <h2>Como retomar a rotina de exercícios?</h2>
-                    <button>Ler mais</button>
-                </span>
-            </div>
-        </a>
-    </div>
+
+    {{!-- <div class="nenhum-resultado">
+        <h6>Nenhum resultado de busca para:</h6>
+        <h6>"{{buscar}}"</h6>
+    </div> --}}
+    <hr>
 </div>
+
+<h4 class="text-center font-weight-bold" style="margin-top: 4rem; margin-bottom: 2rem;">CONHEÇA TAMBÉM</h4>
 
 <div class="tabs">
 
@@ -111,7 +153,7 @@
             </div>
         </a>
 
-        <a href="/blog/lifestyle" class="tab-post view-all-posts">
+        <a href="/" class="tab-post view-all-posts">
             <div class="view-all-posts-content">
                 <i class="bi bi-three-dots"></i><br>
                 <h4>Ver tudo de Lifestyle</h4>
@@ -174,7 +216,7 @@
             </div>
         </a>
 
-        <a href="/blog/esportes" class="tab-post view-all-posts">
+        <a href="/" class="tab-post view-all-posts">
             <div class="view-all-posts-content">
                 <i class="bi bi-three-dots"></i><br>
                 <h4>Ver tudo de Esportes</h4>
@@ -237,7 +279,7 @@
             </div>
         </a>
 
-        <a href="/blog/bem-estar" class="tab-post view-all-posts">
+        <a href="/" class="tab-post view-all-posts">
             <div class="view-all-posts-content">
                 <i class="bi bi-three-dots"></i><br>
                 <h4>Ver tudo de Bem-estar</h4>
@@ -300,7 +342,7 @@
             </div>
         </a>
 
-        <a href="/blog/dia-a-dia" class="tab-post view-all-posts">
+        <a href="/" class="tab-post view-all-posts">
             <div class="view-all-posts-content">
                 <i class="bi bi-three-dots"></i><br>
                 <h4>Ver tudo de Dia a Dia</h4>

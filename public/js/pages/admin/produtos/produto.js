@@ -23,12 +23,13 @@ $("#genero").on("change", function () {
             $("#genero-infantil").remove();
 })
 
-if ($("#cp-dark-content").prop("checked")) {
-    $("#descricao_introducao").parent().addClass("trumbowyg-dark");
-}
-$('#descricao_introducao').trumbowyg(trumbowygOptions());
-$('#descricao_recursos').trumbowyg(trumbowygOptions());
-
+$(window).on("load", function () {
+    if ($("#cp-dark-content").prop("checked")) {
+        $("#descricao_introducao").parent().addClass("trumbowyg-dark");
+    }
+    $('#descricao_introducao').trumbowyg(trumbowygOptions());
+    $('#descricao_recursos').trumbowyg(trumbowygOptions());
+})
 
 // Adicionar variação 1 do produto
 $(".box-variacoes-produto").append(productVariation(1));

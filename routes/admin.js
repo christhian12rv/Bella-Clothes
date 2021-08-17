@@ -78,7 +78,7 @@ router.get("/usuario/:id", (req, res) => {
     res.render("admin/usuarios/usuario", {
         css: "admin/usuarios/usuario.css",
         js: "admin/usuarios/usuario.js",
-        title: "Detalhes do Usuário | Bella Clothes Admin",
+        title: "Alexander Pierce | Bella Clothes Admin",
         paginaAdmin: true
     })
 })
@@ -114,7 +114,7 @@ router.get("/produto/:id", (req, res) => {
     res.render("admin/produtos/produto", {
         css: "admin/produtos/produto.css",
         js: "admin/produtos/produto.js",
-        title: "Detalhes do Produto | Bella Clothes Admin",
+        title: "Tênis Branco Nike | Bella Clothes Admin",
         paginaAdmin: true
     })
 })
@@ -123,25 +123,70 @@ router.get("/adicionar-produto", (req, res) => {
     res.render("admin/produtos/adicionarProduto", {
         css: "admin/produtos/adicionarProduto.css",
         js: "admin/produtos/adicionarProduto.js",
-        title: "AdicionarProduto | Bella Clothes Admin",
+        title: "Adicionar Produto | Bella Clothes Admin",
         paginaAdmin: true
     })
 })
 
-router.get("/ver-categorias", (req, res) => {
+router.get("/produtos/ver-categorias", (req, res) => {
     res.render("admin/produtos/verCategorias", {
         css: "admin/produtos/verCategorias.css",
         js: "admin/produtos/verCategorias.js",
-        title: "Categorias | Bella Clothes Admin",
+        title: "Produtos Categorias | Bella Clothes Admin",
         paginaAdmin: true
     })
 })
 
-router.get("/ver-subcategorias", (req, res) => {
+router.get("/produtos/ver-subcategorias", (req, res) => {
     res.render("admin/produtos/verSubcategorias", {
         css: "admin/produtos/verSubcategorias.css",
         js: "admin/produtos/verSubcategorias.js",
-        title: "Subcategorias | Bella Clothes Admin",
+        title: "Produtos Subcategorias | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/produtos/avaliacoes", (req, res) => {
+    res.render("admin/produtos/avaliacoes", {
+        css: "admin/produtos/avaliacoes.css",
+        js: "admin/produtos/avaliacoes.js",
+        title: "Avalições de Produtos | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/blog/posts", (req, res) => {
+    res.render("admin/blog/verPosts", {
+        css: "admin/blog/verPosts.css",
+        js: "admin/blog/verPosts.js",
+        title: "Blog Posts | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/blog/post/:id", (req, res) => {
+    res.render("admin/blog/post", {
+        css: "admin/blog/post.css",
+        js: "admin/blog/post.js",
+        title: "Admin Post - Dicas para deixar seu tênis limpinho | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/blog/adicionar-post", (req, res) => {
+    res.render("admin/blog/adicionarPost", {
+        css: "admin/blog/adicionarPost.css",
+        js: "admin/blog/adicionarPost.js",
+        title: "Adicionar Post | Bella Clothes Admin",
+        paginaAdmin: true
+    })
+})
+
+router.get("/blog/categorias", (req, res) => {
+    res.render("admin/blog/categorias", {
+        css: "admin/blog/categorias.css",
+        js: "admin/blog/categorias.js",
+        title: "Blog Categorias | Bella Clothes Admin",
         paginaAdmin: true
     })
 })
