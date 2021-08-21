@@ -246,10 +246,6 @@
     resize: none;
 }
 
-.subcategory-card #slug {
-    text-transform: lowercase;
-}
-
 .subcategory-card select {
     color: black !important;
 }

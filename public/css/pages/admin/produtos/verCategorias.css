@@ -283,10 +283,6 @@
     resize: none;
 }
 
-.category-card #slug {
-    text-transform: lowercase;
-}
-
 .category-card textarea::-webkit-scrollbar {
     width: 10px;
 }

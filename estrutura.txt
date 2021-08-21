@@ -264,3 +264,7 @@
             - id
             - nome
             - quantidade - DEFAULT = 0
+
+
+TOASTS
+    Cupom - Exibir para todos os usuários ao admin criar 1;

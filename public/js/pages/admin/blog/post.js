@@ -24,8 +24,16 @@ $("input[type=file]").on("change", function () {
         $(this).prev(".image-select-name").html($(this)[0].files[0].name);
 })
 
-
 /**************************************************** FUNÇÕES ****************************************************************** */
+
+const regexExpSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
+function validateSlug(input) {
+    if (!regexExpSlug.test(input.value)) {
+        input.setCustomValidity("Digite um slug válido");
+    } else {
+        input.setCustomValidity("");
+    }
+}
 
 function trumbowygOptions() {
     var options = {
@@ -52,4 +60,15 @@ function trumbowygOptions() {
     };
 
     return options;
+}
+
+function validateImageType(input) {
+    var fileName = input.value;
+    var idxDot = fileName.lastIndexOf(".") + 1;
+    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (extFile == "png" || extFile == "jpg" || extFile == "jpeg") {
+        input.setCustomValidity("");
+    } else {
+        input.setCustomValidity("Apenas imagens (png, jpg ou jpeg) são aceitas");
+    }
 }

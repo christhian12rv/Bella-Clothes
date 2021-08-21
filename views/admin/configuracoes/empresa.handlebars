@@ -21,28 +21,31 @@
         <div>
             <label for="endereco">Endereço</label>
             <input type="text" id="endereco" name="endereco" placeholder="Endereço" value="Rua tal" style="width: 69%"
-                class="mr-2" required>
+                class="mr-2" minlength="6" required>
             <input type="text" id="numero" name="numero" placeholder="Nº" value="123" style="width: 29%" required>
         </div>
         <div>
             <label for="complemento">Complemento</label>
-            <input type="text" id="complemento" name="complemento" placeholder="Complemento" value="Casa" required>
+            <input type="text" id="complemento" name="complemento" placeholder="Complemento" value="Casa" minlength="2"
+                required>
         </div>
         <div>
             <label for="bairro">Bairro</label>
-            <input type="text" id="bairro" name="bairro" placeholder="bairro" value="Centro" required>
+            <input type="text" id="bairro" name="bairro" placeholder="Bairro" value="Centro" minlength="2" required>
         </div>
         <div>
             <label for="cidade">Cidade</label>
-            <input type="text" id="cidade" name="cidade" placeholder="cidade" value="Belo Horizonte" required>
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade" value="Belo Horizonte" minlength="2"
+                required>
         </div>
         <div>
             <label for="estado">Estado</label>
-            <input type="text" id="estado" name="estado" placeholder="estado" value="MG" required>
+            <input type="text" id="estado" name="estado" placeholder="Estado" value="MG" minlength="2" required>
         </div>
         <div>
             <label for="cep">CEP</label>
-            <input type="text" id="cep" name="cep" placeholder="cep" value="12345-012" required>
+            <input type="text" id="cep" name="cep" placeholder="CEP" value="12345-012" maxlength="8" minlength="8"
+                required>
         </div>
         <div>
             <label for="telefone1">Telefones</label>

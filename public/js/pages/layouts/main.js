@@ -16,7 +16,14 @@ $(window).resize(() => {
 $(window).on('load', function () {
     $(".loader").fadeOut();
     $("#preloder").delay(100).fadeOut("slow");
+    $('.toast').toast('show');
+
+    const cookiePopUp = getCookieValue('cookiePopUp');
+    if (cookiePopUp != 'showed') {
+        $(".toast-cookie").addClass("show");
+    }
 });
+
 
 // Tamanho da Tela
 if (window.matchMedia('screen and (max-width: 768px)').matches) {
@@ -194,3 +201,34 @@ $(window).on("resize", function () {
 
 const currentYear = new Date().getFullYear();
 $("#year-copyright").html(currentYear);
+
+
+function getCookieValue(cookieName) {
+    var cname = cookieName + '=';
+    var cookies = document.cookie;
+    if (cookies.indexOf(cname) == -1) {
+        return false;
+    }
+    cookies = cookies.substr(cookies.indexOf(cname), cookies.length);
+    if (cookies.indexOf(';') != -1) {
+        cookies = cookies.substr(0, cookies.indexOf(';'));
+    }
+    cookies = cookies.split('=')[1];
+    return decodeURI(cookies);
+}
+
+function createCookie(nameCookie, valueCookie, expirationDays) {
+    var cookieExpDate = new Date();
+    cookieExpDate.setTime(cookieExpDate.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
+    cookieExpDate = cookieExpDate.toGMTString();
+    valueCookie = encodeURI(valueCookie);
+    document.cookie = nameCookie + '=' + valueCookie + '; expires=' + cookieExpDate + ';';
+}
+
+function cookiesHide() {
+    createCookie('cookiePopUp', 'showed', 3);
+    $(".toast-cookie").animate({ opacity: 0 }, 500);
+    setInterval(() => {
+        $(".toast-cookie").removeClass("show");
+    }, 500);
+}

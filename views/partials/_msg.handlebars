@@ -1,0 +1,82 @@
+<!-- success_msg e error_msg: Variáveis globais -->
+<div class="toast-container position-fixed">
+    {{#if success_msg}}
+        <div class="toast success align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+            data-autohide="false">
+            <div class="d-flex">
+                <div class="toast-icon m-auto">
+                    <i class="bi bi-check-lg"></i>
+                </div>
+                <div class="toast-body">
+                    Hello, world! This is a toast success message test.
+                </div>
+                <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                        class="bi bi-x-lg"></i></button>
+            </div>
+        </div>
+        <div class="toast error align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+            data-autohide="false">
+            <div class="d-flex">
+                <div class="toast-icon m-auto">
+                    <i class="bi bi-shield-exclamation"></i>
+                </div>
+                <div class="toast-body">
+                    Hello, world! This is a toast error message test.
+                </div>
+                <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                        class="bi bi-x-lg"></i></button>
+            </div>
+        </div>
+        <div class="toast warning align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+            data-autohide="false">
+            <div class="d-flex">
+                <div class="toast-icon m-auto">
+                    <i class="bi bi-exclamation-triangle"></i>
+                </div>
+                <div class="toast-body">
+                    Hello, world! This is a toast warning message test.
+                </div>
+                <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                        class="bi bi-x-lg"></i></button>
+            </div>
+        </div>
+        <div class="toast info align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+            data-autohide="false">
+            <div class="d-flex">
+                <div class="toast-icon m-auto">
+                    <i class="bi bi-info-circle"></i>
+                </div>
+                <div class="toast-body">
+                    Hello, world! This is a toast info message test.
+                </div>
+                <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                        class="bi bi-x-lg"></i></button>
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if error_msg}}
+        <div class="toast error-toast">Some text some message..</div>
+    {{/if}}
+
+    {{#if warning_msg}}
+        <div class="toast alert alert-warning">{{warning_msg}}</div>
+    {{/if}}
+
+    {{#if info_msg}}
+        <div class="toast alert alert-info">{{info_msg}}</div>
+    {{/if}}
+</div>
+
+<div class="toast-cookie px-4 py-3">
+    <h6 class="w-100">Cookies e Privacidade</h6>
+    <img src="/img/icons/cookie.png" alt="">
+    <p>
+        Este site armazena dados como cookies para habilitar e melhorar seu funcionamento, incluindo análises e
+        personalização.
+        Ao usar este site, você aceita automaticamente o uso de cookies.
+        <br>
+        <a href="#">Ler mais</a>
+    </p>
+    <button onclick="cookiesHide()">Eu entendi</button>
+</div>

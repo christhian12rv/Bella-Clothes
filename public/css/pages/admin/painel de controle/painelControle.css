@@ -373,33 +373,135 @@ a.ver-todos:hover {
     color: white !important;
 }
 
-table thead tr td {
-    border-top: none !important;
+table {
+    width: 100% !important;
+    background-color: white;
+    box-shadow: 0 0 0px 0 rgb(0 0 0 / 15%);
 }
 
-table tbody tr td {
-    color: rgb(123, 123, 123) !important;
+.admin-content.dark table {
+    background-color: #1a1a1a;
 }
 
 table tbody tr:last-child td:last-child {
     width: 1%;
 }
 
-.table-detalhes-link {
-    display: inline-flex;
-}
-
-.table-detalhes-link:hover {
-    color: #0061c9 !important;
+table thead tr th:first-child, table tbody tr td:first-child {
+    padding-left: 1.5rem !important;
 }
 
 table thead {
-    background-image: linear-gradient(90deg, rgb(30, 235, 163), rgb(23, 175, 130), #252d47)!important;
+    background-color: #d0e4d3;
+}
+
+.admin-content.dark table thead {
+    background-color: #2d312e;
+}
+
+table thead tr th {
+    border-top: none !important;
+    color: rgb(23, 175, 130) !important;
+    padding-top: .4rem !important;
+    padding-bottom: .4rem !important;
+}
+
+table tbody tr td:first-child:not(.child) {
+    font-weight: bold !important;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.admin-content.dark table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+table tbody tr td {
+    color: grey !important;
+    font-size: 0.9rem;
+    vertical-align: middle !important;
+    border-width: 100px;
+}
+
+table tbody tr:first-child td {
+    border-top: none !important;
+}
+
+table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.admin-content.dark table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+table tbody tr:hover td {
+    color: black !important;
+}
+
+.admin-content.dark table tbody tr:hover td {
+    color: white !important;
+}
+
+table thead tr th {
+    border-bottom: none !important;
 }
 
 table thead th {
     color: white !important;
     font-weight: normal !important;
+}
+
+table thead th::before, table thead th::after {
+    font-family: bootstrap-icons !important;
+    color: rgb(23, 175, 130) !important;
+    font-weight: bold !important;
+    font-size: 0.8rem;
+    top: 35% !important;
+}
+
+table thead th::before {
+    top: 15% !important;
+}
+
+table thead th::before:hover {
+    color: black !important;
+}
+
+table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
+    content: "\f235" !important;
+    right: 0em !important;
+}
+
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+    content: "\f229" !important;
+    right: 0em !important;
+}
+
+.badge-success {
+    color: #006d0e !important;
+    background-color: #ccf0d1 !important;
+    border-color: #ccf0d1 !important;
+    border-radius: 50rem !important;
+}
+
+.admin-content.dark .badge-success {
+    color: #4ac55b !important;
+    background-color: #262c27 !important;
+}
+
+.badge-danger {
+    color: #920000 !important;
+    background-color: #fdcccc !important;
+    border-color: #fdcccc !important;
+    border-radius: 50rem !important;
+}
+
+.admin-content.dark .badge-danger {
+    color: #eb5050 !important;
+    background-color: #3a2e2e !important;
 }
 
 .highcharts-button-box {

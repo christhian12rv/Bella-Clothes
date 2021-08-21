@@ -1,42 +1,46 @@
 <!-- Pimeiro Carrosel - Head Banner -->
 <div class="owl-carousel owl-theme w-100 p-0 owl-headBanner">
-  <div class="item">
-    <div class="banner-img-box">
-      <img src="/img/home/bolsa.jpg" alt="">
-    </div>
-    <div class="banner-content-box">
-      <h3>Novos produtos com 50% de desconto!</h3>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore reiciendis veniam iste, amet quaerat
-        repudiandae odit, cupiditate libero nesciunt similique minus officiis doloremque numquam ea esse sapiente? Nam,
-        deserunt cumque.</p>
-      <a href="/loja" class="btn banner-button mt-4">Ver Produtos</a>
-    </div>
+  <div class="custom_overlay_wrapper">
+    <a href="http://google.com">
+      <img src="/img/home/camisas-banner.jpg">
+      <div class="custom_overlay">
+        <span class="custom_overlay_inner">
+          <h2>Conheça as novas camisas nike que acabaram de chegar!</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis illum iste inventore rerum molestiae
+            deserunt, sapiente assumenda mollitia facere, aspernatur est quia earum eum quae quis sunt alias commodi
+            quaerat?</p>
+          <button>Ir à loja</button>
+        </span>
+      </div>
+    </a>
   </div>
-
-  <div class="item">
-    <div class="banner-img-box">
-      <img src="/img/home/camisas-banner.jpg" alt="">
-    </div>
-    <div class="banner-content-box">
-      <h3>Novos produtos com 50% de desconto!</h3>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore reiciendis veniam iste, amet quaerat
-        repudiandae odit, cupiditate libero nesciunt similique minus officiis doloremque numquam ea esse sapiente? Nam,
-        deserunt cumque.</p>
-      <a href="/loja" class="btn banner-button mt-4">Ver Produtos</a>
-    </div>
+  <div class="custom_overlay_wrapper">
+    <a href="http://google.com">
+      <img src="/img/home/camisas-banner2.jpg">
+      <div class="custom_overlay">
+        <span class="custom_overlay_inner">
+          <h2>Novos produtos com até 80% de desconto!</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis illum iste inventore rerum molestiae
+            deserunt, sapiente assumenda mollitia facere, aspernatur est quia earum eum quae quis sunt alias commodi
+            quaerat?</p>
+          <button>Ir à loja</button>
+        </span>
+      </div>
+    </a>
   </div>
-
-  <div class="item">
-    <div class="banner-img-box">
-      <img src="/img/home/camisas-banner2.jpg" alt="">
-    </div>
-    <div class="banner-content-box">
-      <h3>Novos produtos com 50% de desconto!</h3>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore reiciendis veniam iste, amet quaerat
-        repudiandae odit, cupiditate libero nesciunt similique minus officiis doloremque numquam ea esse sapiente? Nam,
-        deserunt cumque.</p>
-      <a href="/loja" class="btn banner-button mt-4">Ver Produtos</a>
-    </div>
+  <div class="custom_overlay_wrapper">
+    <a href="http://google.com">
+      <img src="/img/home/bolsa.jpg">
+      <div class="custom_overlay">
+        <span class="custom_overlay_inner">
+          <h2>Combo 2 tênis + camisa 89,90!</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis illum iste inventore rerum molestiae
+            deserunt, sapiente assumenda mollitia facere, aspernatur est quia earum eum quae quis sunt alias commodi
+            quaerat?</p>
+          <button>Ir à loja</button>
+        </span>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -116,11 +120,11 @@
   <div class="product_heading">
     <h2>Produtos mais vendidos</h2>
   </div>
-  <div class="owl-carousel mx-auto owl-theme owl-hover owl-pMaisVendidos">
+  <div class="owl-carousel owl-hover mx-auto owl-theme owl-pMaisVendidos">
     <div class="item">
       <div class="card border-0 px-4">
         <div class="row justify-content-center image-product">
-          <span id="badge-desconto" class="badge badge-danger">-90%</span>
+          <span class="badge badge-desconto">-90%</span>
           <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
           <div class="product-info">
             <div class="icon"><i class="bi bi-info-circle"></i></div>
@@ -161,9 +165,12 @@
               </div>
             </div>
           </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
         <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
         <p class="mb-3 text-secondary">3x de R$ 39,90</p>
@@ -178,32 +185,60 @@
 
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center"> <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3"><span>R$ 12,99</span></h5>
-        <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
-          <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
-        </button>
-        <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
-          <i class="bi bi-info-circle pr-2"></i>Detalhes
-        </button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="card border-0 px-4">
-        <div class="row justify-content-center"> <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
-        </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
-        <hr style="background-color: #ddd;">
-        <h5 class="mb-3">
+        <h5 class="m-0 p-0">
           <span class="text-danger mr-1">R$ 12,99</span>
           <span class="text-grey"><s>R$ 36,99</s></span>
         </h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -215,12 +250,60 @@
 
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center"> <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3"><span>R$ 12,99</span></h5>
+        <h5 class="m-0 p-0">
+          <span class="text-danger mr-1">R$ 12,99</span>
+          <span class="text-grey"><s>R$ 36,99</s></span>
+        </h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -232,12 +315,119 @@
 
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center"> <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3"><span>R$ 12,99</span></h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
+        <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
+          <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
+        </button>
+        <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+          <i class="bi bi-info-circle pr-2"></i>Detalhes
+        </button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="card border-0 px-4">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
+        </div>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
+        <hr style="background-color: #ddd;">
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -256,69 +446,246 @@
   <div class="product_heading">
     <h2>Lançamentos</h2>
   </div>
-  <div class="owl-carousel mx-auto owl-theme owl-lancamentos">
-    <div class="item first prev">
+  <div class="owl-carousel owl-hover mx-auto owl-theme owl-lancamentos">
+    <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center"> <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3"><span>R$ 12,99</span></h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
         <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
           <i class="bi bi-info-circle pr-2"></i>Detalhes
         </button>
+      </div>
+    </div>
 
-      </div>
-    </div>
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center"> <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3"><span>R$ 12,99</span></h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
         <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
           <i class="bi bi-info-circle pr-2"></i>Detalhes
         </button>
+      </div>
+    </div>
 
-      </div>
-    </div>
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center"> <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3">
-          <span class="text-danger mr-1">R$ 12,99</span>
-          <span class="text-grey"><s>R$ 36,99</s></span>
-        </h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
         <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
           <i class="bi bi-info-circle pr-2"></i>Detalhes
         </button>
+      </div>
+    </div>
 
-      </div>
-    </div>
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center"> <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3"><span>R$ 12,99</span></h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -329,12 +696,57 @@
     </div>
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center"> <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3"><span>R$ 12,99</span></h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -353,8 +765,8 @@
   <div class="banner mx-auto text-left mb-2"
     style="width: 97%; height: 100%; background-image:linear-gradient(rgba(68, 68, 68, 0.5), rgba(68,68,68,0.5)), url('img/home/mulher-camera.jpg');">
     <div class="container py-5 text-center">
-      <h1 class=" font-weight-bold">OUTLET</h1>
-      <h4 class="font-italic mb-0">Com até 80% de desconto em todos os produtos!</h4>
+      <h1 class=" font-weight-bold one-banner-title">OUTLET</h1>
+      <h4 class="font-italic mb-0 one-banner-text">Com até 80% de desconto em todos os produtos!</h4>
       <br>
       <div class="btn rounded-0 btn-estatico">APROVEITAR</div>
     </div>
@@ -368,62 +780,62 @@
   <div class="product_heading">
     <h2>Na Bella Clothes também tem</h2>
   </div>
-  <div class="owl-carousel mx-auto owl-theme owl-tambemTem">
-    <div class="item">
+  <div class="owl-carousel owl-hover mx-auto owl-theme owl-tambemTem">
+    <a href="/loja" class="item">
       <div class="card border-0 px-4">
-        <img src="img/menina.jpg" class="rounded-circle img-carousel-categorys" alt="">
+        <img src="img/tenisTeste.jpg" class="rounded-circle img-carousel-categorys" alt="">
         <h5 class="font-weight-bold">Camisas</h5>
       </div>
-    </div>
+    </a>
 
-    <div class="item">
+    <a href="/loja" class="item">
       <div class="card border-0 px-4">
-        <img src="img/menina.jpg" class="rounded-circle img-carousel-categorys" alt="">
+        <img src="img/tenisTeste.jpg" class="rounded-circle img-carousel-categorys" alt="">
         <h5 class="font-weight-bold">Infantil</h5>
       </div>
-    </div>
+    </a>
 
-    <div class="item">
+    <a href="/loja" class="item">
       <div class="card border-0 px-4">
-        <img src="img/menina.jpg" class="rounded-circle img-carousel-categorys" alt="">
+        <img src="img/tenisTeste.jpg" class="rounded-circle img-carousel-categorys" alt="">
         <h5 class="font-weight-bold">Sapatos</h5>
       </div>
-    </div>
+    </a>
 
-    <div class="item">
+    <a href="/loja" class="item">
       <div class="card border-0 px-4">
-        <img src="img/menina.jpg" class="rounded-circle img-carousel-categorys" alt="">
+        <img src="img/tenisTeste.jpg" class="rounded-circle img-carousel-categorys" alt="">
         <h5 class="font-weight-bold">Acessórios</h5>
       </div>
-    </div>
+    </a>
 
-    <div class="item">
+    <a href="/loja" class="item">
       <div class="card border-0 px-4">
-        <img src="img/menina.jpg" class="rounded-circle img-carousel-categorys" alt="">
+        <img src="img/tenisTeste.jpg" class="rounded-circle img-carousel-categorys" alt="">
         <h5 class="font-weight-bold">Blusas</h5>
       </div>
-    </div>
+    </a>
 
-    <div class="item">
+    <a href="/loja" class="item">
       <div class="card border-0 px-4">
-        <img src="img/menina.jpg" class="rounded-circle img-carousel-categorys" alt="">
+        <img src="img/tenisTeste.jpg" class="rounded-circle img-carousel-categorys" alt="">
         <h5 class="font-weight-bold">Homem</h5>
       </div>
-    </div>
+    </a>
 
-    <div class="item">
+    <a href="/loja" class="item">
       <div class="card border-0 px-4">
-        <img src="img/menina.jpg" class="rounded-circle img-carousel-categorys" alt="">
+        <img src="img/tenisTeste.jpg" class="rounded-circle img-carousel-categorys" alt="">
         <h5 class="font-weight-bold">Mulher</h5>
       </div>
-    </div>
+    </a>
 
-    <div class="item">
+    <a href="/loja" class="item">
       <div class="card border-0 px-4">
-        <img src="img/menina.jpg" class="rounded-circle img-carousel-categorys" alt="">
+        <img src="img/tenisTeste.jpg" class="rounded-circle img-carousel-categorys" alt="">
         <h5 class="font-weight-bold">Anéis</h5>
       </div>
-    </div>
+    </a>
   </div>
 </div>
 
@@ -434,20 +846,60 @@
   <div class="product_heading">
     <h2>Melhores Descontos</h2>
   </div>
-  <div class="owl-carousel mx-auto owl-theme owl-mDescontos">
+  <div class="owl-carousel owl-hover mx-auto owl-theme owl-mDescontos">
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center">
-          <span id="badge-desconto" class="badge badge-danger">90% OFF</span>
-          <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3">
-          <span class="text-danger mr-1">R$ 12,99</span>
-          <span class="text-grey"><s>R$ 36,99</s></span>
-        </h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -459,17 +911,57 @@
 
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center">
-          <span id="badge-desconto" class="badge badge-danger">10% OFF</span>
-          <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3">
-          <span class="text-danger mr-1">R$ 12,99</span>
-          <span class="text-grey"><s>R$ 36,99</s></span>
-        </h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -481,17 +973,57 @@
 
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center">
-          <span id="badge-desconto" class="badge badge-danger">40% OFF</span>
-          <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3">
-          <span class="text-danger mr-1">R$ 12,99</span>
-          <span class="text-grey"><s>R$ 36,99</s></span>
-        </h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -503,17 +1035,57 @@
 
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center">
-          <span id="badge-desconto" class="badge badge-danger">10% OFF</span>
-          <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3">
-          <span class="text-danger mr-1">R$ 12,99</span>
-          <span class="text-grey"><s>R$ 36,99</s></span>
-        </h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -525,17 +1097,57 @@
 
     <div class="item">
       <div class="card border-0 px-4">
-        <div class="row justify-content-center">
-          <span id="badge-desconto" class="badge badge-danger">20% OFF</span>
-          <img src="img/menina.jpg" class="img-fluid profile-pic mb-4 mt-3">
+        <div class="row justify-content-center image-product">
+          <span class="badge badge-desconto">-90%</span>
+          <img src="img/tenisTeste.jpg" class="img-fluid profile-pic mb-4 mt-3">
+          <div class="product-info">
+            <div class="icon"><i class="bi bi-info-circle"></i></div>
+            <div class="contents d-flex flex-row flex-wrap">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div>
+                    <p>Indicado para</p>
+                    <p>Dia a dia</p>
+                  </div>
+                  <div>
+                    <p>Disponibilidade</p>
+                    <p>12 em estoque</p>
+                  </div>
+                  <div>
+                    <p>Peso</p>
+                    <p>200g (par)</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <p>Marca</p>
+                    <p>Adidas</p>
+                  </div>
+                  <div>
+                    <p>Material</p>
+                    <p>Têxtil</p>
+                  </div>
+                  <div>
+                    <p>Composição</p>
+                    <p>Cabedal: Têxtil e Mesh; Endivessola: EVA; Solado: Borracha</p>
+                  </div>
+                  <div>
+                    <p>Quantidade vendida</p>
+                    <p>231</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-add-favorite">
+            <i class="bi"></i>
+          </div>
         </div>
-        <h5 class="font-weight-bold">Fantasy T-shirt</h5>
-        <p class="mb-2 text-muted text-uppercase small">Shirts</p>
+        <h5 class="font-weight-bold">Tênis Preto Nike</h5>
+        <p class="mb-2 text-muted text-uppercase small">Tênis</p>
         <hr style="background-color: #ddd;">
-        <h5 class="mb-3">
-          <span class="text-danger mr-1">R$ 12,99</span>
-          <span class="text-grey"><s>R$ 36,99</s></span>
-        </h5>
+        <h5 class="m-0 p-0"><span>R$ 12,99</span></h5>
+        <p class="mb-3 text-secondary">3x de R$ 39,90</p>
         <button type="button" class="btn add-cart btn-sm mr-1 mb-2">
           <i class="bi bi-cart2 pr-2"></i>Adicionar ao Carrinho
         </button>
@@ -557,12 +1169,14 @@
     <div class="card mb-3 border-0 rounded-0">
       <img src="img/home/mulher-camera2.webp" class="card-img-top rounded-0" alt="...">
       <div class="card-body">
-        <h5 class="mb-3 card-text">
-          <span class="font-weight-bold">Leve 2 camisas</span>
-          <button class="btn btn-success rounded-0 px-3 py-1 font-weight-bold"
-            style="font-size: 14px; position: absolute; top: 310px; right: 20px;">CONFIRA</button>
-          <br><span class="font-weight-bold">por </span><span class="font-weight-bold text-danger">R$ 29,90</span>
-          <span class="font-weight-bold"> cada</span>
+        <h5 class="mb-3 card-text d-flex flex-row flex-wrap">
+          <p class="font-weight-bold flex-grow-1 w-50 mr-4">Leve 3 camisas por <span
+              class="font-weight-bold text-danger">R$
+              29,99</span>
+            cada
+          </p>
+          <button class="btn three-banners-button rounded-0 px-3 py-1 font-weight-bold"
+            style="font-size: 14px; align-self: center;">CONFIRA</button>
         </h5>
       </div>
     </div>
@@ -572,12 +1186,14 @@
     <div class="card mb-3 border-0 rounded-0">
       <img src="img/home/mulher-camera2.webp" class="card-img-top rounded-0" alt="...">
       <div class="card-body">
-        <h5 class="mb-3 card-text">
-          <span class="font-weight-bold">Leve 3 calças</span>
-          <button class="btn btn-success rounded-0 px-3 py-1 font-weight-bold"
-            style="font-size: 14px; position: absolute; top: 310px; right: 20px;">CONFIRA</button>
-          <br><span class="font-weight-bold">por </span><span class="font-weight-bold text-danger">R$ 34,99</span>
-          <span class="font-weight-bold"> cada</span>
+        <h5 class="mb-3 card-text d-flex flex-row flex-wrap">
+          <p class="font-weight-bold flex-grow-1 w-50 mr-4">Leve 3 calças por <span
+              class="font-weight-bold text-danger">R$
+              45,90</span>
+            cada
+          </p>
+          <button class="btn three-banners-button rounded-0 px-3 py-1 font-weight-bold"
+            style="font-size: 14px; align-self: center;">CONFIRA</button>
         </h5>
       </div>
     </div>
@@ -587,12 +1203,14 @@
     <div class="card mb-3 border-0 rounded-0">
       <img src="img/home/mulher-camera2.webp" class="card-img-top rounded-0" alt="...">
       <div class="card-body">
-        <h5 class="mb-3 card-text">
-          <span class="font-weight-bold">Leve 2 blusas</span>
-          <button class="btn btn-success rounded-0 px-3 py-1 font-weight-bold"
-            style="font-size: 14px; position: absolute; top: 310px; right: 20px;">CONFIRA</button>
-          <br><span class="font-weight-bold">por </span><span class="font-weight-bold text-danger">R$ 20,99</span>
-          <span class="font-weight-bold"> cada</span>
+        <h5 class="mb-3 card-text d-flex flex-row flex-wrap">
+          <p class="font-weight-bold flex-grow-1 w-50 mr-4">Leve 3 tênis por <span
+              class="font-weight-bold text-danger">R$
+              31,39</span>
+            cada
+          </p>
+          <button class="btn three-banners-button rounded-0 px-3 py-1 font-weight-bold"
+            style="font-size: 14px; align-self: center;">CONFIRA</button>
         </h5>
       </div>
     </div>
@@ -603,11 +1221,11 @@
 
 <!-- Último Banner -->
 <a href="#">
-  <div class="banner mx-auto text-left mb-2" style="width: 97%; height: 100%; background-image:linear-gradient(rgba(68, 68, 68, 0.5), rgba(68,68,68,0.5)), url('/img/home/
-    mulher-camera.jpg');">
+  <div class="banner mx-auto text-left mb-2"
+    style="width: 97%; height: 100%; background-image:linear-gradient(rgba(68, 68, 68, 0.5), rgba(68,68,68,0.5)), url('/img/home/camisas-banner.jpg');">
     <div class="container py-5 text-center">
-      <h1 class="font-weight-bold">GRANDES OPORTUNIDADES</h1>
-      <h4 class="font-italic mb-0">Com até 40% de desconto em todos os produtos!</h4>
+      <h1 class="font-weight-bold one-banner-title">GRANDES OPORTUNIDADES</h1>
+      <h4 class="font-italic mb-0 one-banner-text">Com até 40% de desconto em todos os produtos!</h4>
       <br>
       <div class="btn rounded-0 btn-estatico">APROVEITAR</div>
     </div>

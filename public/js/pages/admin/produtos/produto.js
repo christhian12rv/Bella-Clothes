@@ -269,7 +269,7 @@ function productVariation(id) {
         '                                <i class="bi bi-dash btn-close-details-variacao-produto"' +
         '                                    id="btn-close-detail-cor-' + id + '"></i>' +
         '                                <input type="text" name="variacao[' + id + '][cor]" id="variacao[' + id + '][cor]" placeholder="* Nome da cor"' +
-        '                                    class="flex-grow-1" required>' +
+        '                                    class="flex-grow-1" minlength="2" required>' +
         '                            </td>' +
         '                            <td style="vertical-align: bottom;">' +
         '                                <input type="text" name="variacao[' + id + '][preco_original]" id="variacao[' + id + '][preco_original]" placeholder="* Preço"' +
@@ -280,6 +280,13 @@ function productVariation(id) {
         '                            <td colspan="2" class="m-0 p-0 w-100 border-top-0">' +
         '                                <table class="w-100 border-0">' +
         '                                    <tbody>' +
+        '                                        <tr>' +
+        '                                            <td><label for="variacao[' + id + '][slug]">Slug</label></td>' +
+        '                                            <td class="d-flex flex-row flex-wrap" style="gap: .5rem;">' +
+        '                                                <input type="text" name="variacao[' + id + '][slug]" id="variacao[' + id + '][slug]" placeholder="Slug"' +
+        '                                                    class="flex-grow-1" minlength="2" oninput="validateSlug(this)" required>' +
+        '                                            </td>' +
+        '                                        </tr>' +
         '                                        <tr>' +
         '                                            <td><label for="variacao[' + id + '][tipo_desconto]">Desconto</label></td>' +
         '                                            <td class="d-flex flex-row flex-wrap" style="gap: .5rem;">' +
@@ -330,10 +337,10 @@ function productVariation(id) {
         '                                                   class="qtd-tamanhos" value="1" onkeydown="return event.keyCode == 69 ? false : true" min="1" max="12" required></input>' +
         '                                                <div class="d-flex flex-row flex-wrap tamanho-box" id="variacao[' + id + '][tamanho_box_1]" style="gap: .5rem;">' +
         '                                                    <input type="text" name="variacao[' + id + '][tamanho_box_1][tamanho]" id="variacao[' + id + '][tamanho_box_1][tamanho]"' +
-        '                                                        class="flex-grow-1" placeholder="* Tamanho 1">' +
+        '                                                        class="flex-grow-1" placeholder="* Tamanho 1" required>' +
         '                                                    <input type="number" name="variacao[' + id + '][tamanho_box_1][estoque]" id="variacao[' + id + '][tamanho_box_1][estoque]"' +
         '                                                        placeholder="* Estoque 1"' +
-        '                                                        onkeydown="return event.keyCode == 69 ? false : true">' +
+        '                                                        onkeydown="return event.keyCode == 69 ? false : true" required>' +
         '                                                </div>' +
         '                                            </td>' +
         '                                        </tr>' +
@@ -353,19 +360,11 @@ function productVariation(id) {
         '                                                                    imagem</div>' +
         '                                                                <div class="image-select-name" id="variacao[' + id + '][numeroImagens]">0 Imagens' +
         '                                                                    selecionadas</div>' +
-        '                                                                <input type="file" class="escolher-imagem" id="variacao[' + id + '][escolherImagem]" name="variacao[' + id + '][escolherImagem]" onchange="novoArquivo(this)">' +
+        '                                                                <input type="file" class="escolher-imagem" id="variacao[' + id + '][escolherImagem]" name="variacao[' + id + '][escolherImagem]" onchange="novoArquivo(this)" accept=".png, .jpg, .jpeg">' +
         '                                                            </div>' +
         '                                                        </div>' +
         '                                                    </div>' +
         '                                                    <div class="d-flex flex-row flex-wrap images-choose" id="variacao[' + id + '][box-images]">' +
-        '                                                        <div class="box-image-product" draggable="true"' +
-        '                                                            dataDragImg="bip-tenisTeste.jpg">' +
-        '                                                            <img src="/img/tenisTeste.jpg" alt="" class="imagem-produto"' +
-        '                                                                dataDragImg="bip-tenisTeste.jpg">' +
-        '                                                            <div class="remover-imagem remover-imagem-produto-' + id + '">' +
-        '                                                                <a href="#"><i class="bi bi-x-lg"></i></a>' +
-        '                                                            </div>' +
-        '                                                        </div>' +
         '                                                    </div>' +
         '                                                    <div id="variacao[' + id + '][group-imagens]">' +
         '                                                    </div>' +
@@ -416,10 +415,10 @@ function tamanho(idVariacao, idTamanho) {
     var tamanho =
         '                                                <div class="d-flex flex-row flex-wrap tamanho-box" id="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + ']" style="gap: .5rem;">' +
         '                                                    <input type="text" name="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + '][tamanho]" id="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + '][tamanho]"' +
-        '                                                        class="flex-grow-1" placeholder="* Tamanho ' + idTamanho + '">' +
+        '                                                        class="flex-grow-1" placeholder="* Tamanho ' + idTamanho + '" required>' +
         '                                                    <input type="number" name="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + '][estoque]" id="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + '][estoque]"' +
         '                                                        placeholder="* Estoque ' + idTamanho + '"' +
-        '                                                        onkeydown="return event.keyCode == 69 ? false : true">' +
+        '                                                        onkeydown="return event.keyCode == 69 ? false : true" required>' +
         '                                                </div>';
     return tamanho
 }
@@ -462,6 +461,7 @@ function novoArquivo(input) {
     inputImagem.setAttribute("id", "variacao[" + idVariacao + "][escolherImagem]");
     inputImagem.setAttribute("name", "variacao[" + idVariacao + "][escolherImagem]");
     inputImagem.setAttribute("onchange", "novoArquivo(this)");
+    inputImagem.setAttribute("accept", ".png, .jpg, .jpeg");
     input.parentNode.insertBefore(inputImagem, input.nextSibling);
     $(input).css("display", "none");
     inputImagemChangeEvent(inputImagem, idVariacao);
@@ -507,4 +507,14 @@ function trumbowygOptions() {
     };
 
     return options;
+}
+
+
+const regexExpSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
+function validateSlug(input) {
+    if (!regexExpSlug.test(input.value)) {
+        input.setCustomValidity("Digite um slug válido");
+    } else {
+        input.setCustomValidity("");
+    }
 }

@@ -22,11 +22,13 @@ router.get("/configurar-imagem-sidebar", (req, res) => {
     })
 })
 router.get("/painel-de-controle", (req, res) => {
+    req.flash('success_msg', 'This is a message from the "/" endpoint');
     res.render("admin/painel de controle/painelControle", {
         css: "admin/painel de controle/painelControle.css",
         js: "admin/painel de controle/painelControle.js",
         title: "Painel de Controle | Bella Clothes Admin",
-        paginaAdmin: true
+        paginaAdmin: true,
+        success_msg: req.flash('success_msg')
     })
 })
 router.get("/painel-de-controle/pedidos", (req, res) => {
@@ -114,7 +116,7 @@ router.get("/produto/:id", (req, res) => {
     res.render("admin/produtos/produto", {
         css: "admin/produtos/produto.css",
         js: "admin/produtos/produto.js",
-        title: "Tênis Branco Nike | Bella Clothes Admin",
+        title: "Tênis Nike | Bella Clothes Admin",
         paginaAdmin: true
     })
 })

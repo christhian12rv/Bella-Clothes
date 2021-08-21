@@ -106,6 +106,9 @@ $(".sidebar-toggle").on("click", () => {
 
     subListResize();
 
+    footerHeight = $(".admin-footer").outerHeight();
+    $(".admin-content").css("height", "calc(100% - " + (52 + footerHeight) + "px)");
+
     localStorage.setItem('sidebarOpen', !isOpenSidebar);
 })
 

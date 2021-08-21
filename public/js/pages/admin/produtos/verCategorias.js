@@ -77,6 +77,15 @@ $(".adicionar-categoria").on("click", function () {
 
 /*********************************************************************** FUNÇÕES **************************************************************************************************/
 
+const regexExpSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
+function validateSlug(input) {
+    if (!regexExpSlug.test(input.value)) {
+        input.setCustomValidity("Digite um slug válido");
+    } else {
+        input.setCustomValidity("");
+    }
+}
+
 function newCategory(date) {
     var category =
         '<div class="category-card">' +
@@ -91,13 +100,13 @@ function newCategory(date) {
         '                </label>' +
         '                <p class="category-id mt-3">1</p>' +
         '                <div>' +
-        '                    <input type="text" placeholder="Categoria" name="categoria" id="categoria" required>' +
+        '                    <input type="text" placeholder="Categoria" name="categoria" id="categoria" minlength="2" required>' +
         '                </div>' +
         '                <div class="mt-1">' +
-        '                    <textarea name="descricao" id="descricao" placeholder="Descrição" class="mb-0" rows="3" required></textarea>' +
+        '                    <textarea name="descricao" id="descricao" placeholder="Descrição" minlength="3" class="mb-0" rows="3" required></textarea>' +
         '                </div>' +
         '                <div>' +
-        '                    <input type="text" name="slug" id="slug" placeholder="Slug" required></input>' +
+        '                    <input type="text" name="slug" id="slug" placeholder="Slug" oninput="validateSlug(this)" required></input>' +
         '                </div>' +
         '                <p class="data-criacao mt-3">Data de criação:<span class="ml-2">' + date + '</span></p>' +
         '            </header>' +

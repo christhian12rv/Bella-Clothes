@@ -93,7 +93,7 @@ function newCupom(date) {
         '                </label>' +
         '                <p class="cupom-id mt-3">1</p>' +
         '                <div>' +
-        '                    <input type="text" placeholder="Cupom" name="cupom" id="cupom" required>' +
+        '                    <input type="text" placeholder="Cupom" name="cupom" id="cupom" minlength="2" required>' +
         '                </div>' +
         '                <div>' +
         '                    <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade"' +

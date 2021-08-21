@@ -156,4 +156,51 @@ $(document).ready(function () {
         modal.style.display = "none";
     }
 
+    $(".product-info").on("mouseenter", function () {
+        var carousel = $(this).parent().parent().parent().parent();
+        carousel.trigger('stop.owl.autoplay');
+        var contentsHeight = parseInt($(this).children('.contents').outerHeight());
+        $(this).css("height", contentsHeight + "px");
+    })
+    $(".product-info").on("mouseleave", function () {
+        var carousel = $(this).parent().parent().parent().parent();
+        carousel.trigger('play.owl.autoplay');
+        $(this).css("height", "50px");
+    })
+
+    $(".item .product-add-favorite").on("click", function () {
+        $(this).toggleClass("favorited");
+        let hasFavorited = $(this).hasClass("favorited");
+        let toastsCountNextId = $(".toast-container .toast").length + 1;
+        if (hasFavorited) {
+            $.ajax({
+                url: "/mensagemDinamica",
+                method: "GET",
+                data: {
+                    tipoMsg: 'success',
+                    textoMsg: 'Produto adicionado aos favoritos',
+                    autoHideMsg: true,
+                    toastId: toastsCountNextId
+                }
+            }).done(function (data) {
+                let toastCreated = $(".toast-container").append(data);
+                $("#toast-" + toastsCountNextId).toast("show");
+            })
+        } else {
+            $.ajax({
+                url: "/mensagemDinamica",
+                method: "GET",
+                data: {
+                    tipoMsg: 'success',
+                    textoMsg: 'Produto retirado dos favoritos',
+                    autoHideMsg: true,
+                    toastId: toastsCountNextId
+                }
+            }).done(function (data) {
+                let toastCreated = $(".toast-container").append(data);
+                $("#toast-" + toastsCountNextId).toast("show");
+            })
+        }
+    })
+
 });

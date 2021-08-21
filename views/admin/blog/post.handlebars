@@ -2,7 +2,7 @@
     Post - Dicas para deixar seu tênis limpinho
 </h3>
 
-<form action="/afeas" method="POST" enctype='multipart/form-data'>
+<form action="/afeas" method="POST" enctype='multipart/form-data' id="form-post">
     <div class="card color-mode d-flex flex-row flex-wrap p-3">
         <div class="d-flex flex-row flex-wrap w-100">
             <p class="flex-grow-1 data-criacao">Data de criação: 23 Maio 2021</p>
@@ -14,7 +14,7 @@
             </div>
             <div>
                 <label for="titulo">* Título</label>
-                <input type="text" id="titulo" name="titulo" placeholder="* Título do Post" required>
+                <input type="text" id="titulo" name="titulo" placeholder="* Título do Post" minlength="3" required>
             </div>
             <div>
                 <label for="categoria">* Categoria</label>
@@ -28,7 +28,8 @@
             </div>
             <div>
                 <label for="slug">* Slug</label>
-                <input type="text" id="slug" name="slug" placeholder="* Slug do post" required>
+                <input type="text" id="slug" name="slug" placeholder="* Slug do post" minlength="3"
+                    oninput="validateSlug(this)" required>
             </div>
             <div>
                 <label for="imagem">* Imagem</label>
@@ -37,7 +38,8 @@
                         <div class="image-select-button" id="imageName">Escolher
                             imagem</div>
                         <div class="image-select-name" id="imagem">Escolha uma imagem</div>
-                        <input type="file" class="escolher-imagem" id="imagem" name="imagem">
+                        <input type="file" class="escolher-imagem" id="imagem" name="imagem" accept=".png, .jpg, .jpeg"
+                            onchange="validateImageType(this)" required>
                     </div>
                 </div>
             </div>

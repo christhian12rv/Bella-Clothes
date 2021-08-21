@@ -2,13 +2,14 @@ $(document).ready(function () {
 
     // Carrossel primeiro banner da página
     $('.owl-headBanner').owlCarousel({
-        mouseDrag: true,
+        mouseDrag: false,
         autoplay: true,
         smartSpeed: 500,
         margin: 0,
         loop: true,
         items: 1,
-        dots: true
+        dots: true,
+        animateOut: 'fadeOut'
     });
 
     // Carrossel PRODUTOS MAIS VENDIDOS
@@ -73,12 +74,12 @@ $(document).ready(function () {
         dots: false,
         responsive: {
             0: {
-                items: 4,
+                items: 2,
                 margin: 0,
                 nav: false,
             },
             600: {
-                items: 5,
+                items: 4,
                 nav: true,
             },
             1000: {
@@ -124,5 +125,40 @@ $(document).ready(function () {
         var carousel = $(this).parent().parent().parent().parent();
         carousel.trigger('play.owl.autoplay');
         $(this).css("height", "50px");
+    })
+
+    $(".item .product-add-favorite").on("click", function () {
+        $(this).toggleClass("favorited");
+        let hasFavorited = $(this).hasClass("favorited");
+        let toastsCountNextId = $(".toast-container .toast").length + 1;
+        if (hasFavorited) {
+            $.ajax({
+                url: "/mensagemDinamica",
+                method: "GET",
+                data: {
+                    tipoMsg: 'success',
+                    textoMsg: 'Produto adicionado aos favoritos',
+                    autoHideMsg: true,
+                    toastId: toastsCountNextId
+                }
+            }).done(function (data) {
+                let toastCreated = $(".toast-container").append(data);
+                $("#toast-" + toastsCountNextId).toast("show");
+            })
+        } else {
+            $.ajax({
+                url: "/mensagemDinamica",
+                method: "GET",
+                data: {
+                    tipoMsg: 'success',
+                    textoMsg: 'Produto retirado dos favoritos',
+                    autoHideMsg: true,
+                    toastId: toastsCountNextId
+                }
+            }).done(function (data) {
+                let toastCreated = $(".toast-container").append(data);
+                $("#toast-" + toastsCountNextId).toast("show");
+            })
+        }
     })
 });

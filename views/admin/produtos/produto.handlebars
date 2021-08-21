@@ -1,5 +1,5 @@
 <h3 class="title">
-    Detalhes do Produto
+    Detalhes do Produto - Tênis Nike
 </h3>
 
 <form action="/afeas" method="POST" enctype='multipart/form-data'>
@@ -14,7 +14,7 @@
             </div>
             <div>
                 <label for="nome">* Nome do produto</label>
-                <input type="text" id="nome" name="nome" placeholder="* Nome do Produto" required>
+                <input type="text" id="nome" name="nome" placeholder="* Nome do Produto" minlength="2" required>
             </div>
             <div id="div-genero">
                 <label for="genero">* Gênero</label>
@@ -54,22 +54,23 @@
         <div class="flex-column flex-wrap box-especificacoes w-100 px-3" style="gap: .5rem;">
             <div>
                 <label for="nome">* Marca</label>
-                <input type="text" id="marca" name="marca" placeholder="* Marca do Produto" required>
+                <input type="text" id="marca" name="marca" placeholder="* Marca do Produto" min="2" required>
             </div>
             <div>
                 <label for="nome">* Materiais</label>
                 <input type="text" id="materiais" name="materiais"
-                    placeholder="* Materiais do Produto (Dê enter para adicionar cada material)" required>
+                    placeholder="* Materiais do Produto (Dê enter para adicionar cada material)" minlength="2" required>
             </div>
             <div>
                 <label for="nome">* Composição</label>
                 <input type="text" id="composicao" name="composicao"
-                    placeholder="* Composição do Produto (Dê enter para adicionar cada composição)" required>
+                    placeholder="* Composição do Produto (Dê enter para adicionar cada composição)" minlength="2"
+                    required>
             </div>
             <div>
                 <label for="nome">* Peso</label>
-                <input type="text" id="peso" name="peso" placeholder="* Peso do Produto (em gramas)" style="width: 49%"
-                    class="mr-2" required>
+                <input type="number" id="peso" name="peso" placeholder="* Peso do Produto (em gramas)" min="1"
+                    style="width: 49%" class="mr-2" required>
                 <select name="tipo_peso" id="tipo_peso" style="width: 49%" required>
                     <option value="">* Escolha um tipo de peso</option>
                     <option value="unidade">Unidade</option>
@@ -78,7 +79,8 @@
             </div>
             <div>
                 <label for="indicado_para">* Indicado para</label>
-                <input type="text" id="indicado_para" name="indicado_para" placeholder="* Indicado para" required>
+                <input type="text" id="indicado_para" name="indicado_para" placeholder="* Indicado para" minlength="2"
+                    required>
             </div>
         </div>
     </div>
@@ -90,9 +92,9 @@
         <hr>
         <div class="px-3 pb-4">
             <label for="descricao_introducao">* Introdução</label><br>
-            <textarea id="descricao_introducao" name="descricao_introducao" required></textarea><br>
+            <textarea id="descricao_introducao" name="descricao_introducao" minlength="10" required></textarea><br>
             <label for="descricao_recursos" class="mt-2">* Recursos</label><br>
-            <textarea id="descricao_recursos" name="descricao_recursos" required></textarea>
+            <textarea id="descricao_recursos" name="descricao_recursos" minlength="10" required></textarea>
         </div>
     </div>
 

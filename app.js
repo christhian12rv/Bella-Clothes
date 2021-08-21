@@ -45,9 +45,10 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash("success_msg");
     res.locals.error_msg = req.flash("error_msg");
-    /*res.locals.error = req.flash("error");
- 
-    res.locals.user = req.user || null;*/
+    res.locals.warning_msg = req.flash("warning_msg");
+    res.locals.info_msg = req.flash("info_msg");
+    res.locals.coupon_code_msg = req.flash("coupon_code_msg");
+    /*res.locals.user = req.user || null;*/
     next();
 })
 
@@ -72,7 +73,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(fileUpload());
 
-
 // Rotas
 app.get("/", (req, res) => {
     res.render("./home/index", {
@@ -83,9 +83,11 @@ app.get("/", (req, res) => {
 })
 
 app.get("/login", (req, res) => {
+
     res.render("./usuario/login", {
         css: "login.css",
-        title: "Login"
+        title: "Login",
+        error_msg: req.flash("Houve um erro ao listar postagens. Erro: yaai!")
     });
 })
 
@@ -168,6 +170,26 @@ app.post("/afeas", (req, res) => {
     }
 
     res.send(req.body);
+})
+
+app.get("/mensagemDinamica", (req, res) => {
+    let { tipoMsg, textoMsg, toastId } = req.query;
+    let autoHideToast = req.query.autoHideMsg ? 'data-delay="3000"' : 'data-autohide="false"';
+    let buttonNotAutoHide = req.query.autoHideMsg ? '' : '<button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i class="bi bi-x-lg"></i></button>';
+    let mensagemDinamica =
+        '        <div class="toast show ' + tipoMsg + ' align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="toast-' + toastId + '"' +
+        '            ' + autoHideToast + '>' +
+        '             <div class="d-flex">' +
+        '                <div class="toast-icon m-auto">' +
+        '                    <i class="bi bi-check-lg"></i>' +
+        '                </div>' +
+        '                <div class="toast-body">' +
+        textoMsg +
+        '                </div>' +
+        buttonNotAutoHide +
+        '            </div>' +
+        '        </div>';
+    res.send(mensagemDinamica);
 })
 
 app.get("/erro-404", (req, res) => {

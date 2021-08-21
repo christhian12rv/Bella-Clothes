@@ -23,6 +23,7 @@
     <link href='/css/font-awesome.min.css'>
     <link href="/css/owl.carousel.min.css" rel="stylesheet">
     <link href="/css/owl.theme.default.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/ion.rangeSlider.min.css">
     <link rel="stylesheet" href="/css/rangeSlider.css">
     <link rel="stylesheet" href="/css/datatables.min.css">
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css"
@@ -51,7 +52,7 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
+    {{>_msg}}
     {{#if paginaAdmin}}
     {{else if paginaBlog}}
         {{>_navbarBlog}}
@@ -101,6 +102,7 @@
 
 <script src="/js/pages/layouts/main.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
+<script src="/js/jquery/plugins/ion.rangeSlider.min.js"></script>
 <script src="/js/rangeSlider.js"></script>
 <script type="text/javascript" src="/js/jquery/plugins/jquery.phone.brazil.js"></script>
 {{#if paginaUsuario}}
@@ -123,6 +125,11 @@
     <script src="/js/jquery/plugins/trumbowyg/trumbowyg.colors.min.js"></script>
     <script src="/js/jquery/plugins/trumbowyg/trumbowyg.indent.min.js"></script>
     <script src="/js/jquery/plugins/trumbowyg/trumbowyg.table.min.js"></script>
+    <script>
+        $(window).on("load", function () {
+            $(".toast-container").addClass("onAdminPage");
+        })
+    </script>
 {{/if}}
 {{#if js}}
     <script src="/js/pages/{{js}}"></script>

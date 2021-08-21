@@ -1661,7 +1661,7 @@ input:focus {
 /* Responsive layout - make the columns stack on top of each other instead of next to each other */
 
 @media screen and (max-width: 600px) {
-	#badge-desconto {
+	.badge-desconto {
 		font-size: 10px !important;
 	}
 }
@@ -1671,16 +1671,16 @@ input:focus {
 	width: 100% !important;
 }
 
-#badge-desconto {
+.badge-desconto {
 	position: absolute;
-	left: 3px;
-	top: 10px;
-	background: #f15a69;
+	padding: .5rem 1rem !important;
+	left: 8px;
+	top: 16px;
+	background: rgb(242, 242, 242);
 	text-align: center;
 	border-radius: 0px !important;
-	color: white;
-	padding: 10px 15px;
-	font-size: 16px;
+	color: #f15a69;
+	font-size: 1rem !important;
 }
 
 .owl-ProductsSectionEnd .owl-prev, .owl-ProductsSectionEnd .owl-next {
@@ -1753,12 +1753,147 @@ button.owl-next:focus, button.owl-next:active, button.owl-next:visited, button.o
 	margin-bottom: 45px;
 }
 
-.owl-ProductsSectionEnd h2 {
-	padding: 10px 20px;
-	background-color: #19c880;
-	color: #ffffff;
+.owl-hover .item {
+	transition-duration: 0.4s;
+	width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
+	overflow: hidden;
+}
+
+.owl-hover a.item h5 {
+	color: black;
+}
+
+.owl-hover a.item:hover h5 {
+	color: #19c880;
+}
+
+.owl-carousel, .owl-carousel .owl-stage-outer, .owl-carousel .owl-stage-outer .owl-stage, .owl-carousel .owl-stage-outer .owl-stage .owl-item {
+	padding-bottom: .5rem;
+}
+
+.owl-hover .item:hover {
+	transform: scale(1.05);
+}
+
+.image-product {
+	position: relative;
+}
+
+.image-product .product-info {
+	background: #19c880;
+	width: 50px;
+	height: 50px;
+	position: absolute !important;
+	top: 16px;
+	right: 9px;
+	border-radius: 0px 0px 0px 200px;
+	transform: translateX(80px);
+	transition: all 0.5s, border-radius 2s, top 1s;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.image-product .product-info:hover {
+	width: calc(100% - 15px);
+	border-radius: .5rem 0 .5rem .5rem;
+	box-shadow: rgb(33 35 38 / 10%) 0px 10px 10px 0px;
+}
+
+.owl-hover .item:hover .product-info {
+	transform: translateX(0px);
+}
+
+.image-product .product-info .icon {
+	position: absolute;
+	right: 12px;
+	top: 7px;
+	color: white;
+	-webkit-text-stroke: 0.5px white;
+	opacity: 1;
+}
+
+.image-product .product-info:hover .icon {
+	opacity: 0;
+	right: 15px;
+	top: 15px;
+}
+
+.image-product .product-info:hover .contents {
+	opacity: 1;
+	transform: scale(1);
+	transform: translateY(0);
+}
+
+.image-product .product-info .contents {
+	padding: 5%;
+	opacity: 0;
+	transform: scale(0.5);
+	transform: translateY(-200%);
+	transition: opacity 0.2s, transform 0.8s;
+}
+
+.image-product .product-info .contents .row .col-sm-6 div {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	text-align: left;
+	margin-bottom: .5rem;
+}
+
+.image-product .product-info .contents h1, .image-product .product-info .contents p, .image-product .product-info .contents table {
+	color: white;
+}
+
+.image-product .product-info .contents p {
+	font-size: 13px;
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+.image-product .product-info .contents p:first-child {
 	font-weight: bold;
-	font-size: 24px;
+}
+
+.image-product .product-add-favorite {
+	position: absolute;
+	bottom: 2rem;
+	left: 10px;
+	transform: translateX(-90px);
+	transition: all 0.5s;
+}
+
+.owl-hover .item:hover .product-add-favorite {
+	transform: translateX(0px);
+	transition: all 0.5s;
+}
+
+.image-product .product-add-favorite i {
+	color: #f15a69;
+	font-size: 1.8rem;
+	cursor: pointer;
+}
+
+.image-product .product-add-favorite i::before {
+	display: inline-block;
+	font-family: bootstrap-icons !important;
+	font-style: normal;
+	font-weight: normal !important;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	vertical-align: -.125em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.image-product .product-add-favorite:not(.favorited) i::before {
+	content: "\f417";
+}
+
+.image-product .product-add-favorite.favorited i::before {
+	content: "\f415";
 }
 
 .modal {
