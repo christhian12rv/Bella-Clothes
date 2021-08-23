@@ -2,7 +2,6 @@
     position: sticky;
     top: 0;
     background-color: #eeeeee;
-    border-bottom: 1px solid #c6c6c6;
     z-index: 900;
 }
 
@@ -15,17 +14,34 @@
 
 .navbar-filter-loja .button-filter-loja i {
     font-weight: bold;
-    -webkit-text-stroke: 1px #17af70;
+    -webkit-text-stroke: 1px #9a9a9a;
     padding-right: .25rem;
+    transition: -webkit-text-stroke .3s;
 }
 
 .navbar-filter-loja .button-filter-loja span {
     font-weight: bold;
     color: #9a9a9a;
+    letter-spacing: 1px;
+    transition: color .3s;
 }
 
 .navbar-filter-loja .button-filter-loja:hover span {
+    color: black;
+    transition: color .3s;
+}
+
+.navbar-filter-loja .button-filter-loja:hover i {
+    -webkit-text-stroke: 1px black;
+    transition: -webkit-text-stroke .3s;
+}
+
+.navbar-filter-loja.show .button-filter-loja span {
     color: #19c880;
+}
+
+.navbar-filter-loja.show .button-filter-loja i {
+    -webkit-text-stroke: 1px #17af70;
 }
 
 .content-filter-loja {
@@ -36,10 +52,10 @@
 
 .content-filter-loja .filter-tab {
     position: sticky;
-    top: 43px;
+    top: 42px;
     left: 0;
     width: 0px;
-    height: calc(100vh - 43px);
+    height: calc(100vh - 53px);
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-right: 0 !important;
@@ -56,7 +72,6 @@
     padding-right: 1rem !important;
     padding-left: 1rem !important;
     overflow-y: auto;
-    box-shadow: 4px 4px 20px rgb(0 0 0 / 20%);
     transition: width 300ms, min-width 300ms, box-shadow 300ms, padding-right 300ms, padding-left 300ms;
 }
 
@@ -70,7 +85,6 @@
 
 .content-filter-loja .filter-tab.show::-webkit-scrollbar-thumb {
     background: #b7b7b7;
-    border-radius: .1rem;
 }
 
 .content-filter-loja .filter-tab * {
@@ -329,6 +343,10 @@
     color: #FAC451;
 }
 
+.filter-tab .selected-filters-box {
+    display: none;
+}
+
 .filter-tab .selected-filters-box .selected-filters div.filter-selected {
     display: flex;
     flex-direction: row;
@@ -545,4 +563,116 @@
 
 .page-footer {
     margin-top: 0 !important;
+}
+
+.products-content {
+    padding-bottom: 1.5rem;
+}
+
+.content-filter-loja .products-content .qty-products-show {
+    font-size: 1rem;
+}
+
+.content-filter-loja .products-content .title-prodcuts-content {
+    font-size: 2rem;
+}
+
+.content-filter-loja .products-content .dropdown-order-by button {
+    border: 1px solid #bcbcbc;
+    width: 180px;
+    padding-left: 20px;
+    padding-right: 15px;
+    cursor: pointer;
+    font-size: 0.9rem !important;
+    text-align: left;
+    box-shadow: none;
+}
+
+.content-filter-loja .products-content .dropdown-order-by .dropdown-menu a {
+    margin-bottom: 10px;
+    font-size: 0.85rem !important;
+    color: black !important;
+}
+
+.content-filter-loja .products-content .dropdown-order-by .dropdown-menu a:hover {
+    color: grey !important;
+}
+
+.content-filter-loja .products-content .dropdown-order-by .dropdown-menu .dropdown-item:focus {
+    background-color: white !important;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li {
+    margin-left: .25rem !important;
+    margin-right: .25rem !important;
+    transition: color .3s, background-color .3s;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li.paginationjs-ellipsis, #products-cards-pagination .paginationjs .paginationjs-pages ul li.paginationjs-ellipsis a {
+    color: grey !important;
+    opacity: 1 !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    border: none !important;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li:not(:first-child):not(:last-child):not(.paginationjs-ellipsis) {
+    border-width: 2px !important;
+    border-style: solid !important;
+    border-radius: 100% !important;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li:not(:first-child):not(:last-child):not(.paginationjs-ellipsis):not(.active) {
+    border: 2px solid rgb(165, 165, 165) !important;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li:first-child, #products-cards-pagination .paginationjs .paginationjs-pages ul li:last-child {
+    border: none !important;
+    border-radius: 0 !important;
+    transition: color .3s;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li:first-child a, #products-cards-pagination .paginationjs .paginationjs-pages ul li:last-child a {
+    transition: color .3s;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li:first-child:not(.disabled):hover a, #products-cards-pagination .paginationjs .paginationjs-pages ul li:last-child:not(.disabled):hover a {
+    background-color: transparent !important;
+    color: #19c880 !important;
+    transition: color .3s;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li.active {
+    border-color: #19c880 !important;
+    background-color: #19c880 !important;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li:not(:first-child):not(:last-child):not(.paginationjs-ellipsis):hover {
+    border-color: #19c880 !important;
+    background-color: #19c880 !important;
+    transition: color .3s, background-color .3s;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li>a {
+    font-size: 1rem !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    line-height: 40px !important;
+    border-radius: 100% !important;
+    background-color: transparent !important;
+    transition: color .3s;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li:first-child>a, #products-cards-pagination .paginationjs .paginationjs-pages ul li:last-child>a {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages ul li:hover:not(.paginationjs-ellipsis):not(:first-child):not(:last-child) a {
+    color: #fff !important;
+    transition: color .3s;
+}
+
+#products-cards-pagination .paginationjs .paginationjs-pages li:not(.active)>a {
+    color: grey !important;
 }

@@ -1,6 +1,5 @@
 $(window).on("load", function () {
     $(".filter-tab .filter-tab-block h4").on("click", function () {
-        console.log("haya");
         let filterBlock = $(this).parent(".filter-tab-block");
         let content = $(this).next(".filter-tab-block-content");
         if (filterBlock.hasClass("show")) {
@@ -10,6 +9,7 @@ $(window).on("load", function () {
             content.addClass("overflow-show");
             filterBlock.addClass("show");
         }
+
     })
 
     var minPrice = 0;
@@ -190,6 +190,18 @@ $(window).on("load", function () {
         }
     })
 
+    $("#products-cards-pagination").pagination({
+        dataSource: [1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195],
+        pageSize: 3,
+        prevText: "Anterior ",
+        nextText: "Próximo",
+        callback: function (data, pagination) {
+            // template method of yourself
+            var html = data;
+            $('#teste').html(html);
+        }
+    })
+
 })
 
 
@@ -284,6 +296,7 @@ function cleanAllFilters() {
 
 function filterTabToggle() {
     $(".filter-tab").toggleClass("show");
+    $(".navbar-filter-loja").toggleClass("show");
 }
 
 $('.filter-tab').parents().filter(function () {

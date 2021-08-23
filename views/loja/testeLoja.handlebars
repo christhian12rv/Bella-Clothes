@@ -4,7 +4,7 @@
     <span><a href="#cd-main-content" class="ml-1 mr-1"> Loja </a></span>
 </p>
 
-<div class="navbar-filter-loja px-4 py-2">
+<div class="navbar-filter-loja show px-4 py-2">
     <button class="button-filter-loja" onclick="filterTabToggle()"><i class="bi bi-sliders"></i>
         <span>FILTRO</span></button>
 </div>
@@ -300,17 +300,17 @@
 
     </div>
 
-    <section class="cd-gallery">
-        <h1 class="font-weight-bold ml-4" style="font-size: 30px !important;">Camisas Feminino</h1>
+    <section class="products-content pt-3">
+        <h1 class="font-weight-bold ml-4 title-prodcuts-content">Tênis Masculino</h1>
         <div class="row">
             <div class="col-sm-6">
-                <h5 class="text-secondary ml-4">Exibindo: 1 - 42 de 1243 resultados</h5>
+                <h5 class="ml-4 qty-products-show">Exibindo: 1 - 42 de 1243 resultados</h5>
             </div>
             <div class="col-sm-6 mr-0 pr-0 ordenar-por">
                 <div class="row mr-4" style="justify-content: flex-end;">
                     <h5 style="font-size: 1rem !important; align-self: flex-end;" class="mr-3">Ordenar Por</h5>
 
-                    <div class="dropdown">
+                    <div class="dropdown dropdown-order-by">
                         <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             Mais Populares <i class="bi bi-chevron-down"
@@ -329,7 +329,7 @@
                 </div>
             </div>
         </div>
-        <div class="products-cards">
+        <div class="products-cards" id="products-cards-content">
             <div class="item">
                 <div class="card border-0 px-4">
                     <div class="row justify-content-center image-product">
@@ -979,6 +979,11 @@
                 </div>
             </div>
         </div>
-        <div class="cd-fail-message">Nenhum resultado encontrado</div>
+
+        <div class="d-flex justify-content-center" style="margin-top: 4rem;">
+            <div id="products-cards-pagination">
+            </div>
+        </div>
+        <div id="teste"></div>
     </section> <!-- cd-gallery -->
 </div>
