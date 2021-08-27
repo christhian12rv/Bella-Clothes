@@ -226,7 +226,7 @@ function createCookie(nameCookie, valueCookie, expirationDays) {
 }
 
 function cookiesHide() {
-    createCookie('cookiePopUp', 'showed', 3);
+    createCookie('cookiePopUp', 'showed', 10);
     $(".toast-cookie").animate({ opacity: 0 }, 500);
     setInterval(() => {
         $(".toast-cookie").removeClass("show");

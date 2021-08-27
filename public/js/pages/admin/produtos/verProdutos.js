@@ -23,7 +23,7 @@ $(document).ready(function () {
             'pdf', 'print'
         ],
         ajax: {
-            url: '/get/produtos',
+            url: '/api/produtos',
             dataSrc: ''
         },
         columns: [

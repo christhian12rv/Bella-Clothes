@@ -493,7 +493,7 @@ input:focus {
 }
 
 .product-details .pd-color {
-	margin-bottom: 25px;
+	margin-bottom: 1rem;
 }
 
 .product-details .pd-color h6 {
@@ -506,7 +506,6 @@ input:focus {
 .product-details .pd-size-choose h6 {
 	color: #252525;
 	font-weight: 700;
-	float: left;
 	margin-right: 28px;
 }
 
@@ -547,11 +546,10 @@ input:focus {
 }
 
 .product-details .pd-size-choose {
-	margin-bottom: 30px;
+	margin-bottom: 1rem;
 }
 
 .product-details .pd-size-choose .sc-item {
-	display: inline-block;
 	margin-right: 5px;
 }
 
@@ -587,7 +585,7 @@ input:focus {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	margin-bottom: 33px;
+	margin-bottom: 1rem;
 }
 
 .product-details .quantity .pro-qty {
@@ -1043,72 +1041,8 @@ input:focus {
 	height: 500px;
 }
 
-.big-img-modal {
-	background-color: rgba(0, 0, 0, 0.7);
-	position: absolute;
-	top: 0%;
-	left: 0%;
-	width: 100%;
-	height: 100%;
-	display: block;
-	opacity: 1;
-}
-
-.big-img-modal-loader {
-	width: 40px;
-	height: 40px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-top: -13px;
-	margin-left: -13px;
-	border-radius: 60px;
-	animation: loader 0.8s linear infinite;
-	-webkit-animation: loader 0.8s linear infinite;
-}
-
-@keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-		transform: rotate(0deg);
-		border: 4px solid #19c880;
-		border-left-color: transparent;
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-		transform: rotate(180deg);
-		border: 4px solid white;
-		border-left-color: transparent;
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		transform: rotate(360deg);
-		border: 4px solid #118454;
-		border-left-color: transparent;
-	}
-}
-
-@-webkit-keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-		border: 4px solid #673ab7;
-		border-left-color: transparent;
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		border: 4px solid #f44336;
-		border-left-color: transparent;
-	}
-}
-
 .product-thumbs img {
-	width: 100px;
-	height: 100px;
+	height: 90px;
 }
 
 #img_wrapper {
@@ -1963,4 +1897,113 @@ button.owl-next:focus, button.owl-next:active, button.owl-next:visited, button.o
 	.modal-content {
 		width: 100%;
 	}
+}
+
+#label-calcular-frete {
+	font-weight: bold;
+	margin-right: 1rem;
+}
+
+#calcular-frete-cep {
+	border: 1px solid #d1d1d1;
+	border-radius: .25rem;
+	background-color: transparent;
+	color: #515257;
+	height: calc(1.3125rem + 1.2rem + 2px);
+	padding: 0.6rem 1rem;
+	font-size: 0.875rem;
+}
+
+#calcular-frete-cep:hover {
+	border-color: rgb(23, 175, 130);
+}
+
+#button-calcular-frete {
+	font-weight: bold;
+	padding: 9px 25px;
+	background-color: #19c880;
+	color: #ffffff;
+	border-radius: 0;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+	outline: none;
+	border: none;
+	text-decoration: none;
+	box-shadow: none;
+}
+
+#button-calcular-frete:hover {
+	background-color: #118454;
+}
+
+.informacoes-frete-loader {
+	display: none;
+	margin-top: 1rem;
+	width: 30px;
+	height: 30px;
+	border-radius: 60px;
+	animation: loader 0.8s linear infinite;
+	-webkit-animation: loader 0.8s linear infinite;
+}
+
+@keyframes loader {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		border: 4px solid #19c880;
+		border-left-color: transparent;
+	}
+	50% {
+		-webkit-transform: rotate(180deg);
+		transform: rotate(180deg);
+		border: 4px solid white;
+		border-left-color: transparent;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+		border: 4px solid #118454;
+		border-left-color: transparent;
+	}
+}
+
+#invalid-cep-msg {
+	display: none;
+	color: #f15a69;
+	font-size: .8rem;
+}
+
+#box-localizacao-frete i {
+	color: #666;
+	font-size: .8rem;
+}
+
+#box-localizacao-frete i::before {
+	vertical-align: -.2em !important;
+}
+
+#box-localizacao-frete p {
+	color: #666;
+	font-size: .9rem;
+}
+
+#informacoes-frete {
+	display: none;
+}
+
+#informacoes-frete table tbody tr td {
+	border-top: none !important;
+}
+
+#informacoes-frete table tr {
+	border-bottom: 1px solid rgb(225, 225, 225);
+}
+
+#informacoes-frete table tbody tr td:nth-child(2) {
+	text-align: center;
+}
+
+#informacoes-frete table tbody tr td:last-child {
+	font-weight: bold;
+	float: right;
 }

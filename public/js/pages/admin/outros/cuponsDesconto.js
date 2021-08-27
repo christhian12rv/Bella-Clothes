@@ -18,6 +18,30 @@ $("#search-cupoms").on("input", function () {
     })
 })
 
+var datePickerLanguageOptions = {
+    days: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+    daysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+    daysMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+    months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    today: 'hoje',
+    clear: 'limpar',
+    dateFormat: 'dd/mm/yyyy',
+    timeFormat: 'hh:ii aa',
+    firstDay: 0
+};
+$.fn.datepicker.language['br'] = datePickerLanguageOptions;
+$('.data-expiracao').each(function () {
+    $(this).datepicker({
+        view: 'days',
+        minView: 'days',
+        dateFormat: 'dd/mm/yyyy',
+        range: true,
+        multipleDatesSeparator: " - ",
+        language: 'br'
+    }).data('datepicker');
+})
+
 var meses = [
     "Janeiro",
     "Fevereiro",
@@ -44,6 +68,17 @@ $(".adicionar-cupom").on("click", function () {
     $(".valor-minimo-compra").each(function () {
         console.log($(this));
         $(this).maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
+    })
+
+    $('.data-expiracao').each(function () {
+        $(this).datepicker({
+            view: 'days',
+            minView: 'days',
+            dateFormat: 'dd/mm/yyyy',
+            range: true,
+            multipleDatesSeparator: " - ",
+            language: 'br'
+        }).data('datepicker');
     })
 })
 
@@ -96,8 +131,8 @@ function newCupom(date) {
         '                    <input type="text" placeholder="Cupom" name="cupom" id="cupom" minlength="2" required>' +
         '                </div>' +
         '                <div>' +
-        '                    <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade"' +
-        '                        onkeydown="return event.keyCode == 69 ? false : true" min="1" required>' +
+        '                    <input type="text" id="data_expiracao" name="data_expiracao" class="data-expiracao" placeholder="Data de expiração"' +
+        '                       readonly required>' +
         '                </div>' +
         '                <div class="mt-1">' +
         '                    <select name="validade" id="validade" class="validade-cupom" required>' +

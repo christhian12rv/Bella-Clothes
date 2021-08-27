@@ -225,7 +225,7 @@
     border-radius: 50%;
 }
 
-.cupom-card #cupom, .cupom-card textarea, .cupom-card #quantidade, .cupom-card select, .cupom-card #valor, .cupom-card #usos, .cupom-card #minimo {
+.cupom-card #cupom, .cupom-card textarea, .cupom-card #data_expiracao, .cupom-card select, .cupom-card #valor, .cupom-card #usos, .cupom-card #minimo {
     text-align: center;
     color: white !important;
     background-color: rgba(0, 0, 0, 0.05);
@@ -237,7 +237,7 @@
     font-size: 1.2rem;
 }
 
-.cupom-card textarea, .cupom-card #quantidade, .cupom-card select, .cupom-card select option, .cupom-card #valor, .cupom-card #usos, .cupom-card #minimo {
+.cupom-card textarea, .cupom-card #data_expiracao, .cupom-card select, .cupom-card select option, .cupom-card #valor, .cupom-card #usos, .cupom-card #minimo {
     width: 90%;
     font-size: 0.9rem !important;
 }
@@ -277,7 +277,7 @@
     background: #00512f;
 }
 
-.cupom-card #cupom::placeholder, .cupom-card textarea::placeholder, .cupom-card #quantidade::placeholder, .cupom-card #valor::placeholder, .cupom-card #usos::placeholder, .cupom-card #minimo::placeholder {
+.cupom-card #cupom::placeholder, .cupom-card textarea::placeholder, .cupom-card #data_expiracao::placeholder, .cupom-card #valor::placeholder, .cupom-card #usos::placeholder, .cupom-card #minimo::placeholder {
     color: rgb(179, 179, 179);
     text-transform: capitalize;
 }

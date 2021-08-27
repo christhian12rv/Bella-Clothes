@@ -16,9 +16,6 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="product-pic-zoom">
-                            <div class="big-img-modal">
-                                <div class="big-img-modal-loader"></div>
-                            </div>
                             <img id="imagemProdutoPrincipal" class="product-big-img" src="/img/tenisTeste.jpg"
                                 alt="image alt" data-big="/img/tenisTeste-large.jpg">
                             <i class="bi bi-zoom-in"
@@ -40,6 +37,8 @@
                                 <div class="pt" data-imgbigurl="/img/tenisTeste.jpg"
                                     data-big="/img/tenisTeste-large.jpg"><img src="/img/tenisTeste.jpg" alt="">
                                 </div>
+                                <div class="pt" data-imgbigurl="/img/TenisTeste.jpg"
+                                    data-big="/img/TenisTeste-large.jpg"><img src="/img/TenisTeste.jpg" alt=""></div>
                             </div>
                         </div>
                         <div id="myModal" class="modal">
@@ -86,23 +85,25 @@
                             </div>
 
                             <div class="pd-size-choose">
-                                <h6 style="margin-top: 10px;">Tamanho</h6>
+                                <h6 style="margin-top: 10px;">Tamanho:</h6>
                                 <input type="hidden" name="tamanho" value="39">
-                                <div class="sc-item">
-                                    <input type="radio" id="sm-size">
-                                    <label for="sm-size">39</label>
-                                </div>
-                                <div class="sc-item">
-                                    <input type="radio" id="md-size">
-                                    <label for="md-size">40</label>
-                                </div>
-                                <div class="sc-item">
-                                    <input type="radio" id="lg-size">
-                                    <label for="lg-size">41</label>
-                                </div>
-                                <div class="sc-item">
-                                    <input type="radio" id="xl-size">
-                                    <label for="xl-size">42/43</label>
+                                <div class="d-flex flex-row flex-wrap">
+                                    <div class="sc-item">
+                                        <input type="radio" id="sm-size">
+                                        <label for="sm-size">39</label>
+                                    </div>
+                                    <div class="sc-item">
+                                        <input type="radio" id="md-size">
+                                        <label for="md-size">40</label>
+                                    </div>
+                                    <div class="sc-item">
+                                        <input type="radio" id="lg-size">
+                                        <label for="lg-size">41</label>
+                                    </div>
+                                    <div class="sc-item">
+                                        <input type="radio" id="xl-size">
+                                        <label for="xl-size">42/43</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="quantity">
@@ -111,6 +112,42 @@
                                         onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                 </div>
                                 <a href="#" class="primary-btn pd-cart">Adicionar ao Carrinho</a>
+                            </div>
+                            <hr>
+                            <div class="mb-4">
+                                <label for="calcular-frete-cep" id="label-calcular-frete">Consulte o prazo de entrega e
+                                    frete</label>
+                                <form id="form-calcular-frete">
+                                    <div class="d-flex flex-row flex-wrap" style="gap: .5rem;">
+                                        <input type="text" id="calcular-frete-cep" placeholder="Insira o CEP">
+                                        <input type="submit" id="button-calcular-frete" value="Consultar"></input>
+                                    </div>
+                                </form>
+                                <div class="informacoes-frete-loader"></div>
+                                <p id="invalid-cep-msg">O CEP informado é inválido</p>
+                                <div id="informacoes-frete" class="mt-2">
+                                    <div class="d-flex flex-row flex-wrap" id="box-localizacao-frete">
+                                        <i class="bi bi-geo-alt-fill mr-2"></i>
+                                        <p class="m-0" class="localizacao-frete"><span id="cidade-frete"></span>/<span
+                                                id="estado-frete"></span></p>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Normal</td>
+                                                    <td id="prazo-frete-normal"></td>
+                                                    <td id="preco-frete-normal"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Expresso</td>
+                                                    <td id="prazo-frete-expresso"></td>
+                                                    <td id="preco-frete-expresso"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <ul class="pd-tags">
                                 <li><span>Gênero</span>: Homem</li>

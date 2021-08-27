@@ -193,8 +193,8 @@ $(window).on("load", function () {
     $("#products-cards-pagination").pagination({
         dataSource: [1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195, 1, 2, 3, 4, 5, 6, 7, 195],
         pageSize: 3,
-        prevText: "Anterior ",
-        nextText: "Próximo",
+        prevText: "<i class='bi bi-chevron-left mr-1'></i>Anterior",
+        nextText: "Próximo<i class='bi bi-chevron-right ml-1'></i>",
         callback: function (data, pagination) {
             // template method of yourself
             var html = data;

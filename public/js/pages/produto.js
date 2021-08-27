@@ -18,7 +18,7 @@ $(document).ready(function () {
         loop: false,
         margin: 10,
         nav: true,
-        items: 4,
+        items: 5,
         dots: false,
         navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>'],
         smartSpeed: 1200,
@@ -53,7 +53,6 @@ $(document).ready(function () {
 
     // Trocar a foto do produto clicada para a Foto Principal
     $('.product-thumbs-track .pt').on('click', function () {
-        $(".big-img-modal").fadeIn(0);
         $('.product-thumbs-track .pt').removeClass('active');
         $(this).addClass('active');
         var dataBig = $(this).data('big');
@@ -67,10 +66,6 @@ $(document).ready(function () {
             $('#mlens_target_0').next().attr('src', dataBig);
         }
     });
-
-    $("#imagemProdutoPrincipal").on("load", function () {
-        $(".big-img-modal").fadeOut();
-    })
 
     // Exibir borda na cor selecionada
     $('.cc-item').on("click", function () {
@@ -172,35 +167,105 @@ $(document).ready(function () {
         $(this).toggleClass("favorited");
         let hasFavorited = $(this).hasClass("favorited");
         let toastsCountNextId = $(".toast-container .toast").length + 1;
-        if (hasFavorited) {
-            $.ajax({
-                url: "/mensagemDinamica",
-                method: "GET",
-                data: {
-                    tipoMsg: 'success',
-                    textoMsg: 'Produto adicionado aos favoritos',
-                    autoHideMsg: true,
-                    toastId: toastsCountNextId
-                }
-            }).done(function (data) {
-                let toastCreated = $(".toast-container").append(data);
-                $("#toast-" + toastsCountNextId).toast("show");
-            })
-        } else {
-            $.ajax({
-                url: "/mensagemDinamica",
-                method: "GET",
-                data: {
-                    tipoMsg: 'success',
-                    textoMsg: 'Produto retirado dos favoritos',
-                    autoHideMsg: true,
-                    toastId: toastsCountNextId
-                }
-            }).done(function (data) {
-                let toastCreated = $(".toast-container").append(data);
-                $("#toast-" + toastsCountNextId).toast("show");
-            })
-        }
+        let textoMsgToast;
+        if (hasFavorited)
+            textoMsgToast = 'Produto adicionado aos favoritos';
+        else
+            textoMsgToast = 'Produto retirado aos favoritos';
+
+        $.ajax({
+            url: "/mensagemDinamica",
+            method: "GET",
+            data: {
+                tipoMsg: 'success',
+                textoMsg: textoMsgToast,
+                autoHideMsg: true,
+                toastId: toastsCountNextId
+            }
+        }).done(function (data) {
+            toastCreated = $(".toast-container").append(data);
+            $("#toast-" + toastsCountNextId).toast("show");
+        })
+    })
+
+    $("#calcular-frete-cep").mask("00000-000");
+
+    $("#form-calcular-frete").on("submit", function (e) {
+        e.preventDefault();
+        let cep = $("#calcular-frete-cep").val();
+        cep.replace("-", "");
+        $("#invalid-cep-msg").hide();
+        $("#informacoes-frete").hide();
+        $(".informacoes-frete-loader").show();
+        $.ajax({
+            url: 'https://viacep.com.br/ws/' + cep + '/json/unicode/',
+            dataType: 'json'
+        }).done(function (dataCEP) {
+            if ("erro" in dataCEP) {
+                $(".informacoes-frete-loader").hide();
+                $("#invalid-cep-msg").html("O CEP informado é inválido");
+                $("#invalid-cep-msg").show();
+            } else {
+                $.ajax({
+                    url: "/api/frete",
+                    method: "GET",
+                    data: {
+                        cepDestino: cep,
+                        peso: 1,
+                        comprimento: 16,
+                        altura: 2,
+                        largura: 11,
+                        diametro: 1,
+                        tipoFrete: "pac"
+                    }
+                }).done(function (dataFreteNormal) {
+                    $.ajax({
+                        url: "/api/frete",
+                        method: "GET",
+                        data: {
+                            cepDestino: cep,
+                            peso: 1,
+                            comprimento: 16,
+                            altura: 2,
+                            largura: 11,
+                            diametro: 1,
+                            tipoFrete: "sedex"
+                        }
+                    }).done(function (dataFreteExpresso) {
+                        $(".informacoes-frete-loader").hide();
+                        $("#cidade-frete").html(dataCEP.localidade);
+                        $("#estado-frete").html(dataCEP.uf);
+                        let diaUtilFreteNormalString, diaUtilFreteExpressoString;
+                        if (dataFreteNormal[0].prazoEntrega <= 1)
+                            diaUtilFreteNormalString = " dia útil";
+                        else
+                            diaUtilFreteNormalString = " dias úteis";
+
+                        if (dataFreteExpresso[0].prazoEntrega <= 1)
+                            diaUtilFreteExpressoString = " dia útil";
+                        else
+                            diaUtilFreteExpressoString = " dias úteis";
+                        $("#informacoes-frete #prazo-frete-normal").html(dataFreteNormal[0].prazoEntrega + diaUtilFreteNormalString);
+                        $("#informacoes-frete #preco-frete-normal").html("R$ " + dataFreteNormal[0].valor);
+                        $("#informacoes-frete #prazo-frete-expresso").html(dataFreteExpresso[0].prazoEntrega + diaUtilFreteExpressoString);
+                        $("#informacoes-frete #preco-frete-expresso").html("R$ " + dataFreteExpresso[0].valor);
+                        $("#informacoes-frete").show();
+                    }).fail(function (err) {
+                        $(".informacoes-frete-loader").hide();
+                        $("#invalid-cep-msg").html("Ocorreu um erro ao fazer a consulta");
+                        $("#invalid-cep-msg").show();
+                    })
+                }).fail(function (err) {
+                    $(".informacoes-frete-loader").hide();
+                    $("#invalid-cep-msg").html("Ocorreu um erro ao fazer a consulta");
+                    $("#invalid-cep-msg").show();
+                })
+            }
+        }).fail(function (err) {
+            $(".informacoes-frete-loader").hide();
+            $("#invalid-cep-msg").html("O cep informado é inválido");
+            $("#invalid-cep-msg").show();
+        })
     })
 
 });

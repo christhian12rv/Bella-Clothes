@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const fs = require('fs')
+const fs = require('fs');
 
 router.get("/login", (req, res) => {
     res.render("admin/login", {

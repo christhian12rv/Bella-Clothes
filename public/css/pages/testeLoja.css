@@ -642,6 +642,10 @@
     transition: color .3s;
 }
 
+#products-cards-pagination .paginationjs .paginationjs-pages ul li:first-child.disabled, #products-cards-pagination .paginationjs .paginationjs-pages ul li:last-child.disabled {
+    display: none;
+}
+
 #products-cards-pagination .paginationjs .paginationjs-pages ul li.active {
     border-color: #19c880 !important;
     background-color: #19c880 !important;

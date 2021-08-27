@@ -23,7 +23,7 @@ $(document).ready(function () {
             'pdf', 'print'
         ],
         ajax: {
-            url: '/get/avaliacoes',
+            url: '/api/avaliacoes',
             dataSrc: ''
         },
         columns: [

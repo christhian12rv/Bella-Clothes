@@ -131,34 +131,24 @@ $(document).ready(function () {
         $(this).toggleClass("favorited");
         let hasFavorited = $(this).hasClass("favorited");
         let toastsCountNextId = $(".toast-container .toast").length + 1;
-        if (hasFavorited) {
-            $.ajax({
-                url: "/mensagemDinamica",
-                method: "GET",
-                data: {
-                    tipoMsg: 'success',
-                    textoMsg: 'Produto adicionado aos favoritos',
-                    autoHideMsg: true,
-                    toastId: toastsCountNextId
-                }
-            }).done(function (data) {
-                let toastCreated = $(".toast-container").append(data);
-                $("#toast-" + toastsCountNextId).toast("show");
-            })
-        } else {
-            $.ajax({
-                url: "/mensagemDinamica",
-                method: "GET",
-                data: {
-                    tipoMsg: 'success',
-                    textoMsg: 'Produto retirado dos favoritos',
-                    autoHideMsg: true,
-                    toastId: toastsCountNextId
-                }
-            }).done(function (data) {
-                let toastCreated = $(".toast-container").append(data);
-                $("#toast-" + toastsCountNextId).toast("show");
-            })
-        }
+        let textoMsgToast;
+        if (hasFavorited)
+            textoMsgToast = 'Produto adicionado aos favoritos';
+        else
+            textoMsgToast = 'Produto retirado aos favoritos';
+
+        $.ajax({
+            url: "/mensagemDinamica",
+            method: "GET",
+            data: {
+                tipoMsg: 'success',
+                textoMsg: textoMsgToast,
+                autoHideMsg: true,
+                toastId: toastsCountNextId
+            }
+        }).done(function (data) {
+            $(".toast-container").append(data);
+            $("#toast-" + toastsCountNextId).toast("show");
+        })
     })
 });

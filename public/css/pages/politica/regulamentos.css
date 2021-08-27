@@ -1,0 +1,31 @@
+.regulamentos {
+    padding: 2rem 4rem;
+}
+
+.regulamentos .address-navigation a {
+    color: #000;
+    font-weight: bold;
+}
+
+.regulamentos h2 {
+    color: #19c880;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.regulamentos h6 {
+    font-weight: bold;
+}
+
+.regulamentos p, .regulamentos ul li {
+    font-size: .9rem;
+}
+
+.regulamentos hr {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.regulamentos * {
+    text-align: justify;
+}

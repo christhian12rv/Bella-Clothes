@@ -14,7 +14,8 @@ const compra = require("./routes/compra");
 const usuario = require("./routes/usuario");
 const blog = require("./routes/blog");
 const admin = require("./routes/admin");
-const dbReads = require("./routes/dbReads");
+const politica = require("./routes/politica");
+const api = require("./routes/api");
 
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
@@ -192,6 +193,17 @@ app.get("/mensagemDinamica", (req, res) => {
     res.send(mensagemDinamica);
 })
 
+app.get("/ajuda", (req, res) => {
+    var ajuda = req.query.ajuda;
+    console.log(ajuda);
+    res.render("ajuda", {
+        css: "ajuda.css",
+        title: "Ajuda | Bella Clothes",
+        js: "ajuda.js",
+        ajuda: ajuda
+    })
+})
+
 app.get("/erro-404", (req, res) => {
     res.render("erros/erro_404", {
         css: "erros/erro_404.css",
@@ -238,7 +250,8 @@ app.use("/compra", compra);
 app.use("/usuario", usuario);
 app.use("/blog", blog);
 app.use("/admin", admin);
-app.use("/get", dbReads);
+app.use("/politica", politica);
+app.use("/api", api);
 
 app.listen(PORT, () => {
     console.log("Servidor rodando na porta " + PORT);

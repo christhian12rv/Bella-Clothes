@@ -21,8 +21,8 @@
                     <input type="text" placeholder="Cupom" name="cupom" id="cupom" minlength="2" required>
                 </div>
                 <div>
-                    <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade"
-                        onkeydown="return event.keyCode == 69 ? false : true" min="1" required>
+                    <input type="text" id="data_expiracao" name="data_expiracao" class="data-expiracao"
+                        placeholder="Data de expiração" readonly required>
                 </div>
                 <div class="mt-1">
                     <select name="validade" id="validade" class="validade-cupom" required>
