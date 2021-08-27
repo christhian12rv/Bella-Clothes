@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
-const PORT = 8081;
+const PORT = process.env.PORT || 8081;
 const fileUpload = require('express-fileupload');
 const sharp = require("sharp");
 var sizeOf = require('image-size');
@@ -25,6 +25,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const session = require("express-session");
 const flash = require("connect-flash");
+
+const db = require("./config/db");
 
 /*const passport = require("passport");
 require("./config/auth")(passport);*/
@@ -63,7 +65,7 @@ app.set("view engine", "handlebars");
 
 // Mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/bellaclothes").then(() => {
+mongoose.connect(db.mongoURI).then(() => {
     console.log("Conectado ao MongoDB!");
 }).catch((erro) => {
     console.log("Erro ao se conectar. Erro: " + erro);
