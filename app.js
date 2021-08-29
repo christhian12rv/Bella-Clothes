@@ -7,8 +7,8 @@ const fileUpload = require('express-fileupload');
 const sharp = require("sharp");
 var sizeOf = require('image-size');
 
+const registrar = require("./routes/registrar");
 const produto = require("./routes/produto");
-const loja = require("./routes/loja");
 const carrinho = require("./routes/carrinho");
 const compra = require("./routes/compra");
 const usuario = require("./routes/usuario");
@@ -28,8 +28,8 @@ const flash = require("connect-flash");
 
 const db = require("./config/db");
 
-/*const passport = require("passport");
-require("./config/auth")(passport);*/
+const passport = require("passport");
+/* require("./config/auth")(passport); */
 
 // Configurações
 //Sessão
@@ -39,19 +39,19 @@ app.use(session({
     saveUninitialized: true
 }));
 
-/*app.use(passport.initialize());
-app.use(passport.session());*/
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 
-// Middleware
+// Middlewares
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash("success_msg");
     res.locals.error_msg = req.flash("error_msg");
     res.locals.warning_msg = req.flash("warning_msg");
     res.locals.info_msg = req.flash("info_msg");
     res.locals.coupon_code_msg = req.flash("coupon_code_msg");
-    /*res.locals.user = req.user || null;*/
+    res.locals.user = req.user || null;
     next();
 })
 
@@ -94,20 +94,8 @@ app.get("/login", (req, res) => {
     });
 })
 
-app.get("/registrar/fisica", (req, res) => {
-    res.render("./usuario/registrarFisica", {
-        css: "registrar.css",
-        js: "usuario/registrarFisica.js",
-        title: "Registrar"
-    })
-})
-
-app.get("/registrar/juridica", (req, res) => {
-    res.render("./usuario/registrarJuridica", {
-        css: "registrar.css",
-        js: "usuario/registrarJuridica.js",
-        title: "Registrar"
-    })
+app.get("/loja", (req, res) => {
+    res.render("loja", { css: "loja.css", js: "loja.js", title: "Loja" });
 })
 
 app.get("/teste", (req, res) => {
@@ -245,8 +233,8 @@ app.get("/ver-rotas", (req, res) => {
     res.send(links);
 })
 
+app.use("/registrar", registrar);
 app.use("/produto", produto);
-app.use("/loja", loja);
 app.use("/carrinho", carrinho);
 app.use("/compra", compra);
 app.use("/usuario", usuario);
@@ -254,6 +242,14 @@ app.use("/blog", blog);
 app.use("/admin", admin);
 app.use("/politica", politica);
 app.use("/api", api);
+
+app.get("/admin/*", function (req, res) {
+    res.status(404).redirect("/admin/erro-404");
+})
+
+app.get("*", function (req, res) {
+    res.status(404).redirect("/erro-404");
+})
 
 app.listen(PORT, () => {
     console.log("Servidor rodando na porta " + PORT);

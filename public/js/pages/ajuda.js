@@ -31,4 +31,16 @@ $(window).on("load", function () {
         else
             answer.css("height", "0px");
     })
+
+    var pageQuery = new URLSearchParams(window.location.search);
+    var pageQueryAjuda = pageQuery.get("ajuda");
+    var tabAjuda = $(".ajuda-perguntas#" + pageQueryAjuda);
+
+    if (tabAjuda.length > 0) {
+        $("#link-" + pageQueryAjuda).addClass("active");
+        tabAjuda.addClass("active");
+    } else {
+        $("#link-trocas-e-devolucoes").addClass("active");
+        $(".ajuda-perguntas#trocas-e-devolucoes").addClass("active");
+    }
 })
