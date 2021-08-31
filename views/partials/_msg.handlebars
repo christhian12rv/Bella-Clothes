@@ -1,70 +1,75 @@
 <!-- success_msg e error_msg: Variáveis globais -->
 <div class="toast-container position-fixed">
     {{#if success_msg}}
-        <div class="toast success align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
-            data-autohide="false">
-            <div class="d-flex">
-                <div class="toast-icon m-auto">
-                    <i class="bi bi-check-lg"></i>
+        {{#each success_msg}}
+            <div class="toast success align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+                data-autohide="false">
+                <div class="d-flex">
+                    <div class="toast-icon my-auto">
+                        <i class="bi bi-check-lg"></i>
+                    </div>
+                    <div class="toast-body flex-grow-1">
+                        {{this}}
+                    </div>
+                    <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                            class="bi bi-x-lg"></i></button>
                 </div>
-                <div class="toast-body">
-                    Hello, world! This is a toast success message test.
-                </div>
-                <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
-                        class="bi bi-x-lg"></i></button>
             </div>
-        </div>
-        <div class="toast error align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
-            data-autohide="false">
-            <div class="d-flex">
-                <div class="toast-icon m-auto">
-                    <i class="bi bi-shield-exclamation"></i>
-                </div>
-                <div class="toast-body">
-                    Hello, world! This is a toast error message test.
-                </div>
-                <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
-                        class="bi bi-x-lg"></i></button>
-            </div>
-        </div>
-        <div class="toast warning align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
-            data-autohide="false">
-            <div class="d-flex">
-                <div class="toast-icon m-auto">
-                    <i class="bi bi-exclamation-triangle"></i>
-                </div>
-                <div class="toast-body">
-                    Hello, world! This is a toast warning message test.
-                </div>
-                <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
-                        class="bi bi-x-lg"></i></button>
-            </div>
-        </div>
-        <div class="toast info align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
-            data-autohide="false">
-            <div class="d-flex">
-                <div class="toast-icon m-auto">
-                    <i class="bi bi-info-circle"></i>
-                </div>
-                <div class="toast-body">
-                    Hello, world! This is a toast info message test.
-                </div>
-                <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
-                        class="bi bi-x-lg"></i></button>
-            </div>
-        </div>
+        {{/each}}
     {{/if}}
 
     {{#if error_msg}}
-        <div class="toast error-toast">Some text some message..</div>
+        {{#each error_msg}}
+            <div class="toast error align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+                data-autohide="false">
+                <div class="d-flex">
+                    <div class="toast-icon my-auto">
+                        <i class="bi bi-shield-exclamation"></i>
+                    </div>
+                    <div class="toast-body flex-grow-1">
+                        {{this}}
+                    </div>
+                    <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                            class="bi bi-x-lg"></i></button>
+                </div>
+            </div>
+        {{/each}}
     {{/if}}
 
     {{#if warning_msg}}
-        <div class="toast alert alert-warning">{{warning_msg}}</div>
+        {{#each warning_msg}}
+            <div class="toast warning align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+                data-autohide="false">
+                <div class="d-flex">
+                    <div class="toast-icon my-auto">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                    <div class="toast-body flex-grow-1">
+                        {{this}}
+                    </div>
+                    <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                            class="bi bi-x-lg"></i></button>
+                </div>
+            </div>
+        {{/each}}
     {{/if}}
 
     {{#if info_msg}}
-        <div class="toast alert alert-info">{{info_msg}}</div>
+        {{#each info_msg}}
+            <div class="toast info align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+                data-autohide="false">
+                <div class="d-flex">
+                    <div class="toast-icon my-auto">
+                        <i class="bi bi-info-circle"></i>
+                    </div>
+                    <div class="toast-body flex-grow-1">
+                        {{this}}
+                    </div>
+                    <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                            class="bi bi-x-lg"></i></button>
+                </div>
+            </div>
+        {{/each}}
     {{/if}}
 </div>
 

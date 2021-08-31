@@ -20,20 +20,19 @@
                                 <div class="container">
                                     <div class="register-form">
                                         <p>* Campos Obrigatórios</p>
-
-                                        <input type="hidden" id="tipoPessoa" name="tipoPessoa" value="1">
                                         <div class="row">
                                             <div class="col-sm-4">
                                                 <div class="group-input">
                                                     <label for="nome">* Nome</label>
-                                                    <input type="text" id="nome" placeholder="* Nome">
+                                                    <input type="text" id="nome" name="nome" placeholder="* Nome">
                                                     <span class="theTooltip">Preencha o campo Nome</span>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="group-input">
                                                     <label for="sobrenome">* Sobrenome</label>
-                                                    <input type="text" id="sobrenome" placeholder="* Sobrenome">
+                                                    <input type="text" id="sobrenome" name="sobrenome"
+                                                        placeholder="* Sobrenome">
                                                     <span class="theTooltip">Preencha o campo Sobrenome</span>
                                                 </div>
                                             </div>
@@ -41,16 +40,18 @@
                                                 <div class="group-input">
                                                     <label for="sexo">* Sexo</label>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input checkbox-input" type="radio"
-                                                            name="sexo" id="sexo" value="Masculino">
-                                                        <label class="form-check-label checkbox-label" for="masculino">
+                                                        <input class="form-check-input checkbox-input sexo" type="radio"
+                                                            name="sexo" id="sexoMasculino" value="Masculino">
+                                                        <label class="form-check-label checkbox-label"
+                                                            for="sexoMasculino">
                                                             Masculino
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input checkbox-input" type="radio"
-                                                            name="sexo" id="sexo" value="Feminino">
-                                                        <label class="form-check-label checkbox-label" for="Feminino">
+                                                        <input class="form-check-input checkbox-input sexo" type="radio"
+                                                            name="sexo" id="sexoFeminino" value="Feminino">
+                                                        <label class="form-check-label checkbox-label"
+                                                            for="sexoFeminino">
                                                             Feminino
                                                         </label>
                                                     </div>
@@ -70,7 +71,7 @@
                                                 <div class="group-input">
                                                     <label for="" class="hiddenName">&nbsp;</label>
                                                     <select class="custom-select" name="dia" id="dia">
-                                                        <option selected
+                                                        <option selected value=""
                                                             style="background-color: #e6e6e6; font-weight: bold;">Dia
                                                         </option>
                                                         <option value="01">01</option>
@@ -113,21 +114,21 @@
                                                 <div class="group-input">
                                                     <label for="" class="hiddenName">&nbsp;</label>
                                                     <select class="custom-select" name="mes" id="mes">
-                                                        <option selected
+                                                        <option selected value=""
                                                             style="background-color: #e6e6e6; font-weight: bold;">Mês
                                                         </option>
-                                                        <option value="01">Janeiro</option>
-                                                        <option value="02">Fevereiro</option>
-                                                        <option value="03">Março</option>
-                                                        <option value="04">Abril</option>
-                                                        <option value="05">Maio</option>
-                                                        <option value="06">Junho</option>
-                                                        <option value="07">Julho</option>
-                                                        <option value="08">Agosto</option>
-                                                        <option value="09">Setembro</option>
-                                                        <option value="10">Outubro</option>
-                                                        <option value="11">Novembro</option>
-                                                        <option value="12">Dezembro</option>
+                                                        <option value="00">Janeiro</option>
+                                                        <option value="01">Fevereiro</option>
+                                                        <option value="02">Março</option>
+                                                        <option value="03">Abril</option>
+                                                        <option value="04">Maio</option>
+                                                        <option value="05">Junho</option>
+                                                        <option value="06">Julho</option>
+                                                        <option value="07">Agosto</option>
+                                                        <option value="08">Setembro</option>
+                                                        <option value="09">Outubro</option>
+                                                        <option value="10">Novembro</option>
+                                                        <option value="11">Dezembro</option>
                                                     </select>
                                                     <input type="hidden" id="hidden-mes">
                                                     <span class="theTooltip" id="tooltipMes">Escolha um Mês</span>
@@ -137,7 +138,7 @@
                                                 <div class="group-input">
                                                     <label for="" class="hiddenName">&nbsp;</label>
                                                     <select class="custom-select select-ano" name="ano" id="ano">
-                                                        <option selected
+                                                        <option selected value=""
                                                             style="background-color: #e6e6e6; font-weight: bold;">Ano
                                                         </option>
                                                     </select>
@@ -152,7 +153,7 @@
                                                     <label for="cpf">* CPF:</label>
                                                     <input type="text"
                                                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                                                        maxlength="11" id="cpf" placeholder="* CPF">
+                                                        id="cpf" name="cpf" placeholder="* CPF">
                                                     <span class="theTooltip">Preencha o campo CPF</span>
                                                 </div>
                                             </div>
@@ -162,7 +163,7 @@
                                             <div class="col-sm-5">
                                                 <div class="group-input">
                                                     <label for="nome_do_endereco">* Endereço</label>
-                                                    <input type="text" id="nome_do_endereco"
+                                                    <input type="text" id="nome_do_endereco" name="nome_do_endereco"
                                                         placeholder="* Nome do Endereço">
                                                     <span class="theTooltip">Preencha o campo Nome do Endereço</span>
                                                 </div>
@@ -170,14 +171,16 @@
                                             <div class="col-sm-2">
                                                 <div class="group-input">
                                                     <label for="" class="hiddenName">&nbsp;</label>
-                                                    <input type="text" id="numeroEndereco" placeholder="* Nº">
+                                                    <input type="text" id="numero_endereco" name="numero_endereco"
+                                                        placeholder="* Nº">
                                                     <span class="theTooltip">Preencha o campo Nº</span>
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
                                                 <div class="group-input">
                                                     <label for="" class="hiddenName">&nbsp;</label>
-                                                    <input type="text" id="complemento" placeholder="Complemento">
+                                                    <input type="text" id="complemento" name="complemento"
+                                                        placeholder="Complemento">
                                                 </div>
                                             </div>
                                         </div>
@@ -186,23 +189,23 @@
                                             <div class="col-sm-4">
                                                 <div class="group-input">
                                                     <label for="bairro">* Bairro</label>
-                                                    <input type="text" id="bairro" placeholder="* Bairro">
+                                                    <input type="text" id="bairro" name="bairro" placeholder="* Bairro">
                                                     <span class="theTooltip">Preencha o campo Bairro</span>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="group-input">
                                                     <label for="ponto_referencia">Ponto de Referência</label>
-                                                    <input type="text" id="ponto_referencia"
+                                                    <input type="text" id="ponto_referencia" name="ponto_referencia"
                                                         placeholder="Ponto de Referência">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="group-input">
                                                     <label for="cep">* CEP</label>
-                                                    <input type="text" id="cep"
+                                                    <input type="text" id="cep" name="cep"
                                                         onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                                                        maxlength="8" placeholder="* CEP">
+                                                        placeholder="* CEP">
                                                     <span class="theTooltip">Preencha o campo CEP</span>
                                                 </div>
                                             </div>
@@ -212,8 +215,8 @@
                                             <div class="col-sm-4">
                                                 <div class="group-input">
                                                     <label for="">* Estado</label>
-                                                    <select class="custom-select" name="estado" id="estado">
-                                                        <option selected
+                                                    <select class="custom-select" id="estado" name="estado">
+                                                        <option selected value=""
                                                             style="background-color: #e6e6e6; font-weight: bold;">
                                                             Selecione
                                                         </option>
@@ -252,7 +255,7 @@
                                             <div class="col-sm-4">
                                                 <div class="group-input">
                                                     <label for="cidade">* Cidade </label>
-                                                    <input type="text" id="cidade" placeholder="* Cidade">
+                                                    <input type="text" id="cidade" name="cidade" placeholder="* Cidade">
                                                     <span class="theTooltip">Preencha o campo Cidade</span>
                                                 </div>
                                             </div>
@@ -289,7 +292,8 @@
                                                 <div class="col-sm-6">
                                                     <div class="group-input">
                                                         <label for="telefone">* Telefone</label>
-                                                        <input type="text" id="telefone" placeholder="* Telefone"
+                                                        <input type="text" id="telefone" name="telefone"
+                                                            placeholder="* Telefone"
                                                             onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57">
                                                         <span class="theTooltip">Preencha o campo Telefone</span>
                                                     </div>
@@ -297,7 +301,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="group-input">
                                                         <label for="outro_telefone">Outro Telefone</label>
-                                                        <input type="text" id="outro_telefone"
+                                                        <input type="text" id="outro_telefone" name="outro_telefone"
                                                             placeholder="Outro Telefone"
                                                             onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57">
                                                         <span class="theTooltip">Digite um Telefone Válido</span>
@@ -308,7 +312,8 @@
                                                 <div class="col-sm-12">
                                                     <div class="group-input">
                                                         <label for="email">* Email</label>
-                                                        <input type="text" id="email" placeholder="* Email">
+                                                        <input type="text" id="email" name="email"
+                                                            placeholder="* Email">
                                                         <span class="theTooltip">Preencha o campo Email</span>
                                                         <span style="font-size: 12px;" class="ml-3">A confirmação de
                                                             Cadastro será enviada ao seu email</span>
@@ -320,16 +325,16 @@
                                                 <div class="col-sm-6">
                                                     <div class="group-input">
                                                         <label for="senha">* Senha</label>
-                                                        <input type="password" id="senha" maxlength="18"
+                                                        <input type="password" id="senha" name="senha" maxlength="18"
                                                             placeholder="* Senha">
                                                         <span class="theTooltip">Preencha o campo Senha</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="group-input">
-                                                        <label for="con-senha">* Confirmar Senha </label>
-                                                        <input type="password" id="con-senha" maxlength="18"
-                                                            placeholder="* Confirmar Senha">
+                                                        <label for="con_senha">* Confirmar Senha </label>
+                                                        <input type="password" id="con_senha" name="con_senha"
+                                                            maxlength="18" placeholder="* Confirmar Senha">
                                                         <span class="theTooltip">Preencha o campo Confirmar Senha</span>
                                                     </div>
                                                 </div>
@@ -338,11 +343,12 @@
                                                 <div class="col-sm-12">
                                                     <div class="group-input">
                                                         <div class="form-check form-check-inline">
-                                                            <input type="checkbox" id="check-ofertas"
+                                                            <input type="checkbox" id="check_ofertas"
+                                                                name="check_ofertas"
                                                                 class="form-check-input checkbox-input"
                                                                 style="height: unset; align-self: flex-start; margin-top: 6px;"
                                                                 checked>
-                                                            <label for="check-ofertas"
+                                                            <label for="check_ofertas"
                                                                 class="form-check-label checkbox-label">Quero receber
                                                                 por e-mail ofertas e novidades. A frequência de envios
                                                                 pode variar de acordo com a interação do
@@ -355,16 +361,18 @@
                                                 <div class="col-sm-12">
                                                     <div class="group-input">
                                                         <div class="form-check form-check-inline">
-                                                            <input type="checkbox" id="check-politica"
+                                                            <input type="checkbox" id="check_politica"
                                                                 class="form-check-input checkbox-input"
                                                                 style="height: unset; align-self: flex-start; margin-top: 6px; margin-bottom: 100px;"
                                                                 checked>
-                                                            <label for="check-politica" id="label-politica"
+                                                            <label for="check_politica" id="label-politica"
                                                                 class="form-check-label checkbox-label"
                                                                 style="align-self: flex-start;">Estou de acordo com o
                                                                 uso de dados para compra e experiência conforme a <a
-                                                                    href="/politica-de-privacidade"
-                                                                    style="color: black;"> Política de Privacidade</a>
+                                                                    href="/politica/politica-de-privacidade"
+                                                                    style="color: black; text-decoration: underline;">
+                                                                    Política
+                                                                    de Privacidade</a>
                                                                 da Bella Clothes.</label>
                                                             <span class="theTooltip">É necessário marcar essa
                                                                 opção</span>
@@ -372,7 +380,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" style="margin-top: -55px;">
+                                            <input type="hidden" id="data_nascimento" name="data_nascimento"
+                                                value="23/03/2021">
+                                            <div class="row row-registrar-button">
                                                 <div class="col-sm-12">
                                                     <button type="button" class="site-btn btn btn-success register-btn"
                                                         onclick="verificarFormulario();">Registrar</button>

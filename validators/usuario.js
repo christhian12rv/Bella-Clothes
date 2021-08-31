@@ -1,31 +1,11 @@
-const express = require("express");
-const router = express.Router();
+const { body } = require('express-validator');
+const fetch = require('node-fetch');
 
-const UsuarioController = require("../controllers/usuario");
+const mongoose = require("mongoose");
+const UsuarioFisico = mongoose.model("usuariosFisicos");
 
-const UsuarioValidator = require("../validators/usuario")
-
-router.get("/fisica", (req, res) => {
-    res.render("usuario/registrarFisica", {
-        css: "registrar.css",
-        js: "usuario/registrarFisica.js",
-        title: "Registrar"
-    })
-})
-
-router.post("/fisica", UsuarioValidator.createUsuario, UsuarioController.createUsuario);
-
-
-router.get("/juridica", (req, res) => {
-    res.render("usuario/registrarJuridica", {
-        css: "registrar.css",
-        js: "usuario/registrarJuridica.js",
-        title: "Registrar"
-    })
-})
-
-/* router.post("/juridica", [
-    body("razao_social")
+exports.createUsuario = [
+    body("nome")
         .trim()
         .customSanitizer(value => {
             return value.toLowerCase()
@@ -37,15 +17,15 @@ router.get("/juridica", (req, res) => {
                 .replace(/ Dos /g, ' dos ');
         })
         .notEmpty()
-        .withMessage("O campo Razão Social é obrigatório")
+        .withMessage("O campo Nome é obrigatório")
         .bail()
         .isString()
-        .withMessage("A Razão Social informada é inválida")
+        .withMessage("O Nome informado é inválido")
         .bail()
         .isLength({ min: 3 })
-        .withMessage("O campo Razão Social deve conter no mínimo 3 caracteres"),
+        .withMessage("O campo Nome deve conter no mínimo 3 caracteres"),
 
-    body("fantasia")
+    body("sobrenome")
         .trim()
         .customSanitizer(value => {
             return value.toLowerCase()
@@ -57,72 +37,102 @@ router.get("/juridica", (req, res) => {
                 .replace(/ Dos /g, ' dos ');
         })
         .notEmpty()
-        .withMessage("O campo Nome Fantasia é obrigatório")
+        .withMessage("O campo Sobrenome é obrigatório")
         .bail()
         .isString()
-        .withMessage("O Nome Fantasia informado é inválido")
+        .withMessage("O Sobrenome informado é inválido")
         .bail()
         .isLength({ min: 3 })
-        .withMessage("O campo Nome Fantasia deve conter no mínimo 3 caracteres"),
+        .withMessage("O campo Sobrenome deve conter no mínimo 3 caracteres"),
 
-    body("cnpj")
+    body("sexo")
         .trim()
         .notEmpty()
-        .withMessage("O campo CNPJ é obrigatório")
+        .withMessage("O campo Sexo é obrigatório")
         .bail()
         .isString()
-        .withMessage("O CNPJ informado é inválido")
+        .withMessage("O Sexo informado é inválido")
         .bail()
-        .isLength({ min: 18, max: 18 })
-        .withMessage("O CNPJ informado é inválido")
+        .isIn(["Masculino", "Feminino"])
+        .withMessage("O Sexo informado é inválido"),
+
+    body("dia")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Dia de nascimento é obrigatório")
         .bail()
-        .custom(value => {
-            return UsuarioJuridico.findOne({ cnpj: value }).lean()
-                .then((usuario) => {
-                    if (usuario)
-                        return Promise.reject("O CNPJ informado é inválido");
+        .isNumeric()
+        .withMessage("O Dia de nascimento informado é inválido")
+        .bail()
+        .isLength({ min: 2, max: 2 })
+        .withMessage("O Dia de nascimento informado é inválido"),
+
+    body("mes")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Mês de nascimento é obrigatório")
+        .bail()
+        .isNumeric()
+        .withMessage("O Mês de nascimento informado é inválido")
+        .bail()
+        .isLength({ min: 2, max: 2 })
+        .withMessage("O Mês de nascimento informado é inválido"),
+
+    body("ano")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Ano de nascimento é obrigatório")
+        .bail()
+        .isNumeric()
+        .withMessage("O Ano de nascimento informado é inválido")
+        .bail()
+        .isLength({ min: 4, max: 4 })
+        .withMessage("O Ano de nascimento informado é inválido"),
+
+    body("data_nascimento")
+        .trim()
+        .notEmpty()
+        .withMessage("A data de nascimento é obrigatória")
+        .bail()
+        .isDate({ format: "DD/MM/YYYY" })
+        .withMessage("A data de nascimento é inválida")
+        .bail()
+        .custom((value, { req }) => {
+            let { dia, mes, ano } = req.body;
+            let data_nascimento = new Date(ano, mes, dia);
+            return fetch("http://worldtimeapi.org/api/timezone/America/Sao_Paulo").then(fetchRes => fetchRes.json())
+                .then(data => {
+                    let currentDate = new Date(data.datetime);
+                    if (data_nascimento > currentDate)
+                        return Promise.reject("A data de nascimento é inválida");
                 })
                 .catch(erro => {
                     return Promise.reject("Ocorreu um erro interno: " + erro);
                 })
+
         }),
 
-    body("inscricao_municipal")
+    body("cpf")
         .trim()
-        .customSanitizer(value => {
-            return value.toLowerCase()
-                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
-                .replace(/ Da /g, ' da ')
-                .replace(/ De /g, ' de ')
-                .replace(/ Do /g, ' do ')
-                .replace(/ Das /g, ' das ')
-                .replace(/ Dos /g, ' dos ');
-        }),
-
-    body("inscricao_estadual")
-        .trim()
-        .customSanitizer(value => {
-            return value.toLowerCase()
-                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
-                .replace(/ Da /g, ' da ')
-                .replace(/ De /g, ' de ')
-                .replace(/ Do /g, ' do ')
-                .replace(/ Das /g, ' das ')
-                .replace(/ Dos /g, ' dos ');
-        })
         .notEmpty()
-        .withMessage("O campo Inscrição Estadual é obrigatório")
+        .withMessage("O campo CPF é obrigatório")
         .bail()
         .isString()
-        .withMessage("A Inscrição Estadual informada é inválida")
+        .withMessage("O CPF informado é inválido")
         .bail()
-        .isLength({ min: 3 })
-        .withMessage("O campo Inscrição Estadual deve conter no mínimo 3 caracteres"),
-
-    body("check_isento")
-        .toBoolean()
-        .isBoolean()
-        .withMessage('O campo Isento é inválido'),
+        .isLength({ min: 14, max: 14 })
+        .withMessage("O CPF informado é inválido")
+        .bail()
+        .custom(value => {
+            return UsuarioFisico.findOne({ cpf: value }).lean()
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
+                .then((usuario) => {
+                    if (usuario)
+                        return Promise.reject("Já existe um usuário cadastrado com o CPF informado.");
+                })
+        }),
 
     body("nome_do_endereco")
         .trim()
@@ -268,28 +278,28 @@ router.get("/juridica", (req, res) => {
         })
         .bail()
         .custom(value => {
-            return UsuarioJuridico.findOne({ telefone: value }).lean()
+            return UsuarioFisico.findOne({ telefone: value }).lean()
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
                 .then((usuario) => {
                     if (usuario)
                         return Promise.reject("Já existe um usuário cadastrado com o Telefone informado.");
-                })
-                .catch(erro => {
-                    return Promise.reject("Ocorreu um erro interno: " + erro);
                 })
         }),
 
     body("outro_telefone")
         .trim()
         .custom(value => {
-            return UsuarioJuridico.findOne({ outro_telefone: value }).lean()
+            return UsuarioFisico.findOne({ outro_telefone: value }).lean()
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
                 .then((usuario) => {
                     if (usuario)
                         return Promise.reject("Já existe um usuário cadastrado com o Telefone (Outro telefone) informado.");
                     else if ((value != "") && ((value.length != 14 && value.length != 15) || !(/\(\d{2,}\) \d{4,}\-\d{4}/g.test(value))))
                         return Promise.reject("O campo Outro telefone informado é inválido");
-                })
-                .catch(erro => {
-                    return Promise.reject("Ocorreu um erro interno: " + erro);
                 })
         }),
 
@@ -306,13 +316,13 @@ router.get("/juridica", (req, res) => {
         .withMessage("O Email informado é inválido")
         .bail()
         .custom(value => {
-            return UsuarioJuridico.findOne({ email: value }).lean()
+            return UsuarioFisico.findOne({ email: value }).lean()
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
                 .then((usuario) => {
                     if (usuario)
                         return Promise.reject("Já existe um usuário cadastrado com o Email informado.");
-                })
-                .catch(erro => {
-                    return Promise.reject("Ocorreu um erro interno: " + erro);
                 })
         }),
 
@@ -342,45 +352,4 @@ router.get("/juridica", (req, res) => {
         .toBoolean()
         .isBoolean()
         .withMessage('Você deve aceitar a política de privacidade ao fazer o registro')
-
-], (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        errors.array().forEach(value => {
-            req.flash("error_msg", value.msg);
-        });
-        res.redirect("/registrar/fisica");
-    } else {
-        bcrypt.genSalt(10, (erro, salt) => {
-            bcrypt.hash(req.body.senha, salt, (erro, hash) => {
-                if (erro) {
-                    req.flash("error_msg", "Houve um erro interno ao registrar. Erro: " + erro);
-                    res.redirect("/registrar/fisica");
-                } else {
-                    const novoUsuario = new UsuarioJuridico({
-                        razao_social: req.body.nome,
-                        fantasia: req.body.sobrenome,
-                        email: req.body.email,
-                        senha: hash,
-                        inscricao_municipal: req.body.inscricao_municipal,
-                        inscricao_estadual: req.body.inscricao_estadual,
-                        isento: req.body.isento,
-                        cnpj: req.body.cnpj,
-                        telefone: req.body.telefone,
-                        outro_telefone: req.body.outro_telefone,
-                        ofertas_email: req.body.check_ofertas
-                    })
-                    novoUsuario.save().then(() => {
-                        req.flash("success_msg", "Usuário cadastrado com sucesso! Faça Login para continuar");
-                        res.redirect("/login");
-                    }).catch((erro) => {
-                        req.flash("error_msg", "Houve um erro interno ao registrar. Erro: " + erro);
-                        res.redirect("/registrar/fisica");
-                    });
-                }
-            })
-        })
-    }
-}) */
-
-module.exports = router;
+]

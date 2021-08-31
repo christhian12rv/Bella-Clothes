@@ -23,6 +23,7 @@
     "i": "^0.3.6",
     "image-size": "^1.0.0",
     "mongoose": "^5.12.9",
+    "node-fetch": "^2.6.1",
     "npm": "^7.13.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

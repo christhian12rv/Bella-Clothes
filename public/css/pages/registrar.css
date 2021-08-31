@@ -12,16 +12,7 @@
 	display: none !important;
 }
 
-@media screen and (max-width: 400px) {
-	.main-menu .navbar-brad {
-		margin-left: auto !important;
-	}
-}
-
 @media screen and (max-width: 768px) {
-	.main-menu .navbar-brand {
-		margin-left: auto !important;
-	}
 	.textoLogo {
 		display: contents !important;
 	}
@@ -33,6 +24,9 @@
 @media screen and (min-width: 768px) {
 	.main-menu .navbar-brand {
 		margin-left: 0 !important;
+	}
+	.row-registrar-button {
+		margin-top: -55px;
 	}
 }
 

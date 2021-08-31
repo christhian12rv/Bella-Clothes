@@ -4,10 +4,12 @@ const Schema = mongoose.Schema;
 const UsuarioFisico = new Schema({
     nome: {
         type: String,
+        minLength: 3,
         required: true
     },
     sobrenome: {
         type: String,
+        minLength: 3,
         required: true
     },
     email: {
@@ -24,8 +26,8 @@ const UsuarioFisico = new Schema({
         enum: ['Masculino', 'Feminino'],
         required: true
     },
-    dataNascimento: {
-        type: Date,
+    data_nascimento: {
+        type: String,
         required: true
     },
     cpf: {
@@ -42,17 +44,18 @@ const UsuarioFisico = new Schema({
         unique: true,
         required: true
     },
-    outroTelefone: {
+    outro_telefone: {
         type: String,
-        minLength: 14,
         maxLength: 15,
-        unique: true
+        unique: true,
+        sparse: true
     },
     foto: {
         type: String,
-        unique: true
+        unique: true,
+        sparse: true
     },
-    ofertasEmail: {
+    ofertas_email: {
         type: Boolean,
         required: true
     },

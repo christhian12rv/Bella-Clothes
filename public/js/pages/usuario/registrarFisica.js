@@ -25,7 +25,8 @@ $("input#tipoPessoa").removeClass("invalid");
 $("input#complemento").removeClass("invalid");
 $("input#ponto_referencia").removeClass("invalid");
 $("input#outro_telefone").removeClass("invalid");
-$("input#check-ofertas").removeClass("invalid");
+$("input#check_ofertas").removeClass("invalid");
+$("input#data_nascimento").removeClass("invalid");
 
 // Verificar validade de todos os inputs
 // Input Nome
@@ -37,9 +38,10 @@ $("input#sobrenome").on("input", validaNomes);
 $("input#sobrenome").one("focusout", validaNomes);
 
 // Sexo
-$("input#sexo").on("change", function () {
+$("input.sexo").on("change", function () {
     $("#tooltipSexo").css("display", "none");
-    $("input#sexo").removeClass("invalid");
+    $("input#sexoMasculino").removeClass("invalid");
+    $("input#sexoFeminino").removeClass("invalid");
     $("#hidden-sexo").removeClass("invalid");
 })
 
@@ -52,6 +54,7 @@ $("select#mes").on("change", validaMes);
 $("select#ano").on("change", validaAno);
 
 // CPF
+$("input#cpf").mask("000.000.000-00");
 $("input#cpf").on("input", validaCPF);
 $("input#cpf").one("focusout", validaCPF);
 
@@ -60,7 +63,7 @@ $("input#nome_do_endereco").on("input", validaNomes);
 $("input#nome_do_endereco").one("focusout", validaNomes);
 
 // Número do Endereço
-$("input#numeroEndereco").on("input", function () {
+$("input#numero_endereco").on("input", function () {
     if ($(this).val().length == 0) {
         if ($(this).hasClass("hasOutFocusFirst"))
             $(this).next().css("display", "block");
@@ -72,7 +75,7 @@ $("input#numeroEndereco").on("input", function () {
         $(this).removeClass("invalid");
     }
 });
-$("input#numeroEndereco").one("focusout", function () {
+$("input#numero_endereco").one("focusout", function () {
     if ($(this).val().length == 0) {
         if ($(this).hasClass("hasOutFocusFirst"))
             $(this).next().css("display", "block");
@@ -90,6 +93,7 @@ $("input#bairro").on("input", validaNomes);
 $("input#bairro").one("focusout", validaNomes);
 
 // CEP
+$("input#cep").mask("00000-000");
 $("input#cep").on("input", validaCEP);
 $("input#cep").one("focusout", validaCEP);
 
@@ -100,7 +104,7 @@ $("select#estado").on("change", validaEstado);
 $("input#cidade").on("input", validaNomes);
 $("input#cidade").one("focusout", validaNomes);
 
-// Telefone e Outro Telefone 
+// Telefone e Outro Telefone
 $("input#telefone").phoneBrazil();
 $("input#telefone").on("input", validaTelefone);
 $("input#telefone").on("focusout", validaTelefone);
@@ -114,8 +118,8 @@ $("input#email").one("focusout", validaEmail);
 // Senha e Confirmar Senha
 $("input#senha").on("input", validaSenhas);
 $("input#senha").one("focusout", validaSenhas);
-$("input#con-senha").on("input", validaSenhas);
-$("input#con-senha").one("focusout", validaSenhas);
+$("input#con_senha").on("input", validaSenhas);
+$("input#con_senha").one("focusout", validaSenhas);
 
 // Capitalizar Complemento e Ponto de Referência
 $("input#complemento").on("input", function () {
@@ -129,13 +133,13 @@ $("input#ponto_referencia").on("input", function () {
 
 // Checkbox Ofertas
 var checkOfertasChecked = true;
-$("input#check-ofertas").on("click", function () {
+$("input#check_ofertas").on("click", function () {
     checkOfertasChecked = !checkOfertasChecked;
     $(this).attr("checked", checkOfertasChecked);
 })
 // Checkbox Política de Privacidade
 var checkPoliticaChecked = true;
-$("input#check-politica").on("click", function () {
+$("input#check_politica").on("click", function () {
     checkPoliticaChecked = !checkPoliticaChecked;
     $(this).attr("checked", checkPoliticaChecked);
 })
@@ -156,21 +160,32 @@ function verificarFormulario() {
         }
     })
 
-    if ($("select#estado").val() == "Selecione") {
+    if ($("select#estado").val() == "") {
         $("select#estado").addClass("hasOutFocusFirst");
         $("select#estado").addClass("invalid");
     }
 
-    if (!$("input#check-politica").attr("checked")) {
+    if (!$("input#check_politica").attr("checked")) {
         $("#label-politica").next().css("display", "block");
-        $("input#check-politica").addClass("invalid");
+        $("input#check_politica").addClass("invalid");
     } else {
         $("#label-politica").next().css("display", "none");
-        $("input#check-politica").removeClass("invalid");
+        $("input#check_politica").removeClass("invalid");
     }
 
     var isDate = validaDataTotal();
-    if (!$("*input").hasClass("invalid") && isDate && $("input#check-politica").attr("checked")) {
+    if (!$("*input").hasClass("invalid") && isDate && $("input#check_politica").attr("checked")) {
+        let dia = $("#dia").val();
+        let mes = parseInt($("#mes").val()) + 1;
+        if (mes < 10) mes = "0" + mes;
+        let ano = $("#ano").val();
+        $("#data_nascimento").val(dia + "/" + mes + "/" + ano)
+
+        $("#check_ofertas").val($("#check_ofertas").attr("checked") ? true : false);
+        $("#check_politica").val($("#check_politica").attr("checked") ? true : false);
+
+        $("input#cidade").prop("disabled", false);
+        $("select#estado").prop("disabled", false);
         $("#formRegistro").submit();
     }
 }
@@ -216,7 +231,7 @@ function validaNomes() {
 
 // Data - Dia
 function validaDia() {
-    if ($("select#dia").val() != "Dia") {
+    if ($("select#dia").val() != "") {
         $("#tooltipDia").css("display", "none");
         $("#hidden-dia").removeClass("invalid");
         if ($("select#dia").hasClass("invalid"))
@@ -231,7 +246,7 @@ function validaDia() {
 
 // Data - Mês
 function validaMes() {
-    if ($("select#mes").val() != "Mês") {
+    if ($("select#mes").val() != "") {
         $("#tooltipMes").css("display", "none");
         $("#hidden-mes").removeClass("invalid");
         if ($("select#mes").hasClass("invalid"))
@@ -246,7 +261,7 @@ function validaMes() {
 
 // Data - Ano
 function validaAno() {
-    if ($("select#ano").val() != "Ano") {
+    if ($("select#ano").val() != "") {
         $("#tooltipAno").css("display", "none");
         $("#hidden-ano").removeClass("invalid");
         if ($("select#ano").hasClass("invalid"))
@@ -282,7 +297,6 @@ function validaDataTotal() {
     if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
         monthLength[1] = 29;
     }
-    console.log(day);
     if (day <= monthLength[month - 1]) {
         $("#tooltipDataTotal").css("display", "none");
         return true;
@@ -293,7 +307,7 @@ function validaDataTotal() {
 }
 
 function validaCPF() {
-    if ($(this).val().length >= 1 && $(this).val().length < 11) {
+    if ($(this).val().length >= 1 && $(this).val().length < 14) {
         if ($(this).hasClass("hasOutFocusFirst"))
             $(this).next().css("display", "block");
         if (!$(this).hasClass("invalid"))
@@ -314,7 +328,7 @@ function validaCPF() {
 }
 
 function validaCEP() {
-    if ($(this).val().length >= 1 && $(this).val().length < 8) {
+    if ($(this).val().length >= 1 && $(this).val().length < 9) {
         if ($(this).hasClass("hasOutFocusFirst"))
             $(this).next().css("display", "block");
         if (!$(this).hasClass("invalid"))
@@ -338,7 +352,7 @@ function validaCEP() {
         const inputCEP = $(this)
         // Puxa estados e cidades do "viacep" por JQuery AJAX
         const verificaEstadoCidade = $.ajax({
-            url: 'https://viacep.com.br/ws/' + inputCEP.val() + '/json/unicode/',
+            url: 'https://viacep.com.br/ws/' + inputCEP.val().replace("-", "") + '/json/unicode/',
             dataType: 'json'
         });
         verificaEstadoCidade
@@ -373,7 +387,7 @@ function validaCEP() {
 }
 
 function validaEstado() {
-    if ($("select#estado").val() != "Selecione") {
+    if ($("select#estado").val() != "") {
         $("#tooltipEstado").css("display", "none");
         if ($("#hidden-estado").hasClass("invalid"))
             $("#hidden-estado").removeClass("invalid");
@@ -448,7 +462,7 @@ function validaEmail() {
     // Verificar se existe algo antes do @
     var hasUserAddress = email.substr(0, email.indexOf("@"));
     // Verificar se existe algo depois do . do domínio
-    var hasAfterDot = dominio.substr(dominio.indexOf(".") + 1, dominio.length) != "" ? true : false;
+    var hasAfterDot = dominio.substr(dominio.indexOf(".") + 2, dominio.length) != "" ? true : false;
     if (!hasDot) hasAfterDot = false;
 
     if (specialChar) {
@@ -458,15 +472,12 @@ function validaEmail() {
             $(this).addClass("invalid");
         $(this).next().html("O email não deve conter caracteres especiais");
 
-        console.log("Erro 1");
-
     } else if (email.length == 0) {
         if ($(this).hasClass("hasOutFocusFirst"))
             $(this).next().css("display", "block");
         if (!$(this).hasClass("invalid"))
             $(this).addClass("invalid");
         $(this).next().html("Preencha o campo Email");
-        console.log("Erro 2");
 
     } else if (repeatedAt || !hasAt || !hasDot || !hasDomain || !hasUserAddress || !hasAfterDot) {
         if ($(this).hasClass("hasOutFocusFirst"))
@@ -474,24 +485,23 @@ function validaEmail() {
         if (!$(this).hasClass("invalid"))
             $(this).addClass("invalid");
         $(this).next().html("Digite um email válido");
-        console.log("Erro 3");
+
     } else {
         $(this).next().css("display", "none");
         $(this).removeClass("invalid");
-        console.log("Certo");
     }
 }
 
 function validaSenhas() {
     var senha = $(this).val();
     if ($(this).attr("id") == "senha") {
-        var senha2 = $("#con-senha");
+        var senha2 = $("#con_senha");
     } else {
         var senha2 = $("#senha");
     }
     var type = $(this).attr("placeholder").substr(2);
 
-    if ((senha.length >= 1 && senha.length < 6) || (senha.length > 18)) {
+    if ((senha.length >= 1 && senha.length < 8) || (senha.length > 18)) {
         if ($(this).hasClass("hasOutFocusFirst"))
             $(this).next().css("display", "block");
         if (!$(this).hasClass("invalid"))
@@ -501,7 +511,7 @@ function validaSenhas() {
         if (!senha2.hasClass("invalid"))
             senha2.addClass("invalid");
 
-        $(this).next().html("A senha deve conter entre 6 e 18 caracteres (" + $(this).val().length + " caracteres atualmente");
+        $(this).next().html("A senha deve conter entre 8 e 18 caracteres (" + $(this).val().length + " caracteres atualmente");
 
     } else if ($(this).val().length == 0) {
         if ($(this).hasClass("hasOutFocusFirst"))

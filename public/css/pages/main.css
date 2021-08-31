@@ -1412,6 +1412,10 @@ footer a:hover i {
   background-color: rgba(0, 188, 212, .7) !important;
 }
 
+.toast-body {
+  word-break: break-word;
+}
+
 .toast-icon i {
   font-size: 1.2rem;
   padding-left: .75rem !important;
