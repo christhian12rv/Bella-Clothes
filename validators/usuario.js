@@ -2,7 +2,7 @@ const { body } = require('express-validator');
 const fetch = require('node-fetch');
 
 const mongoose = require("mongoose");
-const UsuarioFisico = mongoose.model("usuariosFisicos");
+const UsuarioFisico = require("../models/usuario/registro/UsuarioFisico");
 
 exports.createUsuario = [
     body("nome")
@@ -50,7 +50,7 @@ exports.createUsuario = [
         .notEmpty()
         .withMessage("O campo Sexo é obrigatório")
         .bail()
-        .isString()
+        .isAlpha()
         .withMessage("O Sexo informado é inválido")
         .bail()
         .isIn(["Masculino", "Feminino"])
@@ -101,15 +101,14 @@ exports.createUsuario = [
             let { dia, mes, ano } = req.body;
             let data_nascimento = new Date(ano, mes, dia);
             return fetch("http://worldtimeapi.org/api/timezone/America/Sao_Paulo").then(fetchRes => fetchRes.json())
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
                 .then(data => {
                     let currentDate = new Date(data.datetime);
                     if (data_nascimento > currentDate)
                         return Promise.reject("A data de nascimento é inválida");
                 })
-                .catch(erro => {
-                    return Promise.reject("Ocorreu um erro interno: " + erro);
-                })
-
         }),
 
     body("cpf")
@@ -215,23 +214,30 @@ exports.createUsuario = [
         .withMessage("O CEP informado é inválido")
         .bail()
         .isLength({ min: 9, max: 9 })
-        .withMessage("O CEP informado é inválido"),
+        .withMessage("O CEP informado é inválido")
+        .bail()
+        .custom((value, { req }) => {
+            return fetch('https://viacep.com.br/ws/' + value.replace("-", "") + '/json/unicode/').then(fetchRes => fetchRes.json())
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
+                .then(data => {
+                    if ("erro" in data) {
+                        return Promise.reject("O CEP informado é inválido");
+                    } else {
+                        req.body.estado = data.uf;
+                        req.body.cidade = data.localidade;
+                    }
+                })
+        }),
 
     body("estado")
         .trim()
-        .customSanitizer(value => {
-            return value.toLowerCase()
-                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
-                .replace(/ Da /g, ' da ')
-                .replace(/ De /g, ' de ')
-                .replace(/ Do /g, ' do ')
-                .replace(/ Das /g, ' das ')
-                .replace(/ Dos /g, ' dos ');
-        })
+        .toUpperCase()
         .notEmpty()
         .withMessage("O campo Estado é obrigatório")
         .bail()
-        .isString()
+        .isAlpha()
         .withMessage("O Estado informado é inválido")
         .bail()
         .isLength({ min: 2, max: 2 })
@@ -352,4 +358,10 @@ exports.createUsuario = [
         .toBoolean()
         .isBoolean()
         .withMessage('Você deve aceitar a política de privacidade ao fazer o registro')
+        .bail()
+        .custom(value => {
+            if (value !== true)
+                throw new Error("Você deve aceitar a política de privacidade ao fazer o registro");
+            return true;
+        })
 ]

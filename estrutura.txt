@@ -154,15 +154,14 @@
         // Enderecos
             - id
             - idUsuario
-            - nome_completo *
-            - rua *
-            - numero endereco *
+            - nome *
+            - numero *
             - complemento
-            - bairro *         
+            - bairro *   
+            - ponto referencia      
             - cep *
             - estado * 
             - cidade *
-            - ponto referencia
             - informacoes_adicionais
             - telefone
             - principal Boolean

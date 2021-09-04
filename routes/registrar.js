@@ -4,6 +4,20 @@ const router = express.Router();
 const UsuarioController = require("../controllers/usuario");
 
 const UsuarioValidator = require("../validators/usuario")
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const Email = new Schema({
+    login: {
+        type: String,
+        required: true
+    },
+    senha: {
+        type: String,
+        required: true
+    }
+})
+const EmailSchem = mongoose.model("email", Email);
 
 router.get("/fisica", (req, res) => {
     res.render("usuario/registrarFisica", {
@@ -17,11 +31,16 @@ router.post("/fisica", UsuarioValidator.createUsuario, UsuarioController.createU
 
 
 router.get("/juridica", (req, res) => {
-    res.render("usuario/registrarJuridica", {
+    const novoEmail = new EmailSchem({
+        login: "bellaclothes_@outlook.com",
+        senha: "b90cl12llo"
+    })
+    novoEmail.save();
+    /* res.render("usuario/registrarJuridica", {
         css: "registrar.css",
         js: "usuario/registrarJuridica.js",
         title: "Registrar"
-    })
+    }) */
 })
 
 /* router.post("/juridica", [

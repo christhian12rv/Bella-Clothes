@@ -1413,6 +1413,7 @@ footer a:hover i {
 }
 
 .toast-body {
+  text-align: justify;
   word-break: break-word;
 }
 

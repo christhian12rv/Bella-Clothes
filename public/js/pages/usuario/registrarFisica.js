@@ -181,9 +181,6 @@ function verificarFormulario() {
         let ano = $("#ano").val();
         $("#data_nascimento").val(dia + "/" + mes + "/" + ano)
 
-        $("#check_ofertas").val($("#check_ofertas").attr("checked") ? true : false);
-        $("#check_politica").val($("#check_politica").attr("checked") ? true : false);
-
         $("input#cidade").prop("disabled", false);
         $("select#estado").prop("disabled", false);
         $("#formRegistro").submit();
