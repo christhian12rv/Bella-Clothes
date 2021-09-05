@@ -31,7 +31,7 @@ const Usuario = new Schema({
     },
     tipo: {
         type: String,
-        enum: ["fisico", "juridico"],
+        enum: ["Fisico", "Juridico"],
         required: true
     },
     ofertas_email: {

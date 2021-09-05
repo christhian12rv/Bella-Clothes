@@ -16,6 +16,7 @@ const blog = require("./routes/blog");
 const admin = require("./routes/admin");
 const politica = require("./routes/politica");
 const api = require("./routes/api");
+const verificarEmail = require("./routes/verificarEmail");
 
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
@@ -65,7 +66,7 @@ app.set("view engine", "handlebars");
 
 // Mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect(db.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }).then(() => {
+mongoose.connect(db.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
     console.log("Conectado ao MongoDB: " + db.mongoURI);
 }).catch((erro) => {
     console.log("Erro ao se conectar. Erro: " + erro);
@@ -241,6 +242,7 @@ app.use("/usuario", usuario);
 app.use("/blog", blog);
 app.use("/admin", admin);
 app.use("/politica", politica);
+app.use("/verificarEmail", verificarEmail);
 app.use("/api", api);
 
 app.get("/admin/*", function (req, res) {

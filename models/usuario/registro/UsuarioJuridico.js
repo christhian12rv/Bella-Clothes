@@ -2,31 +2,24 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UsuarioJuridico = new Schema({
+    id_usuario: {
+        type: Schema.Types.ObjectId,
+        ref: "usuarios",
+        required: true
+    },
     razao_social: {
         type: String,
         minLength: 3,
         required: true
     },
     fantasia: {
-        type: String,
-        minLength: 3,
-        required: true
-    },
-    email: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    senha: {
-        type: String,
-        required: true
+        type: String
     },
     inscricao_municipal: {
         type: String,
     },
     inscricao_estadual: {
-        type: String,
-        required: true
+        type: String
     },
     isento: {
         type: Boolean,
@@ -38,40 +31,7 @@ const UsuarioJuridico = new Schema({
         maxLength: 18,
         unique: true,
         required: true
-    },
-    telefone: {
-        type: String,
-        minLength: 14,
-        maxLength: 15,
-        unique: true,
-        required: true
-    },
-    outro_telefone: {
-        type: String,
-        maxLength: 15,
-        unique: true
-    },
-    foto: {
-        type: String,
-        unique: true
-    },
-    ofertas_email: {
-        type: Boolean,
-        required: true
-    },
-    enderecos: [{
-        type: Schema.Types.ObjectId,
-        ref: "enderecos"
-    }],
-    cartoes: [{
-        type: Schema.Types.ObjectId,
-        ref: "cartoes"
-    }],
-    admin: {
-        type: Boolean,
-        default: false
     }
-
 })
 
-mongoose.model("usuariosJuridicos", UsuarioJuridico);
+module.exports = mongoose.model("usuariosJuridicos", UsuarioJuridico);

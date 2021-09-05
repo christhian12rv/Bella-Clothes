@@ -203,9 +203,8 @@ function verificarFormulario() {
     }
 
     if (!$("*input").hasClass("invalid") && $("input#check_politica").attr("checked")) {
-        $("#check_isento").val($("#check_isento").attr("checked") ? true : false);
-        $("#check_ofertas").val($("#check_ofertas").attr("checked") ? true : false);
-        $("#check_politica").val($("#check_politica").attr("checked") ? true : false);
+        $("#formRegistro input:disabled").prop("disabled", false);
+        $("#formRegistro select:disabled").prop("disabled", false);
         $("#formRegistro").submit();
     }
 }
@@ -254,7 +253,7 @@ function validaNomes() {
 }
 
 function validaCNPJ() {
-    var cnpj = $(this).val().replace(/[^0-9]/g, '');
+    var cnpj = $(this).val();
     if (cnpj.length >= 1 && cnpj.length < 18) {
         if ($(this).hasClass("hasOutFocusFirst"))
             $(this).next().css("display", "block");
@@ -279,14 +278,17 @@ function validaCNPJ() {
         $("input#cep").prop("disabled", false);
     } else {
         const inputCNPJ = $(this);
+        cnpj = cnpj.replace(/[^0-9]/g, '');
+        console.log(cnpj);
         const verificaCNPJ = $.ajax({
-            url: 'https://www.receitaws.com.br/v1/cnpj/' + (cnpj.replace(/./g, "").replace("/", "").replace("-", "")),
+            url: 'https://www.receitaws.com.br/v1/cnpj/' + cnpj,
             method: 'GET',
             dataType: 'jsonp'
         });
         verificaCNPJ
             .done(function (data) {
-                if ("erro" in data) {
+                console.log(data);
+                if (data.status !== "OK") {
                     if (inputCNPJ.hasClass("hasOutFocusFirst"))
                         inputCNPJ.next().css("display", "block");
                     if (!inputCNPJ.hasClass("invalid"))
@@ -306,7 +308,7 @@ function validaCNPJ() {
                     $("input#fantasia").next().css("display", "none");
 
                     // CEP
-                    $("input#cep").val(data.cep.replace(/[^0-9]/g, ''));
+                    $("input#cep").val(data.cep.replace('.', ''));
                     $("input#cep").next().css("display", "none");
                     $("input#cep").removeClass("invalid");
                     $("input#cep").addClass("hasClicked");
@@ -320,13 +322,13 @@ function validaCNPJ() {
                     $("input#nome_do_endereco").removeClass("invalid");
                     $("input#nome_do_endereco").next().css("display", "none");
 
-                    // Nome do Endereço
+                    // NÚMERO do Endereço
                     $("input#numero_endereco").val(data.numero);
                     $("input#numero_endereco").prop("disabled", true);
                     $("input#numero_endereco").removeClass("invalid");
                     $("input#numero_endereco").next().css("display", "none");
 
-                    // Nome do Endereço
+                    // Bairro
                     $("input#bairro").val(data.bairro);
                     $("input#bairro").prop("disabled", true);
                     $("input#bairro").removeClass("invalid");
