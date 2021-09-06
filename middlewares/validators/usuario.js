@@ -1,9 +1,9 @@
 const { body } = require('express-validator');
 const fetch = require('node-fetch');
 
-const Usuario = require("../models/usuario/registro/Usuario");
-const UsuarioFisico = require("../models/usuario/registro/UsuarioFisico");
-const UsuarioJuridico = require("../models/usuario/registro/UsuarioJuridico");
+const Usuario = require("../../models/usuario/registro/Usuario");
+const UsuarioFisico = require("../../models/usuario/registro/UsuarioFisico");
+const UsuarioJuridico = require("../../models/usuario/registro/UsuarioJuridico");
 
 exports.createUsuarioFisico = [
     body("nome")

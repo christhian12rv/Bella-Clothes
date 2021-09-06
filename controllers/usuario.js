@@ -42,7 +42,7 @@ exports.createUsuarioJuridico = async (req, res) => {
 
 exports.verificarEmail = async (req, res) => {
     try {
-        await UsuarioService.verificarEmail(req.query);
+        /* await UsuarioService.verificarEmail(req.query); */
         return res.render("usuario/verificarEmail", {
             css: "verificarEmail.css",
             title: "Verificação de Conta || Bella Clothes"

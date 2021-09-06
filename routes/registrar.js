@@ -3,7 +3,7 @@ const router = express.Router();
 
 const UsuarioController = require("../controllers/usuario");
 
-const UsuarioValidator = require("../validators/usuario")
+const UsuarioValidator = require("../middlewares/validators/usuario")
 
 router.get("/fisica", (req, res) => {
     res.render("usuario/registrarFisica", {

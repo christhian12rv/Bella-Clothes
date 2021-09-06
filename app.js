@@ -3,9 +3,20 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const PORT = process.env.PORT || 8081;
+
 const fileUpload = require('express-fileupload');
 const sharp = require("sharp");
 var sizeOf = require('image-size');
+
+const handlebars = require("express-handlebars");
+const bodyParser = require("body-parser");
+
+const path = require("path");
+const session = require("express-session");
+const flash = require("connect-flash");
+
+const passport = require("passport");
+/* require("./config/auth")(passport); */
 
 const registrar = require("./routes/registrar");
 const produto = require("./routes/produto");
@@ -18,31 +29,22 @@ const politica = require("./routes/politica");
 const api = require("./routes/api");
 const verificarEmail = require("./routes/verificarEmail");
 
-const handlebars = require("express-handlebars");
-const bodyParser = require("body-parser");
-
-const mongoose = require("mongoose");
-
-const path = require("path");
-const session = require("express-session");
-const flash = require("connect-flash");
-
-const db = require("./config/db");
-
-const passport = require("passport");
-/* require("./config/auth")(passport); */
+const { connectMongoDB } = require("./loaders/mongooseConnection");
+const { runAllCrons } = require("./loaders/crons");
 
 // Configurações
-//Sessão
+//Session
 app.use(session({
     secret: "a9p1i6c49001",
     resave: true,
     saveUninitialized: true
 }));
 
+// Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Flash
 app.use(flash());
 
 // Middlewares
@@ -65,19 +67,18 @@ app.engine("handlebars", handlebars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Mongoose
-mongoose.Promise = global.Promise;
-mongoose.connect(db.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
-    console.log("Conectado ao MongoDB: " + db.mongoURI);
-}).catch((erro) => {
-    console.log("Erro ao se conectar. Erro: " + erro);
-})
+connectMongoDB();
+
+//Crons
+runAllCrons();
 
 // Public
 app.use(express.static(path.join(__dirname, "public")));
 
+// Extra
 app.use(fileUpload());
 
-// Rotas
+// Routes
 app.get("/", (req, res) => {
     res.render("./home/index", {
         css: "home.css",
@@ -234,6 +235,7 @@ app.get("/ver-rotas", (req, res) => {
     res.send(links);
 })
 
+// Use Routes
 app.use("/registrar", registrar);
 app.use("/produto", produto);
 app.use("/carrinho", carrinho);
