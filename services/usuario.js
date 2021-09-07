@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const randomstring = require("randomstring");
+const mongoose = require("mongoose");
 
 const Usuario = require("../models/usuario/registro/Usuario");
 const UsuarioFisico = require("../models/usuario/registro/UsuarioFisico");
@@ -14,7 +15,7 @@ exports.createUsuarioFisico = async (body) => {
     try {
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(body.senha, salt);
-        let tokenEmailVerification = randomstring.generate({ length: 64, charset: 'hex' });
+        let tokenEmailVerification = randomstring.generate({ length: 64, charset: 'alphanumeric' });
 
         const novoUsuario = new Usuario({
             email: body.email,
@@ -51,16 +52,13 @@ exports.createUsuarioFisico = async (body) => {
 
         let tokenExists;
         do {
-            EmailToken.findOne({ token: tokenEmailVerification }).lean()
-                .then((dataToken) => {
-                    if (dataToken) {
-                        tokenExists = true;
-                        tokenEmailVerification = randomstring.generate({ length: 64, charset: 'hex' });
-                    } else {
-                        tokenExists = false;
-                    }
-                })
-                .catch((erro) => { throw new Error(erro) });
+            let findOneEmailToken = await EmailToken.findOne({ token: tokenEmailVerification }).lean();
+            if (findOneEmailToken) {
+                tokenExists = true;
+                tokenEmailVerification = randomstring.generate({ length: 64, charset: 'alphanumeric' });
+            } else {
+                tokenExists = false;
+            }
         } while (tokenExists === true);
 
         const novoEmailToken = new EmailToken({
@@ -78,10 +76,12 @@ exports.createUsuarioFisico = async (body) => {
             subject: "Bella Clothes - Verificação de Conta",
             html: "<div><h2>Olá " + novoUsuarioFisico.nome + ",</h2>" +
                 "<h3>Por favor verifique sua conta clicando no link abaixo</h3><br>" +
-                "<a style='text-decoration: none; outline: none; border: none; box-shadow: none; color: #fff; background-color: #19c880; margin-left: auto; margin-right: auto; text-align:center; padding: .75rem 3rem; font-size: 1.1rem; font-weight: bold;'" +
-                "href='" + webSiteUrl + "/verificarEmail?email=" + novoUsuario.email + "&id=" + novoEmailToken.token + "'>Verificar Email</a></div>"
+                "<a style='text-decoration: none; outline: none; border: none; border-radius: .25rem; box-shadow: none; color: #fff; background-color: #19c880; margin-left: auto; margin-right: auto; text-align:center; padding: .75rem 3rem; font-size: 1.1rem; font-weight: bold;'" +
+                "href='" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "'>Verificar Email</a>br" +
+                "<p>Ou copie e cole esse link no seu navegador</p>" +
+                "<a href='" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "'>" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "</a></div>"
         })
-
+        return { usuario: novoUsuario, emailToken: novoEmailToken };
     } catch (error) {
         throw new Error(error);
     }
@@ -92,7 +92,7 @@ exports.createUsuarioJuridico = async (body) => {
     try {
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(body.senha, salt);
-        let tokenEmailVerification = randomstring.generate({ length: 64, charset: 'hex' });
+        let tokenEmailVerification = randomstring.generate({ length: 64, charset: 'alphanumeric' });
 
         const novoUsuario = new Usuario({
             email: body.email,
@@ -130,16 +130,13 @@ exports.createUsuarioJuridico = async (body) => {
 
         let tokenExists;
         do {
-            EmailToken.findOne({ token: tokenEmailVerification }).lean()
-                .then((dataToken) => {
-                    if (dataToken) {
-                        tokenExists = true;
-                        tokenEmailVerification = randomstring.generate({ length: 64, charset: 'hex' });
-                    } else {
-                        tokenExists = false;
-                    }
-                })
-                .catch((erro) => { throw new Error(erro) });
+            let findOneEmailToken = await EmailToken.findOne({ token: tokenEmailVerification }).lean();
+            if (findOneEmailToken) {
+                tokenExists = true;
+                tokenEmailVerification = randomstring.generate({ length: 64, charset: 'alphanumeric' });
+            } else {
+                tokenExists = false;
+            }
         } while (tokenExists === true);
 
         const novoEmailToken = new EmailToken({
@@ -158,30 +155,48 @@ exports.createUsuarioJuridico = async (body) => {
             html: "<div><h2>Olá " + novoUsuarioJuridico.razao_social + ",</h2>" +
                 "<h3>Por favor verifique sua conta clicando no link abaixo</h3><br>" +
                 "<a style='text-decoration: none; outline: none; border: none; border-radius: .25rem; box-shadow: none; color: #fff; background-color: #19c880; margin-left: auto; margin-right: auto; text-align:center; padding: .75rem 3rem; font-size: 1.1rem; font-weight: bold;'" +
-                "href='" + webSiteUrl + "/verificarEmail?email=" + novoUsuario.email + "&id=" + novoEmailToken.token + "'>Verificar Email</a>br" +
+                "href='" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "'>Verificar Email</a>br" +
                 "<p>Ou copie e cole esse link no seu navegador</p>" +
-                "<a href='" + webSiteUrl + "/verificarEmail?email=" + novoUsuario.email + "&id=" + novoEmailToken.token + "'>" + webSiteUrl + "/verificarEmail?email=" + novoUsuario.email + "&id=" + novoEmailToken.token + "</a></div>"
+                "<a href='" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "'>" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "</a></div>"
         })
-
+        return { usuario: novoUsuario, emailToken: novoEmailToken };
     } catch (error) {
         throw new Error(error);
     }
 }
 
-exports.verificarEmail = async (query) => {
+exports.verificarEmail = async (email, emailTokenId) => {
+    try {
+        let checkUsuario = await Usuario.findOne({ email: email }).lean();
+        let checkEmailToken = await EmailToken.findById(emailTokenId).lean();
+        if (checkUsuario && checkEmailToken) return { status: 200 }
+        else return { status: 404 }
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.emailVerificado = async (query) => {
     try {
         let email = query.email;
-        let tokenId = query.id;
+        let tokenId = query.token;
+        let checkUsuario = await Usuario.findOne({ email: email }).lean();
         let checkEmailToken = await EmailToken.findOne({ token: tokenId }).lean();
-        if (checkEmailToken) {
-            let checkUsuario = await Usuario.findOne({ _id: checkEmailToken.id_usuario, email: email }).lean();
-            if (checkUsuario) {
-                if (checkUsuario.email_verificado == false)
-                    await Usuario.findByIdAndUpdate(checkEmailToken.id_usuario, { email_verificado: true });
-                else throw "Conta de usuário já verificada. Faça login para continuar.";
-            } else { throw "Email inválido."; }
-        } else { throw "Token inválido."; }
+        if (checkUsuario && checkUsuario.email_verificado == true) throw "Conta de usuário já verificada. Faça login para continuar.";
+        if (!checkUsuario || !checkEmailToken) return { status: 404 };
+        await Usuario.findByIdAndUpdate(checkEmailToken.id_usuario, { email_verificado: true });
+        async function checkTipoUsuarioNome(tipo) {
+            let checkTipoUsuario = {
+                "Fisico": await UsuarioFisico.findOne({ id_usuario: checkUsuario._id }).select("nome"),
+                "Juridico": await UsuarioJuridico.findOne({ id_usuario: checkUsuario._id }).select("razao_social")
+            }
+            return checkTipoUsuario[tipo];
+        }
+        let nome = await checkTipoUsuarioNome(checkUsuario.tipo);
+        await EmailToken.deleteOne({ token: tokenId });
+        return { nome: nome.nome };
     } catch (error) {
+        console.log(error);
         throw new Error(error);
     }
 }

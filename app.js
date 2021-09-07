@@ -28,6 +28,7 @@ const admin = require("./routes/admin");
 const politica = require("./routes/politica");
 const api = require("./routes/api");
 const verificarEmail = require("./routes/verificarEmail");
+const emailVerificado = require("./routes/emailVerificado");
 
 const { connectMongoDB } = require("./loaders/mongooseConnection");
 const { runAllCrons } = require("./loaders/crons");
@@ -245,6 +246,7 @@ app.use("/blog", blog);
 app.use("/admin", admin);
 app.use("/politica", politica);
 app.use("/verificarEmail", verificarEmail);
+app.use("/emailVerificado", emailVerificado);
 app.use("/api", api);
 
 app.get("/admin/*", function (req, res) {

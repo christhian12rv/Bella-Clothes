@@ -7,7 +7,7 @@ const EmailToken = require("../models/usuario/registro/EmailToken");
 
 module.exports = {
     runAllCrons: () => {
-        schedule.scheduleJob("* * * * *", async () => {
+        schedule.scheduleJob("* */20 * * *", async () => {
             try {
                 let usuarios = await Usuario.find({ email_verificado: false }).lean();
                 if (usuarios) {

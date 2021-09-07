@@ -1,8 +1,10 @@
 <div class="container-verificar-email shadow-sm">
-    <h4>Conta ativada</h4>
-    <i class="bi bi-envelope-open-fill"></i>
-    <h5>Olá {{nome}},</h5>
-    <p>Seu email foi verificado. Sua conta agora está ativada.</p>
-    <p>Por favor use esse link abaixo para fazer login em sua conta.</p>
-    <a href="/login">Entrar na minha conta</a>
+    <i class="bi bi-envelope-fill"></i>
+    <h4>Por favor, verifique seu email</h4>
+    <p>Você está quase lá! Nós enviamos um email para</p>
+    <p class="mb-4 font-weight-bold">{{email}}</p>
+    <p>Basta clicar no link desse email para concluir seu cadastro.</p>
+    <p>Se não o achar, pode ser necessário verificar a pasta de spam.</p>
+    <p class="mt-4">Ainda não encontrou o email?</p>
+    <a href="/reenviarEmail?email={{email}}&id={{emailTokenId}}">REENVIAR EMAIL</a>
 </div>
