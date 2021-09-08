@@ -16,22 +16,27 @@ const session = require("express-session");
 const flash = require("connect-flash");
 
 const passport = require("passport");
-/* require("./config/auth")(passport); */
+require("./config/auth")(passport);
 
-const registrar = require("./routes/registrar");
-const produto = require("./routes/produto");
+const admin = require("./routes/admin");
+const api = require("./routes/api");
+const blog = require("./routes/blog");
 const carrinho = require("./routes/carrinho");
 const compra = require("./routes/compra");
-const usuario = require("./routes/usuario");
-const blog = require("./routes/blog");
-const admin = require("./routes/admin");
-const politica = require("./routes/politica");
-const api = require("./routes/api");
-const verificarEmail = require("./routes/verificarEmail");
 const emailVerificado = require("./routes/emailVerificado");
+const login = require("./routes/login");
+const loja = require("./routes/loja");
+const politica = require("./routes/politica");
+const produto = require("./routes/produto");
+const registrar = require("./routes/registrar");
+const usuario = require("./routes/usuario");
+const verificarEmail = require("./routes/verificarEmail");
 
 const { connectMongoDB } = require("./loaders/mongooseConnection");
 const { runAllCrons } = require("./loaders/crons");
+
+const UsuarioFisico = require("./models/usuario/registro/UsuarioFisico");
+const UsuarioJuridico = require("./models/usuario/registro/UsuarioJuridico");
 
 // Configurações
 //Session
@@ -55,7 +60,20 @@ app.use((req, res, next) => {
     res.locals.warning_msg = req.flash("warning_msg");
     res.locals.info_msg = req.flash("info_msg");
     res.locals.coupon_code_msg = req.flash("coupon_code_msg");
-    res.locals.user = req.user || null;
+    res.locals.user = req.user ? req.user.toObject() : null;
+    next();
+})
+
+app.use(async (req, res, next) => {
+    if (res.locals.user) {
+        let tipoUsuario;
+        if (res.locals.user.tipo == "Fisico")
+            tipoUsuario = await UsuarioFisico.findOne({ id_usuario: res.locals.user._id }).lean();
+        else
+            tipoUsuario = await UsuarioJuridico.findOne({ id_usuario: res.locals.user._id }).lean();
+
+        res.locals.nomeUsuario = tipoUsuario.nome || tipoUsuario.razao_social.substr(0, tipoUsuario.razao_social.indexOf(' '));
+    }
     next();
 })
 
@@ -85,15 +103,6 @@ app.get("/", (req, res) => {
         css: "home.css",
         js: "home.js",
         title: "Bella Clothes"
-    });
-})
-
-app.get("/login", (req, res) => {
-
-    res.render("./usuario/login", {
-        css: "login.css",
-        title: "Login",
-        error_msg: req.flash("Houve um erro ao listar postagens. Erro: yaai!")
     });
 })
 
@@ -237,17 +246,19 @@ app.get("/ver-rotas", (req, res) => {
 })
 
 // Use Routes
-app.use("/registrar", registrar);
-app.use("/produto", produto);
+app.use("/admin", admin);
+app.use("/api", api);
+app.use("/blog", blog);
 app.use("/carrinho", carrinho);
 app.use("/compra", compra);
-app.use("/usuario", usuario);
-app.use("/blog", blog);
-app.use("/admin", admin);
-app.use("/politica", politica);
-app.use("/verificarEmail", verificarEmail);
 app.use("/emailVerificado", emailVerificado);
-app.use("/api", api);
+app.use("/login", login);
+app.use("/loja", loja);
+app.use("/politica", politica);
+app.use("/produto", produto);
+app.use("/registrar", registrar);
+app.use("/usuario", usuario);
+app.use("/verificarEmail", verificarEmail);
 
 app.get("/admin/*", function (req, res) {
     res.status(404).redirect("/admin/erro-404");

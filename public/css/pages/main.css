@@ -312,7 +312,7 @@ body:not(.admin-flex) {
   background-color: #118454;
 }
 
-.login-nav-link:hover, .login-nav-link:hover i, .login-dropdown.active .login-nav-link, .login-dropdown.active .login-nav-link i {
+.login-nav-link:hover, .login-nav-link:hover *, .login-dropdown.active .login-nav-link.has-after, .login-dropdown.active .login-nav-link.has-after * {
   color: #19c880 !important;
 }
 
@@ -360,7 +360,7 @@ body:not(.admin-flex) {
   }
 }
 
-.login-dropdown .login-nav-link:after {
+.login-dropdown .login-nav-link.has-after:after {
   content: "";
   position: absolute;
   display: none;
@@ -379,7 +379,7 @@ body:not(.admin-flex) {
   animation: dropdownSlideDown-after 300ms ease-in-out forwards;
 }
 
-.login-dropdown.active .login-nav-link:after {
+.login-dropdown.active .login-nav-link.has-after:after {
   display: block;
 }
 

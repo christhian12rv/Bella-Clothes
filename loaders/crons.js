@@ -7,9 +7,10 @@ const EmailToken = require("../models/usuario/registro/EmailToken");
 
 module.exports = {
     runAllCrons: () => {
-        schedule.scheduleJob("* */20 * * *", async () => {
+        schedule.scheduleJob("* * * * *", async () => {
             try {
-                let usuarios = await Usuario.find({ email_verificado: false }).lean();
+                let last24Hours = new Date(new Date().getTime() - (24 * 60 * 60 * 1000));
+                let usuarios = await Usuario.find({ email_verificado: false, createdAt: { $lte: last24Hours } }).lean();
                 if (usuarios) {
                     await usuarios.forEach(async (usuario) => {
                         await deleteTipoUsuario(usuario);

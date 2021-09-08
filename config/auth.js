@@ -1,43 +1,51 @@
 const localStrategy = require("passport-local").Strategy;
-const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// Model de Usuário
-require("../models/Usuario");
-const Usuario = mongoose.model("usuarios");
+const Usuario = require("../models/usuario/registro/Usuario");
+const UsuarioFisico = require("../models/usuario/registro/UsuarioFisico");
+const UsuarioJuridico = require("../models/usuario/registro/UsuarioJuridico");
 
 module.exports = function (passport) {
-    /* usernameField e passwordField: Fala quais são os campos de username e de senha (names no formulário) */
-    /* (email,senha done): Recebe esses campos para fazer a autenticação */
-    passport.use(new localStrategy({ usernameField: 'email', passwordField: 'senha' }, (email, senha, done) => {
-
-        Usuario.findOne({ email: email }).lean().then((usuario) => {
+    passport.use(new localStrategy({ usernameField: 'login', passwordField: 'senha', passReqToCallback: true }, async (req, login, senha, done) => {
+        try {
+            let usuario = await findUsuario(login);
             if (usuario) {
-                bcrypt.compare(senha, usuario.senha, (erro, result) => {
-                    if (result) {
-                        /* Retorna o usuário autenticado */
-                        return done(null, usuario);
-                    } else {
-                        /* false: Falha na autenticação*/
-                        return done(null, false, { message: "Senha incorreta" })
-                    }
-                })
-            } else {
-                /* null: Dados da conta que foi autenticada. Ficou null porquê nesse caso a conta n existe */
-                /* false: Se a conta aconteceu com sucesso ou não (true ou false) */
-                return done(null, false, { message: "Esta conta não existe" });
-            }
-        })
-    }));
+                let compareSenha = await bcrypt.compare(senha, usuario.senha);
+                if (compareSenha)
+                    return done(null, usuario);
+                else
+                    return done(null, false, { message: req.flash("error_msg", "Senha incorreta") })
+            } else
+                return done(null, false, { message: req.flash("error_msg", "Login incorreto") });
+        } catch (error) {
+            return done(error);
+        }
+    })
+    );
 
-    /* Autentica, retornando o usuário */
     passport.serializeUser((usuario, done) => {
         done(null, usuario);
     })
-    /* Desfaz a autenticação, retornando o usuário */
+
     passport.deserializeUser((id, done) => {
         Usuario.findById(id, (err, usuario) => {
             done(err, usuario);
         })
     })
+}
+
+async function findUsuario(login) {
+    let inputLength = login.length;
+    let checkCPForCNPJ = async () => {
+        if (inputLength == 11) {
+            let cpf = login.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+            return await UsuarioFisico.findOne({ cpf: cpf }).lean();
+        } else if (inputLength == 14) {
+            let cnpj = login.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+            return await UsuarioJuridico.findOne({ cnpj: cnpj }).lean();
+        }
+    }
+    let result = await checkCPForCNPJ();
+    let checkUser = result ? await Usuario.findOne({ _id: result.id_usuario }).lean() : undefined;
+    return checkUser || await Usuario.findOne({ email: login }).lean();
 }

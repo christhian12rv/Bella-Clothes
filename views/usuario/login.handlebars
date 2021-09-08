@@ -4,11 +4,10 @@
             <div class="col-lg-6 offset-lg-3">
                 <div class="login-form">
                     <h2>Login</h2>
-                    <form action="#">
+                    <form action="/login" method="POST">
                         <div class="group-input">
                             <label for="username">Email, CPF ou CNPJ</label>
-                            <input type="text" id="username" name="username"
-                                placeholder="Insira seu Email, CPF ou CNPJ">
+                            <input type="text" id="username" name="login" placeholder="Insira seu Email, CPF ou CNPJ">
                         </div>
                         <div class="group-input">
                             <label for="pass">Senha</label>
@@ -22,14 +21,10 @@
                         <button type="submit" class="site-btn btn btn-success login-btn">Login</button>
                     </form>
                     <div class="switch-login">
-                        <a href="/registrar" class="or-login">Ou Criar uma Conta</a>
+                        <a href="/registrar/fisica" class="or-login">Ou Criar uma Conta</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $("#content").remove();
-</script>

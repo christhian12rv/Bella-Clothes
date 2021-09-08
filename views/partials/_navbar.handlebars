@@ -237,58 +237,73 @@
 
     <div class="p-2 bd-highlight">
       <div class="dropdown login-dropdown pb-2 pl-0" style="margin-top: 12px;">
-        <button class="login-nav-link ml-0 login-link" href="#" role="button" id="dropdownUsuario"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="row">
-            <div class="col pr-0 pl-0 pr-0"><i class="bi bi-person mr-1 pr-0" style="font-size: 1.7em;"></i></div>
+        {{#if user}}
+          <button class="login-nav-link ml-0 login-link has-after" href="#" role="button" id="dropdownUsuario"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{else}}
+          <button class="login-nav-link ml-0 login-link">
+        {{/if}}
+        <div class="row">
+          <div class="col pr-0 pl-0 pr-0"><i class="bi bi-person mr-1 pr-0" style="font-size: 1.7em;"></i></div>
+          {{#if user}}
             <div style="min-inline-size: max-content; align-self: center;" class="pl-0 pr-0 col col-usuario-nome">
-              Alexander </i>
+              {{nomeUsuario}}
             </div>
-          </div>
+          {{else}}
+            <a href="/login" style="min-inline-size: max-content; align-self: center;"
+              class="pl-0 pr-0 col col-usuario-nome">
+              Login
+            </a>
+          {{/if}}
+        </div>
         </button>
 
-        <div class="dropdown-menu dropdown-menu-right pt-2 mt-0 shadow" aria-labelledby="dropdownUsuario">
-          <div class="dropdown-item">
-            <div class="row">
+        {{#if user}}
+          <div class="dropdown-menu dropdown-menu-right pt-2 mt-0 shadow" aria-labelledby="dropdownUsuario">
+            <div class="dropdown-item">
+              <div class="row">
 
-              <a class="col col-foto-dropdown-usuario" href="#">
+                <a class="col col-foto-dropdown-usuario" href="#">
 
-                <p>Adicionar Foto</p>
-                <i class="bi bi-person-plus" style="color: black; font-size: 2em;"></i>
+                  <p>Adicionar Foto</p>
+                  <i class="bi bi-person-plus" style="color: black; font-size: 2em;"></i>
 
-              </a>
+                </a>
 
-              <div class="col">
-                <p class="mb-0 pb-0" style="color: rgb(157, 157, 157); font-weight: normal !important;">Olá Alexander
-                </p>
-                <a href="#" class="mt-0 pt-0 ola-usuario-ver-dados" style="color: black;">Ver meus dados</a>
+                <div class="col">
+                  <p class="mb-0 pb-0" style="color: rgb(157, 157, 157); font-weight: normal !important;">Olá
+                    {{nomeUsuario}}
+                  </p>
+                  <a href="/usuario/{{user._id}}/meus-dados" class="mt-0 pt-0 ola-usuario-ver-dados"
+                    style="color: black;">Ver meus dados</a>
+                </div>
               </div>
             </div>
+
+            <hr class="mx-auto" style="width: 95%;">
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-bag"
+                style="color: #19c880;"></i>
+              Compras</a>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-heart"
+                style="color: #19c880;"></i>
+              Favoritos</a>
+            <hr class="mx-auto" style="width: 95%;">
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1" href="#"><i class="mr-1 bi bi-person-lines-fill"
+                style="color: #19c880;"></i>
+              Meus dados</a>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-lock"
+                style="color: #19c880;"></i>
+              Segurança</a>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-shield"
+                style="color: #19c880;"></i>
+              Privacidade</a>
+
+            <hr class="mx-auto" style="width: 95%;">
+
+            <a class="dropdown-item pt-1 pb-1" href="#"><i
+                class="mr-1 bi bi-box-arrow-right text-danger font-weight-bold" style="font-size: 1.1em"></i> Sair</a>
           </div>
-
-          <hr class="mx-auto" style="width: 95%;">
-          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-bag"
-              style="color: #19c880;"></i>
-            Compras</a>
-          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-heart"
-              style="color: #19c880;"></i>
-            Favoritos</a>
-          <hr class="mx-auto" style="width: 95%;">
-          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1" href="#"><i class="mr-1 bi bi-person-lines-fill"
-              style="color: #19c880;"></i>
-            Meus dados</a>
-          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-lock"
-              style="color: #19c880;"></i>
-            Segurança</a>
-          <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-shield"
-              style="color: #19c880;"></i>
-            Privacidade</a>
-
-          <hr class="mx-auto" style="width: 95%;">
-
-          <a class="dropdown-item pt-1 pb-1" href="#"><i class="mr-1 bi bi-box-arrow-right text-danger font-weight-bold"
-              style="font-size: 1.1em"></i> Sair</a>
-        </div>
+        {{/if}}
       </div>
     </div>
   </div>

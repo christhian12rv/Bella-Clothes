@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const passport = require("passport");
 
 const UsuarioService = require("../services/usuario");
 
@@ -74,5 +75,17 @@ exports.emailVerificado = async (req, res) => {
     } catch (error) {
         req.flash("error_msg", error.message);
         return res.redirect("/");
+    }
+}
+
+exports.login = async (req, res, next) => {
+    try {
+        await passport.authenticate("local", {
+            successRedirect: "/",
+            failureRedirect: "/login",
+            failureFlash: true
+        })(req, res, next)
+    } catch (error) {
+        res.redirect("/500");
     }
 }
