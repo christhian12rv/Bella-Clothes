@@ -4,17 +4,22 @@ const bcrypt = require("bcrypt");
 const Usuario = require("../models/usuario/registro/Usuario");
 const UsuarioFisico = require("../models/usuario/registro/UsuarioFisico");
 const UsuarioJuridico = require("../models/usuario/registro/UsuarioJuridico");
+const EmailToken = require("../models/usuario/registro/EmailToken");
 
 module.exports = function (passport) {
     passport.use(new localStrategy({ usernameField: 'login', passwordField: 'senha', passReqToCallback: true }, async (req, login, senha, done) => {
         try {
             let usuario = await findUsuario(login);
             if (usuario) {
-                let compareSenha = await bcrypt.compare(senha, usuario.senha);
-                if (compareSenha)
-                    return done(null, usuario);
+                if (usuario.email_verificado === true) {
+                    let compareSenha = await bcrypt.compare(senha, usuario.senha);
+                    if (compareSenha)
+                        return done(null, usuario);
+                    else
+                        return done(null, false, { message: req.flash("error_msg", "Senha incorreta") })
+                }
                 else
-                    return done(null, false, { message: req.flash("error_msg", "Senha incorreta") })
+                    return done(null, false, { message: req.flash("error_msg", "Conta não verificada. Por favor confirme sua conta no email que enviamos para você.") });
             } else
                 return done(null, false, { message: req.flash("error_msg", "Login incorreto") });
         } catch (error) {

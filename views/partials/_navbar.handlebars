@@ -244,8 +244,8 @@
           <button class="login-nav-link ml-0 login-link">
         {{/if}}
         <div class="row">
-          <div class="col pr-0 pl-0 pr-0"><i class="bi bi-person mr-1 pr-0" style="font-size: 1.7em;"></i></div>
           {{#if user}}
+            <div class="col pr-0 pl-0 pr-0"><i class="bi bi-person mr-1 pr-0" style="font-size: 1.7em;"></i></div>
             <div style="min-inline-size: max-content; align-self: center;" class="pl-0 pr-0 col col-usuario-nome">
               {{nomeUsuario}}
             </div>
@@ -281,26 +281,26 @@
             </div>
 
             <hr class="mx-auto" style="width: 95%;">
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-bag"
-                style="color: #19c880;"></i>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/{{user._id}}/compras"><i
+                class="mr-1 bi bi-bag" style="color: #19c880;"></i>
               Compras</a>
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-heart"
-                style="color: #19c880;"></i>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/{{user._id}}/favoritos"><i
+                class="mr-1 bi bi-heart" style="color: #19c880;"></i>
               Favoritos</a>
             <hr class="mx-auto" style="width: 95%;">
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1" href="#"><i class="mr-1 bi bi-person-lines-fill"
-                style="color: #19c880;"></i>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1" href="/usuario/{{user._id}}/meus-dados"><i
+                class="mr-1 bi bi-person-lines-fill" style="color: #19c880;"></i>
               Meus dados</a>
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-lock"
-                style="color: #19c880;"></i>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/{{user._id}}/seguranca"><i
+                class="mr-1 bi bi-lock" style="color: #19c880;"></i>
               Segurança</a>
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="#"><i class="mr-1 bi bi-shield"
-                style="color: #19c880;"></i>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/{{user._id}}/privacidade"><i
+                class="mr-1 bi bi-shield" style="color: #19c880;"></i>
               Privacidade</a>
 
             <hr class="mx-auto" style="width: 95%;">
 
-            <a class="dropdown-item pt-1 pb-1" href="#"><i
+            <a class="dropdown-item pt-1 pb-1" href="/logout"><i
                 class="mr-1 bi bi-box-arrow-right text-danger font-weight-bold" style="font-size: 1.1em"></i> Sair</a>
           </div>
         {{/if}}
@@ -321,7 +321,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
 
 

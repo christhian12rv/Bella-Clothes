@@ -78,6 +78,17 @@ exports.emailVerificado = async (req, res) => {
     }
 }
 
+exports.reenviarEmail = async (req, res) => {
+    try {
+        let serviceResponse = await UsuarioService.reenviarEmail(req.query);
+        console.log(serviceResponse);
+        req.flash("success_msg", "Email reenviado com sucesso! O email pode demorar alguns minutos para chegar. Lembre-se de checar a pasta de spam.");
+        return res.redirect("/verificarEmail?email=" + serviceResponse.email + "&id=" + serviceResponse.id);
+    } catch (error) {
+        res.redirect("/500");
+    }
+}
+
 exports.login = async (req, res, next) => {
     try {
         await passport.authenticate("local", {
@@ -87,5 +98,23 @@ exports.login = async (req, res, next) => {
         })(req, res, next)
     } catch (error) {
         res.redirect("/500");
+    }
+}
+
+exports.meusDados = async (req, res, next) => {
+    try {
+        let serviceResponse = await UsuarioService.meusDados();
+        if (serviceResponse) {
+            return res.render("usuario/conta/meusDados", {
+                css: "/usuario/meusDados.css",
+                js: "/usuario/conta/meusDados.js",
+                paginaUsuario: true,
+                title: "Meus Dados"
+            });
+        } else {
+            return res.redirect("/500");
+        }
+    } catch (error) {
+        return res.redirect("/500");
     }
 }

@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 
+const UsuarioController = require("../controllers/usuario");
+const { isLoggedIn } = require("../middlewares/isLoggedIn");
 
+router.get("/*", isLoggedIn);
 
 router.get("/:id/favoritos", (req, res) => {
     res.render("usuario/conta/favoritos", { css: "/usuario/favoritos.css", js: "/usuario/conta/favoritos.js", paginaUsuario: true, title: "Favoritos" });
@@ -16,9 +18,7 @@ router.get("/:id/compras/:idCompra", (req, res) => {
     res.render("usuario/conta/verCompra", { css: "/usuario/verCompra.css", js: "/usuario/conta/verCompra.js", paginaUsuario: true, title: "Ver Compra" });
 })
 
-router.get("/:id/meus-dados", (req, res) => {
-    res.render("usuario/conta/meusDados", { css: "/usuario/meusDados.css", js: "/usuario/conta/meusDados.js", paginaUsuario: true, title: "Meus Dados" });
-})
+router.get("/:id/meus-dados", UsuarioController.meusDados)
 
 router.get("/:id/seguranca", (req, res) => {
     res.render("usuario/conta/seguranca", { css: "/usuario/seguranca.css", js: "/usuario/conta/seguranca.js", paginaUsuario: true, title: "Segurança" });

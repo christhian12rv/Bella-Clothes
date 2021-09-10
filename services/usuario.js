@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const randomstring = require("randomstring");
-const mongoose = require("mongoose");
 
 const Usuario = require("../models/usuario/registro/Usuario");
 const UsuarioFisico = require("../models/usuario/registro/UsuarioFisico");
@@ -9,7 +8,10 @@ const Endereco = require("../models/usuario/registro/Endereco");
 const EmailToken = require("../models/usuario/registro/EmailToken");
 
 const webSiteUrl = require("../config/webSiteUrl");
-const smtpTransport = require("../config/nodemailer");
+const { smtpTransport, fromNodemailer } = require("../config/nodemailer");
+
+const fs = require("fs");
+const handlebars = require("handlebars");
 
 exports.createUsuarioFisico = async (body) => {
     try {
@@ -70,16 +72,31 @@ exports.createUsuarioFisico = async (body) => {
         await novoUsuarioFisico.save();
         await novoEndereco.save();
         await novoEmailToken.save();
-        await smtpTransport.sendMail({
-            from: '"Bella Clothes" <bellaclothes5@gmail.com>',
-            to: novoUsuario.email,
-            subject: "Bella Clothes - Verificação de Conta",
-            html: "<div><h2>Olá " + novoUsuarioFisico.nome + ",</h2>" +
-                "<h3>Por favor verifique sua conta clicando no link abaixo</h3><br>" +
-                "<a style='text-decoration: none; outline: none; border: none; border-radius: .25rem; box-shadow: none; color: #fff; background-color: #19c880; margin-left: auto; margin-right: auto; text-align:center; padding: .75rem 3rem; font-size: 1.1rem; font-weight: bold;'" +
-                "href='" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "'>Verificar Email</a>br" +
-                "<p>Ou copie e cole esse link no seu navegador</p>" +
-                "<a href='" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "'>" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "</a></div>"
+        await readHTMLFile("templates/verificarEmail.handlebars", async (err, html) => {
+            try {
+                let template = handlebars.compile(html);
+                let replacements = {
+                    nome: novoUsuarioFisico.nome,
+                    webSiteUrl: webSiteUrl,
+                    email: novoUsuario.email,
+                    token: novoEmailToken.token
+                };
+                var htmlToSend = template(replacements);
+
+                await smtpTransport.sendMail({
+                    from: fromNodemailer,
+                    to: novoUsuario.email,
+                    subject: "Bella Clothes - Verificação de Conta",
+                    html: htmlToSend,
+                    attachments: [{
+                        filename: 'bella-clothes-logo.png',
+                        path: './public/img/bella-clothes-logo.png',
+                        cid: 'unique@logo'
+                    }]
+                })
+            } catch (error) {
+                throw error;
+            }
         })
         return { usuario: novoUsuario, emailToken: novoEmailToken };
     } catch (error) {
@@ -148,16 +165,31 @@ exports.createUsuarioJuridico = async (body) => {
         await novoUsuarioJuridico.save();
         await novoEndereco.save();
         await novoEmailToken.save();
-        await smtpTransport.sendMail({
-            from: '"Bella Clothes" <bellaclothes5@gmail.com>',
-            to: novoUsuario.email,
-            subject: "Bella Clothes - Verificação de Conta",
-            html: "<div><h2>Olá " + novoUsuarioJuridico.razao_social + ",</h2>" +
-                "<h3>Por favor verifique sua conta clicando no link abaixo</h3><br>" +
-                "<a style='text-decoration: none; outline: none; border: none; border-radius: .25rem; box-shadow: none; color: #fff; background-color: #19c880; margin-left: auto; margin-right: auto; text-align:center; padding: .75rem 3rem; font-size: 1.1rem; font-weight: bold;'" +
-                "href='" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "'>Verificar Email</a>br" +
-                "<p>Ou copie e cole esse link no seu navegador</p>" +
-                "<a href='" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "'>" + webSiteUrl + "/emailVerificado?email=" + novoUsuario.email + "&token=" + novoEmailToken.token + "</a></div>"
+        await readHTMLFile("templates/verificarEmail.handlebars", async (err, html) => {
+            try {
+                let template = handlebars.compile(html);
+                let replacements = {
+                    nome: novoUsuarioJuridico.razao_social,
+                    webSiteUrl: webSiteUrl,
+                    email: novoUsuario.email,
+                    token: novoEmailToken.token
+                };
+                var htmlToSend = template(replacements);
+
+                await smtpTransport.sendMail({
+                    from: fromNodemailer,
+                    to: novoUsuario.email,
+                    subject: "Bella Clothes - Verificação de Conta",
+                    html: htmlToSend,
+                    attachments: [{
+                        filename: 'bella-clothes-logo.png',
+                        path: './public/img/bella-clothes-logo.png',
+                        cid: 'unique@logo'
+                    }]
+                })
+            } catch (error) {
+                throw error;
+            }
         })
         return { usuario: novoUsuario, emailToken: novoEmailToken };
     } catch (error) {
@@ -181,22 +213,78 @@ exports.emailVerificado = async (query) => {
         let email = query.email;
         let tokenId = query.token;
         let checkUsuario = await Usuario.findOne({ email: email }).lean();
-        let checkEmailToken = await EmailToken.findOne({ token: tokenId }).lean();
+        let checkEmailToken = await EmailToken.findOne({ token: tokenId, id_usuario: checkUsuario._id }).lean();
         if (checkUsuario && checkUsuario.email_verificado == true) throw "Conta de usuário já verificada. Faça login para continuar.";
         if (!checkUsuario || !checkEmailToken) return { status: 404 };
         await Usuario.findByIdAndUpdate(checkEmailToken.id_usuario, { email_verificado: true });
-        async function checkTipoUsuarioNome(tipo) {
-            let checkTipoUsuario = {
-                "Fisico": await UsuarioFisico.findOne({ id_usuario: checkUsuario._id }).select("nome"),
-                "Juridico": await UsuarioJuridico.findOne({ id_usuario: checkUsuario._id }).select("razao_social")
-            }
-            return checkTipoUsuario[tipo];
-        }
-        let nome = await checkTipoUsuarioNome(checkUsuario.tipo);
-        await EmailToken.deleteOne({ token: tokenId });
-        return { nome: nome.nome };
+        let checkUsuarioTipo = await checkTipoUsuario(checkUsuario);
+        await EmailToken.deleteOne({ token: tokenId, id_usuario: checkUsuario._id });
+        return { nome: (checkUsuarioTipo.nome ? checkUsuarioTipo.nome : checkUsuarioTipo.razao_social) };
     } catch (error) {
-        console.log(error);
         throw new Error(error);
     }
+}
+
+exports.reenviarEmail = async (query) => {
+    try {
+        let { email, id } = query;
+        let checkEmailToken = await EmailToken.findById(id).lean();
+        let checkUsuario = await Usuario.findOne({ email: email }).lean();
+        if (checkEmailToken && checkUsuario) {
+            let checkUsuarioTipo = await checkTipoUsuario(checkUsuario);
+            await readHTMLFile("templates/verificarEmail.handlebars", async (err, html) => {
+                try {
+                    let template = handlebars.compile(html);
+                    let replacements = {
+                        nome: (checkUsuarioTipo.nome ? checkUsuarioTipo.nome : checkUsuarioTipo.razao_social),
+                        webSiteUrl: webSiteUrl,
+                        email: checkUsuario.email,
+                        token: checkEmailToken.token
+                    };
+                    var htmlToSend = template(replacements);
+
+                    await smtpTransport.sendMail({
+                        from: fromNodemailer,
+                        to: checkUsuario.email,
+                        subject: "Bella Clothes - Verificação de Conta",
+                        html: htmlToSend,
+                        attachments: [{
+                            filename: 'bella-clothes-logo.png',
+                            path: './public/img/bella-clothes-logo.png',
+                            cid: 'unique@logo'
+                        }]
+                    })
+                } catch (error) {
+                    throw error;
+                }
+            })
+        }
+        return { email: checkUsuario.email, id: checkEmailToken._id };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.meusDados = async () => {
+    return res.render("usuario/conta/meusDados", { css: "/usuario/meusDados.css", js: "/usuario/conta/meusDados.js", paginaUsuario: true, title: "Meus Dados" });
+}
+
+
+
+async function checkTipoUsuario(usuario) {
+    let checkTipoUsuario = {
+        "Fisico": await UsuarioFisico.findOne({ id_usuario: usuario._id }).lean(),
+        "Juridico": await UsuarioJuridico.findOne({ id_usuario: usuario._id }).lean()
+    }
+    return checkTipoUsuario[usuario.tipo];
+}
+
+function readHTMLFile(path, callback) {
+    fs.readFile(path, { encoding: 'utf-8' }, (err, html) => {
+        if (err) {
+            throw err;
+        } else {
+            return callback(null, html);
+        }
+    })
 }

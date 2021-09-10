@@ -28,6 +28,7 @@ const login = require("./routes/login");
 const loja = require("./routes/loja");
 const politica = require("./routes/politica");
 const produto = require("./routes/produto");
+const reenviarEmail = require("./routes/reenviarEmail");
 const registrar = require("./routes/registrar");
 const usuario = require("./routes/usuario");
 const verificarEmail = require("./routes/verificarEmail");
@@ -35,8 +36,10 @@ const verificarEmail = require("./routes/verificarEmail");
 const { connectMongoDB } = require("./loaders/mongooseConnection");
 const { runAllCrons } = require("./loaders/crons");
 
+const Usuario = require("./models/usuario/registro/Usuario");
 const UsuarioFisico = require("./models/usuario/registro/UsuarioFisico");
 const UsuarioJuridico = require("./models/usuario/registro/UsuarioJuridico");
+const EmailToken = require("./models/usuario/registro/EmailToken");
 
 // Configurações
 //Session
@@ -104,6 +107,11 @@ app.get("/", (req, res) => {
         js: "home.js",
         title: "Bella Clothes"
     });
+})
+
+app.get("/logout", (req, res) => {
+    req.logOut();
+    res.redirect("/");
 })
 
 app.get("/loja", (req, res) => {
@@ -256,6 +264,7 @@ app.use("/login", login);
 app.use("/loja", loja);
 app.use("/politica", politica);
 app.use("/produto", produto);
+app.use("/reenviarEmail", reenviarEmail);
 app.use("/registrar", registrar);
 app.use("/usuario", usuario);
 app.use("/verificarEmail", verificarEmail);
