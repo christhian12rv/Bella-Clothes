@@ -1,37 +1,47 @@
-<form action="#" method="POST">
-    <div class="row">
-        <div class="col-sm-9 col-dados">
-            <h3 class="mb-4">Meus Dados</h3>
-            <h5 class="mb-0 mt-4 text-center">Foto de Perfil</h5>
-            <div class="card-dados-conta p-0 m-0 mt-3 text-center" style="margin-top: 30px;">
-                <!--<div>
-                    <img src="/img/menina.jpg" alt="produto" style="height: 150px; border-radius: 100%;"
-                        class="mb-4 shadow">
-            </div>-->
+<div class="row">
+    <div class="col-sm-9 col-dados">
+        <h3 class="mb-4">Meus Dados</h3>
+        <div class="card-dados-conta p-0 m-0 mt-3 text-center" style="margin-top: 30px;">
+            <form id="form-foto" action="/usuario/{{usuario._id}}/alterarFoto" method="POST"
+                enctype='multipart/form-data'>
                 <div>
-                    <i class="bi bi-person-fill" style="font-size: 7em;"></i>
+                    {{#if usuario.foto}}
+                        <div class="foto-perfil-usuario shadow"
+                            style="--foto-perfil:url(/img/foto-usuarios/{{usuario.foto}});">
+                            <label for="foto" class="input-file-trigger"><i class="bi bi-pencil-square"></i></label>
+                            <label class="input-file-remove"
+                                onclick="javascript: document.getElementById('form-foto').submit()"><i
+                                    class="bi bi-eraser"></i></label>
+                        </div>
+                    {{else}}
+                        <div style="position: relative; width: 125px; height: 145px;" class="mx-auto">
+                            <i class="bi bi-person-fill" style="font-size: 7em;"></i>
+                            <label for="foto" class="input-file-trigger"><i class="bi bi-pencil-square"></i></label>
+                        </div>
+                    {{/if}}
                 </div>
-                <input class="input-file" id="my-file" type="file">
-                <label for="my-file" class="input-file-trigger shadow">Selecionar Foto</label>
-            </div>
-            <div class="card card-dados-conta p-3" style="margin-top: 30px;">
-                <div class="d-flex flex-row flex-wrap bd-highlight">
-                    <div class="p-0 bd-highlight ml-3" style="width: 250px;">
-                        <p>E-mail</p>
-                    </div>
-                    <div class=" p-0 bd-highlight ml-3 mr-3">
-                        <p class="text-secondary">alexanderpierce@hotmail.com</p>
-                    </div>
+                <input type="file" class="input-file" id="foto" name="foto" onchange="javascript: this.form.submit()">
+            </form>
+        </div>
+        <div class="card card-dados-conta p-3" style="margin-top: 30px;">
+            <div class="d-flex flex-row flex-wrap bd-highlight">
+                <div class="p-0 bd-highlight ml-3" style="width: 250px;">
+                    <p>E-mail</p>
+                </div>
+                <div class=" p-0 bd-highlight ml-3 mr-3">
+                    <p class="text-secondary">{{usuario.email}}</p>
                 </div>
             </div>
+        </div>
 
-            <div class="card card-dados-conta p-3" style="margin-top: 10px;">
+        <div class="card card-dados-conta p-3" style="margin-top: 10px;">
+            {{#if (equals usuario.tipo "Fisico")}}
                 <div class="d-flex flex-row flex-wrap bd-highlight">
                     <div class="p-0 bd-highlight ml-3" style="width: 250px;">
                         <p>Nome Completo</p>
                     </div>
                     <div class="p-0 bd-highlight ml-3 mr-3">
-                        <p class="text-secondary">Alexander Pierce</p>
+                        <p class="text-secondary">{{usuarioTipo.nome}} {{usuarioTipo.sobrenome}}</p>
                     </div>
                 </div>
                 <hr>
@@ -40,7 +50,7 @@
                         <p>Sexo</p>
                     </div>
                     <div class="p-0 bd-highlight ml-3 mr-3">
-                        <p class="text-secondary">Masculino</p>
+                        <p class="text-secondary">{{usuarioTipo.sexo}}</p>
                     </div>
                 </div>
                 <hr>
@@ -49,7 +59,7 @@
                         <p>Data de Nascimento</p>
                     </div>
                     <div class="p-0 bd-highlight ml-3 mr-3">
-                        <p class="text-secondary">01/01/2001</p>
+                        <p class="text-secondary">{{usuarioTipo.data_nascimento}}</p>
                     </div>
                 </div>
                 <hr>
@@ -58,48 +68,111 @@
                         <p>CPF</p>
                     </div>
                     <div class="p-0 bd-highlight ml-3 mr-3">
-                        <p class="text-secondary">12345678901</p>
+                        <p class="text-secondary">{{usuarioTipo.cpf}}</p>
+                    </div>
+                </div>
+            {{/if}}
+            {{#if (equals usuario.tipo "Juridico")}}
+                <div class="d-flex flex-row flex-wrap bd-highlight">
+                    <div class="p-0 bd-highlight ml-3" style="width: 250px;">
+                        <p>Razão Social</p>
+                    </div>
+                    <div class="p-0 bd-highlight ml-3 mr-3">
+                        <p class="text-secondary">{{usuarioTipo.razao_social}}</p>
                     </div>
                 </div>
                 <hr>
                 <div class="d-flex flex-row flex-wrap bd-highlight">
                     <div class="p-0 bd-highlight ml-3" style="width: 250px;">
-                        <p>Telefone</p>
+                        <p>Nome fantasia</p>
                     </div>
-                    <div class="p-0 flex-grow-1 bd-highlight ml-3 mr-3">
-                        <p class="text-secondary">(51) 91234-5678</p>
+                    <div class="p-0 bd-highlight ml-3 mr-3">
+                        <p class="text-secondary">{{usuarioTipo.fantasia}}</p>
                     </div>
                 </div>
                 <hr>
                 <div class="d-flex flex-row flex-wrap bd-highlight">
                     <div class="p-0 bd-highlight ml-3" style="width: 250px;">
-                        <p>Telefone Alternativo</p>
+                        <p>Inscrição Municipal</p>
                     </div>
-                    <div class="p-0 flex-grow-1 bd-highlight ml-3 mr-3">
-                        <p class="text-secondary"></p>
+                    <div class="p-0 bd-highlight ml-3 mr-3">
+                        <p class="text-secondary">{{usuarioTipo.inscricao_municipal}}</p>
                     </div>
-                    <div class=" p-0 bd-highlight ml-3 mr-3">
-                        <a href="#">Alterar</a>
+                </div>
+                <hr>
+                <div class="d-flex flex-row flex-wrap bd-highlight">
+                    <div class="p-0 bd-highlight ml-3" style="width: 250px;">
+                        <p>Inscrição Estadual</p>
                     </div>
+                    <div class="p-0 bd-highlight ml-3 mr-3">
+                        <p class="text-secondary">{{usuarioTipo.inscricao_estadual}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex flex-row flex-wrap bd-highlight">
+                    <div class="p-0 bd-highlight ml-3" style="width: 250px;">
+                        <p>Isento</p>
+                    </div>
+                    <div class="p-0 bd-highlight ml-3 mr-3">
+                        <p class="text-secondary">{{#if usuarioTipo.isento}}Sim{{else}}Não{{/if}}</p>
+                    </div>
+                </div>
+                <div class="d-flex flex-row flex-wrap bd-highlight">
+                    <div class="p-0 bd-highlight ml-3" style="width: 250px;">
+                        <p>CNPJ</p>
+                    </div>
+                    <div class="p-0 bd-highlight ml-3 mr-3">
+                        <p class="text-secondary">{{usuarioTipo.cnpj}}</p>
+                    </div>
+                </div>
+            {{/if}}
+            <hr>
+            <div class="d-flex flex-row flex-wrap bd-highlight">
+                <div class="p-0 bd-highlight ml-3" style="width: 250px;">
+                    <p>Telefone</p>
+                </div>
+                <div class="p-0 flex-grow-1 bd-highlight ml-3 mr-3">
+                    <p class="text-secondary">{{usuario.telefone}}</p>
                 </div>
             </div>
+            <hr>
+            <div class="d-flex flex-row flex-wrap bd-highlight">
+                <div class="p-0 bd-highlight ml-3" style="width: 250px;">
+                    <p>Telefone Alternativo</p>
+                </div>
+                <div class="p-0 flex-grow-1 bd-highlight ml-3 mr-3">
+                    <p class="text-secondary">
+                        {{#if usuario.outro_telefone}}{{usuario.outro_telefone}}{{/if}}
+                    </p>
+                </div>
+                <div class=" p-0 bd-highlight ml-3 mr-3">
+                    <a href="#">Alterar</a>
+                </div>
+            </div>
+        </div>
 
 
-            <h5 style="font-size: 1.2rem; margin-top: 50px;">Endereços</h5>
+        <h5 style="font-size: 1.2rem; margin-top: 50px;">Endereços</h5>
 
-            <div class="card card-enderecos shadow-sm mt-3 p-4">
+        <div class="card card-enderecos shadow-sm mt-3 p-4">
+            {{#each enderecos}}
                 <div class="d-flex flex-row flex-wrap bd-highlight px-2">
                     <div class="flex-grow-1 bd-highlight">
-                        <p class="font-weight-bold" style="color: black;">RUA TAL, 11</p>
-                        <p class="text-secondary" style="font-size: 0.8rem">Centro, Belo Horizonte MG - 12345-000
+                        <p class="font-weight-bold" style="color: black;">{{this.nome}}, {{this.numero}}</p>
+                        <p class="text-secondary" style="font-size: 0.8rem">{{this.bairro}}, {{this.cidade}}
+                            {{this.estado}} - {{this.cep}}
                         </p>
-                        <p class="text-secondary" style="font-size: 0.8rem">Complemento: Casa</p>
-                        <p class="text-secondary" style="font-size: 0.8rem">Ponto de Referência: Supermercados BH
+                        <p class="text-secondary" style="font-size: 0.8rem">Complemento:
+                            {{#if this.complemento}}{{this.complemento}}{{/if}}
                         </p>
-                        <p class="text-secondary" style="font-size: 0.8rem">Informações Adicionais: Entregar na casa
-                            ao lado</p>
-                        <p class="text-secondary" style="font-size: 0.9rem">ALEXANDER PIERCE
-                            - 11912345678
+                        <p class="text-secondary" style="font-size: 0.8rem">Ponto de Referência:
+                            {{#if this.ponto_referencia}}{{this.ponto_referencia}}{{/if}}
+                        </p>
+                        <p class="text-secondary" style="font-size: 0.8rem">Informações Adicionais:
+                            {{this.informacoes_adicionais}}
+                        </p>
+                        <p class="text-secondary" style="font-size: 0.9rem">{{this.nome_pessoa}}
+                            - {{this.telefone}}
                         </p>
                     </div>
                     <div class="bd-highlight">
@@ -109,77 +182,55 @@
                     </div>
                 </div>
                 <hr>
-                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                    <div class="flex-grow-1 bd-highlight">
-                        <p class="font-weight-bold" style="color: black;">RUA TAL, 11</p>
-                        <p class="text-secondary" style="font-size: 0.8rem">Centro, Belo Horizonte MG - 12345-000
-                        </p>
-                        <p class="text-secondary" style="font-size: 0.8rem">Complemento: Casa</p>
-                        <p class="text-secondary" style="font-size: 0.8rem">Ponto de Referência: Supermercados BH
-                        </p>
-                        <p class="text-secondary" style="font-size: 0.8rem">Informações Adicionais: Entregar na casa
-                            ao lado</p>
-                        <p class="text-secondary" style="font-size: 0.9rem">ALEXANDER PIERCE
-                            - 11912345678
-                        </p>
-                    </div>
-                    <div class="bd-highlight">
-                        <a href="#" class="button-editar-endereco btn rounded-0 mb-2">Editar</a>
-                        <br>
-                        <a href="#" class="button-excluir-endereco btn rounded-0">Excluir</a>
+            {{/each}}
+            <div class="d-flex flex-row flex-wrap bd-highlight px-2">
+                <div class="flex-grow-1 bd-highlight">
+                    <a href="#">Adicionar Endereço</a>
+                </div>
+            </div>
+        </div>
+
+        <h5 style="font-size: 1.2rem; margin-top: 50px;">Cartões</h5>
+
+        <div class="card card-cartoes shadow-sm mt-3 p-4">
+            <div class="d-flex flex-row flex-wrap bd-highlight px-2">
+                <div class="p-2 bd-highlight text-center" style="align-self: center;">
+                    <div class="p-2 bg-icone-cartao">
+                        <img src="/img/icone-pagamento/mastercard.png" alt="" class="icone-cartao">
                     </div>
                 </div>
-
-                <hr>
-                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                    <div class="flex-grow-1 bd-highlight">
-                        <a href="#">Adicionar Endereço</a>
+                <div class="p-2 bd-highlight flex-grow-1">
+                    <p>**** 3384</p>
+                    <p class="text-secondary" style="font-size: 0.9rem;">Mastercard</p>
+                    <p class="text-secondary" style="font-size: 0.9rem;">Vencimento: 10/2026</p>
+                </div>
+                <div class="bd-highlight">
+                    <a href="#" class="button-excluir-endereco btn rounded-0">Excluir</a>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex flex-row flex-wrap bd-highlight px-2">
+                <div class="p-2 bd-highlight text-center" style="align-self: center;">
+                    <div class="p-2 bg-icone-cartao">
+                        <img src="/img/icone-pagamento/mastercard.png" alt="" class="icone-cartao">
                     </div>
+                </div>
+                <div class="p-2 bd-highlight flex-grow-1">
+                    <p>**** 3384</p>
+                    <p class="text-secondary" style="font-size: 0.9rem;">Mastercard</p>
+                    <p class="text-secondary" style="font-size: 0.9rem;">Vencimento: 10/2026</p>
+                </div>
+                <div class="bd-highlight">
+                    <a href="#" class="button-excluir-endereco btn rounded-0">Excluir</a>
                 </div>
             </div>
 
-            <h5 style="font-size: 1.2rem; margin-top: 50px;">Cartões</h5>
-
-            <div class="card card-cartoes shadow-sm mt-3 p-4">
-                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                    <div class="p-2 bd-highlight text-center" style="align-self: center;">
-                        <div class="p-2 bg-icone-cartao">
-                            <img src="/img/icone-pagamento/mastercard.png" alt="" class="icone-cartao">
-                        </div>
-                    </div>
-                    <div class="p-2 bd-highlight flex-grow-1">
-                        <p>**** 3384</p>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Mastercard</p>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Vencimento: 10/2026</p>
-                    </div>
-                    <div class="bd-highlight">
-                        <a href="#" class="button-excluir-endereco btn rounded-0">Excluir</a>
-                    </div>
-                </div>
-                <hr>
-                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                    <div class="p-2 bd-highlight text-center" style="align-self: center;">
-                        <div class="p-2 bg-icone-cartao">
-                            <img src="/img/icone-pagamento/mastercard.png" alt="" class="icone-cartao">
-                        </div>
-                    </div>
-                    <div class="p-2 bd-highlight flex-grow-1">
-                        <p>**** 3384</p>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Mastercard</p>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Vencimento: 10/2026</p>
-                    </div>
-                    <div class="bd-highlight">
-                        <a href="#" class="button-excluir-endereco btn rounded-0">Excluir</a>
-                    </div>
-                </div>
-
-                <hr>
-                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                    <div class="flex-grow-1 bd-highlight">
-                        <a href="#">Adicionar Cartão</a>
-                    </div>
+            <hr>
+            <div class="d-flex flex-row flex-wrap bd-highlight px-2">
+                <div class="flex-grow-1 bd-highlight">
+                    <a href="#">Adicionar Cartão</a>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>

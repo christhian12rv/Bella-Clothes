@@ -9,9 +9,6 @@
     .button-editar-endereco {
         margin-top: 10px;
     }
-    .input-file-trigger {
-        width: 60% !important;
-    }
 }
 
 .usuario-content p {
@@ -23,16 +20,49 @@
 }
 
 .input-file-trigger {
-    padding: 8px;
-    width: 30%;
-    background: #19c880;
+    position: absolute;
+    top: 73%;
+    right: 3%;
+    background-color: #19c880;
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
     color: #fff;
     font-size: 1em;
     cursor: pointer;
+    transition: background-color .3s;
 }
 
 .input-file-trigger:hover {
-    background: #118454;
+    background-color: #118454;
+    transition: background-color .3s;
+}
+
+.input-file-trigger i::before {
+    vertical-align: -.425rem !important;
+}
+
+.input-file-remove {
+    position: absolute;
+    top: 53%;
+    right: -7%;
+    background-color: #eb5050;
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.input-file-remove:hover {
+    background-color: #920000;
+    transition: background-color .3s;
+}
+
+.input-file-remove i::before {
+    vertical-align: -.425rem !important;
 }
 
 .input-file {
@@ -79,4 +109,16 @@
 .icone-cartao {
     width: 100%;
     font-size: 30px;
+}
+
+.card-dados-conta .foto-perfil-usuario {
+    position: relative;
+    background-image: var(--foto-perfil);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto 2rem auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 100%;
 }

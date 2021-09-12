@@ -1,0 +1,27 @@
+<div class="container-nova-senha shadow-sm">
+    <form action="/escolhaNovaSenha" method="POST">
+        <input type="hidden" value="{{email}}" name="email">
+        <input type="hidden" value="{{token}}" name="token">
+        <i class="bi bi-lock-fill"></i>
+        {{#if erro}}
+            <div class="toast error error_trocaSenha align-items-center" role="alert" aria-live="assertive"
+                aria-atomic="true" data-autohide="false">
+                <div class="d-flex">
+                    <div class="toast-icon my-auto">
+                        <i class="bi bi-shield-exclamation"></i>
+                    </div>
+                    <div class="toast-body flex-grow-1">
+                        {{erro}}
+                    </div>
+                    <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                            class="bi bi-x-lg"></i></button>
+                </div>
+            </div>
+        {{/if}}
+        <h5>Digite uma nova senha para</h5>
+        <h5>{{email}}</h5>
+        <input type="password" id="senha" name="senha" placeholder="Nova senha">
+        <br>
+        <input type="submit" value="Trocar Senha">
+    </form>
+</div>

@@ -4,6 +4,21 @@
             <div class="col-lg-6 offset-lg-3">
                 <div class="login-form">
                     <h2>Login</h2>
+                    {{#if error_login_message}}
+                        <div class="toast error error_login_message align-items-center" role="alert"
+                            aria-live="assertive" aria-atomic="true" data-autohide="false">
+                            <div class="d-flex">
+                                <div class="toast-icon my-auto">
+                                    <i class="bi bi-shield-exclamation"></i>
+                                </div>
+                                <div class="toast-body flex-grow-1">
+                                    {{error_login_message}}
+                                </div>
+                                <button type="button" class="toast-close m-auto" data-dismiss="toast"
+                                    aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                            </div>
+                        </div>
+                    {{/if}}
                     <form action="/login" method="POST">
                         <div class="group-input">
                             <label for="username">Email, CPF ou CNPJ</label>
@@ -15,7 +30,7 @@
                         </div>
                         <div class="group-input gi-check">
                             <div class="gi-more">
-                                <a href="#" class="forget-pass">Esqueceu sua senha?</a>
+                                <a href="/trocarSenha" class="forget-pass">Esqueceu sua senha?</a>
                             </div>
                         </div>
                         <button type="submit" class="site-btn btn btn-success login-btn">Login</button>

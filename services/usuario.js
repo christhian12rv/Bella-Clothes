@@ -1,3 +1,6 @@
+const handlebars = require("handlebars");
+const path = require("path");
+const fs = require("fs");
 const bcrypt = require("bcrypt");
 const randomstring = require("randomstring");
 
@@ -6,12 +9,10 @@ const UsuarioFisico = require("../models/usuario/registro/UsuarioFisico");
 const UsuarioJuridico = require("../models/usuario/registro/UsuarioJuridico");
 const Endereco = require("../models/usuario/registro/Endereco");
 const EmailToken = require("../models/usuario/registro/EmailToken");
+const SenhaToken = require("../models/usuario/SenhaToken");
 
 const webSiteUrl = require("../config/webSiteUrl");
 const { smtpTransport, fromNodemailer } = require("../config/nodemailer");
-
-const fs = require("fs");
-const handlebars = require("handlebars");
 
 exports.createUsuarioFisico = async (body) => {
     try {
@@ -72,7 +73,7 @@ exports.createUsuarioFisico = async (body) => {
         await novoUsuarioFisico.save();
         await novoEndereco.save();
         await novoEmailToken.save();
-        await readHTMLFile("templates/verificarEmail.handlebars", async (err, html) => {
+        await readHTMLFile("templates/email/verificarEmail.handlebars", async (err, html) => {
             try {
                 let template = handlebars.compile(html);
                 let replacements = {
@@ -165,7 +166,7 @@ exports.createUsuarioJuridico = async (body) => {
         await novoUsuarioJuridico.save();
         await novoEndereco.save();
         await novoEmailToken.save();
-        await readHTMLFile("templates/verificarEmail.handlebars", async (err, html) => {
+        await readHTMLFile("templates/email/verificarEmail.handlebars", async (err, html) => {
             try {
                 let template = handlebars.compile(html);
                 let replacements = {
@@ -201,8 +202,10 @@ exports.verificarEmail = async (email, emailTokenId) => {
     try {
         let checkUsuario = await Usuario.findOne({ email: email }).lean();
         let checkEmailToken = await EmailToken.findById(emailTokenId).lean();
-        if (checkUsuario && checkEmailToken) return { status: 200 }
-        else return { status: 404 }
+        if (checkUsuario && checkEmailToken)
+            return { status: 200 }
+        else
+            return { status: 404 }
     } catch (error) {
         throw new Error(error);
     }
@@ -214,8 +217,10 @@ exports.emailVerificado = async (query) => {
         let tokenId = query.token;
         let checkUsuario = await Usuario.findOne({ email: email }).lean();
         let checkEmailToken = await EmailToken.findOne({ token: tokenId, id_usuario: checkUsuario._id }).lean();
-        if (checkUsuario && checkUsuario.email_verificado == true) throw "Conta de usuário já verificada. Faça login para continuar.";
-        if (!checkUsuario || !checkEmailToken) return { status: 404 };
+        if (checkUsuario && checkUsuario.email_verificado == true)
+            throw "Conta de usuário já verificada. Faça login para continuar.";
+        if (!checkUsuario || !checkEmailToken)
+            return { status: 404 };
         await Usuario.findByIdAndUpdate(checkEmailToken.id_usuario, { email_verificado: true });
         let checkUsuarioTipo = await checkTipoUsuario(checkUsuario);
         await EmailToken.deleteOne({ token: tokenId, id_usuario: checkUsuario._id });
@@ -232,7 +237,7 @@ exports.reenviarEmail = async (query) => {
         let checkUsuario = await Usuario.findOne({ email: email }).lean();
         if (checkEmailToken && checkUsuario) {
             let checkUsuarioTipo = await checkTipoUsuario(checkUsuario);
-            await readHTMLFile("templates/verificarEmail.handlebars", async (err, html) => {
+            await readHTMLFile("templates/email/verificarEmail.handlebars", async (err, html) => {
                 try {
                     let template = handlebars.compile(html);
                     let replacements = {
@@ -265,8 +270,133 @@ exports.reenviarEmail = async (query) => {
     }
 }
 
-exports.meusDados = async () => {
-    return res.render("usuario/conta/meusDados", { css: "/usuario/meusDados.css", js: "/usuario/conta/meusDados.js", paginaUsuario: true, title: "Meus Dados" });
+exports.trocarSenha = async (email) => {
+    try {
+        let usuario = await Usuario.findOne({ email: email }).lean();
+        if (usuario) {
+            let existsSenhaToken = await SenhaToken.findOne({ id_usuario: usuario._id }).lean();
+            if (existsSenhaToken)
+                return { status: "token_exists" };
+
+            let tokenSenhaVerification = randomstring.generate({ length: 64, charset: 'alphanumeric' });
+            let tokenExists;
+            do {
+                let findOneSenhaToken = await SenhaToken.findOne({ token: tokenSenhaVerification }).lean();
+                if (findOneSenhaToken) {
+                    tokenExists = true;
+                    tokenSenhaVerification = randomstring.generate({ length: 64, charset: 'alphanumeric' });
+                } else {
+                    tokenExists = false;
+                }
+            } while (tokenExists === true);
+
+            const novaSenhaToken = new SenhaToken({
+                id_usuario: usuario._id,
+                token: tokenSenhaVerification
+            });
+
+            await novaSenhaToken.save();
+            await readHTMLFile("templates/email/trocarSenha.handlebars", async (err, html) => {
+                try {
+                    let template = handlebars.compile(html);
+                    let replacements = {
+                        webSiteUrl: webSiteUrl,
+                        email: usuario.email,
+                        token: novaSenhaToken.token
+                    };
+                    var htmlToSend = template(replacements);
+
+                    await smtpTransport.sendMail({
+                        from: fromNodemailer,
+                        to: usuario.email,
+                        subject: "Bella Clothes - Trocar senha",
+                        html: htmlToSend,
+                        attachments: [{
+                            filename: 'bella-clothes-logo.png',
+                            path: './public/img/bella-clothes-logo.png',
+                            cid: 'unique@logo'
+                        }]
+                    })
+                } catch (error) {
+                    throw error;
+                }
+            })
+            return { status: 200 };
+        } else
+            return { status: "incorrect" };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.verificarEscolhaNovaSenha = async (query) => {
+    try {
+        let { email, token } = query;
+        let usuario = await Usuario.findOne({ email: email }).lean();
+        let senhaToken = await SenhaToken.findOne({ id_usuario: usuario._id, token: token }).lean();
+        if (usuario && senhaToken)
+            return { status: 200 };
+        else
+            return { status: 404 };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.escolhaNovaSenha = async (body) => {
+    try {
+        let { email, token, senha } = body;
+        let usuario = await Usuario.findOne({ email: email }).lean();
+        let senhaToken = await SenhaToken.findOne({ id_usuario: usuario._id, token: token }).lean();
+        if (usuario && senhaToken) {
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(senha, salt);
+            await Usuario.findByIdAndUpdate(usuario._id, { senha: hash });
+            await SenhaToken.deleteOne({ id_usuario: usuario._id, token: token });
+            return { status: 200 };
+        } else
+            return { status: 404 };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.getUsuarioById = async (id_usuario) => {
+    try {
+        let usuario = await Usuario.findById(id_usuario).lean();
+        let usuarioTipo = await checkTipoUsuario(usuario);
+        let enderecos = await Endereco.find({ id_usuario: id_usuario }).lean();
+        if (usuario && usuarioTipo && enderecos)
+            return { status: 200, usuario: usuario, usuarioTipo: usuarioTipo, enderecos: enderecos };
+        else
+            return { status: 404 };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.changeFotoPerfil = async (id_usuario, foto) => {
+    try {
+        if (foto !== undefined) {
+            let fotoExists = await Usuario.findOne({ _id: id_usuario, foto: { $ne: undefined } }).lean();
+            if (fotoExists) {
+                fs.unlink(path.join(__dirname) + "/../public/img/foto-usuarios/" + fotoExists.foto, async (error) => {
+                    if (error) throw error;
+                });
+            }
+            const caminhoArquivo = path.join(__dirname) + "/../public/img/foto-usuarios/" + id_usuario + path.parse(foto.name).ext;
+
+            foto.mv(caminhoArquivo, async (error) => {
+                if (error)
+                    throw error;
+                await Usuario.findByIdAndUpdate(id_usuario, { foto: id_usuario + path.parse(foto.name).ext });
+            })
+        } else {
+            await Usuario.findByIdAndUpdate(id_usuario, { foto: undefined });
+        }
+    } catch (error) {
+        throw new Error(error);
+    }
 }
 
 

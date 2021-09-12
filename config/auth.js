@@ -16,12 +16,12 @@ module.exports = function (passport) {
                     if (compareSenha)
                         return done(null, usuario);
                     else
-                        return done(null, false, { message: req.flash("error_msg", "Senha incorreta") })
+                        return done(null, false, { message: req.flash("error_login_message", "Senha incorreta") })
                 }
                 else
-                    return done(null, false, { message: req.flash("error_msg", "Conta não verificada. Por favor confirme sua conta no email que enviamos para você.") });
+                    return done(null, false, { message: req.flash("error_login_message", "Conta não verificada. Por favor confirme sua conta no email que enviamos para você.") });
             } else
-                return done(null, false, { message: req.flash("error_msg", "Login incorreto") });
+                return done(null, false, { message: req.flash("error_login_message", "Login incorreto") });
         } catch (error) {
             return done(error);
         }

@@ -169,3 +169,8 @@
 #content {
 	display: none !important;
 }
+
+.toast.error_login_message {
+	max-width: none !important;
+	box-shadow: none !important;
+}

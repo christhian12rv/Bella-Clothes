@@ -263,12 +263,17 @@
             <div class="dropdown-item">
               <div class="row">
 
-                <a class="col col-foto-dropdown-usuario" href="#">
-
-                  <p>Adicionar Foto</p>
-                  <i class="bi bi-person-plus" style="color: black; font-size: 2em;"></i>
-
-                </a>
+                {{#if user.foto}}
+                  <a class="col col-foto-dropdown-usuario shadow-sm" href="#"
+                    style="--foto-perfil-usuario: url(/img/foto-usuarios/{{user.foto}})">
+                    <p style="font-size: 0.6rem;">Editar Foto</p>
+                  </a>
+                {{else}}
+                  <a class="col col-foto-dropdown-usuario" href="#">
+                    <p style="font-size: 0.5rem;">Adicionar Foto</p>
+                    <i class="bi bi-person-plus" style="color: black; font-size: 2em;"></i>
+                  </a>
+                {{/if}}
 
                 <div class="col">
                   <p class="mb-0 pb-0" style="color: rgb(157, 157, 157); font-weight: normal !important;">Olá

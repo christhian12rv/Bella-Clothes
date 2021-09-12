@@ -392,8 +392,12 @@ body:not(.admin-flex) {
 }
 
 .col-foto-dropdown-usuario {
+  background-image: var(--foto-perfil-usuario);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding-left: 7.5px !important;
-  max-width: 50px !important;
+  max-width: 48px !important;
   max-height: 48px;
   border-radius: 100%;
   border: 2px solid rgb(187, 187, 187);
@@ -403,7 +407,6 @@ body:not(.admin-flex) {
   position: absolute;
   display: none;
   color: white;
-  font-size: 0.5rem;
   margin-top: 10px;
   text-align: center;
   font-weight: bold;
@@ -418,6 +421,7 @@ body:not(.admin-flex) {
 }
 
 .col-foto-dropdown-usuario:hover {
+  background-image: none;
   background-color: #16b371;
   padding-left: 0px !important;
 }
