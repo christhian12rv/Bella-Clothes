@@ -1,9 +1,10 @@
+<input type="hidden" value="{{usuario._id}}" id="id_usuario">
+
 <div class="row">
     <div class="col-sm-9 col-dados">
         <h3 class="mb-4">Meus Dados</h3>
         <div class="card-dados-conta p-0 m-0 mt-3 text-center" style="margin-top: 30px;">
-            <form id="form-foto" action="/usuario/{{usuario._id}}/alterarFoto" method="POST"
-                enctype='multipart/form-data'>
+            <form id="form-foto" action="/usuario/alterarFoto" method="POST" enctype='multipart/form-data'>
                 <div>
                     {{#if usuario.foto}}
                         <div class="foto-perfil-usuario shadow"
@@ -28,8 +29,11 @@
                 <div class="p-0 bd-highlight ml-3" style="width: 250px;">
                     <p>E-mail</p>
                 </div>
+                <div class=" p-0 bd-highlight flex-grow-1 ml-3 mr-3">
+                    <p class="text-secondary" id="email_usuario">{{usuario.email}}</p>
+                </div>
                 <div class=" p-0 bd-highlight ml-3 mr-3">
-                    <p class="text-secondary">{{usuario.email}}</p>
+                    <a href="javascript: void(0)" id="link_alterar_email">Alterar</a>
                 </div>
             </div>
         </div>
@@ -133,6 +137,9 @@
                 </div>
                 <div class="p-0 flex-grow-1 bd-highlight ml-3 mr-3">
                     <p class="text-secondary">{{usuario.telefone}}</p>
+                </div>
+                <div class=" p-0 bd-highlight ml-3 mr-3">
+                    <a href="#">Alterar</a>
                 </div>
             </div>
             <hr>

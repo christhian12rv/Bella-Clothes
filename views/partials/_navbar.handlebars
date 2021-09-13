@@ -263,43 +263,46 @@
             <div class="dropdown-item">
               <div class="row">
 
-                {{#if user.foto}}
-                  <a class="col col-foto-dropdown-usuario shadow-sm" href="#"
-                    style="--foto-perfil-usuario: url(/img/foto-usuarios/{{user.foto}})">
-                    <p style="font-size: 0.6rem;">Editar Foto</p>
-                  </a>
-                {{else}}
-                  <a class="col col-foto-dropdown-usuario" href="#">
-                    <p style="font-size: 0.5rem;">Adicionar Foto</p>
-                    <i class="bi bi-person-plus" style="color: black; font-size: 2em;"></i>
-                  </a>
-                {{/if}}
-
+                <form id="form-foto-navbar" action="/usuario/alterarFoto" method="POST" enctype='multipart/form-data'>
+                  {{#if user.foto}}
+                    <label for="foto-perfil-navbar" class="col col-foto-dropdown-usuario shadow-sm"
+                      style="--foto-perfil-usuario: url(/img/foto-usuarios/{{user.foto}})">
+                      <p style="font-size: 0.6rem;">Editar Foto</p>
+                    </label>
+                  {{else}}
+                    <label for="foto-perfil-navbar" class="col col-foto-dropdown-usuario foto-bordered">
+                      <p style="font-size: 0.5rem;">Adicionar Foto</p>
+                      <i class="bi bi-person-plus" style="color: black; font-size: 2em;"></i>
+                    </label>
+                  {{/if}}
+                  <input type="file" style="position: absolute; display: none;" id="foto-perfil-navbar" name="foto"
+                    onchange="javascript: this.form.submit()">
+                </form>
                 <div class="col">
                   <p class="mb-0 pb-0" style="color: rgb(157, 157, 157); font-weight: normal !important;">Olá
                     {{nomeUsuario}}
                   </p>
-                  <a href="/usuario/{{user._id}}/meus-dados" class="mt-0 pt-0 ola-usuario-ver-dados"
-                    style="color: black;">Ver meus dados</a>
+                  <a href="/usuario/meus-dados" class="mt-0 pt-0 ola-usuario-ver-dados" style="color: black;">Ver meus
+                    dados</a>
                 </div>
               </div>
             </div>
 
             <hr class="mx-auto" style="width: 95%;">
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/{{user._id}}/compras"><i
-                class="mr-1 bi bi-bag" style="color: #19c880;"></i>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/compras"><i class="mr-1 bi bi-bag"
+                style="color: #19c880;"></i>
               Compras</a>
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/{{user._id}}/favoritos"><i
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/favoritos"><i
                 class="mr-1 bi bi-heart" style="color: #19c880;"></i>
               Favoritos</a>
             <hr class="mx-auto" style="width: 95%;">
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1" href="/usuario/{{user._id}}/meus-dados"><i
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1" href="/usuario/meus-dados"><i
                 class="mr-1 bi bi-person-lines-fill" style="color: #19c880;"></i>
               Meus dados</a>
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/{{user._id}}/seguranca"><i
-                class="mr-1 bi bi-lock" style="color: #19c880;"></i>
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/seguranca"><i class="mr-1 bi bi-lock"
+                style="color: #19c880;"></i>
               Segurança</a>
-            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/{{user._id}}/privacidade"><i
+            <a class="dropdown-item mb-1 mt-1 pt-1 pb-1 changeFill" href="/usuario/privacidade"><i
                 class="mr-1 bi bi-shield" style="color: #19c880;"></i>
               Privacidade</a>
 

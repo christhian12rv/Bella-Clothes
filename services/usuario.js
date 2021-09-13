@@ -379,7 +379,7 @@ exports.changeFotoPerfil = async (id_usuario, foto) => {
     try {
         if (foto !== undefined) {
             let fotoExists = await Usuario.findOne({ _id: id_usuario, foto: { $ne: undefined } }).lean();
-            if (fotoExists) {
+            if (fotoExists && fs.existsSync(path.join(__dirname) + "/../public/img/foto-usuarios/" + fotoExists.foto)) {
                 fs.unlink(path.join(__dirname) + "/../public/img/foto-usuarios/" + fotoExists.foto, async (error) => {
                     if (error) throw error;
                 });
@@ -391,9 +391,40 @@ exports.changeFotoPerfil = async (id_usuario, foto) => {
                     throw error;
                 await Usuario.findByIdAndUpdate(id_usuario, { foto: id_usuario + path.parse(foto.name).ext });
             })
+
         } else {
+            let fotoExists = await Usuario.findOne({ _id: id_usuario }).lean();
+            if (fotoExists && fs.existsSync(path.join(__dirname) + "/../public/img/foto-usuarios/" + fotoExists.foto)) {
+                fs.unlink(path.join(__dirname) + "/../public/img/foto-usuarios/" + fotoExists.foto, async (error) => {
+                    if (error) throw error;
+                });
+            }
+
             await Usuario.findByIdAndUpdate(id_usuario, { foto: undefined });
         }
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.changeEmail = async (id_usuario, novo_email, senha) => {
+    try {
+        let usuario = await Usuario.findById(id_usuario).lean();
+        let compareSenha = await bcrypt.compare(senha, usuario.senha);
+        if (usuario) {
+            if (usuario.email === novo_email)
+                return { status: "incorrect", error: "Escolha um email diferente" };
+            if (!compareSenha)
+                return { status: "incorrect", error: "Senha incorreta" };
+
+            let emailExists = await Usuario.findOne({ email: novo_email }).lean();
+            if (emailExists)
+                return { status: "incorrect", error: "Já existe um usuário cadastrado com o Email informado." };
+
+            await Usuario.findByIdAndUpdate(id_usuario, { email: novo_email });
+            return { status: 200, novo_email: novo_email };
+        } else
+            return { status: "incorrect", error: "Usuário incorreto" };
     } catch (error) {
         throw new Error(error);
     }

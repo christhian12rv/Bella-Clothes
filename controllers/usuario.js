@@ -134,7 +134,6 @@ exports.escolhaNovaSenha = async (req, res) => {
             return res.redirect("/login");
         } else return res.redirect("/erro-404");
     } catch (error) {
-        console.log(error);
         return res.redirect("/erro-500");
     }
 }
@@ -153,7 +152,7 @@ exports.login = async (req, res, next) => {
 
 exports.meusDados = async (req, res) => {
     try {
-        let serviceResponse = await UsuarioService.getUsuarioById(req.params.id);
+        let serviceResponse = await UsuarioService.getUsuarioById(req.user._id);
         if (serviceResponse && serviceResponse.status === 200) {
             return res.render("usuario/conta/meusDados", {
                 css: "/usuario/meusDados.css",
@@ -175,11 +174,28 @@ exports.meusDados = async (req, res) => {
 exports.alterarFoto = async (req, res) => {
     try {
         let foto = (req.files && req.files.foto) ? req.files.foto : undefined;
-        await UsuarioService.changeFotoPerfil(req.params.id, foto);
+        await UsuarioService.changeFotoPerfil(req.user._id, foto);
 
-        return res.redirect("/usuario/" + req.params.id + "/meus-dados");
+        return res.redirect("/usuario/meus-dados");
     } catch (error) {
-        console.log(error);
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.alterarEmail = async (req, res) => {
+    try {
+        const errors = validationResult(req);
+        let errorsResponse = [];
+        if (!errors.isEmpty()) {
+            errors.array().forEach(value => {
+                errorsResponse.push(value.msg);
+            });
+            return res.json({ status: "incorrect", error: errorsResponse });
+        }
+        let { id_usuario, novo_email, senha } = req.body;
+        let serviceResponse = await UsuarioService.changeEmail(id_usuario, novo_email, senha);
+        return res.json(serviceResponse);
+    } catch (error) {
         return res.redirect("/erro-500");
     }
 }

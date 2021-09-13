@@ -391,16 +391,31 @@ body:not(.admin-flex) {
   font-size: 1.5rem;
 }
 
+#form-foto-navbar {
+  max-width: 48px !important;
+  max-height: 48px !important;
+}
+
 .col-foto-dropdown-usuario {
   background-image: var(--foto-perfil-usuario);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   padding-left: 7.5px !important;
+  width: 48px !important;
+  height: 48px !important;
   max-width: 48px !important;
-  max-height: 48px;
+  max-height: 48px !important;
   border-radius: 100%;
+  cursor: pointer;
+}
+
+.col-foto-dropdown-usuario.foto-bordered {
   border: 2px solid rgb(187, 187, 187);
+}
+
+.col-foto-dropdown-usuario.foto-bordered:hover {
+  border-color: #19c880;
 }
 
 .col-foto-dropdown-usuario p {

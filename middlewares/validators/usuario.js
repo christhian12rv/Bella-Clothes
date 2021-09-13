@@ -1,5 +1,6 @@
 const { body } = require('express-validator');
 const fetch = require('node-fetch');
+const bcrypt = require('bcrypt');
 
 const Usuario = require("../../models/usuario/registro/Usuario");
 const UsuarioFisico = require("../../models/usuario/registro/UsuarioFisico");
@@ -701,4 +702,32 @@ exports.createUsuarioJuridico = [
                 throw new Error("Você deve aceitar a política de privacidade ao fazer o registro");
             return true;
         })
+]
+
+
+exports.alterarEmail = [
+    body("novo_email")
+        .trim()
+        .normalizeEmail()
+        .notEmpty()
+        .withMessage("O campo Email é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Email informado é inválido")
+        .bail()
+        .isEmail()
+        .withMessage("O Email informado é inválido")
+        .bail(),
+
+    body("senha")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Senha é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("A Senha informada é inválida")
+        .bail()
+        .isLength({ min: 8 })
+        .withMessage("A Senha deve conter no mínimo 8 caracteres")
+        .bail()
 ]
