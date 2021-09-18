@@ -413,18 +413,34 @@ exports.changeEmail = async (id_usuario, novo_email, senha) => {
         let compareSenha = await bcrypt.compare(senha, usuario.senha);
         if (usuario) {
             if (usuario.email === novo_email)
-                return { status: "incorrect", error: "Escolha um email diferente" };
+                return { status: 400, error: "Escolha um email diferente" };
             if (!compareSenha)
-                return { status: "incorrect", error: "Senha incorreta" };
+                return { status: 400, error: "Senha incorreta" };
 
             let emailExists = await Usuario.findOne({ email: novo_email }).lean();
             if (emailExists)
-                return { status: "incorrect", error: "Já existe um usuário cadastrado com o Email informado." };
+                return { status: 400, error: "Já existe um usuário cadastrado com o Email informado." };
 
             await Usuario.findByIdAndUpdate(id_usuario, { email: novo_email });
             return { status: 200, novo_email: novo_email };
         } else
-            return { status: "incorrect", error: "Usuário incorreto" };
+            return { status: 400, error: "Usuário incorreto" };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.changeTelefone = async (id_usuario, novo_telefone, campoToUpdate) => {
+    try {
+        let usuario = await Usuario.findById(id_usuario).lean();
+        if (usuario) {
+            if (usuario.telefone === novo_telefone)
+                return { status: 400, error: "Escolha um telefone diferente" };
+
+            await Usuario.findByIdAndUpdate(id_usuario, campoToUpdate);
+            return { status: 200, novo_telefone: novo_telefone };
+        } else
+            return { status: 400, error: "Usuário incorreto" };
     } catch (error) {
         throw new Error(error);
     }

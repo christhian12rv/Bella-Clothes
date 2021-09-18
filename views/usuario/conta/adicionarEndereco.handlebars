@@ -1,0 +1,134 @@
+<div class="row">
+    <div class="col-sm-9 col-dados mx-auto">
+        <h3 class="mb-4">Adicionar Endereço</h3>
+        <div class="card card-adicionar-endereco p-3" style="margin-top: 30px;">
+            <form id="form-adicionar-endereco" action="/usuario/adicionarEndereco" method="POST"
+                enctype='multipart/form-data' onsubmit="submitForm()">
+                <div class="endereco-form">
+                    <p class="mb-2">* Campos Obrigatórios</p>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="group-input">
+                                <label for="nome">* Nome</label>
+                                <input type="text" id="nome" name="nome" placeholder="* Nome Completo" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="group-input">
+                                <label for="cep">* CEP</label>
+                                <input type="text" id="cep" name="cep"
+                                    onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
+                                    maxlength="8" placeholder="* CEP" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="group-input">
+                                <label for="">* Estado</label>
+                                <select class="custom-select" name="estado" id="estado" required>
+                                    <option selected style="background-color: #e6e6e6; font-weight: bold;" value="">
+                                        Selecione
+                                    </option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="group-input">
+                                <label for="cidade">* Cidade </label>
+                                <input type="text" id="cidade" name="cidade" placeholder="* Cidade" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="group-input">
+                                <label for="nome_endereco">* Endereço</label>
+                                <input type="text" id="nome_endereco" name="nome_endereco"
+                                    placeholder="* Nome do Endereço" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="group-input">
+                                <label for="numero_endereco" class="hiddenName">&nbsp;</label>
+                                <input type="text" id="numero_endereco" name="numero_endereco" placeholder="* Nº"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="group-input">
+                                <label for="complemento" class="hiddenName">&nbsp;</label>
+                                <input type="text" id="complemento" name="complemento" placeholder="Complemento">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="group-input">
+                                <label for="bairro">* Bairro</label>
+                                <input type="text" id="bairro" name="bairro" placeholder="* Bairro" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="group-input">
+                                <label for="ponto_referencia">Ponto de Referência</label>
+                                <input type="text" id="ponto_referencia" name="ponto_referencia"
+                                    placeholder="Ponto de Referência">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="group-input">
+                                <label for="informacoes_adicionais">Informações adicionais</label>
+                                <textarea name="informacoes_adicionais" id="informacoes_adicionais" rows="5"
+                                    maxlength="500"
+                                    placeholder="Descrição da fachada, informações do local, informações de segurança, etc."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="group-input">
+                                <label for="telefone">* Telefone</label>
+                                <input type="text" id="telefone" name="telefone" placeholder="* Telefone" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn" value="Adicionar">
+            </form>
+        </div>
+    </div>
+</div>

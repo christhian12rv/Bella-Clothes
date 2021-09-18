@@ -1,5 +1,3 @@
-<input type="hidden" value="{{usuario._id}}" id="id_usuario">
-
 <div class="row">
     <div class="col-sm-9 col-dados">
         <h3 class="mb-4">Meus Dados</h3>
@@ -136,10 +134,10 @@
                     <p>Telefone</p>
                 </div>
                 <div class="p-0 flex-grow-1 bd-highlight ml-3 mr-3">
-                    <p class="text-secondary">{{usuario.telefone}}</p>
+                    <p class="text-secondary" id="telefone_usuario">{{usuario.telefone}}</p>
                 </div>
                 <div class=" p-0 bd-highlight ml-3 mr-3">
-                    <a href="#">Alterar</a>
+                    <a href="javascript: void(0)" id="link_alterar_telefone">Alterar</a>
                 </div>
             </div>
             <hr>
@@ -148,12 +146,12 @@
                     <p>Telefone Alternativo</p>
                 </div>
                 <div class="p-0 flex-grow-1 bd-highlight ml-3 mr-3">
-                    <p class="text-secondary">
+                    <p class="text-secondary" id="outro_telefone_usuario">
                         {{#if usuario.outro_telefone}}{{usuario.outro_telefone}}{{/if}}
                     </p>
                 </div>
                 <div class=" p-0 bd-highlight ml-3 mr-3">
-                    <a href="#">Alterar</a>
+                    <a href="javascript: void(0)" id="link_alterar_outro_telefone">Alterar</a>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 $(".sidebar-meus-dados").addClass("active");
+
 $(window).on("load", function () {
     $("#link_alterar_email").on("click", function () {
-        let id_usuario = $("#id_usuario").val();
         Swal.fire({
             title: 'Alterar Email',
             html:
@@ -21,11 +21,27 @@ $(window).on("load", function () {
                     type: 'POST',
                     url: '/usuario/alterarEmail',
                     data: {
-                        id_usuario: id_usuario,
                         novo_email: novo_email,
                         senha: senha
                     },
                     dataType: 'json'
+                }).done(function (result) {
+                    if (result.status === 200) {
+                        return;
+                    } else {
+                        let errorsMessages = "";
+                        if (result.error instanceof Array) {
+                            result.error.forEach((value, i, array) => {
+                                errorsMessages += value;
+                                if (i !== array.length - 1)
+                                    errorsMessages += ', <br>';
+                            })
+                        } else
+                            errorsMessages = result.error;
+                        Swal.showValidationMessage(
+                            `${errorsMessages}`
+                        )
+                    }
                 }).fail(function (error) {
                     Swal.showValidationMessage(
                         `${error}`
@@ -33,27 +49,127 @@ $(window).on("load", function () {
                 })
             }
         }).then((result) => {
-            if (result.value.status === 200) {
-                $("#email_usuario").html(result.value.novo_email);
-                Swal.fire({
-                    title: 'Email alterado com sucesso para ' + result.value.novo_email,
-                    type: 'success'
-                })
-            } else {
-                let errorsMessages = "";
-                if (result.value.error instanceof Array) {
-                    result.value.error.forEach((value, i, array) => {
-                        errorsMessages += value;
-                        if (i !== array.length - 1)
-                            errorsMessages += ', <br>';
-                    })
-                } else
-                    errorsMessages = result.value.error;
-                Swal.fire({
-                    title: errorsMessages,
-                    type: 'error'
+            $("#email_usuario").html(result.value.novo_email);
+            Swal.fire({
+                title: 'Email alterado com sucesso para ' + result.value.novo_email,
+                type: 'success'
+            })
+        })
+    })
+
+
+    $("#link_alterar_telefone").on("click", function () {
+        Swal.fire({
+            title: 'Alterar Telefone',
+            html: '<input type="text" id="swal_novo_telefone" class="swal2-input" placeholder="Novo telefone">',
+            showCancelButton: true,
+            confirmButtonText: 'Alterar',
+            confirmButtonColor: '#19c880',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#eb5050',
+            showLoaderOnConfirm: true,
+            allowOutsideClick: () => !Swal.isLoading(),
+            onOpen: function (el) {
+                var container = $(el);
+                container.find('#swal_novo_telefone').phoneBrazil();
+            },
+            preConfirm: () => {
+                let novo_telefone = $("#swal_novo_telefone").val();
+                return $.ajax({
+                    type: 'POST',
+                    url: '/usuario/alterarTelefone',
+                    data: {
+                        novo_telefone: novo_telefone,
+                        campo_telefone: 'telefone'
+                    },
+                    dataType: 'json'
+                }).done(function (result) {
+                    if (result.status === 200) {
+                        return;
+                    } else {
+                        let errorsMessages = "";
+                        if (result.error instanceof Array) {
+                            result.error.forEach((value, i, array) => {
+                                errorsMessages += value;
+                                if (i !== array.length - 1)
+                                    errorsMessages += ', <br>';
+                            })
+                        } else
+                            errorsMessages = result.error;
+                        Swal.showValidationMessage(
+                            `${errorsMessages}`
+                        )
+                    }
+                }).fail(function (error) {
+                    Swal.showValidationMessage(
+                        `${error}`
+                    )
                 })
             }
+        }).then((result) => {
+            $("#telefone_usuario").html(result.value.novo_telefone);
+            Swal.fire({
+                title: 'Telefone alterado com sucesso para ' + result.value.novo_telefone,
+                type: 'success'
+            })
+        })
+    })
+
+
+    $("#link_alterar_outro_telefone").on("click", function () {
+        Swal.fire({
+            title: 'Alterar Telefone',
+            html: '<input type="text" id="swal_novo_outro_telefone" class="swal2-input" placeholder="Novo telefone">',
+            showCancelButton: true,
+            confirmButtonText: 'Alterar',
+            confirmButtonColor: '#19c880',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#eb5050',
+            showLoaderOnConfirm: true,
+            allowOutsideClick: () => !Swal.isLoading(),
+            onOpen: function (el) {
+                var container = $(el);
+                container.find('#swal_novo_outro_telefone').phoneBrazil();
+            },
+            preConfirm: () => {
+                let novo_outro_telefone = $("#swal_novo_outro_telefone").val();
+                return $.ajax({
+                    type: 'POST',
+                    url: '/usuario/alterarTelefone',
+                    data: {
+                        novo_telefone: novo_outro_telefone,
+                        campo_telefone: 'outro_telefone'
+                    },
+                    dataType: 'json'
+                }).done(function (result) {
+                    if (result.status === 200) {
+                        return;
+                    } else {
+                        let errorsMessages = "";
+                        if (result.error instanceof Array) {
+                            result.error.forEach((value, i, array) => {
+                                errorsMessages += value;
+                                if (i !== array.length - 1)
+                                    errorsMessages += ', <br>';
+                            })
+                        } else
+                            errorsMessages = result.error;
+                        Swal.showValidationMessage(
+                            `${errorsMessages}`
+                        )
+                    }
+                }).fail(function (error) {
+                    Swal.showValidationMessage(
+                        `${error}`
+                    )
+                })
+            }
+        }).then((result) => {
+            $("#outro_telefone_usuario").html(result.value.novo_telefone);
+            Swal.fire({
+                title: 'Telefone alternativo alterado com sucesso para ' + result.value.novo_telefone,
+                type: 'success'
+            })
         })
     })
 })

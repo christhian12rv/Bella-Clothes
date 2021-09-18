@@ -1,0 +1,311 @@
+.endereco-form#form-adicionar-endereco h2, h2 {
+    color: #252525;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 35px;
+}
+
+form#form-adicionar-endereco .group-input {
+    margin-bottom: 25px;
+}
+
+form#form-adicionar-endereco label {
+    display: block;
+    font-size: 15px;
+    color: #252525;
+    margin-bottom: 13px;
+}
+
+form#form-adicionar-endereco .group-input label.checkbox-label {
+    margin-bottom: 0px !important;
+}
+
+form#form-adicionar-endereco .group-input textarea {
+    border: 1px solid #bcbcbc;
+    border-radius: 0px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 10px;
+}
+
+form#form-adicionar-endereco .group-input textarea:hover, form#form-adicionar-endereco .group-input textarea:focus, form#form-adicionar-endereco .group-input textarea:required:valid:focus {
+    border-color: #19c880;
+    border-radius: 0px;
+    outline: 1px #19c880;
+}
+
+form#form-adicionar-endereco .group-input textarea.hasClicked.invalid:not(:focus) {
+    border-color: #ca4545;
+    outline: 1px #ca4545 !important;
+}
+
+form#form-adicionar-endereco .group-input textarea.hasOutFocusFirst.invalid:focus {
+    border-color: #ca4545;
+    outline: 1px #ca4545 !important;
+}
+
+form#form-adicionar-endereco .group-input input {
+    border: 1px solid #bcbcbc;
+    border-radius: 0px;
+    height: 50px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 15px;
+}
+
+form#form-adicionar-endereco .group-input input:disabled {
+    cursor: not-allowed;
+}
+
+form#form-adicionar-endereco .group-input input#inscricao_estadual:disabled {
+    background-color: #d5d5d5;
+}
+
+form#form-adicionar-endereco .group-input input:hover, form#form-adicionar-endereco .group-input input:focus, form#form-adicionar-endereco .group-input input:required:valid:focus {
+    border-color: #19c880;
+    border-radius: 0px;
+    outline: 1px #19c880;
+}
+
+form#form-adicionar-endereco .group-input input.hasClicked.invalid:not(:focus) {
+    border-color: #ca4545;
+    outline: 1px #ca4545 !important;
+}
+
+form#form-adicionar-endereco .group-input input.hasOutFocusFirst.invalid:focus {
+    border-color: #ca4545;
+    outline: 1px #ca4545 !important;
+}
+
+form#form-adicionar-endereco .group-input input.checkbox-input {
+    width: auto !important;
+}
+
+form#form-adicionar-endereco .group-input select {
+    border: 1px solid #bcbcbc;
+    border-radius: 0px;
+    height: 50px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+form#form-adicionar-endereco .group-input select:disabled {
+    cursor: not-allowed;
+}
+
+form#form-adicionar-endereco .group-input select:hover, form#form-adicionar-endereco .group-input select:focus, form#form-adicionar-endereco .group-input select:required:valid:focus {
+    border-color: #19c880;
+    border-radius: 0px;
+    outline: 1px #19c880;
+}
+
+form#form-adicionar-endereco .group-input select.hasOutFocusFirst.invalid {
+    border-color: #ca4545 !important;
+    outline: 1px #ca4545 !important;
+}
+
+form#form-adicionar-endereco .register-btn, form#form-adicionar-endereco .login-btn {
+    width: 100%;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    border-radius: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.endereco-form#form-adicionar-endereco .switch-login, .switch-login {
+    text-align: center;
+    margin-top: 22px;
+}
+
+.endereco-form#form-adicionar-endereco .switch-login .or-login, .switch-login .or-login {
+    color: #252525;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    text-decoration: none;
+}
+
+.endereco-form#form-adicionar-endereco .switch-login .or-login:before, .switch-login .or-login:before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: #9f9f9f;
+    content: "";
+}
+
+.group-input.gi-check {
+    margin-bottom: 8px;
+}
+
+.group-input .gi-more {
+    overflow: hidden;
+}
+
+.group-input .gi-more label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 28px;
+    font-size: 14px;
+    color: #6B6B6B;
+    float: left;
+}
+
+.group-input .gi-more label input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.group-input .gi-more label input:checked~span {
+    border-color: #6C6C6C;
+}
+
+.group-input .gi-more label input:checked~span:after {
+    border-color: #6c6c6c;
+}
+
+.group-input .gi-more label .checkmark {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    height: 13px;
+    width: 13px;
+    border: 1px solid #6C6C6C;
+    border-radius: 2px;
+}
+
+.group-input .gi-more label .checkmark:after {
+    left: 2px;
+    top: -2px;
+    width: 13px;
+    height: 6px;
+    border: solid #ffffff;
+    border-width: 2px 2px 0px 0px;
+    -webkit-transform: rotate(127deg);
+    -ms-transform: rotate(127deg);
+    transform: rotate(127deg);
+    position: absolute;
+    content: "";
+}
+
+.group-input .gi-more .forget-pass {
+    float: right;
+    line-height: 20px;
+    margin-top: -2px;
+    font-size: 14px;
+    color: #6B6B6B;
+    text-decoration: underline;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+.theTooltip {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: absolute;
+    width: 90%;
+    max-width: 90%;
+    white-space: nowrap;
+    word-wrap: no-wrap;
+    box-shadow: 0px 3px 4px #aaa;
+    border-radius: 5px;
+    color: white;
+    background-color: #ca4545;
+    margin-top: 3px;
+    left: 50%;
+    transform: translate(-50%);
+    transform-style: preserve-3d;
+    z-index: 200;
+    font-size: 0.7em;
+    text-align: center;
+    overflow-wrap: break-word;
+    white-space: inherit;
+    display: none;
+}
+
+.theTooltip:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 10px;
+    transform-origin: 50% 50%;
+    transform: rotate(45deg) translateX(-50%);
+    background-color: #ca4545;
+    left: 50%;
+    top: -1px;
+    z-index: 400;
+}
+
+.theTooltip:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform-origin: 50% 50%;
+    transform: rotate(45deg) translateX(-50%) translateZ(-1px);
+    background-color: #fff;
+    left: 50%;
+    top: 0px;
+    z-index: -1;
+    box-shadow: -1px -1px 20px #aaa;
+}
+
+#tooltipDataTotal {
+    left: -50% !important;
+    margin-top: -22px !important;
+    max-width: 250% !important;
+    width: 250% !important;
+}
+
+input.invalid {
+    border: 1px solid #f00;
+}
+
+input.invalid~.theTooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+input:valid~.theTooltip {
+    -webkit-transition: opacity 0.3s, visibility 0s 0.3s;
+    transition: opacity 0.3s, visibility 0s 0.3s;
+}
+
+@media screen and (min-width: 575px) {
+    .hiddenName {
+        display: block;
+    }
+    .col-sm-2.dia-d-n {
+        padding-right: 5px !important;
+    }
+    .col-sm-2.mes-d-n {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    .col-sm-2.ano-d-n {
+        padding-left: 5px !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .hiddenName {
+        display: none !important;
+    }
+    .dataNascimento-row {
+        margin-top: 0px !important;
+    }
+}

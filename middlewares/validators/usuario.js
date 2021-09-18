@@ -731,3 +731,19 @@ exports.alterarEmail = [
         .withMessage("A Senha deve conter no mínimo 8 caracteres")
         .bail()
 ]
+
+exports.alterarTelefone = [
+    body("novo_telefone")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Telefone é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Telefone informado é inválido")
+        .bail()
+        .isLength({ min: 14, max: 15 })
+        .withMessage("O Telefone informado é inválido")
+        .bail()
+        .matches(/\(\d{2,}\) \d{4,}\-\d{4}/g)
+        .withMessage("O Telefone informado é inválido")
+]

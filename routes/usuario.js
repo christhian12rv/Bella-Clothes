@@ -22,9 +22,18 @@ router.get("/:id/compras/:idCompra", (req, res) => {
 
 router.get("/meus-dados", UsuarioController.meusDados);
 
-router.get("/:id/seguranca", (req, res) => {
-    res.render("usuario/conta/seguranca", { css: "/usuario/seguranca.css", js: "/usuario/conta/seguranca.js", paginaUsuario: true, title: "Segurança" });
-})
+router.get("/seguranca", UsuarioController.seguranca);
+
+/* router.get("/alterarEndereco", UsuarioController.alterarEndereco); */
+
+router.get("/adicionarEndereco", (req, res) => {
+    res.render("usuario/conta/adicionarEndereco", {
+        css: "/usuario/adicionarEndereco.css",
+        js: "/usuario/conta/adicionarEndereco.js",
+        paginaUsuario: true,
+        title: "Adicionar Endereço"
+    });
+});
 
 router.get("/:id/privacidade", (req, res) => {
     res.render("usuario/conta/privacidade", { css: "/usuario/privacidade.css", js: "/usuario/conta/privacidade.js", paginaUsuario: true, title: "Privacidade" });
@@ -33,5 +42,7 @@ router.get("/:id/privacidade", (req, res) => {
 router.post("/alterarFoto", UsuarioController.alterarFoto);
 
 router.post("/alterarEmail", UsuarioValidator.alterarEmail, UsuarioController.alterarEmail);
+
+router.post("/alterarTelefone", UsuarioValidator.alterarTelefone, UsuarioController.alterarTelefone);
 
 module.exports = router;

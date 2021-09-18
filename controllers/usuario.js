@@ -171,6 +171,27 @@ exports.meusDados = async (req, res) => {
     }
 }
 
+exports.seguranca = async (req, res) => {
+    try {
+        let serviceResponse = await UsuarioService.getUsuarioById(req.user._id);
+        if (serviceResponse && serviceResponse.status === 200) {
+            return res.render("usuario/conta/seguranca", {
+                css: "/usuario/seguranca.css",
+                js: "/usuario/conta/seguranca.js",
+                paginaUsuario: true,
+                title: "Segurança",
+                usuario: serviceResponse.usuario,
+                usuarioTipo: serviceResponse.usuarioTipo,
+                enderecos: serviceResponse.enderecos
+            });
+        } else {
+            return res.redirect("/404");
+        }
+    } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
 exports.alterarFoto = async (req, res) => {
     try {
         let foto = (req.files && req.files.foto) ? req.files.foto : undefined;
@@ -190,10 +211,29 @@ exports.alterarEmail = async (req, res) => {
             errors.array().forEach(value => {
                 errorsResponse.push(value.msg);
             });
-            return res.json({ status: "incorrect", error: errorsResponse });
+            return res.json({ status: 400, error: errorsResponse });
         }
-        let { id_usuario, novo_email, senha } = req.body;
-        let serviceResponse = await UsuarioService.changeEmail(id_usuario, novo_email, senha);
+        let { novo_email, senha } = req.body;
+        let serviceResponse = await UsuarioService.changeEmail(req.user._id, novo_email, senha);
+        return res.json(serviceResponse);
+    } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.alterarTelefone = async (req, res) => {
+    try {
+        const errors = validationResult(req);
+        let errorsResponse = [];
+        if (!errors.isEmpty()) {
+            errors.array().forEach(value => {
+                errorsResponse.push(value.msg);
+            });
+            return res.json({ status: 400, error: errorsResponse });
+        }
+        let { novo_telefone, campo_telefone } = req.body;
+        let campoToUpdate = (campo_telefone === "telefone") ? { telefone: novo_telefone } : { outro_telefone: novo_telefone };
+        let serviceResponse = await UsuarioService.changeTelefone(req.user._id, novo_telefone, campoToUpdate);
         return res.json(serviceResponse);
     } catch (error) {
         return res.redirect("/erro-500");
