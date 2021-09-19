@@ -735,6 +735,188 @@ exports.alterarEmail = [
 exports.alterarTelefone = [
     body("novo_telefone")
         .trim()
+        .custom(value => {
+            let regexp = /\(\d{2,}\) \d{4,}\-\d{4}/g;
+            if (((value != "" && value.length < 14) || value.length > 15) || (value != "" && !regexp.test(value)))
+                throw new Error("O Telefone informado é inválido");
+            return true;
+        })
+]
+
+exports.alterarEndereco = [
+    body("nome_endereco")
+        .trim()
+        .customSanitizer(value => {
+            return value.toLowerCase()
+                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+                .replace(/ Da /g, ' da ')
+                .replace(/ De /g, ' de ')
+                .replace(/ Do /g, ' do ')
+                .replace(/ Das /g, ' das ')
+                .replace(/ Dos /g, ' dos ');
+        })
+        .notEmpty()
+        .withMessage("O campo Nome do endereço é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Nome do endereço informado é inválido")
+        .bail()
+        .isLength({ min: 3 })
+        .withMessage("O campo Nome do endereço deve conter no mínimo 3 caracteres"),
+
+    body("numero_endereco")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Nº do endereço é obrigatório")
+        .bail()
+        .isNumeric()
+        .withMessage("O Nº do endereço informado é inválido"),
+
+    body("complemento")
+        .trim()
+        .customSanitizer(value => {
+            return value.toLowerCase()
+                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+                .replace(/ Da /g, ' da ')
+                .replace(/ De /g, ' de ')
+                .replace(/ Do /g, ' do ')
+                .replace(/ Das /g, ' das ')
+                .replace(/ Dos /g, ' dos ');
+        })
+        .custom(value => {
+            if (value != "" && value.length < 3)
+                throw new Error("O campo Complemento deve conter no mínimo 3 caracteres ou não deve ser informado");
+            return true;
+        }),
+
+    body("bairro")
+        .trim()
+        .customSanitizer(value => {
+            return value.toLowerCase()
+                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+                .replace(/ Da /g, ' da ')
+                .replace(/ De /g, ' de ')
+                .replace(/ Do /g, ' do ')
+                .replace(/ Das /g, ' das ')
+                .replace(/ Dos /g, ' dos ');
+        })
+        .notEmpty()
+        .withMessage("O campo Bairro é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Bairro informado é inválido")
+        .bail()
+        .isLength({ min: 3 })
+        .withMessage("O campo Bairro deve conter no mínimo 3 caracteres"),
+
+    body("ponto_referencia")
+        .trim()
+        .customSanitizer(value => {
+            return value.toLowerCase()
+                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+                .replace(/ Da /g, ' da ')
+                .replace(/ De /g, ' de ')
+                .replace(/ Do /g, ' do ')
+                .replace(/ Das /g, ' das ')
+                .replace(/ Dos /g, ' dos ');
+        })
+        .custom(value => {
+            if (value != "" && value.length < 3)
+                throw new Error("O campo Ponto de Referência deve conter no mínimo 3 caracteres ou não deve ser informado");
+            return true;
+        }),
+
+    body("cep")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo CEP é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O CEP informado é inválido")
+        .bail()
+        .isLength({ min: 9, max: 9 })
+        .withMessage("O CEP informado é inválido")
+        .bail()
+        .custom((value, { req }) => {
+            return fetch('https://viacep.com.br/ws/' + value.replace("-", "") + '/json/unicode/').then(fetchRes => fetchRes.json())
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
+                .then(data => {
+                    if ("erro" in data) {
+                        return Promise.reject("O CEP informado é inválido");
+                    } else {
+                        req.body.estado = data.uf;
+                        req.body.cidade = data.localidade;
+                    }
+                })
+        }),
+
+    body("estado")
+        .trim()
+        .toUpperCase()
+        .notEmpty()
+        .withMessage("O campo Estado é obrigatório")
+        .bail()
+        .isAlpha()
+        .withMessage("O Estado informado é inválido")
+        .bail()
+        .isLength({ min: 2, max: 2 })
+        .withMessage("O Estado informado é inválido"),
+
+    body("cidade")
+        .trim()
+        .customSanitizer(value => {
+            return value.toLowerCase()
+                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+                .replace(/ Da /g, ' da ')
+                .replace(/ De /g, ' de ')
+                .replace(/ Do /g, ' do ')
+                .replace(/ Das /g, ' das ')
+                .replace(/ Dos /g, ' dos ');
+        })
+        .notEmpty()
+        .withMessage("O campo Cidade é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("A Cidade informada é inválida")
+        .bail()
+        .isLength({ min: 3 })
+        .withMessage("O campo Cidade deve conter no mínimo 3 caracteres"),
+
+    body("informacoes_adicionais")
+        .trim()
+        .customSanitizer(value => {
+            return value.charAt(0).toUpperCase() + value.substr(1);
+        })
+        .custom(value => {
+            if (value != "" && value.length < 3)
+                throw new Error("O campo Informações Adicionais deve conter no mínimo 3 caracteres ou não deve ser informado");
+            return true;
+        }),
+
+    body("nome")
+        .trim()
+        .customSanitizer(value => {
+            return value.toLowerCase()
+                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+                .replace(/ Da /g, ' da ')
+                .replace(/ De /g, ' de ')
+                .replace(/ Do /g, ' do ')
+                .replace(/ Das /g, ' das ')
+                .replace(/ Dos /g, ' dos ');
+        })
+        .notEmpty()
+        .withMessage("O campo Nome é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Nome informado é inválido")
+        .bail()
+        .isLength({ min: 3 })
+        .withMessage("O campo Nome deve conter no mínimo 3 caracteres"),
+
+    body("telefone")
+        .trim()
         .notEmpty()
         .withMessage("O campo Telefone é obrigatório")
         .bail()
@@ -746,4 +928,15 @@ exports.alterarTelefone = [
         .bail()
         .matches(/\(\d{2,}\) \d{4,}\-\d{4}/g)
         .withMessage("O Telefone informado é inválido")
+        .bail()
+        .custom(value => {
+            return Usuario.findOne({ telefone: value }).lean()
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
+                .then((usuario) => {
+                    if (usuario)
+                        return Promise.reject("Já existe um usuário cadastrado com o Telefone informado.");
+                })
+        })
 ]

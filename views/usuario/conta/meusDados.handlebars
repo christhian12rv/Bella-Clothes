@@ -30,8 +30,9 @@
                 <div class=" p-0 bd-highlight flex-grow-1 ml-3 mr-3">
                     <p class="text-secondary" id="email_usuario">{{usuario.email}}</p>
                 </div>
-                <div class=" p-0 bd-highlight ml-3 mr-3">
-                    <a href="javascript: void(0)" id="link_alterar_email">Alterar</a>
+                <div class="bd-highlight ml-3 mr-3">
+                    <a href="javascript: void(0)" id="link_alterar_email" class="btn-alterar btn"><i
+                            class="bi bi-pencil-square"></i></a>
                 </div>
             </div>
         </div>
@@ -136,8 +137,9 @@
                 <div class="p-0 flex-grow-1 bd-highlight ml-3 mr-3">
                     <p class="text-secondary" id="telefone_usuario">{{usuario.telefone}}</p>
                 </div>
-                <div class=" p-0 bd-highlight ml-3 mr-3">
-                    <a href="javascript: void(0)" id="link_alterar_telefone">Alterar</a>
+                <div class="bd-highlight ml-3 mr-3">
+                    <a href="javascript: void(0)" id="link_alterar_telefone" class="btn-alterar btn"><i
+                            class="bi bi-pencil-square"></i></a>
                 </div>
             </div>
             <hr>
@@ -150,8 +152,9 @@
                         {{#if usuario.outro_telefone}}{{usuario.outro_telefone}}{{/if}}
                     </p>
                 </div>
-                <div class=" p-0 bd-highlight ml-3 mr-3">
-                    <a href="javascript: void(0)" id="link_alterar_outro_telefone">Alterar</a>
+                <div class="bd-highlight ml-3 mr-3">
+                    <a href="javascript: void(0)" id="link_alterar_outro_telefone" class="btn-alterar btn"><i
+                            class="bi bi-pencil-square"></i></a>
                 </div>
             </div>
         </div>
@@ -180,17 +183,26 @@
                             - {{this.telefone}}
                         </p>
                     </div>
-                    <div class="bd-highlight">
-                        <a href="#" class="button-editar-endereco btn rounded-0 mb-2">Editar</a>
-                        <br>
-                        <a href="#" class="button-excluir-endereco btn rounded-0">Excluir</a>
+                    <div class="bd-highlight d-flex flex-row flex-wrap"
+                        style="align-items: flex-start; column-gap: .25rem;">
+                        <a href="/usuario/editarEndereco?id={{this._id}}" class="btn-alterar btn mb-2"><i
+                                class="bi bi-pencil-square"></i></a>
+                        {{#if (bigger ../enderecos.length 1)}}
+                            <br>
+                            <form action="/usuario/excluirEndereco" method="POST">
+                                <input type="hidden" name="id_endereco" value="{{this._id}}" />
+                                <a href="javascript: void(0)" class="button-excluir-endereco btn"
+                                    nome-endereco="{{this.nome}}"><i class="bi bi-eraser"></i></a>
+                            </form>
+                        {{/if}}
                     </div>
                 </div>
                 <hr>
             {{/each}}
             <div class="d-flex flex-row flex-wrap bd-highlight px-2">
                 <div class="flex-grow-1 bd-highlight">
-                    <a href="#">Adicionar Endereço</a>
+                    <a href="/usuario/adicionarEndereco" class="button-adicionar-endereco btn"><i
+                            class="bi bi-plus-lg mr-2"></i> Adicionar Endereço</a>
                 </div>
             </div>
         </div>

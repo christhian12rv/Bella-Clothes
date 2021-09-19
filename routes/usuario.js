@@ -33,7 +33,13 @@ router.get("/adicionarEndereco", (req, res) => {
         paginaUsuario: true,
         title: "Adicionar Endereço"
     });
-});
+})
+    .post("/adicionarEndereco", UsuarioValidator.alterarEndereco, UsuarioController.adicionarEndereco);
+
+router.post("/excluirEndereco", UsuarioController.excluirEndereco);
+
+router.get("/editarEndereco", UsuarioController.editarEndereco)
+/* .post("/editarEndereco", UsuarioValidator.alterarEndereco, UsuarioController.editarEnderecoPost); */
 
 router.get("/:id/privacidade", (req, res) => {
     res.render("usuario/conta/privacidade", { css: "/usuario/privacidade.css", js: "/usuario/conta/privacidade.js", paginaUsuario: true, title: "Privacidade" });

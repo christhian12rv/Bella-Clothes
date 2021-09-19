@@ -75,6 +75,11 @@ $(window).on("load", function () {
             },
             preConfirm: () => {
                 let novo_telefone = $("#swal_novo_telefone").val();
+                if (novo_telefone.trim() == "") {
+                    return Swal.showValidationMessage(
+                        `O telefone informado é inválido`
+                    )
+                }
                 return $.ajax({
                     type: 'POST',
                     url: '/usuario/alterarTelefone',
@@ -166,10 +171,29 @@ $(window).on("load", function () {
             }
         }).then((result) => {
             $("#outro_telefone_usuario").html(result.value.novo_telefone);
+            let title = (result.value.novo_telefone != "") ? 'Telefone alternativo alterado com sucesso para ' + result.value.novo_telefone : 'Telefone retirado com sucesso';
             Swal.fire({
-                title: 'Telefone alternativo alterado com sucesso para ' + result.value.novo_telefone,
+                title: title,
                 type: 'success'
             })
+        })
+    })
+
+    $(".button-excluir-endereco").on("click", function () {
+        let form = $(this).parent("form");
+        let nome_endereco = $(this).attr("nome-endereco");
+        Swal.fire({
+            type: "question",
+            title: 'Tem certeza que deseja excluir o Endereço ' + nome_endereco + "?",
+            showCancelButton: true,
+            confirmButtonText: 'Excluir',
+            confirmButtonColor: '#19c880',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#eb5050',
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.value)
+                form.submit();
         })
     })
 })

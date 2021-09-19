@@ -446,6 +446,51 @@ exports.changeTelefone = async (id_usuario, novo_telefone, campoToUpdate) => {
     }
 }
 
+exports.adicionarEndereco = async (idUsuario, body) => {
+    try {
+        const novoEndereco = new Endereco({
+            id_usuario: idUsuario,
+            nome: body.nome_endereco,
+            numero: body.numero_endereco,
+            complemento: (body.complemento != "" && body.complemento) ? body.complemento : undefined,
+            bairro: body.bairro,
+            ponto_referencia: (body.ponto_referencia != "" && body.ponto_referencia) ? body.ponto_referencia : undefined,
+            cep: body.cep,
+            estado: body.estado,
+            cidade: body.cidade,
+            informacoes_adicionais: (body.informacoes_adicionais != "" && body.informacoes_adicionais) ? body.informacoes_adicionais : undefined,
+            nome_pessoa: body.nome,
+            telefone: body.telefone,
+        })
+        await novoEndereco.save();
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.excluirEndereco = async (idUsuario, idEndereco) => {
+    try {
+        let numEnderecos = await Endereco.find({ id_usuario: idUsuario }).lean().length;
+        if (numEnderecos <= 1)
+            return { status: 400, error: "Pelo menos 1 endereço deve estar ativo em sua conta." }
+        await Endereco.deleteOne({ _id: idEndereco, id_usuario: idUsuario })
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.editarEndereco = async (idUsuario, idEndereco) => {
+    try {
+        let endereco = await Endereco.findOne({ _id: idEndereco, id_usuario: idUsuario }).lean();
+        if (!endereco)
+            return { status: 400 };
+
+        return { status: 200, endereco: endereco };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 
 
 async function checkTipoUsuario(usuario) {

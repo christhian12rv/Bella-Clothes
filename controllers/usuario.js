@@ -222,20 +222,73 @@ exports.alterarEmail = async (req, res) => {
 }
 
 exports.alterarTelefone = async (req, res) => {
+    const errors = validationResult(req);
+    let errorsResponse = [];
+    if (!errors.isEmpty()) {
+        errors.array().forEach(value => {
+            errorsResponse.push(value.msg);
+        });
+        return res.json({ status: 400, error: errorsResponse });
+    }
     try {
-        const errors = validationResult(req);
-        let errorsResponse = [];
-        if (!errors.isEmpty()) {
-            errors.array().forEach(value => {
-                errorsResponse.push(value.msg);
-            });
-            return res.json({ status: 400, error: errorsResponse });
-        }
         let { novo_telefone, campo_telefone } = req.body;
         let campoToUpdate = (campo_telefone === "telefone") ? { telefone: novo_telefone } : { outro_telefone: novo_telefone };
         let serviceResponse = await UsuarioService.changeTelefone(req.user._id, novo_telefone, campoToUpdate);
         return res.json(serviceResponse);
     } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.adicionarEndereco = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        errors.array().forEach(value => {
+            req.flash("error_msg", value.msg);
+        });
+        return res.redirect("/usuario/adicionarEndereco");
+    }
+    try {
+        await UsuarioService.adicionarEndereco(req.user._id, req.body);
+        return res.redirect("/usuario/meus-dados");
+    } catch (error) {
+        console.log(error);
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.excluirEndereco = async (req, res) => {
+    try {
+        let serviceResponse = await UsuarioService.excluirEndereco(req.user._id, req.body.id_endereco);
+        if (serviceResponse && serviceResponse.status === 400) {
+            req.flash("error_msg", serviceResponse.error);
+            return res.redirect("/usuario/meus-dados");
+        }
+
+        req.flash("success_msg", "Endereço excluido com sucesso!");
+        return res.redirect("/usuario/meus-dados");
+    } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.editarEndereco = async (req, res) => {
+    try {
+        let serviceResponse = await UsuarioService.editarEndereco(req.user._id, req.query.id);
+        if (serviceResponse.status === 400) {
+            req.flash("error_msg", "O endereço informado é inválido");
+            return res.redirect("/usuario/meus-dados");
+        }
+        console.log(serviceResponse);
+        return res.render("usuario/conta/editarEndereco", {
+            css: "/usuario/editarEndereco.css",
+            js: "/usuario/conta/editarEndereco.js",
+            paginaUsuario: true,
+            title: "Editar Endereço",
+            endereco: serviceResponse.endereco
+        });
+    } catch (error) {
+        console.log(error);
         return res.redirect("/erro-500");
     }
 }

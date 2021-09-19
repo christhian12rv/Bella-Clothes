@@ -10,15 +10,14 @@
                         <div class="col-sm-6">
                             <div class="group-input">
                                 <label for="nome">* Nome</label>
-                                <input type="text" id="nome" name="nome" placeholder="* Nome Completo" required>
+                                <input type="text" id="nome" name="nome" placeholder="* Nome Completo" minlength="3"
+                                    required>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="group-input">
                                 <label for="cep">* CEP</label>
-                                <input type="text" id="cep" name="cep"
-                                    onkeypress="return event.keyCode === 8 || event.charCode >= 48 && event.charCode <= 57"
-                                    maxlength="8" placeholder="* CEP" required>
+                                <input type="text" id="cep" name="cep" placeholder="* CEP" required>
                             </div>
                         </div>
                     </div>
@@ -64,7 +63,8 @@
                         <div class="col-sm-6">
                             <div class="group-input">
                                 <label for="cidade">* Cidade </label>
-                                <input type="text" id="cidade" name="cidade" placeholder="* Cidade" required>
+                                <input type="text" id="cidade" name="cidade" placeholder="* Cidade" minlength="3"
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             <div class="group-input">
                                 <label for="nome_endereco">* Endereço</label>
                                 <input type="text" id="nome_endereco" name="nome_endereco"
-                                    placeholder="* Nome do Endereço" required>
+                                    placeholder="* Nome do Endereço" minlength="3" required>
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -96,7 +96,8 @@
                         <div class="col-sm-6">
                             <div class="group-input">
                                 <label for="bairro">* Bairro</label>
-                                <input type="text" id="bairro" name="bairro" placeholder="* Bairro" required>
+                                <input type="text" id="bairro" name="bairro" placeholder="* Bairro" minlength="3"
+                                    required>
                             </div>
                         </div>
                         <div class="col-sm-6">

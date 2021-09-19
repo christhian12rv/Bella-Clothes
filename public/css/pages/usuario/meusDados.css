@@ -70,32 +70,50 @@
     display: none;
 }
 
-.button-editar-endereco {
+.btn-alterar {
     background-color: #19c880 !important;
-    padding-left: 40px !important;
-    padding-right: 40px !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
     color: white !important;
+    transition: background-color .3s !important;
 }
 
-.button-editar-endereco:hover {
+.btn-alterar:hover {
     background-color: #118454 !important;
     color: white !important;
+    transition: background-color .3s;
 }
 
 .button-excluir-endereco {
     background-color: #dc3545 !important;
-    padding-left: 37px !important;
-    padding-right: 37px !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
     color: white !important;
+    transition: background-color .3s !important;
 }
 
 .button-excluir-endereco:hover {
     background-color: #9b2733 !important;
     color: white !important;
+    transition: background-color .3s;
+}
+
+.button-adicionar-endereco {
+    background-color: #19c880 !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    color: white !important;
+    transition: background-color .3s !important;
+}
+
+.button-adicionar-endereco:hover {
+    background-color: #118454 !important;
+    color: white !important;
+    transition: background-color .3s;
+}
+
+.button-adicionar-endereco i {
+    font-size: .9rem;
 }
 
 .bg-icone-cartao {
