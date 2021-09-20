@@ -4,6 +4,7 @@
         <div class="card card-editar-endereco p-3" style="margin-top: 30px;">
             <form id="form-editar-endereco" action="/usuario/editarEndereco" method="POST" enctype='multipart/form-data'
                 onsubmit="submitForm()">
+                <input type="hidden" name="id_endereco" value="{{endereco._id}}">
                 <div class="endereco-form">
                     <p class="mb-2">* Campos Obrigatórios</p>
                     <div class="row">

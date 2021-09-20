@@ -276,7 +276,7 @@ exports.trocarSenha = async (email) => {
         if (usuario) {
             let existsSenhaToken = await SenhaToken.findOne({ id_usuario: usuario._id }).lean();
             if (existsSenhaToken)
-                return { status: "token_exists" };
+                return { status: 400, error: 'Um email de troca de senha já foi enviado para ' + email + '. Clique no link desse email para iniciar a troca de sua senha ou espere 60 minutos e tente reenviar o email.' };
 
             let tokenSenhaVerification = randomstring.generate({ length: 64, charset: 'alphanumeric' });
             let tokenExists;
@@ -323,7 +323,7 @@ exports.trocarSenha = async (email) => {
             })
             return { status: 200 };
         } else
-            return { status: "incorrect" };
+            return { status: 400, error: 'O email informado não está cadastrado no nosso site.' };
     } catch (error) {
         throw new Error(error);
     }
@@ -365,7 +365,7 @@ exports.getUsuarioById = async (id_usuario) => {
     try {
         let usuario = await Usuario.findById(id_usuario).lean();
         let usuarioTipo = await checkTipoUsuario(usuario);
-        let enderecos = await Endereco.find({ id_usuario: id_usuario }).lean();
+        let enderecos = await Endereco.find({ id_usuario: id_usuario }).sort({ principal: -1 }).lean();
         if (usuario && usuarioTipo && enderecos)
             return { status: 200, usuario: usuario, usuarioTipo: usuarioTipo, enderecos: enderecos };
         else
@@ -434,7 +434,7 @@ exports.changeTelefone = async (id_usuario, novo_telefone, campoToUpdate) => {
     try {
         let usuario = await Usuario.findById(id_usuario).lean();
         if (usuario) {
-            if (usuario.telefone === novo_telefone)
+            if (usuario.telefone === novo_telefone || usuario.outro_telefone === novo_telefone)
                 return { status: 400, error: "Escolha um telefone diferente" };
 
             await Usuario.findByIdAndUpdate(id_usuario, campoToUpdate);
@@ -460,7 +460,7 @@ exports.adicionarEndereco = async (idUsuario, body) => {
             cidade: body.cidade,
             informacoes_adicionais: (body.informacoes_adicionais != "" && body.informacoes_adicionais) ? body.informacoes_adicionais : undefined,
             nome_pessoa: body.nome,
-            telefone: body.telefone,
+            telefone: body.telefone
         })
         await novoEndereco.save();
     } catch (error) {
@@ -470,10 +470,17 @@ exports.adicionarEndereco = async (idUsuario, body) => {
 
 exports.excluirEndereco = async (idUsuario, idEndereco) => {
     try {
-        let numEnderecos = await Endereco.find({ id_usuario: idUsuario }).lean().length;
-        if (numEnderecos <= 1)
+        let enderecos = await Endereco.find({ id_usuario: idUsuario }).lean();
+        let endereco = await Endereco.findOne({ _id: idEndereco, id_usuario: idUsuario, })
+
+        if (enderecos.length <= 1)
             return { status: 400, error: "Pelo menos 1 endereço deve estar ativo em sua conta." }
+
         await Endereco.deleteOne({ _id: idEndereco, id_usuario: idUsuario })
+
+        if (endereco.principal === true)
+            await Endereco.findOneAndUpdate({ id_usuario: idUsuario, principal: false }, { principal: true });
+
     } catch (error) {
         throw new Error(error);
     }
@@ -486,6 +493,43 @@ exports.editarEndereco = async (idUsuario, idEndereco) => {
             return { status: 400 };
 
         return { status: 200, endereco: endereco };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.editarEnderecoPOST = async (id_usuario, body) => {
+    try {
+        let endereco = await Endereco.find({ _id: body.id_endereco, id_usuario: id_usuario }).lean();
+        if (!endereco)
+            return { status: 400, error: "O endereço informado é inválido" };
+
+        await Endereco.findByIdAndUpdate(body.id_endereco, {
+            nome: body.nome_endereco,
+            numero: body.numero_endereco,
+            complemento: (body.complemento != "" && body.complemento) ? body.complemento : undefined,
+            bairro: body.bairro,
+            ponto_referencia: (body.ponto_referencia != "" && body.ponto_referencia) ? body.ponto_referencia : undefined,
+            cep: body.cep,
+            estado: body.estado,
+            cidade: body.cidade,
+            informacoes_adicionais: (body.informacoes_adicionais != "" && body.informacoes_adicionais) ? body.informacoes_adicionais : undefined,
+            nome_pessoa: body.nome,
+            telefone: body.telefone
+        })
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.alterarEnderecoPrincipal = async (id_usuario, id_endereco) => {
+    try {
+        let endereco = await Endereco.findOne({ _id: id_endereco, id_usuario: id_usuario }).lean();
+        if (!endereco)
+            return { status: 400, error: "O endereço informado é inválido" };
+        await Endereco.findOneAndUpdate({ id_usuario: id_usuario, principal: true }, { principal: false });
+        await Endereco.findOneAndUpdate({ _id: id_endereco, id_usuario: id_usuario }, { principal: true });
+        return { status: 200 };
     } catch (error) {
         throw new Error(error);
     }

@@ -184,14 +184,20 @@
                         </p>
                     </div>
                     <div class="bd-highlight d-flex flex-row flex-wrap"
-                        style="align-items: flex-start; column-gap: .25rem;">
+                        style="align-items: flex-start; column-gap: .35rem;">
+                        {{#if this.principal}}
+                            <span class="button-endereco-principal btn active"><i class="bi bi-house-fill"></i></span>
+                        {{else}}
+                            <a href="javascript: void(0)" class="button-endereco-principal btn"
+                                id-endereco="{{this._id}}" nome-endereco="
+                                    {{this.nome}}"><i class="bi bi-house-fill"></i></a>
+                        {{/if}}
                         <a href="/usuario/editarEndereco?id={{this._id}}" class="btn-alterar btn mb-2"><i
                                 class="bi bi-pencil-square"></i></a>
                         {{#if (bigger ../enderecos.length 1)}}
-                            <br>
                             <form action="/usuario/excluirEndereco" method="POST">
                                 <input type="hidden" name="id_endereco" value="{{this._id}}" />
-                                <a href="javascript: void(0)" class="button-excluir-endereco btn"
+                                <a href="javascript: void(0)" class="button-excluir btn"
                                     nome-endereco="{{this.nome}}"><i class="bi bi-eraser"></i></a>
                             </form>
                         {{/if}}
@@ -210,22 +216,25 @@
         <h5 style="font-size: 1.2rem; margin-top: 50px;">Cartões</h5>
 
         <div class="card card-cartoes shadow-sm mt-3 p-4">
-            <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                <div class="p-2 bd-highlight text-center" style="align-self: center;">
-                    <div class="p-2 bg-icone-cartao">
-                        <img src="/img/icone-pagamento/mastercard.png" alt="" class="icone-cartao">
+            {{#each cartoes}}
+                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
+                    <div class="p-2 bd-highlight text-center" style="align-self: center;">
+                        <div class="p-2 bg-icone-cartao">
+                            <img src="/img/icone-pagamento/mastercard.png" alt="" class="icone-cartao">
+                        </div>
+                    </div>
+                    <div class="p-2 bd-highlight flex-grow-1">
+                        <p>**** 3384</p>
+                        <p class="text-secondary" style="font-size: 0.9rem;">Mastercard</p>
+                        <p class="text-secondary" style="font-size: 0.9rem;">Vencimento: 10/2026</p>
+                    </div>
+                    <div class="bd-highlight">
+                        <a href="javascript: void(0)" class="button-excluir btn" id-cartao="{{this._id}}"
+                            numero-cartao="{{this.numero}}" tipo-cartao="{{this.tipo}}"><i class="bi bi-eraser"></i></a>
                     </div>
                 </div>
-                <div class="p-2 bd-highlight flex-grow-1">
-                    <p>**** 3384</p>
-                    <p class="text-secondary" style="font-size: 0.9rem;">Mastercard</p>
-                    <p class="text-secondary" style="font-size: 0.9rem;">Vencimento: 10/2026</p>
-                </div>
-                <div class="bd-highlight">
-                    <a href="#" class="button-excluir-endereco btn rounded-0">Excluir</a>
-                </div>
-            </div>
-            <hr>
+                <hr>
+            {{/each}}
             <div class="d-flex flex-row flex-wrap bd-highlight px-2">
                 <div class="p-2 bd-highlight text-center" style="align-self: center;">
                     <div class="p-2 bg-icone-cartao">

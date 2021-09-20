@@ -196,4 +196,50 @@ $(window).on("load", function () {
                 form.submit();
         })
     })
+
+    $(".button-endereco-principal:not(.active)").on("click", function () {
+        let id_endereco = $(this).attr("id-endereco");
+        let nome_endereco = $(this).attr("nome-endereco");
+        Swal.fire({
+            title: 'Tem certeza que deseja atualizar o Endereço ' + nome_endereco + ' para principal?',
+            showCancelButton: true,
+            confirmButtonText: 'Alterar',
+            confirmButtonColor: '#19c880',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#eb5050',
+            showLoaderOnConfirm: true,
+            allowOutsideClick: () => !Swal.isLoading(),
+            preConfirm: () => {
+                return $.ajax({
+                    type: 'POST',
+                    url: '/usuario/alterarEnderecoPrincipal',
+                    data: {
+                        id_endereco: id_endereco
+                    },
+                    dataType: 'json'
+                }).done(function (result) {
+                    if (result.status === 200) {
+                        return;
+                    } else {
+                        Swal.showValidationMessage(
+                            `${result.error}`
+                        )
+                    }
+                }).fail(function (error) {
+                    Swal.showValidationMessage(
+                        `${error}`
+                    )
+                })
+            }
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                    title: 'Endereço Principal alterado com sucesso',
+                    type: 'success'
+                }).then((result2) => {
+                    location.reload();
+                })
+            }
+        })
+    })
 })

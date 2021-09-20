@@ -92,11 +92,8 @@ exports.trocarSenha = async (req, res) => {
         if (serviceResponse.status === 200) {
             req.flash("success_msg", "Um email foi enviado para " + email + ". Clique no link desse email para iniciar a troca de sua senha.");
             res.redirect("/trocarSenha");
-        } else if (serviceResponse.status === "incorrect") {
-            req.flash("error_msg", "O email informado não está cadastrado no nosso site.");
-            return res.redirect("/trocarSenha");
-        } else if (serviceResponse.status === "token_exists") {
-            req.flash("error_msg", "Um email de troca de senha já foi enviado para " + email + ". Clique no link desse email para iniciar a troca de sua senha ou espere 60 minutos e tente reenviar o email.");
+        } else if (serviceResponse.status === 400) {
+            req.flash("error_msg", serviceResponse.error);
             return res.redirect("/trocarSenha");
         } else return res.redirect("/erro-404");
     } catch (error) {
@@ -252,7 +249,6 @@ exports.adicionarEndereco = async (req, res) => {
         await UsuarioService.adicionarEndereco(req.user._id, req.body);
         return res.redirect("/usuario/meus-dados");
     } catch (error) {
-        console.log(error);
         return res.redirect("/erro-500");
     }
 }
@@ -279,7 +275,6 @@ exports.editarEndereco = async (req, res) => {
             req.flash("error_msg", "O endereço informado é inválido");
             return res.redirect("/usuario/meus-dados");
         }
-        console.log(serviceResponse);
         return res.render("usuario/conta/editarEndereco", {
             css: "/usuario/editarEndereco.css",
             js: "/usuario/conta/editarEndereco.js",
@@ -288,7 +283,31 @@ exports.editarEndereco = async (req, res) => {
             endereco: serviceResponse.endereco
         });
     } catch (error) {
-        console.log(error);
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.editarEnderecoPOST = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        errors.array().forEach(value => {
+            req.flash("error_msg", value.msg);
+        });
+        return res.redirect("/usuario/editarEndereco?id=" + req.body.id_endereco);
+    }
+    try {
+        await UsuarioService.editarEnderecoPOST(req.user._id, req.body);
+        return res.redirect("/usuario/meus-dados");
+    } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.alterarEnderecoPrincipal = async (req, res) => {
+    try {
+        let serviceResponse = await UsuarioService.alterarEnderecoPrincipal(req.user._id, req.body.id_endereco);
+        res.json(serviceResponse);
+    } catch (error) {
         return res.redirect("/erro-500");
     }
 }

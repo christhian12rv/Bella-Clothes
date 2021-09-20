@@ -84,7 +84,7 @@
     transition: background-color .3s;
 }
 
-.button-excluir-endereco {
+.button-excluir {
     background-color: #dc3545 !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
@@ -92,7 +92,7 @@
     transition: background-color .3s !important;
 }
 
-.button-excluir-endereco:hover {
+.button-excluir:hover {
     background-color: #9b2733 !important;
     color: white !important;
     transition: background-color .3s;
@@ -114,6 +114,25 @@
 
 .button-adicionar-endereco i {
     font-size: .9rem;
+}
+
+.button-endereco-principal {
+    background-color: #ccc !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    color: white !important;
+    transition: background-color .3s !important;
+}
+
+.button-endereco-principal:hover {
+    background-color: #666 !important;
+    color: white !important;
+    transition: background-color .3s;
+}
+
+.button-endereco-principal.active {
+    background-color: #19c880 !important;
+    cursor: inherit;
 }
 
 .bg-icone-cartao {
