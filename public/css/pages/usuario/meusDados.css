@@ -98,7 +98,7 @@
     transition: background-color .3s;
 }
 
-.button-adicionar-endereco {
+.button-adicionar-endereco, .button-adicionar-cartao {
     background-color: #19c880 !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -106,13 +106,13 @@
     transition: background-color .3s !important;
 }
 
-.button-adicionar-endereco:hover {
+.button-adicionar-endereco:hover, .button-adicionar-cartao:hover {
     background-color: #118454 !important;
     color: white !important;
     transition: background-color .3s;
 }
 
-.button-adicionar-endereco i {
+.button-adicionar-endereco i, .button-adicionar-cartao i {
     font-size: .9rem;
 }
 
@@ -140,12 +140,11 @@
     width: 67px;
     height: 67px;
     border-radius: 100%;
-    writing-mode: vertical-lr;
 }
 
 .icone-cartao {
     width: 100%;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .card-dados-conta .foto-perfil-usuario {

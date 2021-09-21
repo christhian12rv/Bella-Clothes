@@ -164,7 +164,7 @@
 
         <div class="card card-enderecos shadow-sm mt-3 p-4">
             {{#each enderecos}}
-                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
+                <div class="d-flex flex-row flex-wrap bd-highlight px-2" style="row-gap: .75rem;">
                     <div class="flex-grow-1 bd-highlight">
                         <p class="font-weight-bold" style="color: black;">{{this.nome}}, {{this.numero}}</p>
                         <p class="text-secondary" style="font-size: 0.8rem">{{this.bairro}}, {{this.cidade}}
@@ -183,7 +183,7 @@
                             - {{this.telefone}}
                         </p>
                     </div>
-                    <div class="bd-highlight d-flex flex-row flex-wrap"
+                    <div class="bd-highlight d-flex flex-row flex-wrap ml-auto"
                         style="align-items: flex-start; column-gap: .35rem;">
                         {{#if this.principal}}
                             <span class="button-endereco-principal btn active"><i class="bi bi-house-fill"></i></span>
@@ -197,7 +197,7 @@
                         {{#if (bigger ../enderecos.length 1)}}
                             <form action="/usuario/excluirEndereco" method="POST">
                                 <input type="hidden" name="id_endereco" value="{{this._id}}" />
-                                <a href="javascript: void(0)" class="button-excluir btn"
+                                <a href="javascript: void(0)" class="button-excluir button-excluir-endereco btn"
                                     nome-endereco="{{this.nome}}"><i class="bi bi-eraser"></i></a>
                             </form>
                         {{/if}}
@@ -216,45 +216,42 @@
         <h5 style="font-size: 1.2rem; margin-top: 50px;">Cartões</h5>
 
         <div class="card card-cartoes shadow-sm mt-3 p-4">
-            {{#each cartoes}}
-                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                    <div class="p-2 bd-highlight text-center" style="align-self: center;">
-                        <div class="p-2 bg-icone-cartao">
-                            <img src="/img/icone-pagamento/mastercard.png" alt="" class="icone-cartao">
+            {{#if cartoes}}
+                {{#each cartoes}}
+                    <div class="d-flex flex-row flex-wrap bd-highlight px-2" style="row-gap: .5rem;">
+                        <div class="p-2 bd-highlight text-center" style="align-self: center;">
+                            {{#if this.imagem}}
+                                <div class="p-2 bg-icone-cartao" style="writing-mode: vertical-lr;">
+                                    <img src="/img/icone-pagamento/{{this.imagem}}" alt="" class="icone-cartao">
+                                </div>
+                            {{else}}
+                                <div class="p-2 bg-icone-cartao">
+                                    <i class="bi bi-credit-card-2-front icone-cartao"></i>
+                                </div>
+                            {{/if}}
+                        </div>
+                        <div class="p-2 bd-highlight flex-grow-1">
+                            <p>**** {{substrLast this.numero -4}}</p>
+                            <p class="text-secondary" style="font-size: 0.9rem;">{{capitalize this.banco}}</p>
+                            <p class="text-secondary" style="font-size: 0.9rem;">Vencimento: {{this.data_vencimento}}
+                            </p>
+                            <p class="text-secondary" style="font-size: 0.9rem;">{{this.nome}}</p>
+                        </div>
+                        <div class="bd-highlight ml-auto">
+                            <form action="/usuario/excluirCartao" method="POST">
+                                <input type="hidden" name="id_cartao" value="{{this._id}}" />
+                                <a href="javascript: void(0)" class="button-excluir button-excluir-cartao btn"
+                                    numero-cartao="{{substrLast this.numero -4}}"><i class="bi bi-eraser"></i></a>
+                            </form>
                         </div>
                     </div>
-                    <div class="p-2 bd-highlight flex-grow-1">
-                        <p>**** 3384</p>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Mastercard</p>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Vencimento: 10/2026</p>
-                    </div>
-                    <div class="bd-highlight">
-                        <a href="javascript: void(0)" class="button-excluir btn" id-cartao="{{this._id}}"
-                            numero-cartao="{{this.numero}}" tipo-cartao="{{this.tipo}}"><i class="bi bi-eraser"></i></a>
-                    </div>
-                </div>
-                <hr>
-            {{/each}}
-            <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                <div class="p-2 bd-highlight text-center" style="align-self: center;">
-                    <div class="p-2 bg-icone-cartao">
-                        <img src="/img/icone-pagamento/mastercard.png" alt="" class="icone-cartao">
-                    </div>
-                </div>
-                <div class="p-2 bd-highlight flex-grow-1">
-                    <p>**** 3384</p>
-                    <p class="text-secondary" style="font-size: 0.9rem;">Mastercard</p>
-                    <p class="text-secondary" style="font-size: 0.9rem;">Vencimento: 10/2026</p>
-                </div>
-                <div class="bd-highlight">
-                    <a href="#" class="button-excluir-endereco btn rounded-0">Excluir</a>
-                </div>
-            </div>
-
-            <hr>
+                    <hr>
+                {{/each}}
+            {{/if}}
             <div class="d-flex flex-row flex-wrap bd-highlight px-2">
                 <div class="flex-grow-1 bd-highlight">
-                    <a href="#">Adicionar Cartão</a>
+                    <a href="/usuario/adicionarCartao" class="button-adicionar-cartao btn"><i
+                            class="bi bi-plus-lg mr-2"></i> Adicionar Cartão</a>
                 </div>
             </div>
         </div>

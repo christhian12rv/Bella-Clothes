@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const Usuario = require("../../models/usuario/registro/Usuario");
 const UsuarioFisico = require("../../models/usuario/registro/UsuarioFisico");
 const UsuarioJuridico = require("../../models/usuario/registro/UsuarioJuridico");
+const Cartao = require("../../models/usuario/Cartao");
 
 exports.createUsuarioFisico = [
     body("nome")
@@ -939,4 +940,157 @@ exports.alterarEndereco = [
                         return Promise.reject("Já existe um usuário cadastrado com o Telefone informado.");
                 })
         })
+]
+
+exports.adicionarCartao = [
+    body("numero_cartao")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Número do Cartão é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Número do Cartão informado é inválido")
+        .bail()
+        .isLength({ min: 19, max: 19 })
+        .withMessage("O Número do Cartão informado é inválido")
+        .bail()
+        .matches(/^\d{4} \d{4} \d{4} \d{4}$/g)
+        .withMessage("O Número do Cartão informado é inválido")
+        .bail()
+        .custom(value => {
+            return Cartao.findOne({ numero: value }).lean()
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
+                .then((cartao) => {
+                    if (cartao)
+                        return Promise.reject("Já existe um usuário usando esse cartão.");
+                })
+        }),
+
+    body("codigo_seguranca")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Código de Segurança é obrigatório")
+        .bail()
+        .isNumeric()
+        .withMessage("O Código de Segurança informado é inválido")
+        .bail()
+        .isLength({ min: 3, max: 4 })
+        .withMessage("O Código de Segurança informado é inválido"),
+
+    body("nome_completo")
+        .trim()
+        .customSanitizer(value => {
+            return value.toLowerCase()
+                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+                .replace(/ Da /g, ' da ')
+                .replace(/ De /g, ' de ')
+                .replace(/ Do /g, ' do ')
+                .replace(/ Das /g, ' das ')
+                .replace(/ Dos /g, ' dos ');
+        })
+        .notEmpty()
+        .withMessage("O campo Nome Completo é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Nome Completo informado é inválido")
+        .bail()
+        .isLength({ min: 3 })
+        .withMessage("O campo Nome Completo deve conter no mínimo 3 caracteres"),
+
+    body("mes")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Mês de vencimento é obrigatório")
+        .bail()
+        .isNumeric()
+        .withMessage("O Mês de vencimento informado é inválido")
+        .bail()
+        .isLength({ min: 2, max: 2 })
+        .withMessage("O Mês de vencimento informado é inválido"),
+
+    body("ano")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Ano de vencimento é obrigatório")
+        .bail()
+        .isNumeric()
+        .withMessage("O Ano de vencimento informado é inválido")
+        .bail()
+        .isLength({ min: 4, max: 4 })
+        .withMessage("O Ano de vencimento informado é inválido"),
+
+    body("data_vencimento")
+        .trim()
+        .notEmpty()
+        .withMessage("A data de vencimento é obrigatória")
+        .bail()
+        .matches(/^(0[1-9]|1[0-2])\/\d{4}$/)
+        .withMessage("A data de vencimento é inválida")
+        .bail()
+        .custom((value, { req }) => {
+            let { mes, ano } = req.body;
+            let data_vencimento = new Date(ano, mes - 1);
+            console.log(data_vencimento);
+            console.log(data_vencimento);
+            return fetch("http://worldtimeapi.org/api/timezone/America/Sao_Paulo").then(fetchRes => fetchRes.json())
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
+                .then(data => {
+                    let currentDate = new Date(data.datetime);
+                    console.log(currentDate);
+                    if (data_vencimento < currentDate)
+                        return Promise.reject("A data de vencimento é inválida");
+                })
+        }),
+
+    body("banco")
+        .trim()
+        .toLowerCase()
+        .notEmpty()
+        .withMessage("O campo Banco é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Banco informado é inválido"),
+
+    body("tipo_cartao")
+        .trim()
+        .toLowerCase()
+        .notEmpty()
+        .withMessage("O campo Tipo é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Tipo informado é inválido")
+        .bail()
+        .isIn(["cpf", "cnpj"])
+        .withMessage("O Tipo informado é inválido"),
+
+    body("cadastro")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Cadastro (CPF ou CNPJ) é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Cadastro (CPF ou CNPJ) informado é inválido")
+        .bail()
+        .bail()
+        .custom(value => {
+            if (value.length != 14 && value.length != 18)
+                throw new Error("O Cadastro (CPF ou CNPJ) informado é inválido");
+            return true;
+        })
+        .bail()
+        .custom((value, { req }) => {
+            return Cartao.findOne({ cadastro: value }).lean()
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
+                .then((cartao) => {
+                    if (cartao)
+                        return Promise.reject("Já existe um usuário usando um cartão com esse número de cadastro (" + req.body.tipo_cartao + ")");
+                })
+        })
+
 ]

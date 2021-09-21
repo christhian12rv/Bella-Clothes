@@ -16,5 +16,14 @@ module.exports = {
                 return !RegExp(t).test(v) ? v : v.replace(t, t + ' selected="selected"')
             })
             .join('\n')
+    },
+    substr: (value, start, end) => {
+        return value.substr(start, end);
+    },
+    substrLast: (value, start) => {
+        return value.substr(start)
+    },
+    capitalize: (value) => {
+        return value.toLowerCase().replace(/(^\w|\s\w)/g, m => m.toUpperCase());
     }
 }

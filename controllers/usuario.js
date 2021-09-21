@@ -149,16 +149,18 @@ exports.login = async (req, res, next) => {
 
 exports.meusDados = async (req, res) => {
     try {
-        let serviceResponse = await UsuarioService.getUsuarioById(req.user._id);
-        if (serviceResponse && serviceResponse.status === 200) {
+        let serviceResponseGetUsuario = await UsuarioService.getUsuarioById(req.user._id);
+        let serviceResponseGetCartao = await UsuarioService.getCartaoByUsuarioId(req.user._id);
+        if (serviceResponseGetUsuario.status === 200 && serviceResponseGetCartao.status === 200) {
             return res.render("usuario/conta/meusDados", {
                 css: "/usuario/meusDados.css",
                 js: "/usuario/conta/meusDados.js",
                 paginaUsuario: true,
                 title: "Meus Dados",
-                usuario: serviceResponse.usuario,
-                usuarioTipo: serviceResponse.usuarioTipo,
-                enderecos: serviceResponse.enderecos
+                usuario: serviceResponseGetUsuario.usuario,
+                usuarioTipo: serviceResponseGetUsuario.usuarioTipo,
+                enderecos: serviceResponseGetUsuario.enderecos,
+                cartoes: serviceResponseGetCartao.cartoes
             });
         } else {
             return res.redirect("/404");
@@ -307,6 +309,49 @@ exports.alterarEnderecoPrincipal = async (req, res) => {
     try {
         let serviceResponse = await UsuarioService.alterarEnderecoPrincipal(req.user._id, req.body.id_endereco);
         res.json(serviceResponse);
+    } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.adicionarCartao = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        errors.array().forEach(value => {
+            req.flash("error_msg", value.msg);
+        });
+        return res.redirect("/usuario/adicionarCartao");
+    }
+    try {
+        await UsuarioService.adicionarCartao(req.user._id, req.body);
+        return res.redirect("/usuario/meus-dados");
+    } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.excluirCartao = async (req, res) => {
+    try {
+        let serviceResponse = await UsuarioService.excluirCartao(req.user._id, req.body.id_cartao);
+        if (serviceResponse && serviceResponse.status === 400) {
+            req.flash("error_msg", serviceResponse.error);
+            return res.redirect("/usuario/meus-dados");
+        }
+
+        req.flash("success_msg", "Cartão excluido com sucesso!");
+        return res.redirect("/usuario/meus-dados");
+    } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.updateOfertasEmail = async (req, res) => {
+    try {
+        let ofertas_email = req.body.ofertas_email;
+        console.log(ofertas_email);
+        let at = await UsuarioService.updateUsuario(req.user._id, { ofertas_email: ofertas_email });
+        console.log(at);
+        return { status: 200 };
     } catch (error) {
         return res.redirect("/erro-500");
     }

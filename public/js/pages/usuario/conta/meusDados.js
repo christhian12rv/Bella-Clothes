@@ -242,4 +242,22 @@ $(window).on("load", function () {
             }
         })
     })
+
+    $(".button-excluir-cartao").on("click", function () {
+        let form = $(this).parent("form");
+        let numero_cartao = $(this).attr("numero-cartao");
+        Swal.fire({
+            type: "question",
+            title: 'Tem certeza que deseja excluir o Cartão terminado em ' + numero_cartao + "?",
+            showCancelButton: true,
+            confirmButtonText: 'Excluir',
+            confirmButtonColor: '#19c880',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#eb5050',
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.value)
+                form.submit();
+        })
+    })
 })

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-9 col-dados mx-auto">
         <h3 class="mb-4">Adicionar Cartão</h3>
-        <div class="card card-adicionar-cartao p-4" style="margin-top: 30px;">
+        <div class="card card-adicionar-cartao" style="margin-top: 30px;">
             <form id="form-adicionar-cartao" action="/usuario/adicionarCartao" method="POST"
                 enctype='multipart/form-data' onsubmit="submitForm()">
                 <div class="cartao-form">
@@ -33,10 +33,11 @@
                         </div>
 
                         <div class="col-sm-3 mes-d-n">
+                            <input type="hidden" name="data_vencimento" id="data_vencimento">
                             <div class="group-input">
                                 <label for="nome">* Data de Vencimento</label>
-                                <select class="custom-select" name="mes" id="mes">
-                                    <option selected style="background-color: #e6e6e6; font-weight: bold;">Mês
+                                <select class="custom-select" name="mes" id="mes" required>
+                                    <option selected style="background-color: #e6e6e6; font-weight: bold;" value="">Mês
                                     </option>
                                     <option value="01">Janeiro</option>
                                     <option value="02">Fevereiro</option>
@@ -57,12 +58,10 @@
                         <div class="col-sm-3 ano-d-n">
                             <div class="group-input">
                                 <label for="" class="hiddenName">&nbsp;</label>
-                                <select class="custom-select select-ano" name="ano" id="ano">
-                                    <option selected style="background-color: #e6e6e6; font-weight: bold;">Ano
+                                <select class="custom-select select-ano" name="ano" id="ano" required>
+                                    <option selected style="background-color: #e6e6e6; font-weight: bold;" value="">Ano
                                     </option>
                                 </select>
-                                <input type="hidden" id="hidden-ano">
-                                <span class="theTooltip" id="tooltipAno">Escolha um Ano</span>
                             </div>
                         </div>
                     </div>
@@ -74,7 +73,7 @@
                                 <div class="form-check form-check-inline"
                                     style="vertical-align: -webkit-baseline-middle;">
                                     <input class="form-check-input checkbox-input checkbox-tipo-cartao" type="radio"
-                                        name="tipo_cartao" id="empresarial" value="juridico">
+                                        name="tipo_cartao" id="empresarial" value="cnpj">
                                     <label class="form-check-label checkbox-label" for="empresarial">
                                         Empresarial (CNPJ)
                                     </label>
@@ -82,7 +81,7 @@
                                 <div class="form-check form-check-inline"
                                     style="vertical-align: -webkit-baseline-middle;">
                                     <input class="form-check-input checkbox-input checkbox-tipo-cartao" type="radio"
-                                        name="tipo_cartao" id="fisico" value="fisico">
+                                        name="tipo_cartao" id="fisico" value="cpf">
                                     <label class="form-check-label checkbox-label" for="fisico">
                                         Fisico (CPF)
                                     </label>
@@ -94,6 +93,15 @@
                                 <label for="cadastro" id="tipo_label">* CPF</label>
                                 <input type="text" id="cadastro" name="cadastro" minLength="14" maxLength="19"
                                     placeholder="* CPF" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="group-input">
+                                <label for="banco">* Banco</label>
+                                <input type="text" id="banco" name="banco" placeholder="* Banco" required>
                             </div>
                         </div>
                     </div>

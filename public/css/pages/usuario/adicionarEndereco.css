@@ -1,3 +1,7 @@
+.card-adicionar-endereco {
+    padding: 2rem !important;
+}
+
 .endereco-form#form-adicionar-endereco h2, h2 {
     color: #252525;
     font-weight: 700;

@@ -27,7 +27,11 @@ const Cartao = new Schema({
     },
     tipo: {
         type: String,
-        enum: ['Fisico', 'Juridico'],
+        enum: ['cpf', 'cnpj'],
+        required: true
+    },
+    banco: {
+        type: String,
         required: true
     },
     imagem: {
@@ -37,7 +41,7 @@ const Cartao = new Schema({
         type: String,
         validate: {
             validator: (val) => {
-                return val.toString().length === 14 || val.toString().length === 19
+                return val.toString().length === 14 || val.toString().length === 18
             },
             message: val => 'cadastro has to be 14 or 19 digits'
         },

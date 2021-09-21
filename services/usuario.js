@@ -10,6 +10,7 @@ const UsuarioJuridico = require("../models/usuario/registro/UsuarioJuridico");
 const Endereco = require("../models/usuario/registro/Endereco");
 const EmailToken = require("../models/usuario/registro/EmailToken");
 const SenhaToken = require("../models/usuario/SenhaToken");
+const Cartao = require("../models/usuario/Cartao");
 
 const webSiteUrl = require("../config/webSiteUrl");
 const { smtpTransport, fromNodemailer } = require("../config/nodemailer");
@@ -375,6 +376,19 @@ exports.getUsuarioById = async (id_usuario) => {
     }
 }
 
+exports.getCartaoByUsuarioId = async (id_usuario) => {
+    try {
+        let usuario = await Usuario.findById(id_usuario).lean();
+        let cartoes = await Cartao.find({ id_usuario: id_usuario }).lean();
+        if (usuario && cartoes)
+            return { status: 200, cartoes: cartoes };
+        else
+            return { status: 404 };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 exports.changeFotoPerfil = async (id_usuario, foto) => {
     try {
         if (foto !== undefined) {
@@ -535,6 +549,66 @@ exports.alterarEnderecoPrincipal = async (id_usuario, id_endereco) => {
     }
 }
 
+exports.adicionarCartao = async (id_usuario, body) => {
+    try {
+        function getImagemCartao(banco) {
+            let imagemCartao = {
+                "american express": "american-express.png",
+                "american-express": "american-express.png",
+                "banco do brasil": "banco-brasil.png",
+                "banco brasil": "banco-brasil.png",
+                "visa": "banco-brasil.png",
+                "diners club": "diners-club.png",
+                "diners-club": "diners-club.png",
+                "elo": "elo.png",
+                "hipercard": "hipercard.png",
+                "hiper card": "hipercard.png",
+                "mastercard": "mastercard.png",
+                "master card": "mastercard.png",
+                "pix": "pix.png",
+                default: undefined
+            }
+            return imagemCartao[banco];
+        }
+
+        const novoCartao = new Cartao({
+            id_usuario: id_usuario,
+            numero: body.numero_cartao,
+            codigo_seguranca: body.codigo_seguranca,
+            nome: body.nome_completo,
+            tipo: body.tipo_cartao,
+            imagem: getImagemCartao(body.banco),
+            banco: body.banco,
+            cadastro: body.cadastro,
+            data_vencimento: body.data_vencimento
+        })
+        await novoCartao.save();
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.excluirCartao = async (id_usuario, id_cartao) => {
+    try {
+        let cartao = await Cartao.findOne({ _id: id_cartao, id_usuario: id_usuario, }).lean();
+        if (cartao)
+            await Cartao.deleteOne({ _id: id_cartao, id_usuario: id_usuario });
+        else
+            return { status: 400, error: "Cartão não encontrado" };
+
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.updateUsuario = async (id_usuario, query) => {
+    try {
+        console.log(query);
+        await Usuario.findByIdAndUpdate(id_usuario, query);
+    } catch (error) {
+        throw new Error(error);
+    }
+}
 
 
 async function checkTipoUsuario(usuario) {

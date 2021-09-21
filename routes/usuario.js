@@ -40,7 +40,7 @@ router.post("/excluirEndereco", UsuarioController.excluirEndereco);
 router.get("/editarEndereco", UsuarioController.editarEndereco)
     .post("/editarEndereco", UsuarioValidator.alterarEndereco, UsuarioController.editarEnderecoPOST);
 
-router.get("/:id/privacidade", (req, res) => {
+router.get("/privacidade", (req, res) => {
     res.render("usuario/conta/privacidade", { css: "/usuario/privacidade.css", js: "/usuario/conta/privacidade.js", paginaUsuario: true, title: "Privacidade" });
 })
 
@@ -54,6 +54,11 @@ router.get("/adicionarCartao", (req, res) => {
         title: "Adicionar Cartão"
     });
 })
+    .post("/adicionarCartao", UsuarioValidator.adicionarCartao, UsuarioController.adicionarCartao);
+
+router.post("/excluirCartao", UsuarioController.excluirCartao);
+
+router.post("/alterarReceberOfertasEmail", UsuarioController.updateOfertasEmail);
 
 router.post("/alterarFoto", UsuarioController.alterarFoto);
 
