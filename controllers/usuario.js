@@ -348,10 +348,24 @@ exports.excluirCartao = async (req, res) => {
 exports.updateOfertasEmail = async (req, res) => {
     try {
         let ofertas_email = req.body.ofertas_email;
-        console.log(ofertas_email);
-        let at = await UsuarioService.updateUsuario(req.user._id, { ofertas_email: ofertas_email });
-        console.log(at);
+        await UsuarioService.updateUsuario(req.user._id, { ofertas_email: ofertas_email });
         return { status: 200 };
+    } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.excluirUsuario = async (req, res) => {
+    try {
+        let serviceResponse = await UsuarioService.excluirUsuario(req.user._id);
+        if (serviceResponse.status == 400)
+            req.flash("error_msg", serviceResponse.error);
+        else {
+            req.logOut();
+            req.flash("success_msg", "Conta excluida com sucesso!");
+        }
+
+        return res.redirect("/");
     } catch (error) {
         return res.redirect("/erro-500");
     }

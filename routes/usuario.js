@@ -66,4 +66,6 @@ router.post("/alterarEmail", UsuarioValidator.alterarEmail, UsuarioController.al
 
 router.post("/alterarTelefone", UsuarioValidator.alterarTelefone, UsuarioController.alterarTelefone);
 
+router.post("/excluirUsuario", UsuarioController.excluirUsuario);
+
 module.exports = router;

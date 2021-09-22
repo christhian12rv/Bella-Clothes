@@ -1,34 +1,35 @@
-<form action="#" method="POST">
-    <div class="row">
-        <div class="col-sm-12">
-            <h3 class="mb-4">Privacidade</h3>
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="mb-4">Privacidade</h3>
 
-            <div class="card card-seguranca shadow-sm mt-3 p-4">
-                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                    <div class="p-2 flex-grow-1 bd-highlight" style="align-self: center;">
-                        <p class="font-weight-bold">Quero receber por e-mail ofertas e novidades.</p>
-                        <p class="text-secondary">A frequência de envios
-                            pode variar de acordo
-                            com a interação do cliente.</p>
-                    </div>
-                    <div class="p-2 bd-highlight" style="align-self: center;">
-                        <label class="switch">
-                            <input type="checkbox" id="ofertas_email">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
+        <div class="card card-seguranca shadow-sm mt-3 p-4">
+            <div class="d-flex flex-row flex-wrap bd-highlight px-2">
+                <div class="p-2 flex-grow-1 bd-highlight" style="align-self: center;">
+                    <p class="font-weight-bold">Quero receber por e-mail ofertas e novidades.</p>
+                    <p class="text-secondary">A frequência de envios
+                        pode variar de acordo
+                        com a interação do cliente.</p>
                 </div>
-                <hr>
-                <div class="d-flex flex-row flex-wrap bd-highlight px-2">
-                    <div class="p-2 flex-grow-1 bd-highlight" style="align-self: center;">
-                        <p class="font-weight-bold">Excluir seus dados</p>
-                        <p class="text-secondary">Cancele sua conta e exclua suas informações da Bella Clothes.</p>
-                    </div>
-                    <div class="p-2 bd-highlight" style="align-self: center;">
-                        <a href="#" class="text-danger">Excluir Conta</a>
-                    </div>
+                <div class="p-2 bd-highlight" style="align-self: center;">
+                    <label class="switch">
+                        <input type="checkbox" id="ofertas_email" data-checked="{{user.ofertas_email}}">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex flex-row flex-wrap bd-highlight px-2">
+                <div class="p-2 flex-grow-1 bd-highlight" style="align-self: center;">
+                    <p class="font-weight-bold">Excluir seus dados</p>
+                    <p class="text-secondary">Cancele sua conta e exclua suas informações da Bella Clothes.</p>
+                </div>
+                <div class="p-2 bd-highlight" style="align-self: center;">
+                    <form action="/usuario/excluirUsuario" method="POST">
+                        <a href="javascript: void(0)" id="button-excluir-conta" class="button-excluir-conta btn"><i
+                                class="bi bi-info-circle mr-2"></i> Excluir Conta</a>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>

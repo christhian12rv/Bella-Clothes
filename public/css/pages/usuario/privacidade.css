@@ -75,3 +75,21 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.button-excluir-conta {
+    background-color: #dc3545 !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    color: white !important;
+    transition: background-color .3s !important;
+}
+
+.button-excluir-conta:hover {
+    background-color: #9b2733 !important;
+    color: white !important;
+    transition: background-color .3s;
+}
+
+.button-excluir-conta i {
+    font-size: .95rem;
+}
