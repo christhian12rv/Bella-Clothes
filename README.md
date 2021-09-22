@@ -73,7 +73,7 @@ Here is a live working demo (only the front-end ended here. Use the "/ver-rotas"
 - [sharp 0.28.2](https://www.npmjs.com/package/sharp)
 
 
-## Ilustrations
+## Screenshots
 
 Coming soon... Because there may be changes in the front end in the future
 
