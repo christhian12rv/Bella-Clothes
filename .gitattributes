@@ -1,1 +1,3 @@
 config/nodemailer.js filter=git-crypt diff=git-crypt
+
+config/db.js filter=git-crypt diff=git-crypt
