@@ -1,10 +1,10 @@
-<div class="admin-footer px-4 py-3 d-flex flex-row">
-    <a href="/">
+<div class="admin-footer px-4 py-3 d-flex flex-row flex-wrap" style="row-gap: 1rem;">
+    <a href="/" class="mx-auto">
         <img src="/img/bella-clothes-logo.png" alt="" class="rounded" id="bella-clothes-logo-footer">
     </a>
-    <div class="flex-grow-1 footer-copyright ml-2 mr-2">© <span id="year-copyright"></span> Copyright:
-        <a href="/" id="bellaClothesUrl"> BellaClothes.com</a>.
+    <div class="flex-grow-1 footer-copyright mx-2">© <span id="year-copyright"></span> Copyright:
+        <a href="{{web_site_url}}" id="bellaClothesUrl"> {{substrLast web_site_url 8}}</a>.
         Todos os direitos reservados
     </div>
-    <a href="/politica-de-privacidade" id="privacy-policy">Política de Privacidade</a>
+    <a href="/politica/politica-de-privacidade" id="privacy-policy" class="mx-2">Política de Privacidade</a>
 </div>

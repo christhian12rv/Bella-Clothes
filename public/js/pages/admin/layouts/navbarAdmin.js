@@ -40,8 +40,6 @@ $(window).on("load", function () {
         })
     })
 
-    document.documentElement.style.setProperty('--sidebar-image', 'url(/img/admin-sidebar/wood.jpg) no-repeat');
-    document.documentElement.style.setProperty('--sidebar-background-opacity', '0.9');
     document.documentElement.style.setProperty('--footer-height', $(".admin-footer").outerHeight() + "px");
 })
 /* var lsFixedSidebar = localStorage.getItem('fixedSidebar');

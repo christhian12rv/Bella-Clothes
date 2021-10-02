@@ -11,6 +11,7 @@ const Endereco = require("../models/usuario/registro/Endereco");
 const EmailToken = require("../models/usuario/registro/EmailToken");
 const SenhaToken = require("../models/usuario/SenhaToken");
 const Cartao = require("../models/usuario/Cartao");
+const Empresa = require("../models/empresa/Empresa");
 
 const webSiteUrl = require("../config/webSiteUrl");
 const { smtpTransport, fromNodemailer } = require("../config/nodemailer");
@@ -219,13 +220,13 @@ exports.emailVerificado = async (query) => {
         let checkUsuario = await Usuario.findOne({ email: email }).lean();
         let checkEmailToken = await EmailToken.findOne({ token: tokenId, id_usuario: checkUsuario._id }).lean();
         if (checkUsuario && checkUsuario.email_verificado == true)
-            throw "Conta de usuário já verificada. Faça login para continuar.";
+            return { status: 400, error: "Conta de usuário já verificada. Faça login para continuar." };
         if (!checkUsuario || !checkEmailToken)
             return { status: 404 };
         await Usuario.findByIdAndUpdate(checkEmailToken.id_usuario, { email_verificado: true });
         let checkUsuarioTipo = await checkTipoUsuario(checkUsuario);
         await EmailToken.deleteOne({ token: tokenId, id_usuario: checkUsuario._id });
-        return { nome: (checkUsuarioTipo.nome ? checkUsuarioTipo.nome : checkUsuarioTipo.razao_social) };
+        return { status: 200, nome: (checkUsuarioTipo.nome ? checkUsuarioTipo.nome : checkUsuarioTipo.razao_social) };
     } catch (error) {
         throw new Error(error);
     }
@@ -368,7 +369,20 @@ exports.getUsuarioById = async (id_usuario) => {
         let usuarioTipo = await checkTipoUsuario(usuario);
         let enderecos = await Endereco.find({ id_usuario: id_usuario }).sort({ principal: -1 }).lean();
         if (usuario && usuarioTipo && enderecos)
-            return { status: 200, usuario: usuario, usuarioTipo: usuarioTipo, enderecos: enderecos };
+            return { status: 200, usuario: usuario, usuarioTipo: usuarioTipo };
+        else
+            return { status: 404 };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.getEnderecoByUsuarioId = async (id_usuario) => {
+    try {
+        let usuario = await Usuario.findById(id_usuario).lean();
+        let enderecos = await Endereco.find({ id_usuario: id_usuario }).lean();
+        if (usuario && enderecos)
+            return { status: 200, enderecos: enderecos };
         else
             return { status: 404 };
     } catch (error) {
@@ -435,6 +449,10 @@ exports.changeEmail = async (id_usuario, novo_email, senha) => {
             if (emailExists)
                 return { status: 400, error: "Já existe um usuário cadastrado com o Email informado." };
 
+            let emailEmpresaExists = await Empresa.findOne({ email: novo_email }).lean();
+            if (emailEmpresaExists)
+                return { status: 400, error: 'Email inválido' };
+
             await Usuario.findByIdAndUpdate(id_usuario, { email: novo_email });
             return { status: 200, novo_email: novo_email };
         } else
@@ -460,10 +478,10 @@ exports.changeTelefone = async (id_usuario, novo_telefone, campoToUpdate) => {
     }
 }
 
-exports.adicionarEndereco = async (idUsuario, body) => {
+exports.adicionarEndereco = async (id_usuario, body) => {
     try {
         const novoEndereco = new Endereco({
-            id_usuario: idUsuario,
+            id_usuario: id_usuario,
             nome: body.nome_endereco,
             numero: body.numero_endereco,
             complemento: (body.complemento != "" && body.complemento) ? body.complemento : undefined,
@@ -551,7 +569,7 @@ exports.alterarEnderecoPrincipal = async (id_usuario, id_endereco) => {
 
 exports.adicionarCartao = async (id_usuario, body) => {
     try {
-        function getImagemCartao(banco) {
+        let getImagemCartao = (banco) => {
             let imagemCartao = {
                 "american express": "american-express.png",
                 "american-express": "american-express.png",
@@ -609,11 +627,16 @@ exports.updateUsuario = async (id_usuario, query) => {
     }
 }
 
-exports.excluirUsuario = async (id_usuario) => {
+exports.excluirUsuario = async (id_usuario, senha) => {
     try {
         let usuario = await Usuario.findById(id_usuario).lean();
         if (!usuario)
             return { status: 400, error: "Usuário inválido" };
+
+        let compareSenha = await bcrypt.compare(senha, usuario.senha);
+
+        if (!compareSenha)
+            return { status: 400, error: "Senha incorreta" };
 
         await Usuario.deleteOne({ _id: id_usuario });
         if (usuario.tipo === 'Fisico')

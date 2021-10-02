@@ -3,13 +3,14 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-6">
-        <p class="small"><i class="bi bi-envelope-fill"></i> bellaclothes@.outlook.com | <i
-            class="bi bi-telephone-fill"></i> + 1 234 567 88
+        <p class="small"><i class="bi bi-envelope-fill"></i> {{empresa.email}} | <i class="bi bi-telephone-fill"></i>
+          +55
+          {{empresa.telefone}}{{#if empresa.outro_telefone}} ou {{empresa.outro_telefone}}{{/if}}
         </p>
       </div>
 
       <div class="col-12 col-md-6 text-right">
-        <a href="#" class="small">Ajuda</a>
+        <a href="/ajuda" class="small">Ajuda</a>
       </div>
     </div>
   </div>

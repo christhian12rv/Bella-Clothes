@@ -40,18 +40,18 @@ input#escolher-imagem {
     display: none;
 }
 
-input#alterar {
+button#alterar-imagem {
     background-color: #19c880;
     color: white;
 }
 
-input#alterar:hover {
+button#alterar-imagem:hover {
     background-color: #118454;
     color: white;
 }
 
 .transparencia-texto {
-    padding-top: 53px;
+    padding-top: 20px;
 }
 
 #slider-transparencia {

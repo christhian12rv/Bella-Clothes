@@ -1,6 +1,5 @@
 const { validationResult } = require('express-validator');
 const passport = require("passport");
-
 const UsuarioService = require("../services/usuario");
 
 exports.createUsuarioFisico = async (req, res) => {
@@ -59,19 +58,20 @@ exports.verificarEmail = async (req, res) => {
 exports.emailVerificado = async (req, res) => {
     try {
         let serviceResponse = await UsuarioService.emailVerificado(req.query);
-        if (serviceResponse.nome) {
+        if (serviceResponse.status === 200) {
             return res.render("usuario/emailVerificado", {
                 css: "emailVerificado.css",
                 title: "Verificação de Conta || Bella Clothes",
                 navbarSimple: true,
                 nome: serviceResponse.nome
             });
-        } else {
+        } else if (serviceResponse.status === 400) {
+            req.flash("error_msg", serviceResponse.error);
+            return res.redirect("/");
+        } else
             return res.redirect("/error-404");
-        }
     } catch (error) {
-        req.flash("error_msg", error.message);
-        return res.redirect("/");
+        return res.redirect("/erro-500");
     }
 }
 
@@ -95,7 +95,8 @@ exports.trocarSenha = async (req, res) => {
         } else if (serviceResponse.status === 400) {
             req.flash("error_msg", serviceResponse.error);
             return res.redirect("/trocarSenha");
-        } else return res.redirect("/erro-404");
+        } else
+            return res.redirect("/erro-404");
     } catch (error) {
         return res.redirect("/erro-500");
     }
@@ -113,9 +114,10 @@ exports.verificarEscolhaNovaSenha = async (req, res) => {
                 token: req.query.token,
                 erro: req.flash("error_trocaSenha")
             });
-        } else return res.redirect("/erro-404");
+        } else
+            return res.redirect("/erro-404");
     } catch (error) {
-        return res.redirect("/erro-400");
+        return res.redirect("/erro-500");
     }
 }
 
@@ -129,7 +131,8 @@ exports.escolhaNovaSenha = async (req, res) => {
         if (serviceResponse.status === 200) {
             req.flash("success_msg", "Senha alterada. Faça login para continuar.");
             return res.redirect("/login");
-        } else return res.redirect("/erro-404");
+        } else
+            return res.redirect("/erro-404");
     } catch (error) {
         return res.redirect("/erro-500");
     }
@@ -137,7 +140,7 @@ exports.escolhaNovaSenha = async (req, res) => {
 
 exports.login = async (req, res, next) => {
     try {
-        await passport.authenticate("local", {
+        await passport.authenticate("user-local", {
             successRedirect: "/",
             failureRedirect: "/login",
             failureFlash: true
@@ -150,8 +153,10 @@ exports.login = async (req, res, next) => {
 exports.meusDados = async (req, res) => {
     try {
         let serviceResponseGetUsuario = await UsuarioService.getUsuarioById(req.user._id);
+        let serviceResponseGetEndereco = await UsuarioService.getEnderecoByUsuarioId(req.user._id);
         let serviceResponseGetCartao = await UsuarioService.getCartaoByUsuarioId(req.user._id);
-        if (serviceResponseGetUsuario.status === 200 && serviceResponseGetCartao.status === 200) {
+        if (serviceResponseGetUsuario.status === 200 && serviceResponseGetEndereco.status === 200 &&
+            serviceResponseGetCartao.status === 200) {
             return res.render("usuario/conta/meusDados", {
                 css: "/usuario/meusDados.css",
                 js: "/usuario/conta/meusDados.js",
@@ -159,7 +164,7 @@ exports.meusDados = async (req, res) => {
                 title: "Meus Dados",
                 usuario: serviceResponseGetUsuario.usuario,
                 usuarioTipo: serviceResponseGetUsuario.usuarioTipo,
-                enderecos: serviceResponseGetUsuario.enderecos,
+                enderecos: serviceResponseGetEndereco.enderecos,
                 cartoes: serviceResponseGetCartao.cartoes
             });
         } else {
@@ -173,7 +178,7 @@ exports.meusDados = async (req, res) => {
 exports.seguranca = async (req, res) => {
     try {
         let serviceResponse = await UsuarioService.getUsuarioById(req.user._id);
-        if (serviceResponse && serviceResponse.status === 200) {
+        if (serviceResponse.status === 200) {
             return res.render("usuario/conta/seguranca", {
                 css: "/usuario/seguranca.css",
                 js: "/usuario/conta/seguranca.js",
@@ -183,9 +188,8 @@ exports.seguranca = async (req, res) => {
                 usuarioTipo: serviceResponse.usuarioTipo,
                 enderecos: serviceResponse.enderecos
             });
-        } else {
+        } else
             return res.redirect("/404");
-        }
     } catch (error) {
         return res.redirect("/erro-500");
     }
@@ -308,7 +312,7 @@ exports.editarEnderecoPOST = async (req, res) => {
 exports.alterarEnderecoPrincipal = async (req, res) => {
     try {
         let serviceResponse = await UsuarioService.alterarEnderecoPrincipal(req.user._id, req.body.id_endereco);
-        res.json(serviceResponse);
+        return res.json(serviceResponse);
     } catch (error) {
         return res.redirect("/erro-500");
     }
@@ -357,15 +361,11 @@ exports.updateOfertasEmail = async (req, res) => {
 
 exports.excluirUsuario = async (req, res) => {
     try {
-        let serviceResponse = await UsuarioService.excluirUsuario(req.user._id);
-        if (serviceResponse.status == 400)
-            req.flash("error_msg", serviceResponse.error);
-        else {
+        let serviceResponse = await UsuarioService.excluirUsuario(req.user._id, req.body.senha);
+        if (serviceResponse.status == 200)
             req.logOut();
-            req.flash("success_msg", "Conta excluida com sucesso!");
-        }
 
-        return res.redirect("/");
+        return res.json(serviceResponse);
     } catch (error) {
         return res.redirect("/erro-500");
     }

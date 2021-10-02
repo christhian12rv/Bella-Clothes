@@ -1,6 +1,11 @@
 var itemsSidebarOpen = JSON.parse(localStorage.getItem('itemsSidebarOpen')) || [];
 var itemIndex;
 $(window).on("load", function () {
+    const imageSidebar = localStorage.getItem("image_sidebar");
+    const transparencySidebar = localStorage.getItem("transparency_sidebar");
+    document.documentElement.style.setProperty('--sidebar-image', 'url(' + (imageSidebar || "/img/admin-sidebar/wood.jpg") + ')');
+    document.documentElement.style.setProperty('--sidebar-background-opacity', (transparencySidebar || "0.85"));
+
     itemsSidebarOpen.forEach((item) => {
         $(".main-sidebar .sidebar .flex-list").eq(item).children(".main-title").trigger("click");
     });
@@ -14,7 +19,6 @@ $(window).on("load", function () {
                 subListHeight += $(this).outerHeight();
             })
             subListHeight += 6;
-            console.log(subListHeight);
             $(this).parent(".flex-list").children(".sub-list").css("height", subListHeight + "px");
         }, 1001);
     })

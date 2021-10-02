@@ -42,7 +42,7 @@ img#admin-background {
 }
 
 form {
-    margin-top: 4.5rem;
+    margin-top: 2rem;
 }
 
 input:not([type="submit"]) {
@@ -96,4 +96,14 @@ a#signup:hover {
 #copyright {
     text-align: left;
     font-size: 0.8rem;
+}
+
+.toast.error_login_message {
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: none !important;
+}
+
+.toast.error_login_message * {
+    color: white !important;
 }

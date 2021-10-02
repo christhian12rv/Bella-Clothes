@@ -1,32 +1,36 @@
 <div id="form-content" class=" color-mode p-4">
-    <form action="a" method="GET">
-        <label class="mb-1 mr-2">Tipo de fundo:</label>
-        <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="imagem" name="tipoFundo" class="custom-control-input">
-            <label class="custom-control-label" for="imagem">Imagem</label>
-        </div>
-        <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="solido" name="tipoFundo" class="custom-control-input">
-            <label class="custom-control-label" for="solido">Sem imagem</label>
-        </div>
-        <div class="text-center mt-4">
-            <label for="escolher-imagem" id="label-escolher-imagem">
-                <div id="default-escolher-imagem">
-                    <i class="bi bi-file-image-fill"></i>
-                    <br>
-                    Escolher imagem
-                </div>
-                <div id="visualizar-imagem"></div>
-            </label>
-            <input type="file" accept="image/*" id="escolher-imagem" name="escolher-imagem" />
-            <br>
-            <div class="w-100 text-center d-flex flex-row flex-wrap">
-                <span class="transparencia-texto mr-4 ml-auto">Transparência:</span>
-                <div class="mt-3 mr-auto w-25">
-                    <div id="slider-transparencia" class="slider"></div>
-                </div>
+    <label class="mb-1 mr-2">Tipo de fundo:</label>
+    <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="radio-imagem" name="tipo_fundo" class="custom-control-input tipo-fundo">
+        <label class="custom-control-label" for="radio-imagem">Imagem</label>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="radio-solido" name="tipo_fundo" class="custom-control-input tipo-fundo">
+        <label class="custom-control-label" for="radio-solido">Sem imagem</label>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="radio-padrao" name="tipo_fundo" class="custom-control-input tipo-fundo">
+        <label class="custom-control-label" for="radio-padrao">Padrão</label>
+    </div>
+    <div class="text-center mt-4 box-escolher-imagem">
+        <label for="escolher-imagem" id="label-escolher-imagem">
+            <div id="default-escolher-imagem">
+                <i class="bi bi-file-image-fill"></i>
+                <br>
+                Escolher imagem
             </div>
-            <input type="submit" id="alterar" class="btn mt-2" value="Alterar">
+            <div id="visualizar-imagem"></div>
+        </label>
+        <input type="file" accept="image/*" id="escolher-imagem" name="escolher-imagem" />
+        <br>
+        <div class="w-100 text-center d-flex flex-row flex-wrap justify-content-center" style="column-gap: 1rem;">
+            <label class="transparencia-texto">Transparência:</label>
+            <div class="w-50">
+                <input type="text" id="image-transparency_slider">
+            </div>
         </div>
-    </form>
+    </div>
+    <div class="text-center mt-4">
+        <button id="alterar-imagem" class="btn mt-2" value="Alterar">Alterar</button>
+    </div>
 </div>

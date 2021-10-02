@@ -86,12 +86,21 @@ body {
 }
 
 .main-sidebar {
-    background: linear-gradient(rgba(var(--sidebar-color-mode-rgb), var(--sidebar-background-opacity)), rgba(var(--sidebar-color-mode-rgb), var(--sidebar-background-opacity))), var(--sidebar-image) no-repeat;
+    background: linear-gradient(rgba(var(--sidebar-color-mode-rgb), var(--sidebar-background-opacity)), rgba(var(--sidebar-color-mode-rgb), var(--sidebar-background-opacity))), var(--sidebar-image);
+    background-repeat: no-repeat;
+    background-size: contain;
     background-attachment: fixed;
     overflow: hidden;
     z-index: 999;
     position: relative;
     box-shadow: 0 14px 28px rgba(0, 0, 0, .35), 0 10px 10px rgba(0, 0, 0, .32)!important;
+}
+
+@media screen and (max-width: 768px) {
+    .main-sidebar {
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 .main-sidebar.fixed {
@@ -202,10 +211,19 @@ body {
 }
 
 .sidebar .user-image {
-    margin-left: 5px;
-    height: 35px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23)!important;
+    background-image: var(--foto-perfil-usuario);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-left: 5px !important;
+    margin-bottom: 0 !important;
+    width: 35px !important;
+    height: 35px !important;
+    max-width: 35px !important;
+    max-height: 35px !important;
     border-radius: 100%;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23)!important;
 }
 
 .main-sidebar .sidebar i {

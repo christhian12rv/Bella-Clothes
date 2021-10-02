@@ -74,10 +74,56 @@ $(".adicionar-categoria").on("click", function () {
     $("#category-flex").prepend(newCategory(date));
 })
 
+$(document).on("submit", ".form-adicionar-categoria", function (e) {
+    e.preventDefault();
+    let categoria = $(this).find("#categoria").val();
+    let descricao = $(this).find("#descricao").val();
+    let slug = $(this).find("#slug").val();
+    $.ajax({
+        url: "/admin/produtos/categorias",
+        method: "POST",
+        dataType: 'json',
+        data: {
+            categoria: categoria,
+            descricao: descricao,
+            slug: slug
+        }
+    }).done(function (data) {
+        let toastId;
+        if (data.status === 400) {
+            let getErrorMessages = async () => {
+                for (const error of data.errors) {
+                    try {
+                        toastId = $(".toast-container .toast").length + 1;
+                        await $.ajax({
+                            url: "/getToast",
+                            method: "POST",
+                            data: {
+                                type: 'error',
+                                text: error.msg,
+                                autoHide: false,
+                                toastId: toastId
+                            },
+                            success: function (data) {
+                                $(".toast-container").append(data);
+                                $("#toast-" + toastId).toast("show");
+                            }
+                        })
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            }
+            getErrorMessages();
+        } else
+            location.reload();
+    })
+})
+
 
 /*********************************************************************** FUNÇÕES **************************************************************************************************/
 
-const regexExpSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/g;
+const regexExpSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 function validateSlug(input) {
     if (!regexExpSlug.test(input.value)) {
         input.setCustomValidity("Digite um slug válido");
@@ -89,7 +135,7 @@ function validateSlug(input) {
 function newCategory(date) {
     var category =
         '<div class="category-card">' +
-        '        <form action="/nova-categoria" method="POST">' +
+        '        <form action="#" method="POST" class="form-adicionar-categoria">' +
         '            <header class="category-card__header">' +
         '                <div class="badge new-category-badge p-1">' +
         '                   <p class="m-0">Novo</p>' +

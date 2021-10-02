@@ -300,7 +300,5 @@ function filterTabToggle() {
 }
 
 $('.filter-tab').parents().filter(function () {
-    console.log($(this));
-    console.log($(this).css('overflow'));
     return $(this).css('overflow') === 'hidden';
 });

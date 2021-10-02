@@ -130,25 +130,25 @@ $(document).ready(function () {
     $(".item .product-add-favorite").on("click", function () {
         $(this).toggleClass("favorited");
         let hasFavorited = $(this).hasClass("favorited");
-        let toastsCountNextId = $(".toast-container .toast").length + 1;
+        let toastId = $(".toast-container .toast").length + 1;
         let textoMsgToast;
         if (hasFavorited)
             textoMsgToast = 'Produto adicionado aos favoritos';
         else
-            textoMsgToast = 'Produto retirado aos favoritos';
-
+            textoMsgToast = 'Produto retirado dos favoritos';
         $.ajax({
-            url: "/mensagemDinamica",
-            method: "GET",
+            url: "/getToast",
+            method: "POST",
             data: {
-                tipoMsg: 'success',
-                textoMsg: textoMsgToast,
-                autoHideMsg: true,
-                toastId: toastsCountNextId
+                type: 'success',
+                text: textoMsgToast,
+                autoHide: true,
+                autoHideDelay: 4000,
+                toastId: toastId
             }
         }).done(function (data) {
             $(".toast-container").append(data);
-            $("#toast-" + toastsCountNextId).toast("show");
+            $("#toast-" + toastId).toast("show");
         })
     })
 });

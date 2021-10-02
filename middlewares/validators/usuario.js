@@ -331,7 +331,17 @@ exports.createUsuarioFisico = [
                 })
                 .then((usuario) => {
                     if (usuario)
-                        return Promise.reject("Já existe um usuário cadastrado com o Email informado.");
+                        return Promise.reject("Já existe um usuário cadastrado com o Email informado");
+                    else {
+                        return Empresa.findOne({ email: value }).lean()
+                            .catch(erro => {
+                                return Promise.reject("Ocorreu um erro interno: " + erro);
+                            })
+                            .then((empresa) => {
+                                if (empresa)
+                                    return Promise.reject("Email inválido");
+                            })
+                    }
                 })
         }),
 
@@ -667,7 +677,17 @@ exports.createUsuarioJuridico = [
                 })
                 .then((usuario) => {
                     if (usuario)
-                        return Promise.reject("Já existe um usuário cadastrado com o Email informado.");
+                        return Promise.reject("Já existe um usuário cadastrado com o Email informado");
+                    else {
+                        return Empresa.findOne({ email: value }).lean()
+                            .catch(erro => {
+                                return Promise.reject("Ocorreu um erro interno: " + erro);
+                            })
+                            .then((empresa) => {
+                                if (empresa)
+                                    return Promise.reject("Email inválido");
+                            })
+                    }
                 })
         }),
 

@@ -191,17 +191,20 @@
 
         <ul class="list-unstyled foot-desc">
           <li class="mb-2">
-            <i class="bi bi-house-fill"></i> Belo Horizonte, Rua das Avenidas, 10
+            <i class="bi bi-house-fill"></i> {{empresa.cidade}} - {{empresa.estado}}, {{empresa.endereco}},
+            {{empresa.numero_endereco}}
           </li>
           <li class="mb-2">
-            <i class="bi bi-envelope-fill"></i> bellaclothes@outlook.com
+            <i class="bi bi-envelope-fill"></i> {{empresa.email}}
           </li>
           <li class="mb-2">
-            <i class="bi bi-telephone-fill"></i> + 01 234 567 88
+            <i class="bi bi-telephone-fill"></i> +55 {{empresa.telefone}}
           </li>
-          <li class="mb-2">
-            <i class="bi bi-printer-fill"></i> + 01 234 567 89
-          </li>
+          {{#if empresa.outro_telefone}}
+            <li class="mb-2">
+              <i class="bi bi-telephone-fill"></i> +55 {{empresa.outro_telefone}}
+            </li>
+          {{/if}}
         </ul>
 
       </div>
@@ -214,8 +217,8 @@
   <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© <span id="year-copyright"></span> Copyright:
-    <a href="#"> BellaClothes.com</a>
+  <div class="text-center py-3">© <span id="year-copyright"></span> Copyright:
+    <a href="{{web_site_url}}" class="footer-copyright"> {{substrLast web_site_url 8}}</a>
   </div>
   <!-- Copyright -->
 

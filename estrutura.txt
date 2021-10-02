@@ -267,3 +267,53 @@
 
 TOASTS
     Cupom - Exibir para todos os usuários ao admin criar 1;
+
+
+
+
+
+COISAS PARA FAZER (BACK END)
+    Registro ✓
+    Login Usuário ✓
+    Login Admin ✓
+    Logout ✓
+    Verificação de Email ✓
+    Troca de Senha ✓
+    Páginas do Usuário - Meus dados ✓
+    Páginas do Usuário - Segurança ✓
+    Páginas do Usuário - Privacidade ✓
+    Páginas do Usuário - Compras
+    Páginas do Usuário - Favoritos
+    Primeira Navbar ✓
+    Segunda Navbar
+    Terceira Navbar
+    Footer (Falta Links)
+    Compras
+    Loja
+    Carrinho
+    APIs
+
+    Configurações da Empresa ✓
+    Configurar Imagem da Sidebar ✓
+    Página Inicial da Loja
+    Cupons de Desconto
+    Blog Categorias
+    Blog Posts
+    Produtos Categorias
+    Produtos Subcategorias
+    Produtos Ver Produtos
+    Produtos Editar Produto
+    Produtos Avaliações
+    Usuários Ver Usuários
+    Usuários Ver Usuário
+    Usuários Deletar Usuário
+    Usuários Ver Pedidos
+    Usuários Ver Pedido
+    Painel de Controle Home
+    Painel de Controle Pedidos
+    Painel de Controle Receita de Vendas
+    Painel de Controle Quantidade de Vendas
+    Painel de Controle Usuários
+
+
+

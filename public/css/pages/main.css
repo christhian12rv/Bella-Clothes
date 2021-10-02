@@ -697,7 +697,7 @@ nav a:hover {
   font-size: 1.5em;
 }
 
-.page-footer a {
+.page-footer a:not(.footer-copyright) {
   color: black;
 }
 
@@ -1403,10 +1403,6 @@ footer a:hover i {
   top: 0 !important;
   right: 0 !important;
   margin: 1rem 1rem;
-}
-
-.toast-container.onAdminPage {
-  margin: 3.75rem 1rem;
 }
 
 .toast {

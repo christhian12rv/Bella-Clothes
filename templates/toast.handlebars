@@ -1,0 +1,15 @@
+<div class="toast show {{type}} align-items-center" role="alert" aria-live="assertive" aria-atomic="true"
+    id="toast-{{toastId}}" {{#if autoHide}} data-delay="{{autoHideDelay}}" {{else}} data-autohide="false" {{/if}}>
+    <div class="d-flex">
+        <div class="toast-icon my-auto">
+            <i class="bi bi-{{icon}}"></i>
+        </div>
+        <div class=" toast-body">
+                {{text}}
+        </div>
+        {{#unless autohide}}
+            <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                    class="bi bi-x-lg"></i></button>
+        {{/unless}}
+    </div>
+</div>

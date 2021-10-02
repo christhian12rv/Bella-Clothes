@@ -1,7 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-const fs = require('fs');
+const { adminIsLoggedIn } = require("../middlewares/adminIsLoggedIn");
+
+const EmpresaValidator = require("../middlewares/validators/empresa");
+const ProdutoValidator = require("../middlewares/validators/produto");
+
+const AdminController = require("../controllers/admin");
+const EmpresaController = require("../controllers/empresa");
+const ProdutoController = require("../controllers/produto");
 
 router.get("/login", (req, res) => {
     res.render("admin/login", {
@@ -9,9 +15,13 @@ router.get("/login", (req, res) => {
         js: "admin/login.js",
         title: "Login | Bella Clothes Admin",
         paginaAdmin: true,
-        loginAdmin: true
+        loginAdmin: true,
+        error_login_message: req.flash("error_login_message")
     })
 })
+    .post("/login", AdminController.login)
+
+router.get("/*", adminIsLoggedIn);
 
 router.get("/configurar-imagem-sidebar", (req, res) => {
     res.render("admin/painel de controle/imagemSidebar", {
@@ -130,7 +140,7 @@ router.get("/adicionar-produto", (req, res) => {
     })
 })
 
-router.get("/produtos/ver-categorias", (req, res) => {
+router.get("/produtos/categorias", (req, res) => {
     res.render("admin/produtos/verCategorias", {
         css: "admin/produtos/verCategorias.css",
         js: "admin/produtos/verCategorias.js",
@@ -138,6 +148,8 @@ router.get("/produtos/ver-categorias", (req, res) => {
         paginaAdmin: true
     })
 })
+    .post("/produtos/categorias", ProdutoValidator.categoria, ProdutoController.addCategoria)
+
 
 router.get("/produtos/ver-subcategorias", (req, res) => {
     res.render("admin/produtos/verSubcategorias", {
@@ -219,6 +231,7 @@ router.get("/empresa", (req, res) => {
         paginaAdmin: true
     })
 })
+    .post("/empresa", EmpresaValidator.updateEmpresa, EmpresaController.updateEmpresa)
 
 router.get("/erro-404", (req, res) => {
     res.render("admin/erro_404", {

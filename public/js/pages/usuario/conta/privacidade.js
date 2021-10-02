@@ -29,16 +29,47 @@ $(window).on("load", function () {
         let form = $(this).parent("form");
         Swal.fire({
             type: "warning",
+            html:
+                '<input type="password" id="swal_senha" class="swal2-input" placeholder="Confirme a senha da sua conta">',
             title: 'Tem certeza que deseja excluir sua conta? Todos os seus dados, incluindo endereços e cartões serão excluidos. Os dados de suas compras serão mantidos em nosso servidor.',
             showCancelButton: true,
             confirmButtonText: 'Excluir',
             confirmButtonColor: '#19c880',
             cancelButtonText: 'Cancelar',
             cancelButtonColor: '#eb5050',
-            allowOutsideClick: () => !Swal.isLoading()
+            allowOutsideClick: () => !Swal.isLoading(),
+            preConfirm: () => {
+                let senha = $("#swal_senha").val();
+                return $.ajax({
+                    type: 'POST',
+                    url: '/usuario/excluirUsuario',
+                    data: {
+                        senha: senha
+                    },
+                    dataType: 'json'
+                }).done(function (result) {
+                    if (result.status === 200) {
+                        return;
+                    } else {
+                        Swal.showValidationMessage(
+                            `${result.error}`
+                        )
+                    }
+                }).fail(function (error) {
+                    Swal.showValidationMessage(
+                        `${error}`
+                    )
+                })
+            }
         }).then((result) => {
-            if (result.value)
-                form.submit();
+            if (result.value) {
+                Swal.fire({
+                    title: 'Conta exclúida com sucesso!',
+                    type: 'success'
+                }).then(() => {
+                    window.location = '/';
+                })
+            }
         })
     })
 })

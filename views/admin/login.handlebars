@@ -5,15 +5,30 @@
     </div>
     <div class="login-box-form text-center mx-auto">
         <img src="/img/admin-login/admin-vector.svg" alt="" id="admin-background">
-        <p><i class="bi bi-shield-lock"></i> Faça Login em sua conta</p>
+        <p style="margin-bottom: 2rem;"><i class="bi bi-shield-lock"></i> Faça Login em sua conta</p>
+        {{#if error_login_message}}
+            <div class="toast error error_login_message align-items-center" role="alert" aria-live="assertive"
+                aria-atomic="true" data-autohide="false">
+                <div class="d-flex">
+                    <div class="toast-icon my-auto">
+                        <i class="bi bi-shield-exclamation"></i>
+                    </div>
+                    <div class="toast-body flex-grow-1">
+                        {{error_login_message}}
+                    </div>
+                    <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
+                            class="bi bi-x-lg"></i></button>
+                </div>
+            </div>
+        {{/if}}
         <form action="login" method="POST">
-            <input type="email" class="rounded" placeholder="Email" required>
+            <input type="email" class="rounded" placeholder="Email" name="login" required>
             <br>
-            <input type="password" class="rounded mt-2" placeholder="Senha" required>
+            <input type="password" class="rounded mt-2" placeholder="Senha" name="senha" required>
             <br>
             <input type="submit" class="btn mt-4 mb-2" value="LOGIN" id="logar">
             <br>
-            <a href="#" id="forgot-password">Esqueceu sua senha?</a>
+            <a href="/trocarSenha" id="forgot-password">Esqueceu sua senha?</a>
             <br>
             <p class="mb-0" id="not-account">Não tem uma conta?</p>
             <a href="/registrar/fisica" id="signup">Registrar</a>

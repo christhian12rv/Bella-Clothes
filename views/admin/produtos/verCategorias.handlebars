@@ -1,65 +1,68 @@
-<div class="d-flex flex-row flex-wrap mb-3" style="row-gap: .5rem;">
-    <h3 class="title flex-grow-1">
-        Categorias
-    </h3>
-    <input type="text" id="search-categorias" placeholder="Pesquise por categorias..." class="mr-3">
-    <button class="btn adicionar-categoria" id="adicionar-categoria"><i class="bi bi-plus-lg mr-2"></i>Adicionar
-        Nova Categoria</button>
-</div>
+<span id='page-categorias'>
+    <div class="d-flex flex-row flex-wrap mb-3" style="row-gap: .5rem;">
+        <h3 class="title flex-grow-1">
+            Categorias
+        </h3>
+        <input type="text" id="search-categorias" placeholder="Pesquise por categorias..." class="mr-3">
+        <button class="btn adicionar-categoria" id="adicionar-categoria"><i class="bi bi-plus-lg mr-2"></i>Adicionar
+            Nova Categoria</button>
+    </div>
 
-<div class="d-flex flex-row flex-wrap category-flex" id="category-flex">
+    <div class="d-flex flex-row flex-wrap category-flex" id="category-flex">
 
-    <div class="category-card">
-        <form action="#" method="POST">
-            <header class="category-card__header">
-                <label class="switch">
-                    <input type="checkbox" id="cp-dark-sidebar">
-                    <span class="slider round"></span>
-                </label>
-                <p class="category-id mt-3">1</p>
-                <div>
-                    <input type="text" placeholder="Categoria" name="categoria" id="categoria" minlength="2" required>
-                </div>
-                <div class="mt-1">
-                    <textarea name="descricao" id="descricao" placeholder="Descrição" minlength="3" class="mb-0"
-                        rows="3" required></textarea>
-                </div>
-                <div>
-                    <input type="text" name="slug" id="slug" placeholder="Slug" oninput="validateSlug(this)"
-                        required></input>
-                </div>
-                <p class="data-criacao mt-3">Data de criação:<span class="ml-2">28 MAIO 2021</span></p>
-            </header>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="wave" preserveAspectRatio="none">
-                <path class="path-wave" fill-opacity="1"
-                    d="M0,192L80,181.3C160,171,320,149,480,165.3C640,181,800,235,960,250.7C1120,267,1280,245,1360,234.7L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-                </path>
-            </svg>
-            <section class="category-card__body">
-
-                <div class="category-card__title">
-                    <div class="mb-3">
-                        <span class="badge-title px-2 py-1 mr-2">31</span>
-                        produtos
+        <div class="category-card">
+            <form action="#" method="POST" class="form-editar-categoria">
+                <header class="category-card__header">
+                    <label class="switch">
+                        <input type="checkbox" id="cp-dark-sidebar">
+                        <span class="slider round"></span>
+                    </label>
+                    <p class="category-id mt-3">1</p>
+                    <div>
+                        <input type="text" placeholder="Categoria" name="categoria" id="categoria" minlength="2"
+                            required>
+                    </div>
+                    <div class="mt-1">
+                        <textarea name="descricao" id="descricao" placeholder="Descrição" minlength="3" class="mb-0"
+                            rows="3" required></textarea>
                     </div>
                     <div>
-                        <span class="badge-title px-2 py-1 mr-2">31</span>
-                        subcategorias <i class="bi bi-arrow-down"></i>
+                        <input type="text" name="slug" id="slug" placeholder="Slug" oninput="validateSlug(this)"
+                            required></input>
                     </div>
+                    <p class="data-criacao mt-3">Data de criação:<span class="ml-2">28 MAIO 2021</span></p>
+                </header>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="wave" preserveAspectRatio="none">
+                    <path class="path-wave" fill-opacity="1"
+                        d="M0,192L80,181.3C160,171,320,149,480,165.3C640,181,800,235,960,250.7C1120,267,1280,245,1360,234.7L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+                    </path>
+                </svg>
+                <section class="category-card__body">
+
+                    <div class="category-card__title">
+                        <div class="mb-3">
+                            <span class="badge-title px-2 py-1 mr-2">31</span>
+                            produtos
+                        </div>
+                        <div>
+                            <span class="badge-title px-2 py-1 mr-2">31</span>
+                            subcategorias <i class="bi bi-arrow-down"></i>
+                        </div>
+                    </div>
+                    <div class="category-card__knowledge">
+                        <p>Blusas</p>
+                        <p>Calças</p>
+                        <p>Camisas Manga Curta</p>
+                        <p>Camisas Manga Larga</p>
+                        <p>Shorts</p>
+                        <p>Saias</p>
+                    </div>
+                </section>
+                <div class="submit-div">
+                    <input type="submit" value="Alterar" class="btn">
+                    <a href="/excluir-categoria" class="btn excluir-categoria">Excluir</a>
                 </div>
-                <div class="category-card__knowledge">
-                    <p>Blusas</p>
-                    <p>Calças</p>
-                    <p>Camisas Manga Curta</p>
-                    <p>Camisas Manga Larga</p>
-                    <p>Shorts</p>
-                    <p>Saias</p>
-                </div>
-            </section>
-            <div class="submit-div">
-                <input type="submit" value="Alterar" class="btn">
-                <a href="/excluir-categoria" class="btn excluir-categoria">Excluir</a>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+</span>

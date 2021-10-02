@@ -7,6 +7,7 @@ body .container-box {
 }
 
 .ajuda-container .ajuda-categorias button {
+    position: relative;
     padding: .75rem 1.5rem;
     background-color: transparent;
     border: none;
@@ -14,6 +15,8 @@ body .container-box {
     box-shadow: none;
     text-decoration: none;
     text-align: left;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
     transition: background-color 300ms;
 }
 
@@ -22,14 +25,35 @@ body .container-box {
 }
 
 .ajuda-container .ajuda-categorias button.active {
+    z-index: 1;
     background-color: #fff;
     font-weight: bold;
+    box-shadow: 0 0 13px 0 rgb(82 63 105 / 5%) !important;
     transition: background-color 300ms;
+}
+
+.ajuda-container .ajuda-categorias button::after {
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+.ajuda-container .ajuda-categorias button.active::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 100%;
+    top: 0;
+    right: -8px;
+    background-color: white;
+    opacity: 1;
+    transition: opacity 300ms;
 }
 
 .ajuda-container .ajuda-perguntas {
     padding: 1rem 2rem;
     background-color: #fff;
+    border-radius: .5rem;
+    box-shadow: 0 0 13px 0 rgb(82 63 105 / 5%) !important;
 }
 
 .ajuda-container .ajuda-perguntas:not(.active) {

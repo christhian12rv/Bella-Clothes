@@ -3,55 +3,87 @@
         Configurações da Empresa
     </h3>
 </div>
-<form action="a" method="POST">
+<form action="/admin/empresa" method="POST">
     <div class="card color-mode flex-column flex-wrap w-100 p-3 configurations-box" style="gap: .5rem;">
         <div>
             <label for="nome">Nome</label>
-            <input type="text" placeholder="Nome" id="nome" value="Bella Clothes" readonly disabled required>
+            <input type="text" placeholder="Nome" id="nome" value="{{empresa.nome}}" readonly disabled required>
         </div>
         <div>
             <label for="cnpj">CNPJ</label>
-            <input type="text" id="cnpj" placeholder="CNPJ" value="XX. XXX. XXX/0001-XX" readonly disabled required>
+            <input type="text" id="cnpj" placeholder="CNPJ" value="{{empresa.cnpj}}" readonly disabled required>
         </div>
         <div>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" value="bella.clothes@gmail.com" required>
+            <input type="email" id="email" placeholder="Email" value="{{empresa.email}}" readonly disabled required>
         </div>
         <br>
         <div>
             <label for="endereco">Endereço</label>
-            <input type="text" id="endereco" name="endereco" placeholder="Endereço" value="Rua tal" style="width: 69%"
-                class="mr-2" minlength="6" required>
-            <input type="text" id="numero" name="numero" placeholder="Nº" value="123" style="width: 29%" required>
+            <input type="text" id="endereco" name="endereco" placeholder="Endereço" value="{{empresa.endereco}}"
+                style="width: 69%" class="mr-2" minlength="6" required>
+            <input type="text" id="numero" name="numero_endereco" placeholder="Nº" value="{{empresa.numero_endereco}}"
+                style="width: 29%" required>
         </div>
         <div>
             <label for="complemento">Complemento</label>
-            <input type="text" id="complemento" name="complemento" placeholder="Complemento" value="Casa" minlength="2"
-                required>
+            <input type="text" id="complemento" name="complemento" placeholder="Complemento"
+                value="{{empresa.complemento}}" minlength="2" required>
         </div>
         <div>
             <label for="bairro">Bairro</label>
-            <input type="text" id="bairro" name="bairro" placeholder="Bairro" value="Centro" minlength="2" required>
+            <input type="text" id="bairro" name="bairro" placeholder="Bairro" value="{{empresa.bairro}}" minlength="2"
+                required>
         </div>
         <div>
             <label for="cidade">Cidade</label>
-            <input type="text" id="cidade" name="cidade" placeholder="Cidade" value="Belo Horizonte" minlength="2"
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade" value="{{empresa.cidade}}" minlength="2"
                 required>
         </div>
         <div>
             <label for="estado">Estado</label>
-            <input type="text" id="estado" name="estado" placeholder="Estado" value="MG" minlength="2" required>
+            <select class="custom-select" id="estado" name="estado" required>
+                {{#select empresa.estado}}
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                {{/select}}
+            </select>
         </div>
         <div>
             <label for="cep">CEP</label>
-            <input type="text" id="cep" name="cep" placeholder="CEP" value="12345-012" maxlength="8" minlength="8"
-                required>
+            <input type="text" id="cep" name="cep" placeholder="CEP" value="{{empresa.cep}}" required>
         </div>
         <div>
-            <label for="telefone1">Telefones</label>
-            <input type="text" id="telefone1" name="telefone1" placeholder="Telefone" value="00" style="width: 49%"
-                class="mr-2" required>
-            <input type="text" id="telefone2" name="telefone2" placeholder="Telefone 2" value="123" style="width: 49%">
+            <label for="telefone">Telefones</label>
+            <input type="text" id="telefone" name="telefone" placeholder="Telefone" value="{{empresa.telefone}}"
+                style="width: 49%" class="mr-2" required>
+            <input type="text" id="outro_telefone" name="outro_telefone" placeholder="Telefone 2"
+                value="{{empresa.outro_telefone}}" style="width: 49%">
         </div>
     </div>
     <input type="submit" value="Salvar" class="btn-salvar float-right mt-3">
