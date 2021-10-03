@@ -349,3 +349,54 @@
 input:hover, input:focus, input:link, input:visited, textarea:hover, textarea:focus, textarea:link, textarea:visited {
     outline: none !important;
 }
+
+.modal-loader-category {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-loader-category.show {
+    display: block;
+}
+
+.admin-content.dark .modal-loader-category {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-loader-category-loader {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    border-radius: 60px;
+    animation: modal-loader-category-loader 0.8s linear infinite;
+    -webkit-animation: modal-loader-category-loader 0.8s linear infinite;
+}
+
+@keyframes modal-loader-category-loader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        border: 4px solid #19c880;
+        border-left-color: transparent;
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        border: 4px solid white;
+        border-left-color: transparent;
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+        border: 4px solid #118454;
+        border-left-color: transparent;
+    }
+}

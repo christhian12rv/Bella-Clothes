@@ -18,6 +18,11 @@ const Categoria = new Schema({
         minLength: 2,
         required: true,
         unique: true
+    },
+    ativo: {
+        type: Boolean,
+        required: true,
+        default: true
     }
 }, { timestamps: true });
 

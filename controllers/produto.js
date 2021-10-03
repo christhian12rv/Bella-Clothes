@@ -6,9 +6,8 @@ exports.addCategoria = async (req, res) => {
     if (!errors.isEmpty())
         return res.json({ status: 400, errors: errors.array() });
     try {
-        await ProdutoService.addCategoria(req.body);
-        req.flash("success_msg", "Categoria adicionada com sucesso!");
-        return res.json({ status: 200 });
+        let categoria = await ProdutoService.addCategoria(req.body);
+        return res.json({ status: 200, categoria: categoria });
     } catch (error) {
         return res.redirect("/erro-500");
     }

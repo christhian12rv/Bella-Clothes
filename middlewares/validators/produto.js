@@ -36,15 +36,7 @@ exports.categoria = [
 
     body("descricao")
         .trim()
-        .customSanitizer(value => {
-            return value.toLowerCase()
-                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
-                .replace(/ Da /g, ' da ')
-                .replace(/ De /g, ' de ')
-                .replace(/ Do /g, ' do ')
-                .replace(/ Das /g, ' das ')
-                .replace(/ Dos /g, ' dos ');
-        })
+        .customSanitizer(value => value.charAt(0).toUpperCase() + value.slice(1))
         .notEmpty()
         .withMessage("O campo Descrição da Categoria é obrigatório")
         .bail()

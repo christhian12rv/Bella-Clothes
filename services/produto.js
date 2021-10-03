@@ -5,9 +5,11 @@ exports.addCategoria = async (body) => {
         const novaCategoria = new Categoria({
             nome: body.categoria,
             descricao: body.descricao,
-            slug: body.slug
+            slug: body.slug,
+            ativo: true
         })
         await novaCategoria.save();
+        return novaCategoria;
     } catch (error) {
         throw new Error(error);
     }

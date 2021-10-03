@@ -5,11 +5,12 @@
             <i class="bi bi-{{icon}}"></i>
         </div>
         <div class=" toast-body">
-                {{text}}
+            {{text}}
         </div>
-        {{#unless autohide}}
+        {{#if autoHide}}
+        {{else}}
             <button type="button" class="toast-close m-auto" data-dismiss="toast" aria-label="Close"><i
                     class="bi bi-x-lg"></i></button>
-        {{/unless}}
+        {{/if}}
     </div>
 </div>

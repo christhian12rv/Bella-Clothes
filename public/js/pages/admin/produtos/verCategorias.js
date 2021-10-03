@@ -7,7 +7,6 @@ $("#search-categorias").on("input", function () {
     $(".category-card").each(function () {
         var categoryInput = $.trim($(this).find("#categoria").val().toLowerCase());
         if (categoryInput.search(search) >= 0) {
-            console.log("yes");
             $(this).removeClass("notOnSearch");
         } else {
             $(this).addClass("notOnSearch");
@@ -49,46 +48,35 @@ $(".category-card__body, .path-wave, .submit-div").on("mouseleave", function () 
     cardBody.css("height", "80px");
 })
 
-var meses = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro"
-];
-
 $(".adicionar-categoria").on("click", function () {
-    var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth();
-    var year = date.getFullYear();
-    var date = day + " " + meses[month] + " " + year;
-
+    let date = moment().tz('America/Sao_Paulo').format('D MMMM YYYY');
     $("#category-flex").prepend(newCategory(date));
+})
+
+$(document).on("submit", ".form-editar-categoria", function (e) {
+    e.preventDefault();
 })
 
 $(document).on("submit", ".form-adicionar-categoria", function (e) {
     e.preventDefault();
-    let categoria = $(this).find("#categoria").val();
-    let descricao = $(this).find("#descricao").val();
-    let slug = $(this).find("#slug").val();
+    let form = $(this);
+    let categoria = form.find("#categoria");
+    let descricao = form.find("#descricao");
+    let slug = form.find("#slug");
+    let modalLoader = form.prev(".modal-loader-category");
+    modalLoader.addClass("show");
     $.ajax({
         url: "/admin/produtos/categorias",
         method: "POST",
         dataType: 'json',
         data: {
-            categoria: categoria,
-            descricao: descricao,
-            slug: slug
+            categoria: categoria.val(),
+            descricao: descricao.val(),
+            slug: slug.val()
         }
     }).done(function (data) {
+        console.log(data);
+        console.log(moment.tz('America/Sao_Paulo').format(data.createdAt))
         let toastId;
         if (data.status === 400) {
             let getErrorMessages = async () => {
@@ -113,10 +101,35 @@ $(document).on("submit", ".form-adicionar-categoria", function (e) {
                         console.log(error);
                     }
                 }
+                modalLoader.removeClass("show");
             }
             getErrorMessages();
-        } else
-            location.reload();
+        } else {
+            form.removeClass("form-adicionar-categoria").addClass("form-editar-categoria");
+            form.find(".new-category-badge").remove();
+            form.find("input[type=submit]").val("Alterar");
+            form.append("<input type='hidden' value='" + data.categoria.id_categoria + "' class='id-categoria'>");
+            form.find(".data-criacao-span").html(moment(data.createdAt).tz('America/Sao_Paulo').format('D MMMM YYYY'));
+            categoria.val(data.categoria.nome);
+            descricao.val(data.categoria.descricao);
+            slug.val(data.categoria.slug);
+            toastId = $(".toast-container .toast").length + 1;
+            $.ajax({
+                url: "/getToast",
+                method: "POST",
+                data: {
+                    type: 'success',
+                    text: 'Categoria adicionada com sucesso',
+                    autoHide: true,
+                    autoHideDelay: 4000,
+                    toastId: toastId
+                }
+            }).done(function (data) {
+                $(".toast-container").append(data);
+                $("#toast-" + toastId).toast("show");
+                modalLoader.removeClass("show");
+            })
+        }
     })
 })
 
@@ -134,7 +147,10 @@ function validateSlug(input) {
 
 function newCategory(date) {
     var category =
-        '<div class="category-card">' +
+        '   <div class="category-card">' +
+        '       <div class="modal-loader-category">' +
+        '           <div class="modal-loader-category-loader"></div>' +
+        '       </div>' +
         '        <form action="#" method="POST" class="form-adicionar-categoria">' +
         '            <header class="category-card__header">' +
         '                <div class="badge new-category-badge p-1">' +
@@ -154,7 +170,7 @@ function newCategory(date) {
         '                <div>' +
         '                    <input type="text" name="slug" id="slug" placeholder="Slug" oninput="validateSlug(this)" required></input>' +
         '                </div>' +
-        '                <p class="data-criacao mt-3">Data de criação:<span class="ml-2">' + date + '</span></p>' +
+        '                <p class="data-criacao mt-3">Data de criação:<span class="ml-2 data-criacao-span">' + date + '</span></p>' +
         '            </header>' +
         '            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="wave" preserveAspectRatio="none">' +
         '                <path class="path-wave" fill-opacity="1"' +
