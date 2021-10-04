@@ -21,7 +21,7 @@ router.get("/login", (req, res) => {
 })
     .post("/login", AdminController.login)
 
-router.get("/*", adminIsLoggedIn);
+/* router.get("/*", adminIsLoggedIn); */
 
 router.get("/configurar-imagem-sidebar", (req, res) => {
     res.render("admin/painel de controle/imagemSidebar", {
@@ -140,15 +140,9 @@ router.get("/adicionar-produto", (req, res) => {
     })
 })
 
-router.get("/produtos/categorias", (req, res) => {
-    res.render("admin/produtos/verCategorias", {
-        css: "admin/produtos/verCategorias.css",
-        js: "admin/produtos/verCategorias.js",
-        title: "Produtos Categorias | Bella Clothes Admin",
-        paginaAdmin: true
-    })
-})
-    .post("/produtos/categorias", ProdutoValidator.categoria, ProdutoController.addCategoria)
+router.get("/produtos/categorias", ProdutoController.getCategorias)
+    .post("/produtos/categorias", ProdutoValidator.addCategoria, ProdutoController.addCategoria)
+    .put("/produtos/categorias", ProdutoValidator.updateCategoria, ProdutoController.updateCategoria)
 
 
 router.get("/produtos/ver-subcategorias", (req, res) => {

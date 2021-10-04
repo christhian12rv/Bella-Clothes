@@ -50,12 +50,12 @@ module.exports = (passport) => {
     );
 
     passport.serializeUser((usuario, done) => {
-        done(null, usuario);
+        return done(null, usuario);
     })
 
     passport.deserializeUser((id, done) => {
         Usuario.findById(id, (err, usuario) => {
-            done(err, usuario);
+            return done(err, usuario);
         })
     })
 }

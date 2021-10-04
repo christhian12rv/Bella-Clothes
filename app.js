@@ -105,7 +105,7 @@ app.post("/getToast", async (req, res) => {
         await readHTMLFile("templates/toast.handlebars", async (err, html) => {
             try {
                 let getIcon = {
-                    'success': 'bi-check-lg',
+                    'success': 'check-lg',
                     'error': 'shield-exclamation',
                     'warning': 'exclamation-triangle',
                     'info:': 'info-circle'
@@ -114,15 +114,31 @@ app.post("/getToast", async (req, res) => {
                 let replacements = {
                     type: type,
                     text: text,
-                    ...(autoHide != 'false' && {autoHide: autoHide}),
-                    ...(autoHideDelay && {autoHideDelay: autoHideDelay}),
+                    ...(autoHide != 'false' && { autoHide: autoHide }),
+                    ...(autoHideDelay && { autoHideDelay: autoHideDelay }),
                     toastId: toastId,
                     icon: getIcon[type]
                 };
-                console.log(replacements);
                 let toastHTML = template(replacements);
-                console.log(toastHTML);
                 res.send(toastHTML);
+            } catch (error) {
+                throw error;
+            }
+        })
+    } catch (error) {
+        res.redirect("/erro-500");
+    }
+})
+
+app.post("/getTemplate", async (req, res) => {
+    let params = req.body;
+    try {
+        await readHTMLFile("templates/" + params.template + ".handlebars", async (err, html) => {
+            try {
+                let template = handlebarsToCompiler.compile(html);
+                delete params.template;
+                let HTMLtemplate = template(params);
+                res.send(HTMLtemplate);
             } catch (error) {
                 throw error;
             }

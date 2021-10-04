@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Categoria = new Schema({
     nome: {
         type: String,
-        minLength: 2,
+        minLength: 3,
         required: true,
         unique: true
     },
@@ -15,7 +15,7 @@ const Categoria = new Schema({
     },
     slug: {
         type: String,
-        minLength: 2,
+        minLength: 3,
         required: true,
         unique: true
     },
@@ -26,4 +26,4 @@ const Categoria = new Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model("categorias", Categoria);
+module.exports = mongoose.model("categoriasProduto", Categoria);
