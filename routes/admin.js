@@ -144,15 +144,9 @@ router.get("/produtos/categorias", ProdutoController.getCategorias)
     .post("/produtos/categorias", ProdutoValidator.addCategoria, ProdutoController.addCategoria)
     .put("/produtos/categorias", ProdutoValidator.updateCategoria, ProdutoController.updateCategoria)
 
-
-router.get("/produtos/ver-subcategorias", (req, res) => {
-    res.render("admin/produtos/verSubcategorias", {
-        css: "admin/produtos/verSubcategorias.css",
-        js: "admin/produtos/verSubcategorias.js",
-        title: "Produtos Subcategorias | Bella Clothes Admin",
-        paginaAdmin: true
-    })
-})
+router.get("/produtos/subcategorias", ProdutoController.getSubcategorias)
+    .post("/produtos/subcategorias", ProdutoValidator.addSubcategoria, ProdutoController.addSubcategoria)
+/* .put("/produtos/subcategorias", ProdutoValidator.updateSubcategoria, ProdutoController.updateSubcategoria) */
 
 router.get("/produtos/avaliacoes", (req, res) => {
     res.render("admin/produtos/avaliacoes", {

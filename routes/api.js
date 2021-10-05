@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const frete = require('frete');
+const ApiController = require("../controllers/api");
 
 router.get("/usuarios", (req, res) => {
     var clientes = [];
@@ -298,5 +299,7 @@ router.get("/frete", (req, res) => {
                 res.send(results);
         });
 })
+
+router.get("/categorias", ApiController.getCategorias);
 
 module.exports = router;

@@ -14,29 +14,179 @@ $("#search-subcategorias").on("input", function () {
     })
 })
 
-var meses = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro"
-];
-
 $(".adicionar-subcategoria").on("click", function () {
-    var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth();
-    var year = date.getFullYear();
-    var date = day + " " + meses[month] + " " + year;
+    let date = moment().tz('America/Sao_Paulo').format('D MMMM YYYY');
+    let categorias;
+    $.ajax({
+        url: "/api/categorias",
+        method: "GET"
+    }).done(function (data) {
+        categorias = data.categorias;
+        $.ajax({
+            url: "/getTemplate",
+            method: "POST",
+            data: {
+                template: 'produto/adicionar-subcategoria',
+                date: date,
+                categorias: categorias
+            }
+        }).done(function (data) {
+            $("#subcategory-flex").prepend(data);
+        }).fail(function () {
+            window.location.href = "/admin/erro-500";
+        })
+    }).fail(function () {
+        window.location.href = "/admin/erro-500";
+    })
+})
 
-    $("#subcategory-flex").prepend(newsubcategory(date));
+$(document).on("change", ".subcategory-activate", function () {
+    let ativo = $(this).prop("checked");
+    let form = $(this).parents((".form-editar-subcategoria"));
+    let id_subcategoria = form.find(".id-subcategoria");
+
+    $.ajax({
+        url: "/admin/produtos/subcategorias",
+        method: "PUT",
+        dataType: 'json',
+        data: {
+            id_subcategoria: id_subcategoria.val(),
+            subcategoriaToUpdate: {
+                ativo: ativo
+            }
+        }
+    }).done(function (data) {
+        let toastId;
+        if (data.status === 400) {
+            let getErrorMessages = async () => {
+                let numberDelayBasedOnCountErrors = 0;
+                for (const error of data.errors) {
+                    numberDelayBasedOnCountErrors++;
+                    try {
+                        toastId = $(".toast-container .toast").length + 1;
+                        await $.ajax({
+                            url: "/getToast",
+                            method: "POST",
+                            data: {
+                                type: 'error',
+                                text: error.msg,
+                                autoHide: true,
+                                autoHideDelay: (4000 * numberDelayBasedOnCountErrors),
+                                toastId: toastId
+                            },
+                            success: function (data) {
+                                $(".toast-container").append(data);
+                                $("#toast-" + toastId).toast("show");
+                            },
+                            fail: function () {
+                                window.location.href = "/admin/erro-500";
+                            }
+                        })
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            }
+            getErrorMessages();
+        }
+    }).fail(function () {
+        window.location.href = "/admin/erro-500";
+    })
+})
+
+$(document).on("click", ".btn-submit-adicionar-subcategoria", function () {
+    let button = $(this);
+    let form = $(this).parents((".form-adicionar-subcategoria"));
+    let subcategoria = form.find("#subcategoria");
+    let descricao = form.find("#descricao");
+    let slug = form.find("#slug");
+    let categoria = form.find("#categoria");
+    let genero = form.find("#genero");
+    let modalLoader = form.prev(".modal-loader-subcategory");
+    modalLoader.addClass("show");
+
+    $.ajax({
+        url: "/admin/produtos/subcategorias",
+        method: "POST",
+        dataType: 'json',
+        data: {
+            nome: subcategoria.val(),
+            descricao: descricao.val(),
+            slug: slug.val(),
+            categoria: categoria.val(),
+            genero: genero.val()
+        }
+    }).done(function (data) {
+        let toastId;
+        if (data.status === 400) {
+            let getErrorMessages = async () => {
+                let numberDelayBasedOnCountErrors = 0;
+                for (const error of data.errors) {
+                    numberDelayBasedOnCountErrors++;
+                    try {
+                        toastId = $(".toast-container .toast").length + 1;
+                        await $.ajax({
+                            url: "/getToast",
+                            method: "POST",
+                            data: {
+                                type: 'error',
+                                text: error.msg,
+                                autoHide: true,
+                                autoHideDelay: (4000 * numberDelayBasedOnCountErrors),
+                                toastId: toastId
+                            },
+                            success: function (data) {
+                                $(".toast-container").append(data);
+                                $("#toast-" + toastId).toast("show");
+                            },
+                            fail: function () {
+                                window.location.href = "/admin/erro-500";
+                            }
+                        })
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+                modalLoader.removeClass("show");
+            }
+            getErrorMessages();
+        } else {
+            form.removeClass("form-adicionar-subcategoria").addClass("form-editar-subcategoria");
+            form.find(".new-subcategory-badge").remove();
+            button.removeClass("btn-submit-adicionar-subcategoria").addClass("btn-submit-editar-subcategoria");
+            button.html("Editar");
+            form.prepend("<input type='hidden' value='" + data.subcategoria._id + "' class='id-subcategoria'>");
+            form.find(".data-criacao-span").html(moment(data.createdAt).tz('America/Sao_Paulo').format('D MMMM YYYY'));
+            form.children(".subcategory-card__header").prepend('<label class="switch"><input type="checkbox" class="subcategory-activate" checked><span class="slider round"></span></label>');
+            subcategoria.val(data.subcategoria.nome);
+            descricao.val(data.subcategoria.descricao);
+            slug.val(data.subcategoria.slug);
+            categoria.children("option:selected").removeAttr("selected");
+            categoria.children("option[value=" + data.categoria._id + "]").attr('selected', 'selected');
+            genero.children("option:selected").removeAttr("selected");
+            genero.children("option[value=" + data.genero + "]").attr('selected', 'selected');
+            toastId = $(".toast-container .toast").length + 1;
+            $.ajax({
+                url: "/getToast",
+                method: "POST",
+                data: {
+                    type: 'success',
+                    text: 'Subcategoria adicionada com sucesso',
+                    autoHide: true,
+                    autoHideDelay: 4000,
+                    toastId: toastId
+                }
+            }).done(function (data) {
+                $(".toast-container").append(data);
+                $("#toast-" + toastId).toast("show");
+                modalLoader.removeClass("show");
+            }).fail(function () {
+                window.location.href = "/admin/erro-500";
+            })
+        }
+    }).fail(function () {
+        window.location.href = "/admin/erro-500";
+    })
 })
 
 
@@ -49,70 +199,4 @@ function validateSlug(input) {
     } else {
         input.setCustomValidity("");
     }
-}
-
-function newsubcategory(date) {
-    var subcategory =
-        '<div class="subcategory-card">' +
-        '        <form action="#" method="POST">' +
-        '            <header class="subcategory-card__header">' +
-        '                <div class="badge new-subcategory-badge p-1">' +
-        '                   <p class="m-0">Novo</p>' +
-        '                </div>' +
-        '                <label class="switch">' +
-        '                    <input type="checkbox" id="cp-dark-sidebar" checked>' +
-        '                    <span class="slider round"></span>' +
-        '                </label>' +
-        '                <p class="subcategory-id mt-3">1</p>' +
-        '                <div>' +
-        '                    <input type="text" placeholder="Subcategoria" name="subcategoria" id="subcategoria" minlength="2" required>' +
-        '                </div>' +
-        '                <div class="mt-1">' +
-        '                    <textarea name="descricao" id="descricao" placeholder="Descrição" minlength="3" class="mb-0" rows="3"' +
-        '                        required></textarea>' +
-        '                </div>' +
-        '                <div>' +
-        '                    <input type="text" name="slug" id="slug" placeholder="Slug" oninput="validateSlug(this)" required></input>' +
-        '                </div>' +
-        '                <div class="mt-1">' +
-        '                    <select name="categoria" id="categoria" required>' +
-        '                        <option value="">Escolha uma Categoria</option>' +
-        '                        <option value="1">Roupas</option>' +
-        '                        <option value="2">Calçados</option>' +
-        '                        <option value="3">Acessórios</option>' +
-        '                        <option value="4">Cosméticos</option>' +
-        '                    </select>' +
-        '                </div>' +
-        '                <div class="mt-1">' +
-        '                    <select name="genero" id="genero" required>' +
-        '                        <option value="">Escolha um Gênero</option>' +
-        '                        <option value="Homem">Homem</option>' +
-        '                        <option value="Mulher">Mulher</option>' +
-        '                        <option value="Unissex">Unissex</option>' +
-        '                        <option value="Infantil">Infantil</option>' +
-        '                    </select>' +
-        '                </div>' +
-        '                <p class="data-criacao mt-3">Data de criação:<span class="ml-2">' + date + '</span></p>' +
-        '            </header>' +
-        '            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="wave" preserveAspectRatio="none">' +
-        '                <path class="path-wave" fill-opacity="1"' +
-        '                    d="M0,192L80,181.3C160,171,320,149,480,165.3C640,181,800,235,960,250.7C1120,267,1280,245,1360,234.7L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">' +
-        '                </path>' +
-        '            </svg>' +
-        '            <section class="subcategory-card__body">' +
-
-        '                <div class="subcategory-card__title">' +
-        '                    <div class="mb-3">' +
-        '                        <span class="badge-title px-2 py-1 mr-2">31</span>' +
-        '                        produtos' +
-        '                    </div>' +
-        '                </div>' +
-        '            </section>' +
-        '            <div class="submit-div">' +
-        '                <input type="submit" value="Salvar" class="btn">' +
-        '                <a href="/excluir-subcategoria" class="btn excluir-subcategoria">Excluir</a>' +
-        '            </div>' +
-        '        </form>' +
-        '    </div>';
-    return subcategory;
 }

@@ -103,10 +103,6 @@
     height: 90px;
 }
 
-.category-card.body-open .category-card__header .category-card__icon {
-    transform: translateX(-50%) translateY(-50%) scale(3);
-}
-
 .category-card.body-open .category-card__body .category-card__knowledge p {
     transform: translateX(0);
     opacity: 1;
@@ -131,7 +127,7 @@
 }
 
 .category-card .category-card__body {
-    height: 80px;
+    height: 152.75px;
     transition: height 0.5s;
     overflow: hidden;
     padding-left: 20px;
@@ -315,6 +311,10 @@
 }
 
 .category-card .submit-div {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     text-align: center;
     vertical-align: bottom !important;
 }

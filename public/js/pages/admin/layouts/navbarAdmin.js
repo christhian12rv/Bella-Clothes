@@ -23,6 +23,10 @@ var localStorageCustomizePage = {
 
 
 $(window).on("load", function () {
+    const customizePage = $(".customize-page");
+    if (window.matchMedia('screen and (max-width: 768px)').matches)
+        $(".main-sidebar").removeClass("open");
+
     // Verificar se a sidebar está aberta ou fechada no local storage
     var sidebarOpen = localStorage.getItem('sidebarOpen') ? JSON.parse(localStorage.getItem('sidebarOpen')) : true;
     if (!sidebarOpen)

@@ -30,7 +30,8 @@ $(".category-card__body, .path-wave, .submit-div").on("mouseenter", function () 
         var subcategoriasHeight = $(this).prev().children(".category-card__knowledge").outerHeight();
     }
     card.addClass("body-open");
-    cardBody.css("height", (parseInt(subcategoriasHeight) + 93) + "px");
+    let cardBodyToHeight = (parseInt(subcategoriasHeight) + 165.75) >= 276.75 ? (parseInt(subcategoriasHeight) + 165.75) + "px" : "100%";
+    cardBody.css("height", cardBodyToHeight);
 })
 
 $(".category-card__body, .path-wave, .submit-div").on("mouseleave", function () {
@@ -45,7 +46,7 @@ $(".category-card__body, .path-wave, .submit-div").on("mouseleave", function () 
         var cardBody = $(this).prev();
     }
     card.removeClass("body-open");
-    cardBody.css("height", "80px");
+    cardBody.css("height", "152.75px");
 })
 
 $(".adicionar-categoria").on("click", function () {

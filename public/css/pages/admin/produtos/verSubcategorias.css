@@ -78,7 +78,7 @@
 
 .subcategory-card .wave {
     position: absolute;
-    top: 268px;
+    top: 236px;
     right: 0;
     transition: top 0.5s;
     height: 60px !important;
@@ -95,7 +95,7 @@
 .subcategory-card .subcategory-card__header {
     position: relative;
     background: linear-gradient(180deg, #19c880, #0c5a39);
-    height: 325px;
+    height: 293px;
     margin: -20px -20px 0px -20px;
     transition: height 0.5s;
     overflow: hidden;
@@ -258,7 +258,6 @@
 .admin-content.dark .subcategory-card select option {
     background-color: #1a1a1a !important;
     color: white !important;
-    box-shadow: 1px 2px 3px red !important;
 }
 
 .subcategory-card select:invalid, .subcategory-card select option[value=""], .subcategory-card select[value=""] {
@@ -287,8 +286,8 @@
 }
 
 .subcategory-card .data-criacao, .subcategory-card .data-criacao span {
-    font-size: 0.8rem;
-    color: #b2b2b2 !important;
+    font-size: 0.75rem;
+    color: #dfdfdf !important;
 }
 
 .subcategory-card .data-criacao span {
@@ -301,15 +300,17 @@
     vertical-align: bottom !important;
 }
 
-.subcategory-card input[type="submit"] {
+.subcategory-card .btn-submit {
     color: #19c880 !important;
     width: 100%;
     padding-top: .2rem !important;
     padding-bottom: .2rem !important;
     border-radius: 0px !important;
+    margin-top: .5rem;
+    box-shadow: none !important;
 }
 
-.subcategory-card input[type="submit"]:hover {
+.subcategory-card .btn-submit:hover {
     color: white !important;
     background-color: #19c880;
 }
@@ -329,4 +330,55 @@
 
 input:hover, input:focus, input:link, input:visited, textarea:hover, textarea:focus, textarea:link, textarea:visited, select:hover, select:focus, select:link, select:visited {
     outline: none !important;
+}
+
+.modal-loader-subcategory {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-loader-subcategory.show {
+    display: block;
+}
+
+.admin-content.dark .modal-loader-subcategory {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-loader-subcategory-loader {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    border-radius: 60px;
+    animation: modal-loader-subcategory-loader 0.8s linear infinite;
+    -webkit-animation: modal-loader-subcategory-loader 0.8s linear infinite;
+}
+
+@keyframes modal-loader-subcategory-loader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        border: 4px solid #19c880;
+        border-left-color: transparent;
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        border: 4px solid white;
+        border-left-color: transparent;
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+        border: 4px solid #118454;
+        border-left-color: transparent;
+    }
 }
