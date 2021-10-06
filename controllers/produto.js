@@ -59,7 +59,6 @@ exports.getSubcategorias = async (req, res) => {
     try {
         let subcategorias = await ProdutoService.getSubcategorias();
         let categorias = await ProdutoService.getCategorias();
-        console.log(subcategorias)
         return res.render("admin/produtos/verSubcategorias", {
             css: "admin/produtos/verSubcategorias.css",
             js: "admin/produtos/verSubcategorias.js",
@@ -69,7 +68,6 @@ exports.getSubcategorias = async (req, res) => {
             categorias: categorias
         })
     } catch (error) {
-        console.log(error);
         return res.redirect("/admin/erro-500");
     }
 }
@@ -82,7 +80,6 @@ exports.addSubcategoria = async (req, res) => {
         let subcategoria = await ProdutoService.addSubcategoria(req.body);
         return res.json({ status: 200, subcategoria: subcategoria });
     } catch (error) {
-        console.log(error);
         return res.redirect("/admin/erro-500");
     }
 }

@@ -78,7 +78,7 @@
 
 .subcategory-card .wave {
     position: absolute;
-    top: 236px;
+    top: 246px;
     right: 0;
     transition: top 0.5s;
     height: 60px !important;
@@ -95,7 +95,7 @@
 .subcategory-card .subcategory-card__header {
     position: relative;
     background: linear-gradient(180deg, #19c880, #0c5a39);
-    height: 293px;
+    height: 303px;
     margin: -20px -20px 0px -20px;
     transition: height 0.5s;
     overflow: hidden;

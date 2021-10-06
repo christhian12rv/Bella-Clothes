@@ -146,7 +146,7 @@ router.get("/produtos/categorias", ProdutoController.getCategorias)
 
 router.get("/produtos/subcategorias", ProdutoController.getSubcategorias)
     .post("/produtos/subcategorias", ProdutoValidator.addSubcategoria, ProdutoController.addSubcategoria)
-/* .put("/produtos/subcategorias", ProdutoValidator.updateSubcategoria, ProdutoController.updateSubcategoria) */
+    .put("/produtos/subcategorias", ProdutoValidator.updateSubcategoria, ProdutoController.updateSubcategoria)
 
 router.get("/produtos/avaliacoes", (req, res) => {
     res.render("admin/produtos/avaliacoes", {

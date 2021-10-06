@@ -29,9 +29,11 @@ $(".category-card__body, .path-wave, .submit-div").on("mouseenter", function () 
         var cardBody = $(this).prev();
         var subcategoriasHeight = $(this).prev().children(".category-card__knowledge").outerHeight();
     }
-    card.addClass("body-open");
-    let cardBodyToHeight = (parseInt(subcategoriasHeight) + 165.75) >= 276.75 ? (parseInt(subcategoriasHeight) + 165.75) + "px" : "100%";
-    cardBody.css("height", cardBodyToHeight);
+    if (parseInt(card.find(".subcategorys-length").html()) > 0) {
+        card.addClass("body-open");
+        let cardBodyToHeight = (parseInt(subcategoriasHeight) + 165.75) >= 276.75 ? (parseInt(subcategoriasHeight) + 165.75) + "px" : "100%";
+        cardBody.css("height", cardBodyToHeight);
+    }
 })
 
 $(".category-card__body, .path-wave, .submit-div").on("mouseleave", function () {
@@ -45,8 +47,10 @@ $(".category-card__body, .path-wave, .submit-div").on("mouseleave", function () 
         var card = $(this).parent(".form").parent(".category-card");
         var cardBody = $(this).prev();
     }
-    card.removeClass("body-open");
-    cardBody.css("height", "152.75px");
+    if (parseInt(card.find(".subcategorys-length").html()) > 0) {
+        card.removeClass("body-open");
+        cardBody.css("height", "152.75px");
+    }
 })
 
 $(".adicionar-categoria").on("click", function () {
@@ -108,7 +112,7 @@ $(document).on("change", ".category-activate", function () {
                             }
                         })
                     } catch (error) {
-                        console.log(error);
+                        window.location.href = "/admin/erro-500";
                     }
                 }
             }
@@ -165,7 +169,7 @@ $(document).on("click", ".btn-submit-adicionar-categoria", function () {
                             }
                         })
                     } catch (error) {
-                        console.log(error);
+                        window.location.href = "/admin/erro-500";
                     }
                 }
                 modalLoader.removeClass("show");
@@ -251,11 +255,11 @@ $(document).on("click", ".btn-submit-editar-categoria", function () {
                                 $("#toast-" + toastId).toast("show");
                             },
                             fail: function (error) {
-                                console.log(error);
+                                window.location.href = "/admin/erro-500";
                             }
                         })
                     } catch (error) {
-                        console.log(error);
+                        window.location.href = "/admin/erro-500";
                     }
                 }
                 modalLoader.removeClass("show");
@@ -281,11 +285,11 @@ $(document).on("click", ".btn-submit-editar-categoria", function () {
                 $("#toast-" + toastId).toast("show");
                 modalLoader.removeClass("show");
             }).fail(function (error) {
-                console.log(error);
+                window.location.href = "/admin/erro-500";
             })
         }
     }).fail(function (error) {
-        console.log(error);
+        window.location.href = "/admin/erro-500";
     })
 })
 

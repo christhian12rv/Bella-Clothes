@@ -7,8 +7,11 @@ const Subcategoria = require("../models/produto/Subcategoria");
 exports.getCategorias = async (body) => {
     try {
         let categorias = await Categoria.find().sort({ nome: 1 }).lean();
-        categorias.forEach((categoria) => {
+
+        categorias.forEach(async (categoria) => {
             categoria.createdAt = moment(categoria.createdAt).tz('America/Sao_Paulo').format('D MMMM YYYY');
+            let subcategorias = await Subcategoria.find({ categoria: categoria._id }).lean();
+            categoria.subcategorias = subcategorias;
         });
         return categorias;
     } catch (error) {
@@ -75,7 +78,7 @@ exports.addSubcategoria = async (body) => {
 
 exports.updateSubcategoria = async (body) => {
     try {
-        let subcategoria = await Subcategoria.findByIdAndUpdate(body.id_categoria, body.categoriaToUpdate, { new: true }).populate("categoria").lean();
+        let subcategoria = await Subcategoria.findByIdAndUpdate(body.id_subcategoria, body.subcategoriaToUpdate, { new: true }).populate("categoria").lean();
         if (!subcategoria)
             return { status: 400, errors: [{ msg: 'Subcategoria não encontrada' }] }
 

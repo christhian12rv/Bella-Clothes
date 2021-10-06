@@ -50,12 +50,16 @@
                                 produtos
                             </div>
                             <div>
-                                <span class="badge-title px-2 py-1 mr-2">31</span>
-                                subcategorias<i class="bi bi-arrow-down"></i>
+                                <span
+                                    class="badge-title subcategorys-length px-2 py-1 mr-2">{{this.subcategorias.length}}</span>
+                                subcategorias{{#if (bigger this.subcategorias.length 0)}}<i
+                                    class="bi bi-arrow-down"></i>{{/if}}
                             </div>
                         </div>
                         <div class="category-card__knowledge">
-                            <p>Blusas</p>
+                            {{#each this.subcategorias}}
+                                <p>{{this.nome}}</p>
+                            {{/each}}
                         </div>
                     </section>
 

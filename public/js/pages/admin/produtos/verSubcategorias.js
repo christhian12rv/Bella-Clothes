@@ -83,7 +83,7 @@ $(document).on("change", ".subcategory-activate", function () {
                             }
                         })
                     } catch (error) {
-                        console.log(error);
+                        window.location.href = "/admin/erro-500";
                     }
                 }
             }
@@ -144,7 +144,7 @@ $(document).on("click", ".btn-submit-adicionar-subcategoria", function () {
                             }
                         })
                     } catch (error) {
-                        console.log(error);
+                        window.location.href = "/admin/erro-500";
                     }
                 }
                 modalLoader.removeClass("show");
@@ -185,6 +185,97 @@ $(document).on("click", ".btn-submit-adicionar-subcategoria", function () {
             })
         }
     }).fail(function () {
+        window.location.href = "/admin/erro-500";
+    })
+})
+
+$(document).on("click", ".btn-submit-editar-subcategoria", function () {
+    let form = $(this).parents((".form-editar-subcategoria"));
+    let id_subcategoria = form.find(".id-subcategoria");
+    let subcategoria = form.find("#subcategoria");
+    let descricao = form.find("#descricao");
+    let slug = form.find("#slug");
+    let categoria = form.find("#categoria");
+    let genero = form.find("#genero");
+    let modalLoader = form.prev(".modal-loader-category");
+    modalLoader.addClass("show");
+
+    $.ajax({
+        url: "/admin/produtos/subcategorias",
+        method: "PUT",
+        dataType: 'json',
+        data: {
+            id_subcategoria: id_subcategoria.val(),
+            subcategoriaToUpdate: {
+                nome: subcategoria.val(),
+                descricao: descricao.val(),
+                slug: slug.val(),
+                categoria: categoria.val(),
+                genero: genero.val()
+            }
+        }
+    }).done(function (data) {
+        let toastId;
+        if (data.status === 400) {
+            let getErrorMessages = async () => {
+                let numberDelayBasedOnCountErrors = 0;
+                for (const error of data.errors) {
+                    numberDelayBasedOnCountErrors++;
+                    try {
+                        toastId = $(".toast-container .toast").length + 1;
+                        await $.ajax({
+                            url: "/getToast",
+                            method: "POST",
+                            data: {
+                                type: 'error',
+                                text: error.msg,
+                                autoHide: true,
+                                autoHideDelay: (4000 * numberDelayBasedOnCountErrors),
+                                toastId: toastId
+                            },
+                            success: function (data) {
+                                $(".toast-container").append(data);
+                                $("#toast-" + toastId).toast("show");
+                            },
+                            fail: function (error) {
+                                window.location.href = "/admin/erro-500";
+                            }
+                        })
+                    } catch (error) {
+                        window.location.href = "/admin/erro-500";
+                    }
+                }
+                modalLoader.removeClass("show");
+            }
+            getErrorMessages();
+        } else {
+            subcategoria.val(data.subcategoria.nome);
+            descricao.val(data.subcategoria.descricao);
+            slug.val(data.subcategoria.slug);
+            categoria.children("option:selected").removeAttr("selected");
+            categoria.children("option[value=" + data.subcategoria.categoria._id + "]").attr('selected', 'selected');
+            genero.children("option:selected").removeAttr("selected");
+            genero.children("option[value=" + data.subcategoria.genero + "]").attr('selected', 'selected');
+            toastId = $(".toast-container .toast").length + 1;
+            $.ajax({
+                url: "/getToast",
+                method: "POST",
+                data: {
+                    type: 'success',
+                    text: 'Subcategoria alterada com sucesso',
+                    autoHide: true,
+                    autoHideDelay: 4000,
+                    toastId: toastId
+                }
+            }).done(function (data) {
+                $(".toast-container").append(data);
+                $("#toast-" + toastId).toast("show");
+                modalLoader.removeClass("show");
+            }).fail(function (error) {
+                window.location.href = "/admin/erro-500";
+            })
+        }
+    }).fail(function (error) {
         window.location.href = "/admin/erro-500";
     })
 })
