@@ -5,6 +5,7 @@ $(document).ready(function () {
     var table = $('#table-usuarios').DataTable({
         "lengthMenu": [[10, 25, 50, -1], ["Exibir " + 10, "Exibir " + 25, "Exibir " + 50, "Exibir Todos"]],
         processing: true,
+        serverSide: true,
         dom:
             '<"top"' +
             '<"d-flex flex-row flex-wrap"' +
@@ -27,14 +28,14 @@ $(document).ready(function () {
             dataSrc: ''
         },
         columns: [
-            { data: 'id' },
-            { data: 'foto' },
-            { data: 'nome' },
-            { data: 'email' },
-            { data: 'cpf_cnpj' },
-            { data: 'status' },
-            { data: 'data_registro' },
-            { data: 'id' }
+            { data: 'id_usuario._id' },
+            { data: 'id_usuario.foto' },
+            { data: 'nome' || 'razao_social' },
+            { data: 'id_usuario.email' },
+            { data: 'cpf' || "cnpj" },
+            { data: 'id_usuario.ativo' },
+            { data: 'id_usuario.createdAt' },
+            { data: 'id_usuario._id' }
         ],
         columnDefs: [
             {
@@ -46,6 +47,23 @@ $(document).ready(function () {
                 }
             },
             {
+                targets: [4],
+                "orderable": false,
+            },
+            {
+                targets: [5],
+                render: function (data, type, row, meta) {
+                    if (data)
+                        return '<span class="badge badge-success py-2 px-3">' + data + '</span>';
+                    else
+                        return '<span class="badge badge-danger py-2 px-3">' + data + '</span>';
+                }
+            },
+            {
+                targets: [6],
+                "searchable": false,
+            },
+            {
                 targets: [7],
                 "searchable": false,
                 "orderable": false,
@@ -53,18 +71,6 @@ $(document).ready(function () {
                     return '<a href="/admin/usuario/' + data + '" class="ver-usuario mr-2"><i class="bi bi-pencil-square"></i></a>' +
                         '<a href="/admin/excluir-usuario/' + data + '" class="excluir-usuario mr-2"><i class="bi bi-eraser"></i></a>' +
                         '<label class="switch switch-ativar-usuario"><input type="checkbox"><span class="slider slider-ativar-usuario round"></span></label>';
-                }
-            }, {
-                targets: [4],
-                "orderable": false,
-            },
-            {
-                targets: [5],
-                render: function (data, type, row, meta) {
-                    if (data == "Ativo")
-                        return '<span class="badge badge-success py-2 px-3">' + data + '</span>';
-                    else if (data == "Inativo")
-                        return '<span class="badge badge-danger py-2 px-3">' + data + '</span>';
                 }
             }
         ],

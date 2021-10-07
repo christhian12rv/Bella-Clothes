@@ -66,15 +66,18 @@ input:hover, select:hover, textarea:hover {
 }
 
 .btn-salvar {
-    font-weight: bold !important;
-    display: inline-block !important;
-    padding: 5px 55px !important;
+    float: right;
+    padding-top: 10px;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+    height: 38px;
+    font-weight: bold;
     background-color: #19c880 !important;
-    color: #ffffff !important;
-    border-radius: 0 !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 15%), 0 1px 1px rgb(0 0 0 / 8%) !important;
     -webkit-transition: all 0.3s !important;
     transition: all 0.3s !important;
-    border: none !important;
 }
 
 .btn-salvar:hover {

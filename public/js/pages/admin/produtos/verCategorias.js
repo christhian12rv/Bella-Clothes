@@ -31,7 +31,7 @@ $(".category-card__body, .path-wave, .submit-div").on("mouseenter", function () 
     }
     if (parseInt(card.find(".subcategorys-length").html()) > 0) {
         card.addClass("body-open");
-        let cardBodyToHeight = (parseInt(subcategoriasHeight) + 165.75) >= 276.75 ? (parseInt(subcategoriasHeight) + 165.75) + "px" : "100%";
+        let cardBodyToHeight = ((parseInt(subcategoriasHeight) + 165.75) >= 276.75 || window.matchMedia('screen and (max-width: 768px)').matches) ? (parseInt(subcategoriasHeight) + 165.75) + "px" : "100%";
         cardBody.css("height", cardBodyToHeight);
     }
 })

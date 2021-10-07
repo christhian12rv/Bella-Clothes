@@ -1,7 +1,7 @@
 const { body } = require('express-validator');
 const fetch = require("node-fetch");
 const Categoria = require("../../models/produto/Categoria");
-const Subcategoria = require("../../models/produto/Categoria");
+const Subcategoria = require("../../models/produto/Subcategoria");
 
 exports.addCategoria = [
     body("nome")
@@ -267,7 +267,7 @@ exports.updateSubcategoria = [
         .withMessage("O Nome da Subcategoria deve conter no mínimo 3 caracteres")
         .bail()
         .custom((value, { req }) => {
-            return Subcategoria.findOne({ nome: value }).lean()
+            return Subcategoria.findOne({ _id: { $ne: req.body.id_subcategoria }, nome: value }).lean()
                 .catch(erro => {
                     return Promise.reject("Ocorreu um erro interno: " + erro);
                 })
@@ -306,7 +306,7 @@ exports.updateSubcategoria = [
         .matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
         .withMessage("O Slug informado é inválido. Um Slug deve ser todo em caracteres minúsculos e não pode conter nenhum caractere especial, exceto hífens")
         .custom((value, { req }) => {
-            return Subcategoria.findOne({ slug: value }).lean()
+            return Subcategoria.findOne({ _id: { $ne: req.body.id_subcategoria }, slug: value }).lean()
                 .catch(erro => {
                     return Promise.reject("Ocorreu um erro interno: " + erro);
                 })
