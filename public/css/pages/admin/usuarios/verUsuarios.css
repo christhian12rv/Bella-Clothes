@@ -115,6 +115,7 @@ table thead tr th {
     color: rgb(23, 175, 130) !important;
     padding-top: .4rem !important;
     padding-bottom: .4rem !important;
+    padding-left: .85rem !important;
 }
 
 table tbody tr td:first-child:not(.child) {
@@ -134,6 +135,20 @@ table tbody tr td {
     font-size: 0.9rem;
     vertical-align: middle !important;
     border-width: 100px;
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
+}
+
+table tbody tr td:first-child {
+    font-size: .75rem;
+}
+
+table tbody tr td:nth-child(2) {
+    text-align: center;
+}
+
+table tbody tr td:nth-last-child(2) {
+    text-align: center;
 }
 
 table tbody tr:first-child td {
@@ -192,7 +207,9 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
 }
 
 .foto-perfil-usuario {
-    height: 27px;
+    height: 35px;
+    width: 35px;
+    font-size: 32px;
     border-radius: 100%;
 }
 

@@ -1,9 +1,11 @@
 $(".sidebar-link.usuarios").addClass("active").addClass("only");
 $(".sidebar-link.ver-usuarios").addClass("active");
 
+var usuarioNomeName;
+let usuarioCadastroName;
 $(document).ready(function () {
     var table = $('#table-usuarios').DataTable({
-        "lengthMenu": [[10, 25, 50, -1], ["Exibir " + 10, "Exibir " + 25, "Exibir " + 50, "Exibir Todos"]],
+        "lengthMenu": [[1, 10, 25, 50, -1], ["Exibir" + 1, "Exibir " + 10, "Exibir " + 25, "Exibir " + 50, "Exibir Todos"]],
         processing: true,
         serverSide: true,
         dom:
@@ -25,17 +27,33 @@ $(document).ready(function () {
         ],
         ajax: {
             url: '/api/usuarios',
-            dataSrc: ''
+            dataSrc: 'usuarios'
         },
         columns: [
-            { data: 'id_usuario._id' },
-            { data: 'id_usuario.foto' },
-            { data: 'nome' || 'razao_social' },
-            { data: 'id_usuario.email' },
-            { data: 'cpf' || "cnpj" },
-            { data: 'id_usuario.ativo' },
-            { data: 'id_usuario.createdAt' },
-            { data: 'id_usuario._id' }
+            { data: '_id', name: '_id' },
+            { data: 'foto', name: 'foto' },
+            {
+                data: (data) => {
+                    if (data.tipo_usuario.nome) {
+                        usuarioNomeName = 'tipo_usuario.nome';
+                        return data.tipo_usuario.nome
+                    } else {
+                        usuarioNomeName = 'tipo_usuario.razao_social';
+                        return data.tipo_usuario.razao_social;
+                    }
+                },
+                name: 'nome'
+            },
+            { data: 'email', name: 'email' },
+            {
+                data: (data) => {
+                    return data.tipo_usuario.cpf || data.tipo_usuario.cnpj;
+                },
+                name: 'cadastro'
+            },
+            { data: 'ativo', name: 'ativo' },
+            { data: 'createdAt', name: 'createdAt' },
+            { data: '_id', name: '_id' }
         ],
         columnDefs: [
             {
@@ -43,7 +61,10 @@ $(document).ready(function () {
                 "searchable": false,
                 "orderable": false,
                 render: function (data, type, row, meta) {
-                    return '<img src="/img/foto-usuarios/' + data + '" class="foto-perfil-usuario mr-2">';
+                    if (data)
+                        return '<img src="/img/foto-usuarios/' + data + '" class="foto-perfil-usuario">';
+                    else
+                        return '<i class="bi bi-person-fill foto-perfil-usuario"></i>'
                 }
             },
             {

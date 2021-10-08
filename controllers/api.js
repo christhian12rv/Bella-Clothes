@@ -11,8 +11,8 @@ exports.getCategorias = async (req, res) => {
 
 exports.getUsuarios = async (req, res) => {
     try {
-        let usuarios = await ApiService.getUsuarios(req.query);
-        res.send(usuarios);
+        let serviceResponse = await ApiService.getUsuarios(req.query);
+        res.send(serviceResponse);
     } catch (error) {
         console.log(error);
         return res.redirect("/erro-500");
