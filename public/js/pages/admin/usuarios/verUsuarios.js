@@ -5,7 +5,7 @@ var usuarioNomeName;
 let usuarioCadastroName;
 $(document).ready(function () {
     var table = $('#table-usuarios').DataTable({
-        "lengthMenu": [[1, 10, 25, 50, -1], ["Exibir" + 1, "Exibir " + 10, "Exibir " + 25, "Exibir " + 50, "Exibir Todos"]],
+        lengthMenu: [[3, 10, 25, 50, -1], ["Exibir " + 3, "Exibir " + 10, "Exibir " + 25, "Exibir " + 50, "Exibir Todos"]],
         processing: true,
         serverSide: true,
         dom:
@@ -14,6 +14,7 @@ $(document).ready(function () {
             '<"flex-grow-1" B>' +
             '<"" l>' +
             '<"" f>' +
+            '<"column-filter-to-select">' +
             '>>' +
             'rt' +
             '<"bottom"' +
@@ -42,14 +43,14 @@ $(document).ready(function () {
                         return data.tipo_usuario.razao_social;
                     }
                 },
-                name: 'nome'
+                name: 'nome_and_razao_social'
             },
             { data: 'email', name: 'email' },
             {
                 data: (data) => {
                     return data.tipo_usuario.cpf || data.tipo_usuario.cnpj;
                 },
-                name: 'cadastro'
+                name: 'cpf_and_cnpj'
             },
             { data: 'ativo', name: 'ativo' },
             { data: 'createdAt', name: 'createdAt' },
@@ -95,8 +96,10 @@ $(document).ready(function () {
                 }
             }
         ],
-        "language": {
+        language: {
             "url": "/json/datatable-language-pt_br.json"
         }
     })
+
+
 })
