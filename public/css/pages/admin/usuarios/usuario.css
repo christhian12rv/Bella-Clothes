@@ -17,32 +17,62 @@ p {
 }
 
 .card-body .user-profile-image {
-    height: 190px;
+    height: 200px;
+    width: 200px;
     margin-top: -120px;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+    background-image: var(--foto-perfil);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: .25rem;
 }
 
-.card-body .desativar-usuario {
-    border: 1px solid #dc3545;
+.card-body .user-profile-image i {
+    font-size: 190px;
+}
+
+.card-body .user-profile-image i::before {
+    vertical-align: 1em !important;
+}
+
+.card-body .btn-ativar-usuario {
     margin-bottom: .5rem;
 }
 
-.card-body .desativar-usuario:hover {
-    border-color: black;
+.card-body .btn-ativar-usuario-true {
+    border: 1px solid #19c880;
 }
 
-.admin-content.dark .card-body .desativar-usuario:hover {
-    border-color: white;
-    color: white !important;
+.card-body .btn-ativar-usuario-true, .card-body .btn-ativar-usuario-true i {
+    color: #19c880;
 }
 
-.card-body .excluir-usuario {
+.card-body .btn-ativar-usuario-false {
+    border: 1px solid #dc3545;
+}
+
+.card-body .btn-ativar-usuario-false, .card-body .btn-ativar-usuario-false i {
+    color: #dc3545;
+}
+
+.card-body .btn-ativar-usuario-true:hover, .card-body .btn-ativar-usuario-true:hover i {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.card-body .btn-ativar-usuario-false:hover, .card-body .btn-ativar-usuario-false:hover i {
+    border-color: #19c880;
+    color: #19c880;
+}
+
+.card-body .btn-excluir-usuario {
     background-color: #dc3545;
     color: white !important;
     vertical-align: top;
 }
 
-.card-body .excluir-usuario:hover {
+.card-body .btn-excluir-usuario:hover {
     background-color: #9b2530;
 }
 

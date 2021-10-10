@@ -1,8 +1,6 @@
 $(".sidebar-link.usuarios").addClass("active").addClass("only");
 $(".sidebar-link.ver-usuarios").addClass("active");
 
-var usuarioNomeName;
-let usuarioCadastroName;
 $(document).ready(function () {
     var table = $('#table-usuarios').DataTable({
         lengthMenu: [[3, 10, 25, 50, -1], ["Exibir " + 3, "Exibir " + 10, "Exibir " + 25, "Exibir " + 50, "Exibir Todos"]],
@@ -35,13 +33,10 @@ $(document).ready(function () {
             { data: 'foto', name: 'foto' },
             {
                 data: (data) => {
-                    if (data.tipo_usuario.nome) {
-                        usuarioNomeName = 'tipo_usuario.nome';
-                        return data.tipo_usuario.nome
-                    } else {
-                        usuarioNomeName = 'tipo_usuario.razao_social';
+                    if (data.tipo_usuario.nome)
+                        return data.tipo_usuario.nome + " " + data.tipo_usuario.sobrenome;
+                    else
                         return data.tipo_usuario.razao_social;
-                    }
                 },
                 name: 'nome_and_razao_social'
             },
@@ -58,12 +53,19 @@ $(document).ready(function () {
         ],
         columnDefs: [
             {
+                targets: [0],
+                render: function (data, type, row, meta) {
+                    return '<span class="id-usuario">' + data + '</span>'
+                }
+            },
+            {
                 targets: [1],
                 "searchable": false,
                 "orderable": false,
                 render: function (data, type, row, meta) {
                     if (data)
-                        return '<img src="/img/foto-usuarios/' + data + '" class="foto-perfil-usuario">';
+
+                        return '<div class="foto-perfil-usuario" style="--foto-perfil:url(/img/foto-usuarios/' + data + ');"></div>'
                     else
                         return '<i class="bi bi-person-fill foto-perfil-usuario"></i>'
                 }
@@ -76,9 +78,9 @@ $(document).ready(function () {
                 targets: [5],
                 render: function (data, type, row, meta) {
                     if (data)
-                        return '<span class="badge badge-success py-2 px-3">' + data + '</span>';
+                        return '<span class="badge badge-success py-2 px-3">Ativo</span>';
                     else
-                        return '<span class="badge badge-danger py-2 px-3">' + data + '</span>';
+                        return '<span class="badge badge-danger py-2 px-3">Desativado</span>';
                 }
             },
             {
@@ -90,9 +92,10 @@ $(document).ready(function () {
                 "searchable": false,
                 "orderable": false,
                 render: function (data, type, row, meta) {
+                    let ativo = row.ativo ? "checked" : "";
                     return '<a href="/admin/usuario/' + data + '" class="ver-usuario mr-2"><i class="bi bi-pencil-square"></i></a>' +
                         '<a href="/admin/excluir-usuario/' + data + '" class="excluir-usuario mr-2"><i class="bi bi-eraser"></i></a>' +
-                        '<label class="switch switch-ativar-usuario"><input type="checkbox"><span class="slider slider-ativar-usuario round"></span></label>';
+                        '<label class="switch switch-ativar-usuario"><input type="checkbox" class="checkbox-ativar-usuario"' + ativo + '><span class="slider slider-ativar-usuario round"></span></label>';
                 }
             }
         ],
@@ -101,5 +104,21 @@ $(document).ready(function () {
         }
     })
 
-
+    $(document).on("change", ".checkbox-ativar-usuario", function () {
+        let ativo = $(this).prop("checked");
+        let id_usuario = $(this).parents("tr").find(".id-usuario").html();
+        console.log(id_usuario);
+        $.ajax({
+            url: "/admin/usuario/" + id_usuario,
+            method: "PUT",
+            data: {
+                ativo: ativo
+            }
+        }).done(function (data) {
+            console.log(data);
+            table.ajax.reload(null, false);
+        }).fail(function () {
+            window.location.href = "/admin/erro-500";
+        })
+    })
 })

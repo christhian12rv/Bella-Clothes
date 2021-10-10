@@ -32,5 +32,8 @@ module.exports = {
     },
     capitalize: (value) => {
         return value.toLowerCase().replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+    },
+    toUpperCase: (value) => {
+        return value.toUpperCase();
     }
 }

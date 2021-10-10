@@ -8,6 +8,7 @@ const ProdutoValidator = require("../middlewares/validators/produto");
 const AdminController = require("../controllers/admin");
 const EmpresaController = require("../controllers/empresa");
 const ProdutoController = require("../controllers/produto");
+const UsuarioController = require("../controllers/usuario");
 
 router.get("/login", (req, res) => {
     res.render("admin/login", {
@@ -86,14 +87,9 @@ router.get("/ver-usuarios", (req, res) => {
     })
 })
 
-router.get("/usuario/:id", (req, res) => {
-    res.render("admin/usuarios/usuario", {
-        css: "admin/usuarios/usuario.css",
-        js: "admin/usuarios/usuario.js",
-        title: "Alexander Pierce | Bella Clothes Admin",
-        paginaAdmin: true
-    })
-})
+router.get("/usuario/:id", AdminController.verUsuario)
+    .put("/usuario/:id", UsuarioController.updateAtivo)
+    .delete("/usuario/:id", AdminController.excluirUsuario);
 
 router.get("/ver-pedidos", (req, res) => {
     res.render("admin/usuarios/verPedidos", {

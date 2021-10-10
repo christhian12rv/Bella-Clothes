@@ -227,7 +227,7 @@ body {
 }
 
 .main-sidebar .sidebar i {
-    font-size: 24px;
+    font-size: 22px;
     color: grey;
     transition: font-size 300ms;
 }
@@ -262,13 +262,16 @@ body {
 .main-sidebar .sidebar p, .main-sidebar .sidebar h1, .main-sidebar .sidebar h2, .main-sidebar .sidebar h3, .main-sidebar .sidebar h4, .main-sidebar .sidebar h5 {
     color: grey;
     padding-left: 9px;
+    padding-right: 1px;
+    font-size: 0.9rem !important;
     transition: font-size 300ms;
 }
 
 .main-sidebar.small-text .sidebar p, .main-sidebar.small-text .sidebar h1, .main-sidebar.small-text .sidebar h2, .main-sidebar.small-text .sidebar h3, .main-sidebar.small-text .sidebar h4, .main-sidebar.small-text .sidebar h5 {
     color: grey;
     padding-left: 9px;
-    font-size: 0.8em !important;
+    padding-right: 1px;
+    font-size: 0.75rem !important;
     transition: font-size 300ms;
 }
 

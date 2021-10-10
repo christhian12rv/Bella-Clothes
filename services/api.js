@@ -133,7 +133,8 @@ exports.getUsuarios = async (query) => {
 
         let recordsTotal = await Usuario.find().countDocuments();
         let recordsFiltered = usuarios.length;
-        usuarios = usuarios.slice(parseInt(start), parseInt(length) + parseInt(start));
+        if (length > -1)
+            usuarios = usuarios.slice(parseInt(start), parseInt(length) + parseInt(start));
         console.log(recordsTotal)
         console.log(recordsFiltered)
         console.log(usuarios);

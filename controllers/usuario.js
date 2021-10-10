@@ -359,6 +359,17 @@ exports.updateOfertasEmail = async (req, res) => {
     }
 }
 
+exports.updateAtivo = async (req, res) => {
+    try {
+        let ativo = req.body.ativo == 'true' ? true : false;
+        console.log(ativo);
+        await UsuarioService.updateUsuario(req.params.id, { ativo: ativo });
+        return res.send({ status: 200 });
+    } catch (error) {
+        return res.redirect("/erro-500");
+    }
+}
+
 exports.excluirUsuario = async (req, res) => {
     try {
         let serviceResponse = await UsuarioService.excluirUsuario(req.user._id, req.body.senha);

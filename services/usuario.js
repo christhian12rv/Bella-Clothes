@@ -365,6 +365,8 @@ exports.escolhaNovaSenha = async (body) => {
 
 exports.getUsuarioById = async (id_usuario) => {
     try {
+        if (!/^[0-9a-fA-F]{24}$/.test(id_usuario))
+            return { status: 404 };
         let usuario = await Usuario.findById(id_usuario).lean();
         let usuarioTipo = await checkTipoUsuario(usuario);
         let enderecos = await Endereco.find({ id_usuario: id_usuario }).sort({ principal: -1 }).lean();
@@ -379,6 +381,8 @@ exports.getUsuarioById = async (id_usuario) => {
 
 exports.getEnderecoByUsuarioId = async (id_usuario) => {
     try {
+        if (!/^[0-9a-fA-F]{24}$/.test(id_usuario))
+            return { status: 404 };
         let usuario = await Usuario.findById(id_usuario).lean();
         let enderecos = await Endereco.find({ id_usuario: id_usuario }).lean();
         if (usuario && enderecos)
@@ -392,6 +396,8 @@ exports.getEnderecoByUsuarioId = async (id_usuario) => {
 
 exports.getCartaoByUsuarioId = async (id_usuario) => {
     try {
+        if (!/^[0-9a-fA-F]{24}$/.test(id_usuario))
+            return { status: 404 };
         let usuario = await Usuario.findById(id_usuario).lean();
         let cartoes = await Cartao.find({ id_usuario: id_usuario }).lean();
         if (usuario && cartoes)

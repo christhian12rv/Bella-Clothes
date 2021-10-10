@@ -40,11 +40,18 @@ const Usuario = new Schema({
     },
     admin: {
         type: Boolean,
-        default: false
+        default: false,
+        required: true
     },
     email_verificado: {
         type: Boolean,
-        default: false
+        default: false,
+        required: true
+    },
+    ativo: {
+        type: Boolean,
+        default: true,
+        required: true
     }
 }, { timestamps: true })
 

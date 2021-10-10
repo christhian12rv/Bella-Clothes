@@ -2,20 +2,47 @@
     Detalhes do Usuário
 </h3>
 
-<div class="card color-mode mb-4" style="box-shadow: none !important;">
-    <div class="card card-header"></div>
+<div class="card color-mode mb-4 main-card" style="box-shadow: none !important;">
+    <input type="hidden" value="{{usuario._id}}" id="id-usuario">
+    <div class=" card card-header">
+        <p style="text-align: right;">{{#unless usuario.email_verificado}}<i
+                    class="bi bi-exclamation-circle mr-2"></i>Conta
+                não
+                verificada{{/unless}}
+        </p>
+    </div>
     <div class="card color-mode card-body">
-        <div class="d-flex flex-row flex-wrap mb-3" style="row-gap: .5rem;">
+        <div class="d-flex flex-row flex-wrap mb-3" style="row-gap: 1rem;">
             <div>
-                <img src="/img/menina.jpg" alt="" class="user-profile-image">
+                {{#if usuario.foto}}
+                    <div class="user-profile-image" style="--foto-perfil:url(/img/foto-usuarios/{{usuario.foto}});">
+                    </div>
+                {{else}}
+                    <div class="user-profile-image">
+                        <i alt="Foto de Perfil" class="bi bi-person-fill"></i>
+                    </div>
+                {{/if}}
             </div>
-            <div class="ml-2 flex-grow-1" style="justify-content: space-around;">
-                <h4>ALEXANDER PIERCE</h4>
-                <p>alexander_pierce@hotmail.com</p>
+            <div class="ml-4 flex-grow-1" style="justify-content: space-around;">
+                <h4>
+                    {{#if (equals usuario.tipo "Fisico")}}
+                        {{usuarioTipo.nome}} {{usuarioTipo.sobrenome}}
+                    {{else}}
+                        {{usuarioTipo.razao_social}}
+                    {{/if}}
+                </h4>
+                <p>{{usuario.email}}</p>
             </div>
             <div class="text-center">
-                <a href="#" class="btn desativar-usuario">Desativar Usuário</a>
-                <a href="#" class="btn excluir-usuario"><i class="bi bi-exclamation-circle text-light"></i> Excluir
+                <a href="javascript: void(0)" class="btn btn-ativar-usuario btn-ativar-usuario-{{usuario.ativo}}">
+                    {{#if usuario.ativo}}
+                        <i class="bi bi-x-circle mr-2"></i>Desativar Usuário
+                    {{else}}
+                        <i class="bi bi-check-circle mr-2"></i>Ativar Usuário
+                    {{/if}}
+                </a>
+                <a href="javascript: void(0)" class="btn btn-excluir-usuario"><i
+                        class="bi bi-exclamation-circle text-light"></i> Excluir
                     Usuário</a>
             </div>
         </div>
@@ -24,10 +51,19 @@
             <div class="flex-grow-1 mb-2 pl-2">
                 <h5>Informações do Perfil</h5>
                 <div>
-                    <p>Data de nascimento: 28/04/1997</p>
-                    <p>Sexo: Masculino</p>
-                    <p>CPF: 123.456.789-12</p>
-                    <p>Telefones: (11) 99912-3249 / (11) 83217-3218</p>
+                    {{#if (equals usuario.tipo "Fisico")}}
+                        <p>Data de nascimento: {{usuarioTipo.data_nascimento}}</p>
+                        <p>Sexo: {{usuarioTipo.sexo}}</p>
+                        <p>CPF: {{usuarioTipo.cpf}}</p>
+                    {{else}}
+                        <p>Fantasia: {{usuarioTipo.fantasia}}</p>
+                        <p>Inscrição Municipal: {{usuarioTipo.inscricao_municipal}}</p>
+                        <p>Inscrição Estadual: {{usuarioTipo.inscricao_estadual}}</p>
+                        <p>Isento: {{#if usuarioTipo.isento}}Sim{{else}}Não{{/if}}</p>
+                        <p>CNPJ: {{usuarioTipo.cnpj}}</p>
+                    {{/if}}
+                    <p>Telefones: {{usuario.telefone}}{{#if usuario.outro_telefone}} / {{usuario.outro_telefone}}{{/if}}
+                    </p>
                 </div>
             </div>
             <div class="mini-cards d-flex flex-row flex-wrap">
@@ -53,78 +89,54 @@
     <input type="radio" name="tabs" id="tab-enderecos" checked="checked">
     <label for="tab-enderecos"><span><i class="bi bi-house mr-2"></i>Endereços</span></label>
     <div class="tab card color-mode tab-enderecos">
-        <div>
-            <h5>Rua José Martins, 18</h5>
-            <p>Centro, Belo-Horizonte MG - 12345-000</p>
-            <p>Complemento: Casa</p>
-            <p>Ponto de Referência: Supermercados BH</p>
-            <p>Informações Adicionais: Entregar na casa ao lado</p>
-            <p>ALEXANDER PIERCE - (11) 93389-3298</p>
-        </div>
-        <hr>
-        <div>
-            <h5>Rua José Martins, 18</h5>
-            <p>Centro, Belo-Horizonte MG - 12345-000</p>
-            <p>Complemento: Casa</p>
-            <p>Ponto de Referência: Supermercados BH</p>
-            <p>Informações Adicionais: Entregar na casa ao lado</p>
-            <p>ALEXANDER PIERCE - (11) 93389-3298</p>
-        </div>
-        <hr>
-        <div>
-            <h5>Rua José Martins, 18</h5>
-            <p>Centro, Belo-Horizonte MG - 12345-000</p>
-            <p>Complemento: Casa</p>
-            <p>Ponto de Referência: Supermercados BH</p>
-            <p>Informações Adicionais: Entregar na casa ao lado</p>
-            <p>ALEXANDER PIERCE - (11) 93389-3298</p>
-        </div>
+        {{#each enderecos}}
+            <div>
+                <h5>{{this.nome}}, {{this.numero}}</h5>
+                <p>{{this.bairro}}, {{this.cidade}} {{this.estado}} - {{this.cep}}</p>
+                <p>Complemento: {{#if this.complemento}}{{this.complemento}}{{/if}}</p>
+                <p>Ponto de Referência: {{#if this.ponto_referencia}}{{this.ponto_referencia}}{{/if}}</p>
+                <p>Informações Adicionais: {{this.informacoes_adicionais}}</p>
+                <p>{{this.nome_pessoa}} - {{this.telefone}}</p>
+            </div>
+            {{#unless @last}}
+                <hr>
+            {{/unless}}
+        {{/each}}
     </div>
 
     <input type="radio" name="tabs" id="tab-cartoes">
     <label for="tab-cartoes"><span><i class="bi bi-credit-card-2-front mr-2"></i>Cartões</span></label>
     <div class="tab card color-mode tab-cartoes">
-        <h5><img src="/img/icone-pagamento/mastercard.png" alt="" class="mr-2"> Mastercard</h5>
-        <div class="d-flex flex-row flex-wrap">
-            <div class="flex-grow-1">
-                <p>Tipo: Crédito</p>
-                <p>Número: 32131231231312124312342</p>
-                <p>Nome: Alexander Pierce</p>
-            </div>
-            <div class="flex-grow-1">
-                <p>Vencimento: 12/2026</p>
-                <p>Código de Segurança: 3219</p>
-                <p>CPF: 123.456.789-12</p>
-            </div>
-        </div>
-        <hr>
-        <h5><img src="/img/icone-pagamento/elo.png" alt="" class="mr-2"> Elo</h5>
-        <div class="d-flex flex-row flex-wrap">
-            <div class="flex-grow-1">
-                <p>Tipo: Crédito</p>
-                <p>Número: 32131231231312124312342</p>
-                <p>Nome: Alexander Pierce</p>
-            </div>
-            <div class="flex-grow-1">
-                <p>Vencimento: 12/2026</p>
-                <p>Código de Segurança: 3219</p>
-                <p>CPF: 123.456.789-12</p>
-            </div>
-        </div>
-        <hr>
-        <h5><img src="/img/icone-pagamento/banco-brasil.png" alt="" class="mr-2"> Banco do Brasil</h5>
-        <div class="d-flex flex-row flex-wrap">
-            <div class="flex-grow-1">
-                <p>Tipo: Crédito</p>
-                <p>Número: 32131231231312124312342</p>
-                <p>Nome: Alexander Pierce</p>
-            </div>
-            <div class="flex-grow-1">
-                <p>Vencimento: 12/2026</p>
-                <p>Código de Segurança: 3219</p>
-                <p>CPF: 123.456.789-12</p>
-            </div>
-        </div>
+        {{#if cartoes}}
+            {{#each cartoes}}
+                <h5>
+                    {{#if this.imagem}}
+                        <img src="/img/icone-pagamento/{{this.imagem}}" alt="" class="mr-2"> {{capitalize this.banco}}
+                    {{else}}
+                        <div class="p-2 bg-icone-cartao">
+                            <i class="bi bi-credit-card-2-front icone-cartao mr-2"></i>
+                            {{capitalize this.banco}}
+                        </div>
+                    {{/if}}
+                </h5>
+                <div class="d-flex flex-row flex-wrap">
+                    <div class="flex-grow-1 w-50">
+                        <p>Número: **** {{substrLast this.numero -4}}</p>
+                        <p>Nome: {{this.nome}}</p>
+                        <p>Vencimento: {{this.data_vencimento}}</p>
+                    </div>
+                    <div class="flex-grow-1 w-50">
+                        <p>Tipo: {{#if (equals this.tipo "cpf")}}Físico{{else}}Empresarial{{/if}}</p>
+                        <p>{{toUpperCase this.tipo}}: {{this.cadastro}}</p>
+                    </div>
+                </div>
+                {{#unless @last}}
+                    <hr>
+                {{/unless}}
+            {{/each}}
+        {{else}}
+            <p>Esse usuário não tem nenhum cartão registrado em sua conta.</p>
+        {{/if}}
     </div>
 
 
