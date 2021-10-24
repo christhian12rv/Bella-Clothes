@@ -9,6 +9,16 @@ exports.getCategorias = async (req, res) => {
     }
 }
 
+exports.getSubcategoriasByCategoria = async (req, res) => {
+    try {
+        let subcategorias = await ApiService.getSubcategoriasByCategoria(req.params.idCategoria);
+        return res.json({ subcategorias: subcategorias });
+    } catch (error) {
+        console.log(error);
+        return res.redirect("/erro-500");
+    }
+}
+
 exports.getUsuarios = async (req, res) => {
     try {
         let serviceResponse = await ApiService.getUsuarios(req.query);
@@ -17,35 +27,4 @@ exports.getUsuarios = async (req, res) => {
         console.log(error);
         return res.redirect("/erro-500");
     }
-    /* console.log(req.query);
-    var clientes = [];
-    var max = req.body.max;
-    if (!max)
-        max = 53;
-
-    for (let i = 0; i < max; i++) {
-        clientes.push({
-            id: i + 1,
-            nome: "João Pedro da Silva" + i,
-            foto: "menina.jpg",
-            email: "cs@hotmail.com" + i,
-            cpf_cnpj: "12345678912" + i,
-            status: "Ativo",
-            data_registro: "21/02/2020, 14:21"
-        });
-    }
-    for (let i = max; i < max + 10; i++) {
-        clientes.push({
-            id: i + 1,
-            nome: "João Pedro da Silva" + i,
-            foto: "menina.jpg",
-            email: "cs@hotmail.com" + i,
-            cpf_cnpj: "12345678912" + i,
-            status: "Inativo",
-            data_registro: "21/02/2020, 14:21"
-        });
-    }
-
-    var { start, length } = req.query;
-    res.send(clientes); */
 }

@@ -11,6 +11,8 @@ module.exports = (passport) => {
             let usuario = await findUsuario(login);
             if (usuario) {
                 if (usuario.email_verificado === true) {
+                    if (usuario.ativo !== true)
+                        return done(null, false, { message: req.flash("error_login_message", "Conta desativada. Contate nossa Central de Relacionamento para saber o que ocorreu com sua conta.") });
                     let compareSenha = await bcrypt.compare(senha, usuario.senha);
                     if (compareSenha)
                         return done(null, usuario);
@@ -34,6 +36,8 @@ module.exports = (passport) => {
                 if (usuario.admin === false)
                     return done(null, false, { message: req.flash("error_login_message", "Esse usuário não é um administrador") })
                 if (usuario.email_verificado === true) {
+                    if (usuario.ativo !== true)
+                        return done(null, false, { message: req.flash("error_login_message", "Conta desativada. Contate nossa Central de Relacionamento para saber o que ocorreu com sua conta.") });
                     let compareSenha = await bcrypt.compare(senha, usuario.senha);
                     if (compareSenha)
                         return done(null, usuario);

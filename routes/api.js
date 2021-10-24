@@ -269,5 +269,6 @@ router.get("/frete", (req, res) => {
 })
 
 router.get("/categorias", ApiController.getCategorias);
+router.get("/subcategorias-by-categoria/:idCategoria", ApiController.getSubcategoriasByCategoria);
 
 module.exports = router;

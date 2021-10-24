@@ -3,6 +3,7 @@ moment.locale("pt-br");
 require("moment-timezone");
 
 const Categoria = require("../models/produto/Categoria");
+const Subcategoria = require("../models/produto/Subcategoria");
 const Usuario = require("../models/usuario/registro/Usuario");
 const UsuarioFisico = require("../models/usuario/registro/UsuarioFisico");
 const UsuarioJuridico = require("../models/usuario/registro/UsuarioJuridico");
@@ -16,11 +17,21 @@ exports.getCategorias = async (body) => {
     }
 }
 
-// SEARCH - SIM
-// SORT - NAO
-// LIMIT - SIM
+exports.getSubcategoriasByCategoria = async (id_categoria) => {
+    try {
+        let subcategorias = await Subcategoria.find({ categoria: id_categoria }).sort({ nome: 1 }).lean().populate("categoria");
+        subcategorias.forEach((subcategoria) => {
+            subcategoria.createdAt = moment(subcategoria.createdAt).tz('America/Sao_Paulo').format('D MMMM YYYY');
+        });
+        return subcategorias;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+
+
 exports.getUsuarios = async (query) => {
-    console.log(query)
     let { columns, order, length, start, search } = query;
     search = search.value;
     let orderDir = order[0].dir == 'asc' ? 1 : -1;
@@ -65,11 +76,8 @@ exports.getUsuarios = async (query) => {
             fieldsToSearch.push({ [name]: { '$regex': search, '$options': 'i' } });
         }
     })
-    console.log(fieldsToSearch);
-
 
     try {
-        console.log(columnToSort)
         let usuarios = await Usuario.aggregate([
             {
                 $lookup: {
@@ -127,6 +135,7 @@ exports.getUsuarios = async (query) => {
                 }
             }
         ]).sort({ 'sort_field': orderDir })
+
         usuarios.forEach(usuario => {
             usuario.createdAt = moment(usuario.createdAt).tz('America/Sao_Paulo').format('D/MM/YYYY, HH:mm:ss');
         })
@@ -135,13 +144,9 @@ exports.getUsuarios = async (query) => {
         let recordsFiltered = usuarios.length;
         if (length > -1)
             usuarios = usuarios.slice(parseInt(start), parseInt(length) + parseInt(start));
-        console.log(recordsTotal)
-        console.log(recordsFiltered)
-        console.log(usuarios);
 
         return { usuarios: usuarios, recordsTotal: recordsTotal, recordsFiltered: recordsFiltered };
     } catch (error) {
-        console.log(error)
         throw new Error(error);
     }
 }

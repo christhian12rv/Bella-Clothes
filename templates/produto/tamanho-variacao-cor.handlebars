@@ -1,0 +1,9 @@
+<div class="d-flex flex-row flex-wrap tamanho-box" id="variacao[{{idVariacao}}][tamanho_box_{{idTamanho}}]"
+    style="gap: .5rem;">
+    <input type="text" name="variacao[{{idVariacao}}][tamanho_box_{{idTamanho}}][tamanho]"
+        id="variacao[{{idVariacao}}][tamanho_box_{{idTamanho}}][tamanho]" class="flex-grow-1"
+        placeholder="* Tamanho {{idTamanho}}" required>
+    <input type="number" name="variacao[{{idVariacao}}][tamanho_box_{{idTamanho}}][estoque]"
+        id="variacao[{{idVariacao}}][tamanho_box_{{idTamanho}}][estoque]" placeholder="* Estoque {{idTamanho}}"
+        onkeydown="return event.keyCode == 69 ? false : true" required>
+</div>

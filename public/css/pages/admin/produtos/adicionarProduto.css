@@ -354,3 +354,36 @@ input:hover, select:hover, textarea:hover {
 .admin-content.dark .table-variacao-produto tbody tr:nth-child(2) td table tbody tr:first-child td:nth-child(2) {
     border-left-color: #3c3c3c !important;
 }
+
+.bootstrap-tagsinput {
+    padding: 0.6rem 1rem !important;
+    height: calc(1.3125rem + 1.2rem + 2px) !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    border: 1px solid #d1d1d1 !important;
+}
+
+.admin-content.dark .bootstrap-tagsinput {
+    border: 1px solid #3c3c3c !important;
+}
+
+.bootstrap-tagsinput input {
+    border: none !important;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.bootstrap-tagsinput .input-tag {
+    align-self: center;
+    padding: .25rem .5rem;
+    border-radius: .25rem;
+    margin-right: .25rem !important;
+    color: #515257 !important;
+    background-color: #ececec;
+}
+
+.bootstrap-tagsinput .input-tag span {
+    color: #515257 !important;
+}

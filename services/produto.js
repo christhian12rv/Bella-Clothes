@@ -4,7 +4,7 @@ require("moment-timezone");
 const Categoria = require("../models/produto/Categoria");
 const Subcategoria = require("../models/produto/Subcategoria");
 
-exports.getCategorias = async (body) => {
+exports.getCategorias = async () => {
     try {
         let categorias = await Categoria.find().sort({ nome: 1 }).lean();
 

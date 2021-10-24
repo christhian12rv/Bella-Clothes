@@ -345,3 +345,9 @@ exports.updateSubcategoria = [
         .isIn(["Homem", "Mulher", "Unissex", "Infantil"])
         .withMessage("O Gênero deve ser Homem, Mulher, Unissex ou Infantil")
 ]
+
+
+
+exports.addProduto = [
+
+]

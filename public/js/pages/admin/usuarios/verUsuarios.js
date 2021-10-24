@@ -2,8 +2,8 @@ $(".sidebar-link.usuarios").addClass("active").addClass("only");
 $(".sidebar-link.ver-usuarios").addClass("active");
 
 $(document).ready(function () {
-    var table = $('#table-usuarios').DataTable({
-        lengthMenu: [[3, 10, 25, 50, -1], ["Exibir " + 3, "Exibir " + 10, "Exibir " + 25, "Exibir " + 50, "Exibir Todos"]],
+    const table = $('#table-usuarios').DataTable({
+        lengthMenu: [[10, 25, 50, -1], ["Exibir " + 10, "Exibir " + 25, "Exibir " + 50, "Exibir Todos"]],
         processing: true,
         serverSide: true,
         dom:
@@ -71,6 +71,12 @@ $(document).ready(function () {
                 }
             },
             {
+                targets: [3],
+                render: function (data, type, row, meta) {
+                    return '<span class="email-usuario">' + data + '</span>'
+                }
+            },
+            {
                 targets: [4],
                 "orderable": false,
             },
@@ -94,7 +100,7 @@ $(document).ready(function () {
                 render: function (data, type, row, meta) {
                     let ativo = row.ativo ? "checked" : "";
                     return '<a href="/admin/usuario/' + data + '" class="ver-usuario mr-2"><i class="bi bi-pencil-square"></i></a>' +
-                        '<a href="/admin/excluir-usuario/' + data + '" class="excluir-usuario mr-2"><i class="bi bi-eraser"></i></a>' +
+                        '<a href="javascript: void(0)" class="excluir-usuario mr-2"><i class="bi bi-eraser"></i></a>' +
                         '<label class="switch switch-ativar-usuario"><input type="checkbox" class="checkbox-ativar-usuario"' + ativo + '><span class="slider slider-ativar-usuario round"></span></label>';
                 }
             }
@@ -119,6 +125,68 @@ $(document).ready(function () {
             table.ajax.reload(null, false);
         }).fail(function () {
             window.location.href = "/admin/erro-500";
+        })
+    })
+
+    $(document).on("click", ".excluir-usuario", function () {
+        let id_usuario = $(this).parents("tr").find(".id-usuario").html();
+        let email_usuario = $(this).parents("tr").find(".email-usuario").html();
+        Swal.fire({
+            type: "warning",
+            html:
+                '<input type="text" id="swal_excluir" class="swal2-input">',
+            title: '<span>Tem certeza que deseja excluir a conta do usuário de email <span style="font-weight: bold; color: #19c880 !important;">' + email_usuario + '</span>? Se sim, digite "excluir" no campo abaixo.</span>',
+            showCancelButton: true,
+            confirmButtonText: 'Excluir',
+            confirmButtonColor: '#19c880',
+            cancelButtonText: 'Cancelar',
+            cancelButtonColor: '#eb5050',
+            allowOutsideClick: () => !Swal.isLoading(),
+            preConfirm: () => {
+                let excluirInput = $("#swal_excluir").val();
+                if (excluirInput !== "excluir")
+                    return Swal.showValidationMessage(
+                        `Digite "excluir"`
+                    )
+                return $.ajax({
+                    type: 'DELETE',
+                    url: '/admin/usuario/' + id_usuario,
+                    dataType: 'json'
+                }).done(function (result) {
+                    if (result.status === 200) {
+                        return;
+                    } else {
+                        Swal.showValidationMessage(
+                            `${result.error}`
+                        )
+                    }
+                }).fail(function (error) {
+                    Swal.showValidationMessage(
+                        `${error}`
+                    )
+                })
+            }
+        }).then((result) => {
+            if (result.value) {
+                let toastId = $(".toast-container .toast").length + 1;
+                $.ajax({
+                    url: "/getToast",
+                    method: "POST",
+                    data: {
+                        type: 'success',
+                        text: 'Usuário excluido com sucesso',
+                        autoHide: true,
+                        autoHideDelay: 4000,
+                        toastId: toastId
+                    }
+                }).done(function (data) {
+                    $(".toast-container").append(data);
+                    $("#toast-" + toastId).toast("show");
+                }).fail(function () {
+                    window.location.href = "/admin/erro-500";
+                })
+                table.ajax.reload(null, false);
+            }
         })
     })
 })

@@ -6,7 +6,6 @@ const Cartao = require("../models/usuario/Cartao");
 
 exports.excluirUsuario = async (id_usuario) => {
     try {
-        console.log(id_usuario)
         let usuario = await Usuario.findById(id_usuario).lean();
         if (!usuario)
             return { status: 400, error: "Usuário inválido" };

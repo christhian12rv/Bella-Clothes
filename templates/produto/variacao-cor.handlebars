@@ -1,0 +1,145 @@
+<div class="table-responsive table-variacao-produto" id="table-variacao-produto-{{id}}">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="border-bottom-width: 1px;"><label for="variacao[{{id}}][cor]">* Cor {{id}}</label>
+                </th>
+                <th class="border-bottom-0"><label for="variacao[{{id}}][preco_original]">* Preço original</label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="d-flex flex-row flex-wrap border-top-0 border-right-0" style="gap: .7rem;">
+                    <i class="bi bi-plus btn-open-details-variacao-produto" id="btn-open-detail-cor-{{id}}"></i>
+                    <i class="bi bi-dash btn-close-details-variacao-produto" id="btn-close-detail-cor-{{id}}"></i>
+                    <input type="text" name="variacao[{{id}}][cor]" id="variacao[{{id}}][cor]"
+                        placeholder="* Nome da cor" class="flex-grow-1" minlength="2" required>
+                </td>
+                <td style="vertical-align: bottom;">
+                    <input type="text" name="variacao[{{id}}][preco_original]" id="variacao[{{id}}][preco_original]"
+                        placeholder="* Preço" class="w-100 preco-original" style="min-width: 200px;" required>
+                </td>
+            </tr>
+            <tr class="details-variacao-produto" id="detail-variacao-{{id}}" style="display: none;">
+                <td colspan="2" class="m-0 p-0 w-100 border-top-0">
+                    <table class="w-100 border-0">
+                        <tbody>
+                            <tr>
+                                <td><label for="variacao[{{id}}][slug]">Slug</label></td>
+                                <td class="d-flex flex-row flex-wrap" style="gap: .5rem;">
+                                    <input type="text" name="variacao[{{id}}][slug]" id="variacao[{{id}}][slug]"
+                                        placeholder="Slug" class="flex-grow-1" minlength="2"
+                                        oninput="validateSlug(this)" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="variacao[{{id}}][tipo_desconto]">Desconto</label></td>
+                                <td class="d-flex flex-row flex-wrap" style="gap: .5rem;">
+                                    <select class="tipo-desconto" name="variacao[{{id}}][tipo_desconto]"
+                                        id="variacao[{{id}}][tipo_desconto]">
+                                        <option value="">Tipo do desconto</option>
+                                        <option value="porcentagem">Porcentagem (%)</option>
+                                        <option value="bruto">Bruto (R$)</option>
+                                    </select>
+                                    <input type="text" name="variacao[{{id}}][desconto]" id="variacao[{{id}}][desconto]"
+                                        placeholder="Desconto" class="flex-grow-1 input-desconto" disabled="true">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="variacao[{{id}}][qtd_parcelas]">* Parcelas</label></td>
+                                <td class="d-flex flex-column flex-wrap parcelas-group" id="parcelas-group-{{id}}"
+                                    style="gap: .5rem;">
+                                    <input type="number" id="variacao[{{id}}][qtd_parcelas]"
+                                        name="variacao[{{id}}][qtd_parcelas]" placeholder="* Quantidade de parcelas"
+                                        class="qtd-parcelas" value="1"
+                                        onkeydown="return event.keyCode == 69 ? false : true" min="1" max="12"
+                                        required></input>
+                                    <div class="d-flex flex-row flex-wrap parcela-box"
+                                        id="variacao[{{id}}][parcela_box_1]" style="gap: .5rem;">
+                                        <select name="variacao[{{id}}][parcela_box_1][vezes_parcela]"
+                                            id="variacao[{{id}}][parcela_box_1][vezes_parcela]" required>
+                                            <option value="1">1x</option>
+                                            <option value="2">2x</option>
+                                            <option value="3">3x</option>
+                                            <option value="4">4x</option>
+                                            <option value="5">5x</option>
+                                            <option value="6">6x</option>
+                                            <option value="7">7x</option>
+                                            <option value="8">8x</option>
+                                            <option value="9">9x</option>
+                                            <option value="10">10x</option>
+                                            <option value="11">11x</option>
+                                            <option value="12">12x</option>
+                                        </select>
+                                        <select name="" id="escolher-juros-parcela" required>
+                                            <option value="sem-juros">Sem juros</option>
+                                            <option value="com-juros">Com juros</option>
+                                        </select>
+                                        <input type="text" name="variacao[{{id}}][parcela_box_1][preco_parcela]"
+                                            id="variacao[{{id}}][parcela_box_1][preco_parcela]" class="preco-parcela"
+                                            placeholder="* R$ 00,00" required>
+                                        <input type="text" name="variacao[{{id}}][parcela_box_1][juros_parcela]"
+                                            id="variacao[{{id}}][parcela_box_1][juros_parcela]" class="juros-parcela"
+                                            placeholder="Juros ao mês (%)">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="variacao[{{id}}][qtd_tamanhos]">* Tamanhos / Estoque</label></td>
+                                <td class="d-flex flex-column flex-wrap tamanhos-group" id="tamanhos-group-{{id}}"
+                                    style="gap: .5rem;">
+                                    <input type="number" id="variacao[{{id}}][qtd_tamanhos]"
+                                        name="variacao[{{id}}][qtd_tamanhos]" placeholder="* Quantidade de Tamanhos"
+                                        class="qtd-tamanhos" value="1"
+                                        onkeydown="return event.keyCode == 69 ? false : true" min="1" required></input>
+                                    <div class="d-flex flex-row flex-wrap tamanho-box"
+                                        id="variacao[{{id}}][tamanho_box_1]" style="gap: .5rem;">
+                                        <input type="text" name="variacao[{{id}}][tamanho_box_1][tamanho]"
+                                            id="variacao[{{id}}][tamanho_box_1][tamanho]" class="flex-grow-1"
+                                            placeholder="* Tamanho 1" required>
+                                        <input type="number" name="variacao[{{id}}][tamanho_box_1][estoque]"
+                                            id="variacao[{{id}}][tamanho_box_1][estoque]" placeholder="* Estoque 1"
+                                            onkeydown="return event.keyCode == 69 ? false : true" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>* Imagens</label></td>
+                                <td>
+                                    <div class=".d-flex flex-row flex-wrap mx-3 mb-3 imagens-box"
+                                        id="imagens-box-{{id}}">
+                                        <p class="dica-imagens w-100">Dica: Arraste e troque as imagens de' +
+                                            lugar' + para alterar sua ordem de' + exibição no' + site</p>
+                                        <div class="w-100 mb-2">
+                                            <div class="image-upload">
+                                                <div class="image-select">
+                                                    <div class="image-select-button" id="imageName">Escolher' +
+                                                        imagem</div>
+                                                    <div class="image-select-name" id="variacao[{{id}}][numeroImagens]">
+                                                        0 Imagens' +
+                                                        selecionadas</div>
+                                                    <input type="file" class="escolher-imagem"
+                                                        id="variacao[{{id}}][escolherImagem]"
+                                                        name="variacao[{{id}}][escolherImagem]"
+                                                        onchange="novoArquivo(this)" accept=".png, .jpg, .jpeg"
+                                                        required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row flex-wrap images-choose"
+                                            id="variacao[{{id}}][box-images]">
+                                        </div>
+                                        <div id="variacao[{{id}}][group-imagens]">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>

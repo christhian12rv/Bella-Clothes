@@ -1,6 +1,26 @@
 $(".sidebar-link.produtos").addClass("active").addClass("only");
 $(".sidebar-link.ver-produtos").addClass("active");
 
+$('#materiais').tagsinput({
+    tagClass: 'input-tag',
+    trimValue: true,
+    minChars: 2
+});
+$('#materiais').on('beforeItemAdd', function (event) {
+    if (event.item.length < 2)
+        event.cancel = true;
+});
+
+$('#composicao').tagsinput({
+    tagClass: 'input-tag',
+    trimValue: true,
+    minChars: 2
+});
+$('#composicao').on('beforeItemAdd', function (event) {
+    if (event.item.length < 2)
+        event.cancel = true;
+});
+
 $(document).on('click', '.btn-open-details-variacao-produto', function () {
     var idDetail = $(this).attr("id").substr(20);
     $(this).css("display", "none");
@@ -23,6 +43,31 @@ $("#genero").on("change", function () {
             $("#genero-infantil").remove();
 })
 
+$("#categoria").on("change", function () {
+    let select = $(this);
+    let value = select.val();
+    let selectSubcategoria = $("#subcategoria");
+
+    if (value !== "") {
+        $.ajax({
+            type: 'GET',
+            url: '/api/subcategorias-by-categoria/' + value
+        }).then(function (data) {
+            let options = "<option value='' selected>* Escolha uma subcategoria</option>";
+            data.subcategorias.forEach((subcategoria) => {
+                options += "<option value='" + subcategoria._id + "'>" + subcategoria.nome + "</option>";
+            })
+            selectSubcategoria.html(options);
+            selectSubcategoria.prop("disabled", false);
+        }).fail(function () {
+            window.location.href = "/admin/erro-500";
+        })
+    } else {
+        selectSubcategoria.html("<option value='' selected>* Escolha uma subcategoria</option>");
+        selectSubcategoria.prop("disabled", true);
+    }
+})
+
 if ($("#cp-dark-content").prop("checked")) {
     $("#descricao_introducao").parent().addClass("trumbowyg-dark");
 }
@@ -31,14 +76,18 @@ $('#descricao_recursos').trumbowyg(trumbowygOptions());
 
 
 // Adicionar variação 1 do produto
-$(".box-variacoes-produto").append(productVariation(1));
-$("input[id='variacao[1][preco_original]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
-$("input[id='variacao[1][parcela_box_1][preco_parcela]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
-$("input[id='variacao[1][parcela_box_1][juros_parcela]']").mask('##0,00%', { reverse: true });
-adicionarImagem(1);
+async function initProductVariation() {
+    await $(".box-variacoes-produto").append(await productVariation(1));
+    $("input[id='variacao[1][preco_original]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
+    $("input[id='variacao[1][parcela_box_1][preco_parcela]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
+    $("input[id='variacao[1][parcela_box_1][juros_parcela]']").mask('##0,00%', { reverse: true });
+    adicionarImagem(1);
+}
+
+initProductVariation();
 
 // Adicionar e Remover variações do produto
-$("#quantidade_cores").on("input", function () {
+$("#quantidade_cores").on("input", async function () {
     var qtdInput = parseInt(this.value);
     if (!qtdInput) {
         qtdInput = 0;
@@ -47,7 +96,7 @@ $("#quantidade_cores").on("input", function () {
     var qtdVariationsOpen = parseInt($(".details-variacao-produto").length);
     if (qtdVariationsOpen < qtdInput) {
         for (i = 1; i <= (qtdInput - qtdVariationsOpen); i++) {
-            $(".box-variacoes-produto").append(productVariation(i + qtdVariationsOpen));
+            await $(".box-variacoes-produto").append(await productVariation(i + qtdVariationsOpen));
             masksInputsOfNewVariation(i + qtdVariationsOpen);
             adicionarImagem(i + qtdVariationsOpen);
         }
@@ -81,7 +130,7 @@ $(document).on('change', '.tipo-desconto', function () {
 })
 
 
-$(document).on('input', '.qtd-parcelas', function (index) {
+$(document).on('input', '.qtd-parcelas', async function (index) {
     var idVariacao = $(this).attr("id").match(/\[(-?\d+)\]/)[1];
 
     var qtdInput = parseInt(this.value);
@@ -99,7 +148,7 @@ $(document).on('input', '.qtd-parcelas', function (index) {
     var qtdParcelasOpen = parseInt($("#parcelas-group-" + idVariacao + " .parcela-box").length);
     if (qtdParcelasOpen < qtdInput) {
         for (i = 1; i <= (qtdInput - qtdParcelasOpen); i++) {
-            $("#parcelas-group-" + idVariacao).append(parcela(idVariacao, i + qtdParcelasOpen));
+            await $("#parcelas-group-" + idVariacao).append(await parcela(idVariacao, i + qtdParcelasOpen));
         }
     } else if (qtdInput > 0) {
         for (i = qtdParcelasOpen; i >= qtdInput + 1; i--) {
@@ -111,7 +160,7 @@ $(document).on('input', '.qtd-parcelas', function (index) {
 })
 
 
-$(document).on('input', '.qtd-tamanhos', function () {
+$(document).on('input', '.qtd-tamanhos', async function () {
     var idVariacao = $(this).attr("id").match(/\[(-?\d+)\]/)[1];
     var qtdInput = parseInt(this.value);
     if (!qtdInput) {
@@ -125,7 +174,7 @@ $(document).on('input', '.qtd-tamanhos', function () {
     var qtdTamanhosOpen = parseInt($("#tamanhos-group-" + idVariacao + " .tamanho-box").length);
     if (qtdTamanhosOpen < qtdInput) {
         for (i = 1; i <= (qtdInput - qtdTamanhosOpen); i++) {
-            $("#tamanhos-group-" + idVariacao).append(tamanho(idVariacao, i + qtdTamanhosOpen));
+            await $("#tamanhos-group-" + idVariacao).append(await tamanho(idVariacao, i + qtdTamanhosOpen));
         }
     } else if (qtdInput > 0) {
         for (i = qtdTamanhosOpen; i >= qtdInput + 1; i--) {
@@ -249,176 +298,58 @@ function maskParcelas(idVariacao) {
     })
 }
 
-function productVariation(id) {
-    var productVariation =
-        '            <div class="table-responsive table-variacao-produto" id="table-variacao-produto-' + id + '">' +
-        '                <table class="table table-bordered">' +
-        '                    <thead>' +
-        '                        <tr>' +
-        '                            <th style="border-bottom-width: 1px;"><label for="variacao[' + id + '][cor]">* Cor ' + id + '</label></th>' +
-        '                            <th class="border-bottom-0"><label for="variacao[' + id + '][preco_original]">* Preço original</label></th>' +
-        '                        </tr>' +
-        '                    </thead>' +
-        '                    <tbody>' +
-        '                        <tr>' +
-        '                            <td class="d-flex flex-row flex-wrap border-top-0 border-right-0"' +
-        '                                style="gap: .7rem;">' +
-        '                                <i class="bi bi-plus btn-open-details-variacao-produto" id="btn-open-detail-cor-' + id + '"></i>' +
-        '                                <i class="bi bi-dash btn-close-details-variacao-produto"' +
-        '                                    id="btn-close-detail-cor-' + id + '"></i>' +
-        '                                <input type="text" name="variacao[' + id + '][cor]" id="variacao[' + id + '][cor]" placeholder="* Nome da cor"' +
-        '                                    class="flex-grow-1" minlength="2" required>' +
-        '                            </td>' +
-        '                            <td style="vertical-align: bottom;">' +
-        '                                <input type="text" name="variacao[' + id + '][preco_original]" id="variacao[' + id + '][preco_original]" placeholder="* Preço"' +
-        '                                    class="w-100 preco-original" style="min-width: 200px;" required>' +
-        '                            </td>' +
-        '                        </tr>' +
-        '                        <tr class="details-variacao-produto" id="detail-variacao-' + id + '" style="display: none;">' +
-        '                            <td colspan="2" class="m-0 p-0 w-100 border-top-0">' +
-        '                                <table class="w-100 border-0">' +
-        '                                    <tbody>' +
-        '                                        <tr>' +
-        '                                            <td><label for="variacao[' + id + '][slug]">Slug</label></td>' +
-        '                                            <td class="d-flex flex-row flex-wrap" style="gap: .5rem;">' +
-        '                                                <input type="text" name="variacao[' + id + '][slug]" id="variacao[' + id + '][slug]" placeholder="Slug"' +
-        '                                                    class="flex-grow-1" minlength="2" oninput="validateSlug(this)" required>' +
-        '                                            </td>' +
-        '                                        </tr>' +
-        '                                        <tr>' +
-        '                                            <td><label for="variacao[' + id + '][tipo_desconto]">Desconto</label></td>' +
-        '                                            <td class="d-flex flex-row flex-wrap" style="gap: .5rem;">' +
-        '                                                <select class="tipo-desconto" name="variacao[' + id + '][tipo_desconto]" id="variacao[' + id + '][tipo_desconto]">' +
-        '                                                    <option value="">Tipo do desconto</option>' +
-        '                                                    <option value="porcentagem">Porcentagem (%)</option>' +
-        '                                                    <option value="bruto">Bruto (R$)</option>' +
-        '                                                </select>' +
-        '                                                <input type="text" name="variacao[' + id + '][desconto]" id="variacao[' + id + '][desconto]" placeholder="Desconto"' +
-        '                                                    class="flex-grow-1 input-desconto" disabled="true">' +
-        '                                            </td>' +
-        '                                        </tr>' +
-        '                                        <tr>' +
-        '                                            <td><label for="variacao[' + id + '][qtd_parcelas]">* Parcelas</label></td>' +
-        '                                            <td class="d-flex flex-column flex-wrap parcelas-group" id="parcelas-group-' + id + '" style="gap: .5rem;">' +
-        '                                               <input type="number" id="variacao[' + id + '][qtd_parcelas]" name="variacao[' + id + '][qtd_parcelas]" placeholder="* Quantidade de parcelas"' +
-        '                                                   class="qtd-parcelas" value="1" onkeydown="return event.keyCode == 69 ? false : true" min="1" max="12" required></input>' +
-        '                                                <div class="d-flex flex-row flex-wrap parcela-box" id="variacao[' + id + '][parcela_box_1]" style="gap: .5rem;">' +
-        '                                                    <select name="variacao[' + id + '][parcela_box_1][vezes_parcela]" id="variacao[' + id + '][parcela_box_1][vezes_parcela]" required>' +
-        '                                                        <option value="1">1x</option>' +
-        '                                                        <option value="2">2x</option>' +
-        '                                                        <option value="3">3x</option>' +
-        '                                                        <option value="4">4x</option>' +
-        '                                                        <option value="5">5x</option>' +
-        '                                                        <option value="6">6x</option>' +
-        '                                                        <option value="7">7x</option>' +
-        '                                                        <option value="8">8x</option>' +
-        '                                                        <option value="9">9x</option>' +
-        '                                                        <option value="10">10x</option>' +
-        '                                                        <option value="11">11x</option>' +
-        '                                                        <option value="12">12x</option>' +
-        '                                                    </select>' +
-        '                                                    <select name="" id="escolher-juros-parcela" required>' +
-        '                                                        <option value="sem-juros">Sem juros</option>' +
-        '                                                        <option value="com-juros">Com juros</option>' +
-        '                                                    </select>' +
-        '                                                    <input type="text" name="variacao[' + id + '][parcela_box_1][preco_parcela]" id="variacao[' + id + '][parcela_box_1][preco_parcela]"' +
-        '                                                        class="preco-parcela" placeholder="* R$ 00,00" required>' +
-        '                                                    <input type="text" name="variacao[' + id + '][parcela_box_1][juros_parcela]" id="variacao[' + id + '][parcela_box_1][juros_parcela]"' +
-        '                                                        class="juros-parcela" placeholder="Juros ao mês (%)">' +
-        '                                                </div>' +
-        '                                            </td>' +
-        '                                        </tr>' +
-        '                                        <tr>' +
-        '                                            <td><label for="variacao[' + id + '][qtd_tamanhos]">* Tamanhos / Estoque</label></td>' +
-        '                                            <td class="d-flex flex-column flex-wrap tamanhos-group" id="tamanhos-group-' + id + '" style="gap: .5rem;">' +
-        '                                               <input type="number" id="variacao[' + id + '][qtd_tamanhos]" name="variacao[' + id + '][qtd_tamanhos]" placeholder="* Quantidade de Tamanhos"' +
-        '                                                   class="qtd-tamanhos" value="1" onkeydown="return event.keyCode == 69 ? false : true" min="1" max="12" required></input>' +
-        '                                                <div class="d-flex flex-row flex-wrap tamanho-box" id="variacao[' + id + '][tamanho_box_1]" style="gap: .5rem;">' +
-        '                                                    <input type="text" name="variacao[' + id + '][tamanho_box_1][tamanho]" id="variacao[' + id + '][tamanho_box_1][tamanho]"' +
-        '                                                        class="flex-grow-1" placeholder="* Tamanho 1" required>' +
-        '                                                    <input type="number" name="variacao[' + id + '][tamanho_box_1][estoque]" id="variacao[' + id + '][tamanho_box_1][estoque]"' +
-        '                                                        placeholder="* Estoque 1"' +
-        '                                                        onkeydown="return event.keyCode == 69 ? false : true" required>' +
-        '                                                </div>' +
-        '                                            </td>' +
-        '                                        </tr>' +
-        '                                        <tr>' +
-        '                                            <td><label>* Imagens</label></td>' +
-        '                                            <td>' +
-        '                                                <div class=".d-flex flex-row flex-wrap mx-3 mb-3 imagens-box" id="imagens-box-' + id + '">' +
-        '                                                    <p class="dica-imagens w-100">Dica: Arraste e troque as imagens de' +
-        '                                                        lugar' +
-        '                                                        para alterar sua ordem de' +
-        '                                                        exibição no' +
-        '                                                        site</p>' +
-        '                                                    <div class="w-100 mb-2">' +
-        '                                                        <div class="image-upload">' +
-        '                                                            <div class="image-select">' +
-        '                                                                <div class="image-select-button" id="imageName">Escolher' +
-        '                                                                    imagem</div>' +
-        '                                                                <div class="image-select-name" id="variacao[' + id + '][numeroImagens]">0 Imagens' +
-        '                                                                    selecionadas</div>' +
-        '                                                                <input type="file" class="escolher-imagem" id="variacao[' + id + '][escolherImagem]" name="variacao[' + id + '][escolherImagem]" onchange="novoArquivo(this)" accept=".png, .jpg, .jpeg" required>' +
-        '                                                            </div>' +
-        '                                                        </div>' +
-        '                                                    </div>' +
-        '                                                    <div class="d-flex flex-row flex-wrap images-choose" id="variacao[' + id + '][box-images]">' +
-        '                                                    </div>' +
-        '                                                    <div id="variacao[' + id + '][group-imagens]">' +
-        '                                                    </div>' +
-        '                                                </div>' +
-        '                                            </td>' +
-        '                                        </tr>' +
-        '                                    </tbody>' +
-        '                                </table>' +
-        '                            </td>' +
-        '                        </tr>' +
-        '                    </tbody>' +
-        '                </table>' +
-        '            </div>' +
-        '        </div>';
-    return productVariation;
+async function productVariation(id) {
+    return await $.ajax({
+        url: "/getTemplate",
+        method: "POST",
+        data: {
+            template: 'produto/variacao-cor',
+            id: id
+        },
+        success: function (data) {
+            return data;
+        },
+        fail: function () {
+            return window.location.href = "/admin/erro-500";
+        }
+    })
 }
 
-function parcela(idVariacao, idParcela) {
-    var parcela =
-        '                                                <div class="d-flex flex-row flex-wrap parcela-box" id="variacao[' + idVariacao + '][parcela_box_' + idParcela + ']" style="gap: .5rem;">' +
-        '                                                    <select name="variacao[' + idVariacao + '][parcela_box_' + idParcela + '][vezes_parcela]" id="variacao[' + idVariacao + '][parcela_box_' + idParcela + '][vezes_parcela]" required>' +
-        '                                                        <option value="1">1x</option>' +
-        '                                                        <option value="2">2x</option>' +
-        '                                                        <option value="3">3x</option>' +
-        '                                                        <option value="4">4x</option>' +
-        '                                                        <option value="5">5x</option>' +
-        '                                                        <option value="6">6x</option>' +
-        '                                                        <option value="7">7x</option>' +
-        '                                                        <option value="8">8x</option>' +
-        '                                                        <option value="9">9x</option>' +
-        '                                                        <option value="10">10x</option>' +
-        '                                                        <option value="11">11x</option>' +
-        '                                                        <option value="12">12x</option>' +
-        '                                                    </select>' +
-        '                                                    <select name="" id="escolher-juros-parcela" required>' +
-        '                                                        <option value="sem-juros">Sem juros</option>' +
-        '                                                        <option value="com-juros">Com juros</option>' +
-        '                                                    </select>' +
-        '                                                    <input type="text" name="variacao[' + idVariacao + '][parcela_box_' + idParcela + '][preco_parcela]" id="variacao[' + idVariacao + '][parcela_box_' + idParcela + '][preco_parcela]"' +
-        '                                                        class="preco-parcela" placeholder="* R$ 00,00" required>' +
-        '                                                    <input type="text" name="variacao[' + idVariacao + '][parcela_box_' + idParcela + '][juros_parcela]" id="variacao[' + idVariacao + '][parcela_box_' + idParcela + '][juros_parcela]"' +
-        '                                                        class="juros-parcela" placeholder="Juros ao mês (%)">' +
-        '                                                </div>';
-    return parcela;
+async function parcela(idVariacao, idParcela) {
+    return await $.ajax({
+        url: "/getTemplate",
+        method: "POST",
+        data: {
+            template: 'produto/parcela-variacao-cor',
+            idVariacao: idVariacao,
+            idParcela: idParcela
+        },
+        success: function (data) {
+            return data;
+        },
+        fail: function () {
+            return window.location.href = "/admin/erro-500";
+        }
+    })
 }
 
-function tamanho(idVariacao, idTamanho) {
-    var tamanho =
-        '                                                <div class="d-flex flex-row flex-wrap tamanho-box" id="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + ']" style="gap: .5rem;">' +
-        '                                                    <input type="text" name="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + '][tamanho]" id="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + '][tamanho]"' +
-        '                                                        class="flex-grow-1" placeholder="* Tamanho ' + idTamanho + '" required>' +
-        '                                                    <input type="number" name="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + '][estoque]" id="variacao[' + idVariacao + '][tamanho_box_' + idTamanho + '][estoque]"' +
-        '                                                        placeholder="* Estoque ' + idTamanho + '"' +
-        '                                                        onkeydown="return event.keyCode == 69 ? false : true" required>' +
-        '                                                </div>';
-    return tamanho
+async function tamanho(idVariacao, idTamanho) {
+    return await $.ajax({
+        url: "/getTemplate",
+        method: "POST",
+        data: {
+            template: 'produto/tamanho-variacao-cor',
+            idVariacao: idVariacao,
+            idTamanho: idTamanho
+        },
+        success: function (data) {
+            console.log(data)
+            return data;
+        },
+        fail: function () {
+            return window.location.href = "/admin/erro-500";
+        }
+    })
 }
 
 function adicionarImagem(idVariacao) {
@@ -471,8 +402,8 @@ function generoInfantil() {
         '    <label for="infantil">* Infantil</label>' +
         '    <select name="infantil" id="infantil" required>' +
         '        <option value="">* Escolha um gênero infantil</option>' +
-        '        <option value="menino">Menino</option>' +
-        '        <option value="menina">Menina</option>' +
+        '        <option value="Menino">Menino</option>' +
+        '        <option value="Menina">Menina</option>' +
         '        <option value="Bebê Menino">Bebê Menino</option>' +
         '        <option value="Bebê Menina">Bebê Menina</option>' +
         '    </select>' +

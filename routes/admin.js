@@ -127,14 +127,8 @@ router.get("/produto/:id", (req, res) => {
     })
 })
 
-router.get("/adicionar-produto", (req, res) => {
-    res.render("admin/produtos/adicionarProduto", {
-        css: "admin/produtos/adicionarProduto.css",
-        js: "admin/produtos/adicionarProduto.js",
-        title: "Adicionar Produto | Bella Clothes Admin",
-        paginaAdmin: true
-    })
-})
+router.get("/adicionar-produto", AdminController.adicionarProdutoGET);
+router.get("testaddprod", ProdutoValidator.addProduto, AdminController.adicionarProdutoPOST);
 
 router.get("/produtos/categorias", ProdutoController.getCategorias)
     .post("/produtos/categorias", ProdutoValidator.addCategoria, ProdutoController.addCategoria)

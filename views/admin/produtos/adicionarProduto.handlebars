@@ -9,8 +9,9 @@
                 <p>* Campos obrigatórios</p>
             </div>
             <div>
-                <label for="nome">* Nome do produto</label>
-                <input type="text" id="nome" name="nome" placeholder="* Nome do Produto" minlength="2" required>
+                <label for="nome_produto">* Nome do produto</label>
+                <input type="text" id="nome_produto" name="nome_produto" placeholder="* Nome do Produto" minlength="2"
+                    required>
             </div>
             <div id="div-genero">
                 <label for="genero">* Gênero</label>
@@ -25,18 +26,17 @@
                 <label for="categoria">* Categoria</label>
                 <select name="categoria" id="categoria" required>
                     <option value="">* Escolha uma categoria</option>
-                    <option value="masculino">Roupas</option>
-                    <option value="acessorios">Acessórios</option>
-                    <option value="esportes">Esportes</option>
+                    {{#each categorias}}
+                        {{#if this.subcategorias.length}}
+                            <option value="{{this._id}}">{{this.nome}}</option>
+                        {{/if}}
+                    {{/each}}
                 </select>
             </div>
             <div>
-                <label for="subcategoria">* Sub categoria</label>
-                <select name="subcategoria" id="subcategoria" required>
+                <label for="subcategoria">* Subcategoria</label>
+                <select name="subcategoria" id="subcategoria" disabled required>
                     <option value="">* Escolha uma subcategoria</option>
-                    <option value="blusas">Blusas</option>
-                    <option value="camisas">Camisas</option>
-                    <option value="sapatos">Sapatos</option>
                 </select>
             </div>
         </div>
@@ -49,28 +49,29 @@
         <hr>
         <div class="flex-column flex-wrap box-especificacoes w-100 px-3" style="gap: .5rem;">
             <div>
-                <label for="nome">* Marca</label>
-                <input type="text" id="marca" name="marca" placeholder="* Marca do Produto" minlength="2" required>
+                <label for="marca">* Marca</label>
+                <input type="text" name="marca" id="marca" placeholder="* Marca do Produto" minlength="2" required>
             </div>
             <div>
-                <label for="nome">* Materiais</label>
-                <input type="text" id="materiais" name="materiais"
-                    placeholder="* Materiais do Produto (Dê enter para adicionar cada material)" minlength="2" required>
+                <label for="materiais">* Materiais</label>
+                <select name="materiais" id="materiais" data-role="tagsinput"
+                    placeholder="* Materiais do Produto (Dê enter para adicionar cada material)" multiple
+                    required></select>
             </div>
             <div>
-                <label for="nome">* Composição</label>
-                <input type="text" id="composicao" name="composicao"
-                    placeholder="* Composição do Produto (Dê enter para adicionar cada composição)" minlength="2"
-                    required>
+                <label for="composicao">* Composição</label>
+                <select name="composicao" id="composicao" data-role="tagsinput"
+                    placeholder="* Composição do Produto (Dê enter para adicionar cada composição)" multiple
+                    required></select>
             </div>
             <div>
-                <label for="nome">* Peso</label>
+                <label for="peso">* Peso</label>
                 <input type="number" id="peso" name="peso" placeholder="* Peso do Produto (em gramas)" min="1"
                     style="width: 49%" class="mr-2" required>
                 <select name="tipo_peso" id="tipo_peso" style="width: 49%" required>
                     <option value="">* Escolha um tipo de peso</option>
-                    <option value="unidade">Unidade</option>
-                    <option value="par">Par</option>
+                    <option value="Unidade">Unidade</option>
+                    <option value="Par">Par</option>
                 </select>
             </div>
             <div>

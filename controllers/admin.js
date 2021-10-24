@@ -1,6 +1,7 @@
 const passport = require("passport");
 const AdminService = require("../services/admin");
 const UsuarioService = require("../services/usuario");
+const ProdutoService = require("../services/produto");
 
 exports.login = async (req, res, next) => {
     try {
@@ -38,7 +39,6 @@ exports.verUsuario = async (req, res) => {
             return res.redirect("/admin/erro-404");
         }
     } catch (error) {
-        console.log(error);
         return res.redirect("/admin/erro-500");
     }
 }
@@ -50,7 +50,23 @@ exports.excluirUsuario = async (req, res) => {
             req.logOut();
         return res.json(serviceResponse);
     } catch (error) {
-        console.log(error);
+        return res.redirect("/erro-500");
+    }
+}
+
+exports.adicionarProdutoGET = async (req, res) => {
+    try {
+        let categorias = await ProdutoService.getCategorias();
+        let subcategorias = await ProdutoService.getSubcategorias();
+        return res.render("admin/produtos/adicionarProduto", {
+            css: "admin/produtos/adicionarProduto.css",
+            js: "admin/produtos/adicionarProduto.js",
+            title: "Adicionar Produto | Bella Clothes Admin",
+            paginaAdmin: true,
+            categorias: categorias,
+            subcategorias: subcategorias
+        })
+    } catch (error) {
         return res.redirect("/erro-500");
     }
 }
