@@ -1,4 +1,5 @@
 const passport = require("passport");
+
 const AdminService = require("../services/admin");
 const UsuarioService = require("../services/usuario");
 const ProdutoService = require("../services/produto");
@@ -68,5 +69,38 @@ exports.adicionarProdutoGET = async (req, res) => {
         })
     } catch (error) {
         return res.redirect("/erro-500");
+    }
+}
+
+exports.adicionarProdutoPOST = async (req, res) => {
+    try {
+        let objecta = {
+            variacao: []
+        };
+        let teste = req.body;
+        for (let prop in teste) {
+            console.log(prop);
+            objecta.variacao.push({
+                [prop.match(/cor|slug/)[0]]: teste[prop]
+            })
+        }
+        console.log(objecta);
+        res.send(objecta);
+        /* const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            errors.array().forEach(value => {
+                req.flash("error_msg", value.msg);
+            });
+            return res.redirect("/registrar/fisica");
+        } else {
+            try {
+                let serviceResponse = await UsuarioService.createUsuarioFisico(req.body);
+                res.redirect("/verificarEmail?email=" + serviceResponse.usuario.email + "&id=" + serviceResponse.emailToken._id);
+            } catch (error) {
+                return res.redirect("/registrar/fisica");
+            }
+        } */
+    } catch (error) {
+
     }
 }

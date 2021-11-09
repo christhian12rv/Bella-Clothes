@@ -349,5 +349,139 @@ exports.updateSubcategoria = [
 
 
 exports.addProduto = [
+    body("nome_produto")
+        .trim()
+        .customSanitizer(value => {
+            return value.toLowerCase()
+                .replace(/(^\w|\s\w)/g, m => m.toUpperCase())
+                .replace(/ Da /g, ' da ')
+                .replace(/ De /g, ' de ')
+                .replace(/ Do /g, ' do ')
+                .replace(/ Das /g, ' das ')
+                .replace(/ Dos /g, ' dos ');
+        })
+        .notEmpty()
+        .withMessage("O campo Nome do Produto é obrigatório")
+        .bail()
+        .isLength({ min: 2 })
+        .withMessage("O campo Nome do Produto deve conter no mínimo 2 caracteres"),
 
+    body("genero")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Gênero é obrigatório")
+        .bail()
+        .isIn(["Masculino", "Feminino", "Infantil"])
+        .withMessage("O campo Gênero deve conter no mínimo 2 caracteres"),
+
+    body("infantil")
+        .trim()
+        .custom((value, { req }) => {
+            if (req.genero === "Infantil") {
+                if (value == '')
+                    throw new Error("O campo Gênero Infantil é obrigatório");
+                else if (value !== "Menino" && value !== "Menina" && value !== "Bebê Menino" && value !== "Bebê Menina")
+                    throw new Error("O Gênero Infantil informado é inválido");
+            } else
+                value = null;
+            return true;
+        }),
+
+    body("categoria")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Gênero é obrigatório")
+        .bail()
+        .matches(/^[0-9a-fA-F]{24}$/)
+        .withMessage("A Categoria informada é inválida")
+        .bail()
+        .custom(value => {
+            return Categoria.findById(value).lean()
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
+                .then((categoria) => {
+                    if (!categoria)
+                        return Promise.reject("A Categoria informada é inválida");
+                })
+        }),
+
+    body("subcategoria")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Gênero é obrigatório")
+        .bail()
+        .matches(/^[0-9a-fA-F]{24}$/)
+        .withMessage("A Categoria informada é inválida")
+        .bail()
+        .custom(value => {
+            return Categoria.findById(value).lean()
+                .catch(erro => {
+                    return Promise.reject("Ocorreu um erro interno: " + erro);
+                })
+                .then((categoria) => {
+                    if (!categoria)
+                        return Promise.reject("A Categoria informada é inválida");
+                })
+        }),
+
+    body("marca")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Marca é obrigatório")
+        .bail()
+        .isLength({ min: 2 })
+        .withMessage("O campo Marca deve conter no mínimo 2 caracteres"),
+
+    body("materiais"),
+    body("composicao"),
+
+    body("peso")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Peso é obrigatório")
+        .bail()
+        .isNumeric()
+        .withMessage("O Peso informado é inválido")
+        .bail()
+        .isFloat({ min: 1 })
+        .withMessage("O Peso informado é inválido"),
+
+    body("tipo_peso")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Tipo de Peso é obrigatório")
+        .bail()
+        .isString()
+        .withMessage("O Tipo de Peso informado é inválido")
+        .bail()
+        .isIn(["Unidade", "Par"])
+        .withMessage("O Tipo de Peso informado é inválido"),
+
+    body("indicado_para")
+        .trim()
+        .customSanitizer(value => {
+            return value.replace(/^./, value[0].toUpperCase());
+        })
+        .notEmpty()
+        .withMessage("O campo Indicado para é obrigatório")
+        .bail()
+        .isLength({ min: 2 })
+        .withMessage("O campo Indicado para deve conter no mínimo 2 caracteres"),
+
+    body("descricao_introducao")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Descrição da Introdução é obrigatório")
+        .bail()
+        .isLength({ min: 10 })
+        .withMessage("O campo Descrição da Introdução deve conter no mínimo 10 caracteres"),
+
+    body("descricao_recursos")
+        .trim()
+        .notEmpty()
+        .withMessage("O campo Descrição da Recursos é obrigatório")
+        .bail()
+        .isLength({ min: 10 })
+        .withMessage("O campo Descrição da Recursos deve conter no mínimo 10 caracteres"),
 ]

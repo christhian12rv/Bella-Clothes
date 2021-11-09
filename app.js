@@ -13,6 +13,8 @@ const fs = require("fs");
 const path = require("path");
 const session = require("express-session");
 const flash = require("connect-flash");
+const multer = require("multer");
+const multerInstance = multer();
 
 const passport = require("passport");
 require("./config/auth")(passport);
@@ -36,8 +38,8 @@ app.use(flash());
 require("./loaders/middlewares")(app)
 
 // Body Parser
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Handlebars
 app.engine("handlebars", handlebars({ defaultLayout: "main", helpers: require("./config/handlebarsHelpers") }));

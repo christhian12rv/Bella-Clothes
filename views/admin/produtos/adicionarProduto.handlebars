@@ -2,7 +2,7 @@
     Adicionar Produto
 </h3>
 
-<form action="/afeas" method="POST" enctype='multipart/form-data'>
+<form action="/admin/adicionar-produto" method="POST" novalidate enctype="multipart/form-data">
     <div class="card color-mode d-flex flex-row flex-wrap p-3">
         <div class=" flex-column flex-wrap first-box-details w-100 px-2" style="gap: .5rem;">
             <div>
@@ -17,8 +17,8 @@
                 <label for="genero">* Gênero</label>
                 <select name="genero" id="genero" required>
                     <option value="">* Escolha um gênero</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
                     <option value="Infantil">Infantil</option>
                 </select>
             </div>

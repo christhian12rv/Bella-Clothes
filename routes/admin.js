@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const multerInstance = multer();
+const multiparty = require("multiparty");
 const { adminIsLoggedIn } = require("../middlewares/adminIsLoggedIn");
 
 const EmpresaValidator = require("../middlewares/validators/empresa");
@@ -127,8 +130,8 @@ router.get("/produto/:id", (req, res) => {
     })
 })
 
-router.get("/adicionar-produto", AdminController.adicionarProdutoGET);
-router.get("testaddprod", ProdutoValidator.addProduto, AdminController.adicionarProdutoPOST);
+router.get("/adicionar-produto", AdminController.adicionarProdutoGET)
+    .post("/adicionar-produto",/* ProdutoValidator.addProduto, */ AdminController.adicionarProdutoPOST);
 
 router.get("/produtos/categorias", ProdutoController.getCategorias)
     .post("/produtos/categorias", ProdutoValidator.addCategoria, ProdutoController.addCategoria)
