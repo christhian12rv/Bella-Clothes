@@ -2,7 +2,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th style="border-bottom-width: 1px;"><label for="variacao[{{id}}][cor]">* Cor {{id}}</label>
+                <th style="border-bottom-width: 1px;"><label for="variacao[{{id}}][cor]">* Cor {{idPlusOne}}</label>
                 </th>
                 <th class="border-bottom-0"><label for="variacao[{{id}}][preco_original]">* Preço original</label>
                 </th>
@@ -56,9 +56,9 @@
                                         onkeydown="return event.keyCode == 69 ? false : true" min="1" max="12"
                                         required></input>
                                     <div class="d-flex flex-row flex-wrap parcela-box"
-                                        id="variacao[{{id}}][parcela_box_1]" style="gap: .5rem;">
-                                        <select name="variacao[{{id}}][parcela_box_1][vezes_parcela]"
-                                            id="variacao[{{id}}][parcela_box_1][vezes_parcela]" required>
+                                        id="variacao[{{id}}][parcela_box][0]" style="gap: .5rem;">
+                                        <select name="variacao[{{id}}][parcela_box][0][vezes_parcela]"
+                                            id="variacao[{{id}}][parcela_box][0][vezes_parcela]" required>
                                             <option value="1">1x</option>
                                             <option value="2">2x</option>
                                             <option value="3">3x</option>
@@ -76,11 +76,11 @@
                                             <option value="sem-juros">Sem juros</option>
                                             <option value="com-juros">Com juros</option>
                                         </select>
-                                        <input type="text" name="variacao[{{id}}][parcela_box_1][preco_parcela]"
-                                            id="variacao[{{id}}][parcela_box_1][preco_parcela]" class="preco-parcela"
+                                        <input type="text" name="variacao[{{id}}][parcela_box][0][preco_parcela]"
+                                            id="variacao[{{id}}][parcela_box][0][preco_parcela]" class="preco-parcela"
                                             placeholder="* R$ 00,00" required>
-                                        <input type="text" name="variacao[{{id}}][parcela_box_1][juros_parcela]"
-                                            id="variacao[{{id}}][parcela_box_1][juros_parcela]" class="juros-parcela"
+                                        <input type="text" name="variacao[{{id}}][parcela_box][0][juros_parcela]"
+                                            id="variacao[{{id}}][parcela_box][0][juros_parcela]" class="juros-parcela"
                                             placeholder="Juros ao mês (%)">
                                     </div>
                                 </td>
@@ -94,12 +94,12 @@
                                         class="qtd-tamanhos" value="1"
                                         onkeydown="return event.keyCode == 69 ? false : true" min="1" required></input>
                                     <div class="d-flex flex-row flex-wrap tamanho-box"
-                                        id="variacao[{{id}}][tamanho_box_1]" style="gap: .5rem;">
-                                        <input type="text" name="variacao[{{id}}][tamanho_box_1][tamanho]"
-                                            id="variacao[{{id}}][tamanho_box_1][tamanho]" class="flex-grow-1"
+                                        id="variacao[{{id}}][tamanho_box][0]" style="gap: .5rem;">
+                                        <input type="text" name="variacao[{{id}}][tamanho_box][0][tamanho]"
+                                            id="variacao[{{id}}][tamanho_box][0][tamanho]" class="flex-grow-1"
                                             placeholder="* Tamanho 1" required>
-                                        <input type="number" name="variacao[{{id}}][tamanho_box_1][estoque]"
-                                            id="variacao[{{id}}][tamanho_box_1][estoque]" placeholder="* Estoque 1"
+                                        <input type="number" name="variacao[{{id}}][tamanho_box][0][estoque]"
+                                            id="variacao[{{id}}][tamanho_box][0][estoque]" placeholder="* Estoque 1"
                                             onkeydown="return event.keyCode == 69 ? false : true" required>
                                     </div>
                                 </td>

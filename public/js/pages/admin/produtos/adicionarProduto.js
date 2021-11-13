@@ -77,11 +77,11 @@ $('#descricao_recursos').trumbowyg(trumbowygOptions());
 
 // Adicionar variação 1 do produto
 async function initProductVariation() {
-    await $(".box-variacoes-produto").append(await productVariation(1));
-    $("input[id='variacao[1][preco_original]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
-    $("input[id='variacao[1][parcela_box_1][preco_parcela]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
-    $("input[id='variacao[1][parcela_box_1][juros_parcela]']").mask('##0,00%', { reverse: true });
-    adicionarImagem(1);
+    await $(".box-variacoes-produto").append(await productVariation(0, 1));
+    $("input[id='variacao[0][preco_original]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
+    $("input[id='variacao[0][parcela_box][0][preco_parcela]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
+    $("input[id='variacao[0][parcela_box][0][juros_parcela]']").mask('##0,00%', { reverse: true });
+    adicionarImagem(0);
 }
 
 initProductVariation();
@@ -96,12 +96,12 @@ $("#quantidade_cores").on("input", async function () {
     var qtdVariationsOpen = parseInt($(".details-variacao-produto").length);
     if (qtdVariationsOpen < qtdInput) {
         for (i = 1; i <= (qtdInput - qtdVariationsOpen); i++) {
-            await $(".box-variacoes-produto").append(await productVariation(i + qtdVariationsOpen));
-            masksInputsOfNewVariation(i + qtdVariationsOpen);
-            adicionarImagem(i + qtdVariationsOpen);
+            await $(".box-variacoes-produto").append(await productVariation(qtdVariationsOpen, qtdVariationsOpen + 1));
+            masksInputsOfNewVariation(qtdVariationsOpen);
+            adicionarImagem(qtdVariationsOpen);
         }
     } else if (qtdInput > 0) {
-        for (i = qtdVariationsOpen; i >= qtdInput + 1; i--) {
+        for (i = qtdVariationsOpen - 1; i >= qtdInput; i--) {
             $("#table-variacao-produto-" + i).remove();
         }
     }
@@ -148,11 +148,11 @@ $(document).on('input', '.qtd-parcelas', async function (index) {
     var qtdParcelasOpen = parseInt($("#parcelas-group-" + idVariacao + " .parcela-box").length);
     if (qtdParcelasOpen < qtdInput) {
         for (i = 1; i <= (qtdInput - qtdParcelasOpen); i++) {
-            await $("#parcelas-group-" + idVariacao).append(await parcela(idVariacao, i + qtdParcelasOpen));
+            await $("#parcelas-group-" + idVariacao).append(await parcela(idVariacao, qtdParcelasOpen));
         }
     } else if (qtdInput > 0) {
-        for (i = qtdParcelasOpen; i >= qtdInput + 1; i--) {
-            $("div[id='variacao[" + idVariacao + "][parcela_box_" + i + "]']").remove();
+        for (i = qtdParcelasOpen - 1; i >= qtdInput; i--) {
+            $("div[id='variacao[" + idVariacao + "][parcela_box][" + i + "]']").remove();
         }
     }
 
@@ -174,11 +174,11 @@ $(document).on('input', '.qtd-tamanhos', async function () {
     var qtdTamanhosOpen = parseInt($("#tamanhos-group-" + idVariacao + " .tamanho-box").length);
     if (qtdTamanhosOpen < qtdInput) {
         for (i = 1; i <= (qtdInput - qtdTamanhosOpen); i++) {
-            await $("#tamanhos-group-" + idVariacao).append(await tamanho(idVariacao, i + qtdTamanhosOpen));
+            await $("#tamanhos-group-" + idVariacao).append(await tamanho(idVariacao, qtdTamanhosOpen));
         }
     } else if (qtdInput > 0) {
-        for (i = qtdTamanhosOpen; i >= qtdInput + 1; i--) {
-            $("div[id='variacao[" + idVariacao + "][tamanho_box_" + i + "]']").remove();
+        for (i = qtdTamanhosOpen - 1; i >= qtdInput; i--) {
+            $("div[id='variacao[" + idVariacao + "][tamanho_box][" + i + "]']").remove();
         }
     }
 })
@@ -287,8 +287,8 @@ function productImagesChoose(id) {
 
 function masksInputsOfNewVariation(id) {
     $("input[id='variacao[" + id + "][preco_original]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
-    $("input[id='variacao[" + id + "][parcela_box_1][preco_parcela]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
-    $("input[id='variacao[" + id + "][parcela_box_1][juros_parcela]']").mask('##0,00%', { reverse: true });
+    $("input[id='variacao[" + id + "][parcela_box][0][preco_parcela]']").maskMoney({ prefix: 'R$ ', allowNegative: true, thousands: '.', decimal: ',', affixesStay: true });
+    $("input[id='variacao[" + id + "][parcela_box][0][juros_parcela]']").mask('##0,00%', { reverse: true });
 }
 
 function maskParcelas(idVariacao) {
@@ -298,13 +298,14 @@ function maskParcelas(idVariacao) {
     })
 }
 
-async function productVariation(id) {
+async function productVariation(id, idPlusOne) {
     return await $.ajax({
         url: "/getTemplate",
         method: "POST",
         data: {
             template: 'produto/variacao-cor',
-            id: id
+            id: id,
+            idPlusOne: idPlusOne
         },
         success: function (data) {
             return data;

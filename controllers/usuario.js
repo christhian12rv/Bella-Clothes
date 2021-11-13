@@ -197,6 +197,7 @@ exports.seguranca = async (req, res) => {
 
 exports.alterarFoto = async (req, res) => {
     try {
+        console.log(req.files)
         let foto = (req.files && req.files.foto) ? req.files.foto : undefined;
         await UsuarioService.changeFotoPerfil(req.user._id, foto);
 

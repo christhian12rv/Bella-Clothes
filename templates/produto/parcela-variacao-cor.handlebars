@@ -1,7 +1,7 @@
-<div class="d-flex flex-row flex-wrap parcela-box" id="variacao[{{idVariacao}}][parcela_box_{{idParcela}}]"
+<div class="d-flex flex-row flex-wrap parcela-box" id="variacao[{{idVariacao}}][parcela_box][{{idParcela}}]"
     style="gap: .5rem;">
-    <select name="variacao[{{idVariacao}}][parcela_box_{{idParcela}}][vezes_parcela]"
-        id="variacao[{{idVariacao}}][parcela_box_{{idParcela}}][vezes_parcela]" required>
+    <select name="variacao[{{idVariacao}}][parcela_box][{{idParcela}}][vezes_parcela]"
+        id="variacao[{{idVariacao}}][parcela_box][{{idParcela}}][vezes_parcela]" required>
         <option value="1">1x</option>
         <option value="2">2x</option>
         <option value="3">3x</option>
@@ -19,10 +19,10 @@
         <option value="sem-juros">Sem juros</option>
         <option value="com-juros">Com juros</option>
     </select>
-    <input type="text" name="variacao[{{idVariacao}}][parcela_box_{{idParcela}}][preco_parcela]"
-        id="variacao[{{idVariacao}}][parcela_box_{{idParcela}}][preco_parcela]" class="preco-parcela"
+    <input type="text" name="variacao[{{idVariacao}}][parcela_box][{{idParcela}}][preco_parcela]"
+        id="variacao[{{idVariacao}}][parcela_box][{{idParcela}}][preco_parcela]" class="preco-parcela"
         placeholder="* R$ 00,00" required>
-    <input type="text" name="variacao[{{idVariacao}}][parcela_box_{{idParcela}}][juros_parcela]"
-        id="variacao[{{idVariacao}}][parcela_box_{{idParcela}}][juros_parcela]" class="juros-parcela"
+    <input type="text" name="variacao[{{idVariacao}}][parcela_box][{{idParcela}}][juros_parcela]"
+        id="variacao[{{idVariacao}}][parcela_box][{{idParcela}}][juros_parcela]" class="juros-parcela"
         placeholder="Juros ao mês (%)">
 </div>

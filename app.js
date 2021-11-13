@@ -3,11 +3,10 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8081;
 
-const fileUpload = require('express-fileupload');
-
 const handlebars = require("express-handlebars");
 const handlebarsToCompiler = require("handlebars");
 const bodyParser = require("body-parser");
+const fileUpload = require("express-fileupload");
 
 const fs = require("fs");
 const path = require("path");
@@ -38,8 +37,19 @@ app.use(flash());
 require("./loaders/middlewares")(app)
 
 // Body Parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+const checkBodyparser = bp => (req, res, next) => {
+    if (req.path === '/admin/adicionar-produto') {
+        console.log(req.path)
+        next()
+    } else {
+        bp(req, res, next)
+    }
+}
+app.use(checkBodyparser(bodyParser.json()));
+app.use(checkBodyparser(bodyParser.urlencoded({ extended: true })));
+app.use(checkBodyparser(fileUpload()));
+
 
 // Handlebars
 app.engine("handlebars", handlebars({ defaultLayout: "main", helpers: require("./config/handlebarsHelpers") }));
@@ -53,9 +63,6 @@ require("./loaders/crons")();
 
 // Public
 app.use(express.static(path.join(__dirname, "public")));
-
-// Extra
-app.use(fileUpload());
 
 // Routes
 app.get("/", (req, res) => {

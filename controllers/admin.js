@@ -74,18 +74,7 @@ exports.adicionarProdutoGET = async (req, res) => {
 
 exports.adicionarProdutoPOST = async (req, res) => {
     try {
-        let objecta = {
-            variacao: []
-        };
-        let teste = req.body;
-        for (let prop in teste) {
-            console.log(prop);
-            objecta.variacao.push({
-                [prop.match(/cor|slug/)[0]]: teste[prop]
-            })
-        }
-        console.log(objecta);
-        res.send(objecta);
+        console.log(req.body);
         /* const errors = validationResult(req);
         if (!errors.isEmpty()) {
             errors.array().forEach(value => {

@@ -131,7 +131,7 @@ router.get("/produto/:id", (req, res) => {
 })
 
 router.get("/adicionar-produto", AdminController.adicionarProdutoGET)
-    .post("/adicionar-produto",/* ProdutoValidator.addProduto, */ AdminController.adicionarProdutoPOST);
+    .post("/adicionar-produto", multerInstance.none(), /* ProdutoValidator.addProduto, */ AdminController.adicionarProdutoPOST);
 
 router.get("/produtos/categorias", ProdutoController.getCategorias)
     .post("/produtos/categorias", ProdutoValidator.addCategoria, ProdutoController.addCategoria)
