@@ -38,12 +38,12 @@ require("./loaders/middlewares")(app)
 
 // Body Parser
 
-const checkBodyparser = bp => (req, res, next) => {
+const checkBodyparser = fn => (req, res, next) => {
     if (req.path === '/admin/adicionar-produto') {
         console.log(req.path)
         next()
     } else {
-        bp(req, res, next)
+        fn(req, res, next)
     }
 }
 app.use(checkBodyparser(bodyParser.json()));

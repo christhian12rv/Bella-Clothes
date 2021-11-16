@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 const multer = require("multer");
-const multerInstance = multer();
 const multiparty = require("multiparty");
 const { adminIsLoggedIn } = require("../middlewares/adminIsLoggedIn");
 
@@ -130,8 +130,18 @@ router.get("/produto/:id", (req, res) => {
     })
 })
 
+const storageAdicionarProduto = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, "../public/img/produtos"));
+    },
+    filename: function (req, file, cb) {
+        const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueName + path.extname(file.originalname));
+    }
+});
+const uploadAdicionarProduto = multer({ storage: storageAdicionarProduto });
 router.get("/adicionar-produto", AdminController.adicionarProdutoGET)
-    .post("/adicionar-produto", multerInstance.none(), /* ProdutoValidator.addProduto, */ AdminController.adicionarProdutoPOST);
+    .post("/adicionar-produto", uploadAdicionarProduto.any(), /* ProdutoValidator.addProduto, */ AdminController.adicionarProdutoPOST);
 
 router.get("/produtos/categorias", ProdutoController.getCategorias)
     .post("/produtos/categorias", ProdutoValidator.addCategoria, ProdutoController.addCategoria)

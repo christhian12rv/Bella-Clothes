@@ -75,6 +75,7 @@ exports.adicionarProdutoGET = async (req, res) => {
 exports.adicionarProdutoPOST = async (req, res) => {
     try {
         console.log(req.body);
+        console.log(req.files);
         /* const errors = validationResult(req);
         if (!errors.isEmpty()) {
             errors.array().forEach(value => {
