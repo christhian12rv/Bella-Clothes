@@ -13,6 +13,17 @@ const EmpresaController = require("../controllers/empresa");
 const ProdutoController = require("../controllers/produto");
 const UsuarioController = require("../controllers/usuario");
 
+const storageAdicionarProduto = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, "../public/img/produtos"));
+    },
+    filename: function (req, file, cb) {
+        const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueName + path.extname(file.originalname));
+    }
+});
+const uploadAdicionarProduto = multer({ storage: storageAdicionarProduto });
+
 router.get("/login", (req, res) => {
     res.render("admin/login", {
         css: "admin/login.css",
@@ -130,18 +141,8 @@ router.get("/produto/:id", (req, res) => {
     })
 })
 
-const storageAdicionarProduto = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, "../public/img/produtos"));
-    },
-    filename: function (req, file, cb) {
-        const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueName + path.extname(file.originalname));
-    }
-});
-const uploadAdicionarProduto = multer({ storage: storageAdicionarProduto });
 router.get("/adicionar-produto", AdminController.adicionarProdutoGET)
-    .post("/adicionar-produto", uploadAdicionarProduto.any(), /* ProdutoValidator.addProduto, */ AdminController.adicionarProdutoPOST);
+    .post("/adicionar-produto", uploadAdicionarProduto.any(), ProdutoValidator.addProduto, AdminController.adicionarProdutoPOST);
 
 router.get("/produtos/categorias", ProdutoController.getCategorias)
     .post("/produtos/categorias", ProdutoValidator.addCategoria, ProdutoController.addCategoria)

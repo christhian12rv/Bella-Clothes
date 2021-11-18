@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const passport = require("passport");
 
 const AdminService = require("../services/admin");
@@ -51,7 +52,7 @@ exports.excluirUsuario = async (req, res) => {
             req.logOut();
         return res.json(serviceResponse);
     } catch (error) {
-        return res.redirect("/erro-500");
+        return res.redirect("/admin/erro-500");
     }
 }
 
@@ -68,29 +69,27 @@ exports.adicionarProdutoGET = async (req, res) => {
             subcategorias: subcategorias
         })
     } catch (error) {
-        return res.redirect("/erro-500");
+        return res.redirect("/admin/erro-500");
     }
 }
 
 exports.adicionarProdutoPOST = async (req, res) => {
-    try {
-        console.log(req.body);
-        console.log(req.files);
-        /* const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            errors.array().forEach(value => {
-                req.flash("error_msg", value.msg);
-            });
-            return res.redirect("/registrar/fisica");
-        } else {
-            try {
-                let serviceResponse = await UsuarioService.createUsuarioFisico(req.body);
-                res.redirect("/verificarEmail?email=" + serviceResponse.usuario.email + "&id=" + serviceResponse.emailToken._id);
-            } catch (error) {
-                return res.redirect("/registrar/fisica");
-            }
-        } */
-    } catch (error) {
-
+    console.log(req.body);
+    console.log(req.files);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        errors.array().forEach(value => {
+            req.flash("error_msg", value.msg);
+            console.log(value.msg);
+        });
+        return res.redirect("/admin/adicionar-produto");
+    } else {
+        try {
+            console.log("isso ai");
+            /* let serviceResponse = await UsuarioService.createUsuarioFisico(req.body);
+            res.redirect("/verificarEmail?email=" + serviceResponse.usuario.email + "&id=" + serviceResponse.emailToken._id); */
+        } catch (error) {
+            return res.redirect("/admin/erro-500");
+        }
     }
 }
