@@ -544,7 +544,7 @@ exports.addProduto = [
         .notEmpty()
         .withMessage("O campo Preço Original é obrigatório")
         .bail()
-        .matches(/(^R\$ )?(\d+(\.)?)+(\,\d{1,2})?$/gm)
+        .matches(/^\R\$ ?(([1-9]\d{0,2}(.\d{3})*)|0)?\,\d{1,2}$/g)
         .withMessage("O campo Preço Original é inválido"),
 
     body("variacao.*.slug")
@@ -580,9 +580,9 @@ exports.addProduto = [
             let testRegexp = true;
             if (tipoDesconto != '') {
                 if (tipoDesconto == 'porcentagem')
-                    testRegexp = /(^R\$ )?(\d+(\.)?)+(\,\d{1,2})?$/gm.text(value);
+                    testRegexp = /(^100(\.0{1,2})?%$)|(^([1-9]([0-9])?|0)(\,[0-9]{1,2})?%$)/g.text(value);
                 else if (tipoDesconto == 'bruto')
-                    testRegexp = /(^R\$ )?(\d+(\.)?)+(\,\d{1,2})?$/gm.text(value);
+                    testRegexp = /^\R\$ ?(([1-9]\d{0,2}(.\d{3})*)|0)?\,\d{1,2}$/g.text(value);
                 else {
                     throw new Error("O campo Desconto é inválido");
                     return true;
