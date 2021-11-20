@@ -533,41 +533,47 @@ exports.addProduto = [
         .customSanitizer(value => {
             return value.charAt(0).toUpperCase() + value.slice(1);
         })
-        .notEmpty()
-        .withMessage("O campo Cor é obrigatório")
-        .bail()
-        .isLength({ min: 2 })
-        .withMessage("O campo Cor deve conter no mínimo 2 caracteres"),
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            if (!value || value.length === 0)
+                throw new Error("O campo Cor da Cor " + (variacaoIndex + 1) + " é obrigatório");
+            else if (value.length < 2)
+                throw new Error("A Cor da Cor " + (variacaoIndex + 1) + " deve conter no mínimo 2 caracteres");
+            return true;
+        }),
 
     body("variacao.*.preco_original")
         .trim()
-        .notEmpty()
-        .withMessage("O campo Preço Original é obrigatório")
-        .bail()
-        .matches(/^\R\$ ?(([1-9]\d{0,2}(.\d{3})*)|0)?\,\d{1,2}$/g)
-        .withMessage("O campo Preço Original é inválido"),
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            if (!value || value.length === 0)
+                throw new Error("O campo Preço Original da Cor " + (variacaoIndex + 1) + " é obrigatório");
+            else if (!(/^\R\$ ?(([1-9]\d{0,2}(.\d{3})*)|0)?\,\d{1,2}$/g.test(value)))
+                throw new Error("O Preço Original da Cor " + (variacaoIndex + 1) + " é inválido.")
+            return true;
+        }),
 
     body("variacao.*.slug")
         .trim()
         .toLowerCase()
-        .notEmpty()
-        .withMessage("O campo Slug é obrigatório")
-        .bail()
-        .isString()
-        .withMessage("O Slug informado é inválido")
-        .bail()
-        .isLength({ min: 2 })
-        .withMessage("O Slug deve conter no mínimo 2 caracteres")
-        .bail()
-        .matches(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
-        .withMessage("O Slug informado é inválido. Um Slug deve ser todo em caracteres minúsculos e não pode conter nenhum caractere especial, exceto hífens"),
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            if (!value || value.length === 0)
+                throw new Error("O campo Slug da Cor " + (variacaoIndex + 1) + " é obrigatório");
+            else if (value.length < 2)
+                throw new Error("O Slug da Cor " + (variacaoIndex + 1) + " deve conter no mínimo 2 caracteres");
+            else if (!(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value)))
+                throw new Error("O Slug da Cor " + (variacaoIndex + 1) + " informado é inválido. Um Slug deve ser todo em caracteres minúsculos e não pode conter nenhum caractere especial, exceto hífens")
+            return true;
+        }),
 
     body("variacao.*.tipo_desconto")
         .trim()
         .optional()
-        .custom(value => {
-            if (value != '' && value != 'porcentagem' || value != 'bruto')
-                throw new Error("O campo Tipo do Desconto é inválido");
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            if (value != '' && value != 'porcentagem' && value != 'bruto')
+                throw new Error("O campo Tipo do Desconto da Cor " + (variacaoIndex + 1) + " é inválido");
             return true;
         }),
 
@@ -575,22 +581,94 @@ exports.addProduto = [
         .trim()
         .optional()
         .custom((value, req) => {
-            let variacaoIndex = req.path.substr(9, 1);
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
             let tipoDesconto = req.req.body.variacao[variacaoIndex].tipo_desconto;
             let testRegexp = true;
             if (tipoDesconto != '') {
-                if (tipoDesconto == 'porcentagem')
-                    testRegexp = /(^100(\.0{1,2})?%$)|(^([1-9]([0-9])?|0)(\,[0-9]{1,2})?%$)/g.text(value);
-                else if (tipoDesconto == 'bruto')
-                    testRegexp = /^\R\$ ?(([1-9]\d{0,2}(.\d{3})*)|0)?\,\d{1,2}$/g.text(value);
-                else {
-                    throw new Error("O campo Desconto é inválido");
-                    return true;
+                let testDesconto = (tipoDesc) => {
+                    let regexpTest = {
+                        'porcentagem': /(^100(\.0{1,2})?%$)|(^([1-9]([0-9])?|0)(\,[0-9]{1,2})?%$)/g.test(value),
+                        'bruto': /^\R\$ ?(([1-9]\d{0,2}(.\d{3})*)|0)?\,\d{1,2}$/g.test(value)
+                    }
+                    return regexpTest[tipoDesc];
                 }
-                if (!testRegexp) {
-                    throw new Error("O campo Desconto é inválido");
-                }
+                testRegexp = testDesconto(tipoDesconto);
+                if (!testRegexp)
+                    throw new Error("O campo Desconto da Cor " + (variacaoIndex + 1) + " é inválido");
             }
+            return true;
+        }),
+
+    body("variacao.*.parcela_box")
+        .customSanitizer(value => {
+            return value.map(arrElement => {
+                if (arrElement.escolher_juros == 'sem-juros')
+                    arrElement.juros_parcela = '';
+                return arrElement;
+            });
+        })
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            const uniqueValues = new Set(value.map(v => v.vezes_parcela));
+            if (uniqueValues.size < value.length)
+                throw new Error("As Parcelas da Cor " + (variacaoIndex + 1) + " devem ser diferentes");
+
+            value.forEach(arrElement => {
+                if (arrElement.escolher_juros === 'com-juros' && !(/(^100(\.0{1,2})?%$)|(^([1-9]([0-9])?|0)(\,[0-9]{1,2})?%$)/g.test(arrElement.juros_parcela)))
+                    throw new Error("O campo Juros da Parcela " + arrElement.vezes_parcela + " da Cor " + (variacaoIndex + 1) + " é inválido");
+            })
+            return true;
+        }),
+
+    body("variacao.*.parcela_box.*.vezes_parcela")
+        .trim()
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            let parcelaIndex = parseInt(req.path.substr(24, 1));
+            if (!Number.isInteger(value) || value < 1 || value > 12)
+                throw new Error("O campo Número de Vezes da Parcela " + (parcelaIndex + 1) + " da Cor " + (variacaoIndex + 1) + " é inválido");
+            return true;
+        }),
+
+    body("variacao.*.parcela_box.*.escolher_juros")
+        .trim()
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            let parcelaIndex = parseInt(req.path.substr(24, 1));
+            if (value !== 'sem-juros' && value !== 'com-juros')
+                throw new Error("O campo Tipo de Juros (Sem juros ou Com Juros) da Parcela " + (parcelaIndex + 1) + " da Cor " + (variacaoIndex + 1) + " é inválido");
+            return true;
+        }),
+
+    body("variacao.*.parcela_box.*.preco_parcela")
+        .trim()
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            let parcelaIndex = parseInt(req.path.substr(24, 1));
+            if (!(/^\R\$ ?(([1-9]\d{0,2}(.\d{3})*)|0)?\,\d{1,2}$/g.test(value)))
+                throw new Error("O campo Preço da Parcela " + (parcelaIndex + 1) + " da Cor " + (variacaoIndex + 1) + " é inválido");
+            return true;
+        }),
+
+    body("variacao.*.tamanho_box.*.tamanho")
+        .trim()
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            let tamanhoIndex = parseInt(req.path.substr(24, 1));
+            console.log(tamanhoIndex);
+            if (value == '' || value == null || value == undefined)
+                throw new Error("O campo Tamanho " + (tamanhoIndex + 1) + " da Cor " + (variacaoIndex + 1) + " é inválido");
+            return true;
+        }),
+
+    body("variacao.*.tamanho_box.*.tamanho")
+        .trim()
+        .custom((value, req) => {
+            let variacaoIndex = parseInt(req.path.substr(9, 1));
+            let tamanhoIndex = parseInt(req.path.substr(24, 1));
+            console.log(tamanhoIndex);
+            if (!Number.isInteger(value) || value < 0)
+                throw new Error("O campo Estoque do Tamanho " + (tamanhoIndex + 1) + " da Cor " + (variacaoIndex + 1) + " é inválido");
             return true;
         }),
 ]

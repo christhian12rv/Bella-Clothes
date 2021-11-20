@@ -74,7 +74,7 @@ exports.adicionarProdutoGET = async (req, res) => {
 }
 
 exports.adicionarProdutoPOST = async (req, res) => {
-    console.log(req.body);
+    console.log(req.body.variacao[0].parcela_box);
     console.log(req.files);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
