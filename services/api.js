@@ -7,6 +7,8 @@ const Subcategoria = require("../models/produto/Subcategoria");
 const Usuario = require("../models/usuario/registro/Usuario");
 const UsuarioFisico = require("../models/usuario/registro/UsuarioFisico");
 const UsuarioJuridico = require("../models/usuario/registro/UsuarioJuridico");
+const Produto = require("../models/produto/Produto");
+const VariacaoProduto = require("../models/produto/VariacaoProduto");
 
 exports.getCategorias = async (body) => {
     try {
@@ -32,6 +34,7 @@ exports.getSubcategoriasByCategoria = async (id_categoria) => {
 
 
 exports.getUsuarios = async (query) => {
+    console.log(query)
     let { columns, order, length, start, search } = query;
     search = search.value;
     let orderDir = order[0].dir == 'asc' ? 1 : -1;
@@ -146,6 +149,76 @@ exports.getUsuarios = async (query) => {
             usuarios = usuarios.slice(parseInt(start), parseInt(length) + parseInt(start));
 
         return { usuarios: usuarios, recordsTotal: recordsTotal, recordsFiltered: recordsFiltered };
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+exports.getProdutos = async (query) => {
+    let { columns, order, length, start, search } = query;
+    search = search.value;
+    let orderDir = order[0].dir == 'asc' ? 1 : -1;
+
+    let columnToSort = columns[order[0].column].name;
+
+    let fieldsToSearch = [];
+    if (search !== '') {
+        columns.forEach(column => {
+            let name = column.name;
+            if (column.searchable != "true")
+                return;
+            fieldsToSearch.push({ [name]: { '$regex': search, '$options': 'i' } });
+        })
+    } else {
+        fieldsToSearch = [{}];
+    }
+
+    try {
+
+        let produtos = await Produto.aggregate([
+            {
+                $lookup: {
+                    "from": "variacaoprodutos",
+                    "localField": "_id",
+                    "foreignField": "produto",
+                    "as": "produto"
+                }
+            },
+            {
+                $addFields: {
+                    sort_field: [columnToSort]
+                }
+            },
+            {
+                $match: {
+                    $or: fieldsToSearch
+                }
+            }
+        ]).sort({ 'sort_field': orderDir })
+
+        produtos.forEach(produto => {
+            produto.createdAt = moment(produto.createdAt).tz('America/Sao_Paulo').format('D/MM/YYYY, HH:mm:ss');
+        })
+
+        await produtos.forEach(async (produto) => {
+            let categoria = await Categoria.findOne({ _id: produto.categoria }).lean();
+            produto.categoria = categoria;
+
+            return produto;
+        })
+        await produtos.forEach(async (produto) => {
+            let subcategoria = await Subcategoria.findOne({ _id: produto.subcategoria }).lean();
+            produto.subcategoria = subcategoria;
+
+            return produto;
+        })
+
+        let recordsTotal = await Produto.find().countDocuments();
+        let recordsFiltered = produtos.length;
+        if (length > -1)
+            produtos = produtos.slice(parseInt(start), parseInt(length) + parseInt(start));
+        console.log(produtos)
+        return { produtos: produtos, recordsTotal: recordsTotal, recordsFiltered: recordsFiltered };
     } catch (error) {
         throw new Error(error);
     }

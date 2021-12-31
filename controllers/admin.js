@@ -1,5 +1,7 @@
 const { validationResult } = require('express-validator');
 const passport = require("passport");
+const path = require("path");
+const fs = require('fs');
 
 const AdminService = require("../services/admin");
 const UsuarioService = require("../services/usuario");
@@ -74,21 +76,27 @@ exports.adicionarProdutoGET = async (req, res) => {
 }
 
 exports.adicionarProdutoPOST = async (req, res) => {
-    console.log(req.body.variacao[0].parcela_box);
-    console.log(req.files);
+    req.files.forEach((file) => console.log(file.fieldname));
+    console.log(req.body);
+    console.log(req.body.variacao[0].parcela_box)
+    console.log(req.body.variacao[0].tamanho_box)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         errors.array().forEach(value => {
             req.flash("error_msg", value.msg);
-            console.log(value.msg);
         });
+        if (req.files)
+            req.files.forEach((file) => fs.unlink(path.join(__dirname) + '/../public/img/produtos/' + file.filename, async (error) => {
+                if (error) throw error;
+            }));
         return res.redirect("/admin/adicionar-produto");
     } else {
         try {
-            console.log("isso ai");
-            /* let serviceResponse = await UsuarioService.createUsuarioFisico(req.body);
-            res.redirect("/verificarEmail?email=" + serviceResponse.usuario.email + "&id=" + serviceResponse.emailToken._id); */
+            let serviceResponse = await AdminService.adicionarProduto(req.body, req.files);
+            req.flash("success_msg", "Produto " + req.body.nome_produto + " adicionado com sucesso!")
+            res.redirect("/admin/ver-produtos");
         } catch (error) {
+            console.log(error)
             return res.redirect("/admin/erro-500");
         }
     }

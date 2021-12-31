@@ -28,3 +28,14 @@ exports.getUsuarios = async (req, res) => {
         return res.redirect("/erro-500");
     }
 }
+
+exports.getProdutos = async (req, res) => {
+    console.log(req.query)
+    try {
+        let serviceResponse = await ApiService.getProdutos(req.query);
+        res.send(serviceResponse);
+    } catch (error) {
+        console.log(error);
+        return res.redirect("/erro-500");
+    }
+}
